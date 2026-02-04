@@ -1,0 +1,1079 @@
+{
+  "exercise_plan": {
+    "plan_info": {
+      "plan_id": "EP-2026-JM68-001",
+      "user_name": "John M.",
+      "created_date": "2026-02-02",
+      "total_weeks": 4,
+      "sessions_per_week": 5,
+      "difficulty": "beginner",
+      "primary_goal": "improve_balance",
+      "safety_notes": [
+        "Have spouse present during all standing exercises",
+        "Stop immediately if experiencing dizziness - sit down and wait 5 minutes",
+        "Use wall or chair for support at all times during balance work",
+        "Monitor blood pressure before exercise (should be below 140/90)",
+        "Take frequent breaks every 5-7 minutes as needed",
+        "Watch for signs of overexertion due to blood thinner medication"
+      ]
+    },
+
+    "weekly_schedule": [
+      {
+        "week": 1,
+        "focus": "Foundation & Baseline - Building Confidence",
+        "sessions": [
+          {
+            "day": 1,
+            "title": "Balance Foundations & Left Side Activation",
+            "duration_min": 18,
+            "exercises": [
+              {
+                "id": "W1D1-EX001",
+                "name": "Seated Marching",
+                "description": "Gentle warm-up to activate hip flexors and improve leg coordination, with special focus on left leg movement awareness",
+                "equipment": ["Sturdy chair with armrests"],
+                "steps": [
+                  "Sit tall in chair with back supported, feet flat on floor hip-width apart",
+                  "Place hands on armrests for stability",
+                  "Lift RIGHT knee up 2-3 inches, hold for 2 seconds while breathing out",
+                  "Lower right foot slowly and controlled",
+                  "Lift LEFT knee up 2-3 inches (use hands to gently assist under thigh if needed), hold 2 seconds",
+                  "Lower left foot slowly",
+                  "Continue alternating, spending extra mental focus on the left leg movement"
+                ],
+                "sets": 2,
+                "reps": 8,
+                "hold_sec": null,
+                "rest_sec": 45,
+                "tips": [
+                  "Keep shoulders level and centered - don't lean to either side",
+                  "It's normal for left leg to lift lower than right - any movement is progress",
+                  "Use your right hand to help lift left leg if needed",
+                  "Focus your attention on what the left leg is doing - this brain connection is important",
+                  "If you feel any dizziness, stop and rest"
+                ],
+                "easier": "Just slide left foot forward and back on floor instead of lifting (marching in place)",
+                "harder": "Lift knee 4-5 inches higher, or try without using hands to assist left leg",
+                "warnings": [
+                  "Stop if you feel dizzy or lightheaded",
+                  "Don't hold your breath - keep breathing naturally",
+                  "Ensure chair is stable and won't slide"
+                ],
+                "video_url": "https://youtube.com/watch?v=seated-march-stroke",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              },
+
+              {
+                "id": "W1D1-EX002",
+                "name": "Seated Weight Shifts (Side to Side)",
+                "description": "Core balance exercise to improve weight distribution awareness and prepare for standing balance - critical for reducing fall risk",
+                "equipment": [
+                  "Sturdy chair without armrests (or sit forward away from armrests)"
+                ],
+                "steps": [
+                  "Sit toward front half of chair, feet flat and hip-width apart",
+                  "Place hands on thighs, sit up tall with shoulders back",
+                  "Feel equal weight on both sitting bones to start",
+                  "Slowly shift weight to RIGHT hip over 3 seconds, keep shoulders level",
+                  "Hold right side shift for 5 seconds, feeling the pressure under right sitting bone",
+                  "Return to center over 3 seconds",
+                  "Slowly shift weight to LEFT hip over 3 seconds - you may need to think about this more consciously",
+                  "Hold left side shift for 7-10 seconds (extra time on affected side helps brain relearn)",
+                  "Return to center",
+                  "Repeat the cycle"
+                ],
+                "sets": 2,
+                "reps": 6,
+                "hold_sec": null,
+                "rest_sec": 60,
+                "tips": [
+                  "This is about QUALITY not speed - slow controlled movements are best",
+                  "Imagine you're moving from your hips, not leaning your upper body",
+                  "Spend that extra time on the left side - your brain needs more practice there",
+                  "If available, practice in front of a mirror to see if shoulders stay level",
+                  "Your spouse can place a gentle hand on your shoulder to remind you to stay upright"
+                ],
+                "easier": "Make smaller weight shifts (only 25-30% of weight), or keep hands on armrests for confidence",
+                "harder": "Increase hold time to 10 seconds each side, or try lifting the opposite foot 1 inch during the hold",
+                "warnings": [
+                  "Don't shift so far that you feel unstable or might fall",
+                  "Keep both feet planted firmly on floor throughout",
+                  "Stop if you experience hip or lower back pain"
+                ],
+                "video_url": "https://youtube.com/watch?v=seated-weight-shifts-balance",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              },
+
+              {
+                "id": "W1D1-EX003",
+                "name": "Ankle Pumps (Both Legs)",
+                "description": "Improve ankle mobility and lower leg circulation - important for walking and reducing swelling",
+                "equipment": ["Chair"],
+                "steps": [
+                  "Sit comfortably with feet flat on floor",
+                  "Keeping heels on the ground, lift both sets of toes up toward ceiling",
+                  "Hold the 'toes up' position for 2 seconds, feeling calf stretch",
+                  "Point both sets of toes down toward floor",
+                  "Hold the 'toes down' position for 2 seconds",
+                  "Return to neutral and repeat",
+                  "After finishing both legs together, do 5 extra pumps with LEFT ankle only for additional practice"
+                ],
+                "sets": 2,
+                "reps": 12,
+                "hold_sec": null,
+                "rest_sec": 30,
+                "tips": [
+                  "Move through the fullest range of motion that's comfortable",
+                  "The left ankle might move less than right - that's expected",
+                  "You can use your right hand to gently move left foot through the motion if needed",
+                  "Keep the movement slow and controlled",
+                  "This helps prevent blood clots, especially important given your medications"
+                ],
+                "easier": "Smaller range of motion, or do one ankle at a time starting with right",
+                "harder": "Add 5 ankle circles in each direction after the pumps",
+                "warnings": [
+                  "Stop if you experience calf cramping - stand and gently walk it off",
+                  "Avoid this exercise if you have acute ankle pain"
+                ],
+                "video_url": "https://youtube.com/watch?v=ankle-pumps-circulation",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              },
+
+              {
+                "id": "W1D1-EX004",
+                "name": "Supported Standing Hold (Chair Support)",
+                "description": "Build standing balance confidence and leg strength - essential progression toward walking without cane",
+                "equipment": [
+                  "Sturdy chair or kitchen counter",
+                  "Wall nearby for backup"
+                ],
+                "steps": [
+                  "SETUP: Have spouse standing beside you, chair in front, wall to one side",
+                  "Start seated, place both hands firmly on chair back or armrests",
+                  "Lean forward slightly, shift weight onto feet",
+                  "Push through legs to stand up, using arms for support as much as needed",
+                  "Once standing, adjust hand position to lightly hold chair back",
+                  "Stand tall, distribute weight as evenly as possible on both feet (you may feel more on right - that's normal)",
+                  "Hold this position, breathing normally, focusing on feeling the floor under BOTH feet",
+                  "To finish: slowly bend knees and lower back to seated position with control"
+                ],
+                "sets": 3,
+                "reps": null,
+                "hold_sec": 15,
+                "rest_sec": 90,
+                "tips": [
+                  "This is your most important exercise - it directly addresses fall risk",
+                  "Don't rush the stand-up or sit-down - these transitions are where falls happen",
+                  "Try to feel equal weight on both feet, even if left leg feels weaker",
+                  "Look straight ahead, not down at your feet",
+                  "Your spouse should stay within arm's reach but let you do the work",
+                  "If 15 seconds feels easy, that's great - we'll progress you next week"
+                ],
+                "easier": "Hold for only 5-10 seconds, or keep more weight on hands/use counter that's higher",
+                "harder": "Hold for 20-30 seconds, or lighten pressure on hands (fingertips only)",
+                "warnings": [
+                  "DO NOT attempt if feeling dizzy or unstable today",
+                  "Always have spouse or support person present",
+                  "Sit down immediately if you feel unsteady, dizzy, or weak",
+                  "Never attempt this exercise alone in week 1"
+                ],
+                "video_url": "https://youtube.com/watch?v=supported-standing-stroke",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              },
+
+              {
+                "id": "W1D1-EX005",
+                "name": "Seated Upper Body & Shoulder Stretches",
+                "description": "Gentle cool-down focusing on left shoulder mobility and reducing tension - addresses your shoulder discomfort",
+                "equipment": ["Chair"],
+                "steps": [
+                  "Sit comfortably, feet flat on floor",
+                  "Shoulder rolls: Roll both shoulders backward in large circles 5 times, then forward 5 times",
+                  "Neck stretches: Gently tilt right ear toward right shoulder, hold 15 seconds, repeat left side (may need to use right hand to gently support left side of head)",
+                  "Left arm pendulum: Lean slightly forward, let left arm hang, gently swing it forward/back like a pendulum 10 times",
+                  "Seated spinal twist: Place right hand on left knee, gently twist to look over left shoulder, hold 20 seconds, repeat other side",
+                  "Deep breathing: 5 slow, deep breaths - in through nose (4 counts), out through mouth (6 counts)"
+                ],
+                "sets": 1,
+                "reps": null,
+                "hold_sec": 20,
+                "rest_sec": 0,
+                "tips": [
+                  "Never force any stretch - gentle pulling sensation only",
+                  "The left shoulder may be tighter - that's normal, be patient with it",
+                  "Breathe deeply during all stretches",
+                  "This is recovery time - think about how your body feels after the workout",
+                  "The deep breathing helps lower blood pressure naturally"
+                ],
+                "easier": "Shorter hold times (10 seconds), or skip the spinal twist",
+                "harder": "Add arm circles with both arms, or hold stretches for 30 seconds",
+                "warnings": [
+                  "Stop any stretch that causes sharp pain",
+                  "Don't force the left shoulder - it will improve gradually",
+                  "Avoid if experiencing acute shoulder injury"
+                ],
+                "video_url": "https://youtube.com/watch?v=seated-stretches-seniors",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              }
+            ],
+            "session_status": "not_started",
+            "completed_date": null
+          },
+
+          {
+            "day": 2,
+            "title": "Lower Body Strength & Stability",
+            "duration_min": 16,
+            "exercises": [
+              {
+                "id": "W1D2-EX001",
+                "name": "Seated Knee Extensions",
+                "description": "Strengthen quadriceps muscles essential for standing, walking, and stair climbing",
+                "equipment": ["Chair"],
+                "steps": [
+                  "Sit tall with back supported, hands on armrests or thighs",
+                  "Starting with RIGHT leg: straighten knee to lift foot off ground, pointing toes up",
+                  "Hold with leg fully extended for 3 seconds, squeeze thigh muscle",
+                  "Lower slowly over 3 seconds with control",
+                  "Complete all right leg reps, then switch to LEFT leg",
+                  "For left leg: may need to use hands under thigh to help initiate the lift, then try to hold it yourself",
+                  "Focus on straightening the left knee as much as possible, even if foot doesn't lift as high"
+                ],
+                "sets": 2,
+                "reps": 10,
+                "hold_sec": null,
+                "rest_sec": 45,
+                "tips": [
+                  "The lowering phase is just as important as the lifting - don't let leg drop",
+                  "Left leg will likely be weaker - any lift is success, even if knee doesn't fully straighten",
+                  "Keep back against chair, don't lean forward",
+                  "Point toes toward ceiling to maximize quad engagement",
+                  "This exercise directly helps with standing up from chairs and getting out of bed"
+                ],
+                "easier": "Don't straighten knee all the way, or reduce reps to 6-8 per leg",
+                "harder": "Add 1-2 lb ankle weight, or hold extension for 5 seconds",
+                "warnings": [
+                  "Stop if experiencing knee pain (mild muscle fatigue is OK)",
+                  "Don't lock knee joint forcefully"
+                ],
+                "video_url": "https://youtube.com/watch?v=seated-knee-extensions",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              },
+
+              {
+                "id": "W1D2-EX002",
+                "name": "Seated Hip Abduction (Leg Out to Side)",
+                "description": "Strengthen hip muscles important for balance and sideways stability while walking",
+                "equipment": ["Chair"],
+                "steps": [
+                  "Sit tall toward front of chair, hands on armrests for support",
+                  "Keep right leg planted, lift and move LEFT leg out to the side 6-8 inches",
+                  "Hold for 2 seconds, then bring back to center with control",
+                  "Complete all left leg reps first (affected side)",
+                  "Then switch: keep left leg planted, move RIGHT leg out to side",
+                  "Focus on moving from the hip, keeping knee pointing forward"
+                ],
+                "sets": 2,
+                "reps": 10,
+                "hold_sec": null,
+                "rest_sec": 45,
+                "tips": [
+                  "We're starting with left leg because it needs more practice",
+                  "Don't lean away as leg goes out - stay upright",
+                  "Left leg may not go as far - that's expected and will improve",
+                  "You can use resistance band around thighs if you have one for extra challenge",
+                  "This helps with getting in/out of cars and walking on uneven surfaces"
+                ],
+                "easier": "Slide foot out to side on floor instead of lifting, or reduce range to 3-4 inches",
+                "harder": "Add resistance band around knees, or increase hold to 4 seconds",
+                "warnings": [
+                  "Stop if experiencing hip or groin pain",
+                  "Keep movements controlled - don't swing leg"
+                ],
+                "video_url": "https://youtube.com/watch?v=seated-hip-abduction",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              },
+
+              {
+                "id": "W1D2-EX003",
+                "name": "Sit-to-Stand Practice (Partial Stands)",
+                "description": "Practice the motion of standing up - one of the most important functional movements for independence",
+                "equipment": ["Sturdy chair with armrests"],
+                "steps": [
+                  "Sit toward front edge of chair, feet flat and slightly behind knees",
+                  "Lean forward so nose is over toes, look ahead not down",
+                  "Place hands on armrests",
+                  "Push through legs and arms to stand HALFWAY up (60-70% of standing)",
+                  "Hold this partial standing position for 2 seconds",
+                  "Lower back down to seated with CONTROL over 3 seconds",
+                  "Rest, then repeat",
+                  "Spouse should stand nearby but only assist if you truly need it"
+                ],
+                "sets": 3,
+                "reps": 6,
+                "hold_sec": null,
+                "rest_sec": 60,
+                "tips": [
+                  "The goal is building strength and control, not standing fully yet",
+                  "Nose over toes position is KEY - this shifts your weight forward properly",
+                  "Going down slowly is harder than going up - this builds serious strength",
+                  "Try to use legs more than arms, even though arms are helping",
+                  "By week 4, you'll be doing full stands without hands!"
+                ],
+                "easier": "Stand up only 30-40%, or use arms more for assistance",
+                "harder": "Stand up 80-90% of the way, or reduce arm assistance",
+                "warnings": [
+                  "Have spouse present for safety",
+                  "Stop if knees hurt (muscle burn is OK, joint pain is not)",
+                  "Don't attempt if feeling dizzy today"
+                ],
+                "video_url": "https://youtube.com/watch?v=sit-to-stand-progression",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              },
+
+              {
+                "id": "W1D2-EX004",
+                "name": "Heel Raises (Seated)",
+                "description": "Strengthen calf muscles needed for walking and balance",
+                "equipment": ["Chair"],
+                "steps": [
+                  "Sit with feet flat, hands on thighs or armrests",
+                  "Keeping toes on ground, lift both heels up as high as comfortable",
+                  "Hold at the top for 2 seconds, feeling calves contract",
+                  "Lower heels slowly back to floor",
+                  "After doing both together, do 5 extra raises with LEFT foot only for additional practice"
+                ],
+                "sets": 2,
+                "reps": 12,
+                "hold_sec": null,
+                "rest_sec": 30,
+                "tips": [
+                  "Lift heels as high as you can - this builds push-off strength for walking",
+                  "Left calf may be weaker - the extra reps help",
+                  "Keep movement smooth and controlled",
+                  "This also helps prevent ankle swelling"
+                ],
+                "easier": "Lower height, or fewer reps (8-10)",
+                "harder": "Hold top position for 4 seconds, or add resistance by pressing down on thighs with hands",
+                "warnings": ["Stop if experiencing calf cramping"],
+                "video_url": "https://youtube.com/watch?v=seated-calf-raises",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              },
+
+              {
+                "id": "W1D2-EX005",
+                "name": "Gentle Seated Hamstring & Hip Stretches",
+                "description": "Cool down and maintain flexibility in legs and hips",
+                "equipment": ["Chair"],
+                "steps": [
+                  "Hamstring stretch: Sit on edge of chair, extend right leg straight with heel on floor, lean forward gently until you feel stretch in back of thigh, hold 20 seconds, repeat left leg",
+                  "Hip flexor stretch: Sit tall, bring right ankle to rest on left knee (figure-4 position), gently press down on right knee, hold 20 seconds, repeat other side (may need help positioning left ankle)",
+                  "Glute stretch: Hug right knee to chest, hold 15 seconds, repeat left side",
+                  "Deep breathing: 5 slow breaths to finish"
+                ],
+                "sets": 1,
+                "reps": null,
+                "hold_sec": 20,
+                "rest_sec": 0,
+                "tips": [
+                  "Stretching prevents stiffness and helps with fall prevention",
+                  "Never bounce - hold steady gentle stretches",
+                  "Left side may be less flexible - be patient, it will improve",
+                  "The hip flexor stretch is especially important since you use a cane"
+                ],
+                "easier": "Shorter holds (10-15 seconds), or skip figure-4 if too difficult",
+                "harder": "Hold stretches for 30 seconds each",
+                "warnings": [
+                  "Stop if any stretch causes sharp pain",
+                  "Be careful with hip flexor stretch if you have hip replacement"
+                ],
+                "video_url": "https://youtube.com/watch?v=seated-leg-stretches",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              }
+            ],
+            "session_status": "not_started",
+            "completed_date": null
+          },
+
+          {
+            "day": 3,
+            "title": "Balance Challenge & Core Stability",
+            "duration_min": 17,
+            "exercises": [
+              {
+                "id": "W1D3-EX001",
+                "name": "Seated Torso Rotations",
+                "description": "Warm up spine and core muscles, improve rotational mobility for daily activities",
+                "equipment": ["Chair"],
+                "steps": [
+                  "Sit tall in chair, feet flat on floor",
+                  "Cross arms over chest or place hands behind head",
+                  "Keeping hips facing forward, rotate upper body to look over RIGHT shoulder",
+                  "Hold for 2 seconds, return to center",
+                  "Rotate to look over LEFT shoulder, hold 2 seconds",
+                  "Return to center and repeat",
+                  "Move smoothly and controlled, like you're looking for something behind you"
+                ],
+                "sets": 2,
+                "reps": 8,
+                "hold_sec": null,
+                "rest_sec": 30,
+                "tips": [
+                  "This helps with looking behind when backing up or parking",
+                  "Keep hips square - only upper body rotates",
+                  "Breathe normally throughout",
+                  "If you feel any pinching in back, reduce range of rotation"
+                ],
+                "easier": "Hands on thighs instead of crossed, or smaller rotation",
+                "harder": "Hold rotation for 4 seconds, or add side reach at end of rotation",
+                "warnings": [
+                  "Stop if experiencing back pain",
+                  "Move slowly if you have history of vertigo"
+                ],
+                "video_url": "https://youtube.com/watch?v=seated-torso-rotations",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              },
+
+              {
+                "id": "W1D3-EX002",
+                "name": "Seated Weight Shifts (Forward & Back)",
+                "description": "Progress balance training by adding front-to-back weight shifts - builds on Day 1's side-to-side work",
+                "equipment": ["Chair"],
+                "steps": [
+                  "Sit on front half of chair, feet flat hip-width apart",
+                  "Start with weight evenly distributed",
+                  "Slowly lean forward from hips (not rounding back), feel weight shift onto feet",
+                  "Hold forward lean for 3 seconds",
+                  "Slowly lean back, pressing into chair back, feel weight shift to tailbone",
+                  "Hold back lean for 3 seconds",
+                  "Return to center and repeat"
+                ],
+                "sets": 2,
+                "reps": 8,
+                "hold_sec": null,
+                "rest_sec": 45,
+                "tips": [
+                  "This teaches your body to handle weight shifts when bending or reaching",
+                  "Keep movements small and controlled - 6-8 inches of lean is plenty",
+                  "Don't hold your breath - breathe throughout",
+                  "This directly helps with getting dressed, picking up objects, etc."
+                ],
+                "easier": "Smaller leans (3-4 inches), or keep hands on armrests",
+                "harder": "Increase lean distance, or add arm reach forward at the lean",
+                "warnings": [
+                  "Don't lean so far forward you might fall",
+                  "Stop if dizzy or unstable"
+                ],
+                "video_url": "https://youtube.com/watch?v=seated-weight-shift-forward-back",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              },
+
+              {
+                "id": "W1D3-EX003",
+                "name": "Marching with Arm Swing",
+                "description": "Coordination exercise combining leg and arm movements - mimics walking pattern",
+                "equipment": ["Chair with armrests"],
+                "steps": [
+                  "Sit tall, feet flat on floor",
+                  "Lift RIGHT knee while swinging LEFT arm forward (opposite arm/leg)",
+                  "Lower right leg while bringing left arm back",
+                  "Lift LEFT knee while swinging RIGHT arm forward",
+                  "Lower left leg while bringing right arm back",
+                  "Continue this alternating pattern, moving smoothly",
+                  "For left leg lifts, you can make movement smaller if needed"
+                ],
+                "sets": 2,
+                "reps": 10,
+                "hold_sec": null,
+                "rest_sec": 45,
+                "tips": [
+                  "This is harder than it sounds - it requires brain and body coordination",
+                  "Opposite arm and leg is the natural walking pattern",
+                  "Left arm may not swing as much - that's OK, focus on any movement",
+                  "Don't worry if you mix up the pattern - just reset and continue",
+                  "This exercise is rebuilding walking coordination"
+                ],
+                "easier": "Do legs only first (like Day 1), then add arms when comfortable",
+                "harder": "Increase speed slightly, or exaggerate arm swing",
+                "warnings": [
+                  "Stop if confused or frustrated - this is a coordination challenge",
+                  "Don't attempt if feeling dizzy"
+                ],
+                "video_url": "https://youtube.com/watch?v=seated-marching-arms",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              },
+
+              {
+                "id": "W1D3-EX004",
+                "name": "Standing Weight Shifts (Supported)",
+                "description": "Progress to standing balance work - shifting weight while standing with support",
+                "equipment": ["Sturdy counter or chair back", "Wall nearby"],
+                "steps": [
+                  "Stand facing counter or chair back, both hands lightly holding for support",
+                  "Spouse standing beside you",
+                  "Stand tall with feet hip-width apart",
+                  "Slowly shift weight onto RIGHT foot, feeling left foot get lighter (don't lift it)",
+                  "Hold for 3 seconds",
+                  "Shift weight back to center (equal weight)",
+                  "Slowly shift weight onto LEFT foot, feeling right foot get lighter",
+                  "Hold for 5 seconds (extra time on affected side)",
+                  "Shift back to center and repeat"
+                ],
+                "sets": 2,
+                "reps": 6,
+                "hold_sec": null,
+                "rest_sec": 60,
+                "tips": [
+                  "This is advanced for week 1 - take your time, there's no rush",
+                  "You should feel ONE foot bearing most of your weight, but BOTH feet stay on floor",
+                  "The goal is to prepare you for single-leg stance eventually",
+                  "Keep hands light on support - you're building independent balance",
+                  "Your cane uses this same weight-shifting principle"
+                ],
+                "easier": "Hold support more firmly, or reduce hold time to 2 seconds",
+                "harder": "Use only fingertips for support, or increase hold to 8 seconds",
+                "warnings": [
+                  "MUST have spouse present for this exercise",
+                  "Stop immediately if dizzy or unstable",
+                  "Never do this exercise alone in week 1"
+                ],
+                "video_url": "https://youtube.com/watch?v=standing-weight-shifts-support",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              },
+
+              {
+                "id": "W1D3-EX005",
+                "name": "Seated Side Bends & Stretches",
+                "description": "Cool down with gentle lateral stretches for core and obliques",
+                "equipment": ["Chair"],
+                "steps": [
+                  "Sit tall, feet flat, right hand on thigh or armrest",
+                  "Reach left arm up and over head, bending gently to the right side",
+                  "Hold side bend for 20 seconds, feeling stretch along left side",
+                  "Return to center",
+                  "Reach right arm up and over, bend to left side",
+                  "Hold 20 seconds",
+                  "Finish with shoulder shrugs: lift both shoulders to ears, hold 3 seconds, release - repeat 5 times",
+                  "End with 5 deep breaths"
+                ],
+                "sets": 1,
+                "reps": null,
+                "hold_sec": 20,
+                "rest_sec": 0,
+                "tips": [
+                  "These stretches relieve tension from balance work",
+                  "Left shoulder may feel tighter - be gentle with it",
+                  "Breathe deeply into the stretched side",
+                  "Think about how your body feels after today's challenges"
+                ],
+                "easier": "Shorter holds (10 seconds), or skip arm overhead if shoulder hurts",
+                "harder": "Hold stretches 30 seconds, or add gentle rotation at end of side bend",
+                "warnings": [
+                  "Stop if sharp pain in ribs or back",
+                  "Don't force left shoulder overhead if painful"
+                ],
+                "video_url": "https://youtube.com/watch?v=seated-side-stretches",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              }
+            ],
+            "session_status": "not_started",
+            "completed_date": null
+          },
+
+          {
+            "day": 4,
+            "title": "Functional Strength & Left Arm Focus",
+            "duration_min": 18,
+            "exercises": [
+              {
+                "id": "W1D4-EX001",
+                "name": "Bilateral Shoulder Raises (Both Arms)",
+                "description": "Strengthen shoulders and practice lifting arms together - foundation for dressing and reaching",
+                "equipment": [
+                  "Chair",
+                  "Optional: light resistance band or very light weights (1-2 lbs)"
+                ],
+                "steps": [
+                  "Sit tall, arms at sides",
+                  "Keeping arms straight, raise both arms forward and up together to shoulder height",
+                  "Hold for 2 seconds at shoulder height",
+                  "Lower slowly with control",
+                  "After 8 reps forward, do 8 reps lifting arms out to SIDES (like airplane wings)",
+                  "For all reps, focus on getting left arm to move along with right"
+                ],
+                "sets": 2,
+                "reps": 8,
+                "hold_sec": null,
+                "rest_sec": 45,
+                "tips": [
+                  "Left arm will likely not go as high - that's expected",
+                  "Use right arm movement as a visual guide for left arm to follow",
+                  "You can use right hand to gently assist left arm if needed to start movement",
+                  "This directly helps with putting on shirts, reaching for items on shelves",
+                  "Don't lift above shoulder height if it causes pain"
+                ],
+                "easier": "Lift arms only halfway (45 degrees), or use right hand to assist left arm more",
+                "harder": "Hold resistance band between hands, or use 1-2 lb weights",
+                "warnings": [
+                  "Stop if experiencing shoulder pain (left shoulder discomfort is noted)",
+                  "Don't force left arm beyond comfortable range"
+                ],
+                "video_url": "https://youtube.com/watch?v=bilateral-shoulder-raises",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              },
+
+              {
+                "id": "W1D4-EX002",
+                "name": "Left Arm Assisted Reach & Grasp Practice",
+                "description": "Specific exercise for improving left arm function for daily tasks - addresses your goal of better arm function",
+                "equipment": [
+                  "Chair",
+                  "Table or counter",
+                  "Small objects like water bottle, cup, ball"
+                ],
+                "steps": [
+                  "Sit at table with objects placed 8-10 inches in front of you",
+                  "Use RIGHT hand to help position LEFT hand on table",
+                  "Starting with left hand on table, slide left arm forward to reach for object",
+                  "Use right hand to assist left hand in grasping object if needed",
+                  "Try to participate with left hand in the grasp - even small finger movements count",
+                  "Hold grasp for 3 seconds",
+                  "Release and slide left arm back",
+                  "Repeat, each time asking left arm to do a tiny bit more of the work"
+                ],
+                "sets": 3,
+                "reps": 8,
+                "hold_sec": null,
+                "rest_sec": 60,
+                "tips": [
+                  "This is pure neuroplasticity work - your brain is relearning",
+                  "Focus intense mental attention on what left arm/hand is doing",
+                  "Even if right hand does 90% of the work, the 10% from left hand is valuable",
+                  "Practice with different objects - variety helps learning",
+                  "Talk yourself through it: 'left arm reach forward, left fingers open, close around cup'",
+                  "Progress is measured in weeks and months, not minutes - be patient"
+                ],
+                "easier": "Place objects closer (4-6 inches), or let right hand do more of the work",
+                "harder": "Place objects farther away (12 inches), or try with left hand only (right hand just hovering for safety)",
+                "warnings": [
+                  "Never force left hand closed - let it move at its own pace",
+                  "Stop if experiencing pain in left shoulder"
+                ],
+                "video_url": "https://youtube.com/watch?v=assisted-reach-grasp-stroke",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              },
+
+              {
+                "id": "W1D4-EX003",
+                "name": "Sit-to-Stand (Full Stand Practice)",
+                "description": "Progress to full standing from seated - building toward independence",
+                "equipment": ["Sturdy chair with armrests"],
+                "steps": [
+                  "Sit toward front of chair, feet slightly behind knees",
+                  "Lean forward - nose over toes",
+                  "Hands on armrests",
+                  "Rock forward and push through legs and arms to FULLY stand up",
+                  "Stand tall for 2 seconds",
+                  "Slowly sit back down over 3-4 seconds with CONTROL - don't plop",
+                  "Rest and repeat",
+                  "Spouse nearby but letting you do the work"
+                ],
+                "sets": 2,
+                "reps": 8,
+                "hold_sec": null,
+                "rest_sec": 60,
+                "tips": [
+                  "This is your independence exercise - master this and life gets easier",
+                  "The going down part builds the most strength",
+                  "Try to use legs as much as possible, arms just assist",
+                  "This transfers to: getting off toilet, out of car, out of bed",
+                  "Focus on feeling both legs working, even if right does more"
+                ],
+                "easier": "Only stand 80% of the way, or use arms more",
+                "harder": "Use arms less (hands hovering over armrests), or stand from lower chair",
+                "warnings": [
+                  "Have spouse present",
+                  "Stop if knees hurt",
+                  "Don't attempt if very fatigued or dizzy"
+                ],
+                "video_url": "https://youtube.com/watch?v=sit-to-stand-full",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              },
+
+              {
+                "id": "W1D4-EX004",
+                "name": "Toe Taps (Standing with Support)",
+                "description": "Standing balance exercise with leg movement - challenges stability",
+                "equipment": ["Sturdy counter or chair back for support"],
+                "steps": [
+                  "Stand holding counter with both hands, spouse nearby",
+                  "Stand on LEFT leg (affected side), lift RIGHT foot 2-3 inches off ground",
+                  "Tap right toes forward on floor, then tap toes to the side, then tap behind",
+                  "That's one rep - complete all right leg taps first",
+                  "Then switch: stand on RIGHT leg, lift LEFT foot and practice taps",
+                  "Left leg taps will be smaller and that's perfectly fine",
+                  "Focus on keeping standing leg steady"
+                ],
+                "sets": 2,
+                "reps": 6,
+                "hold_sec": null,
+                "rest_sec": 60,
+                "tips": [
+                  "This teaches standing balance on each leg separately",
+                  "The standing leg is doing all the work, the tapping leg is just the challenge",
+                  "When standing on left leg, you can hold support more firmly",
+                  "This directly prepares you for walking without cane",
+                  "Don't worry about how high you lift the tapping foot - 1 inch is fine"
+                ],
+                "easier": "Just tap forward only (skip side and back), or hold support firmly with both hands",
+                "harder": "Hold support with just one hand, or tap farther away",
+                "warnings": [
+                  "MUST have spouse present",
+                  "Stop if feeling unstable",
+                  "This is advanced - it's OK if this is hard"
+                ],
+                "video_url": "https://youtube.com/watch?v=standing-toe-taps-balance",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              },
+
+              {
+                "id": "W1D4-EX005",
+                "name": "Upper Body & Neck Stretches",
+                "description": "Cool down focusing on neck, shoulders, and arms after upper body work",
+                "equipment": ["Chair"],
+                "steps": [
+                  "Neck rotation: Slowly turn head to look over right shoulder, hold 15 seconds, repeat left",
+                  "Shoulder stretch: Bring right arm across body, use left hand to gently pull it closer, hold 20 seconds, repeat other side (assist left arm with right hand)",
+                  "Tricep stretch: Reach right arm overhead, bend elbow so hand goes down back, gently press on right elbow with left hand, hold 15 seconds, repeat (modify for left arm comfort)",
+                  "Wrist circles: Make circles with both wrists 10 times each direction",
+                  "Finish: Interlace fingers, stretch arms forward, round upper back, hold 20 seconds",
+                  "Deep breathing: 5 slow breaths"
+                ],
+                "sets": 1,
+                "reps": null,
+                "hold_sec": 20,
+                "rest_sec": 0,
+                "tips": [
+                  "These stretches prevent stiffness from strength work",
+                  "Be especially gentle with left shoulder given your pain there",
+                  "Wrist circles help with hand dexterity",
+                  "Breathing helps blood pressure stay stable"
+                ],
+                "easier": "Skip tricep stretch if shoulder hurts, shorter holds (10 seconds)",
+                "harder": "Hold stretches 30 seconds each",
+                "warnings": [
+                  "Stop any stretch causing sharp pain",
+                  "Don't force left shoulder beyond comfort"
+                ],
+                "video_url": "https://youtube.com/watch?v=upper-body-stretches-gentle",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              }
+            ],
+            "session_status": "not_started",
+            "completed_date": null
+          },
+
+          {
+            "day": 5,
+            "title": "Integration & Week Review",
+            "duration_min": 20,
+            "exercises": [
+              {
+                "id": "W1D5-EX001",
+                "name": "Seated Warm-up Circuit",
+                "description": "Combination warm-up reviewing key movements from the week",
+                "equipment": ["Chair"],
+                "steps": [
+                  "Ankle pumps x 10 (from Day 1)",
+                  "Seated marching x 10 per leg (from Day 1)",
+                  "Knee extensions x 8 per leg (from Day 2)",
+                  "Torso rotations x 6 each side (from Day 3)",
+                  "Shoulder rolls x 10 (from throughout week)",
+                  "Move smoothly from one exercise to next with minimal rest"
+                ],
+                "sets": 1,
+                "reps": null,
+                "hold_sec": null,
+                "rest_sec": 45,
+                "tips": [
+                  "This reviews what you've learned this week",
+                  "Notice what feels easier now vs Monday",
+                  "Keep movements controlled and purposeful",
+                  "This is a good standalone warm-up for any future exercise"
+                ],
+                "easier": "Take breaks between each exercise, or reduce reps by half",
+                "harder": "Do circuit twice, or increase reps",
+                "warnings": [
+                  "Stop if any exercise causes pain",
+                  "This should feel moderately challenging but doable"
+                ],
+                "video_url": "https://youtube.com/watch?v=seated-warmup-circuit",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              },
+
+              {
+                "id": "W1D5-EX002",
+                "name": "Standing Balance Holds (Progressed)",
+                "description": "Your most important exercise - progressed version of Day 1's standing hold",
+                "equipment": ["Counter or chair back", "Wall"],
+                "steps": [
+                  "Stand at counter, spouse nearby",
+                  "Both hands lightly on counter",
+                  "Stand tall, weight distributed on both feet",
+                  "Hold this position for 20 seconds (progressed from 15 seconds)",
+                  "Then, if feeling stable, try this: lift just ONE finger off counter at a time",
+                  "Each time you lift a finger, you're relying more on leg balance, less on arms",
+                  "See if you can get to using just 3-4 fingers for support",
+                  "Rest fully between sets"
+                ],
+                "sets": 3,
+                "reps": null,
+                "hold_sec": 20,
+                "rest_sec": 90,
+                "tips": [
+                  "This is your progress test - compare to Monday's version",
+                  "The finger-lifting is OPTIONAL but try it - you might surprise yourself",
+                  "Focus on standing tall through both legs",
+                  "This is exactly the balance you use when walking with your cane",
+                  "If 20 seconds feels easy, that's GREAT news - you're ready for week 2 progressions"
+                ],
+                "easier": "Keep all 10 fingers on counter, or reduce hold to 15 seconds",
+                "harder": "Hold 30 seconds, or get down to just 2-3 fingers touching",
+                "warnings": [
+                  "Spouse must be present",
+                  "Stop if dizzy or unstable",
+                  "Never go to zero hand support in week 1"
+                ],
+                "video_url": "https://youtube.com/watch?v=standing-balance-progression",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              },
+
+              {
+                "id": "W1D5-EX003",
+                "name": "Functional Task Practice: Simulated Activities",
+                "description": "Practice movements that mimic real daily activities you want to improve",
+                "equipment": ["Chair", "Table", "Various household objects"],
+                "steps": [
+                  "Task 1 - Reaching high: Stand with support, reach up with right arm as if getting item from shelf, repeat 5 times, then try with left arm assisted",
+                  "Task 2 - Picking up: Stand with support, safely bend and reach down to pick up object from chair seat (not floor yet), repeat 5 times",
+                  "Task 3 - Walking prep: Stand with support, practice shifting weight side to side as if taking steps, 10 shifts",
+                  "Task 4 - Turning: Stand with support, practice small turns to right and left (like checking blind spot), 5 each direction",
+                  "Take breaks as needed between tasks"
+                ],
+                "sets": 1,
+                "reps": 5,
+                "hold_sec": null,
+                "rest_sec": 60,
+                "tips": [
+                  "These aren't 'exercises' - they're life skills",
+                  "Notice which tasks feel easier/harder",
+                  "This shows you where you've improved and what needs more work",
+                  "Think about how these relate to: kitchen work, dressing, bathroom activities",
+                  "Week 2 will build on whichever tasks felt hardest today"
+                ],
+                "easier": "Sit for the tasks instead of standing, or reduce reps to 3 each",
+                "harder": "Reduce support (lighter hand touch), or add difficulty like reaching farther",
+                "warnings": [
+                  "Spouse must be present",
+                  "Don't bend to floor level - only to chair seat height",
+                  "Stop if unstable or dizzy"
+                ],
+                "video_url": "https://youtube.com/watch?v=functional-task-training",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              },
+
+              {
+                "id": "W1D5-EX004",
+                "name": "Left Arm & Hand Dexterity Work",
+                "description": "Dedicated time for left hand practice - building toward your goal of improved daily function",
+                "equipment": [
+                  "Table",
+                  "Various objects: large buttons, coins, playing cards, therapy putty if available"
+                ],
+                "steps": [
+                  "Large grasp practice: Pick up and release larger objects (water bottle, ball) x 10",
+                  "Finger coordination: Try to pick up playing cards one at a time, even if you need right hand assist",
+                  "Opposition practice: Try to touch left thumb to each fingertip in sequence, use right hand to help position if needed, repeat 5 times",
+                  "Putty work: If you have therapy putty, squeeze and release 10 times with left hand",
+                  "Functional grasp: Practice holding fork, spoon, cup - items you use daily",
+                  "All exercises: right hand can assist, but ask left hand to contribute more each time"
+                ],
+                "sets": 2,
+                "reps": 10,
+                "hold_sec": null,
+                "rest_sec": 45,
+                "tips": [
+                  "Hand recovery is often slower than leg recovery - that's normal",
+                  "Every bit of voluntary movement is your brain rewiring",
+                  "Focus intense mental attention on left hand during this",
+                  "Small improvements compound over weeks and months",
+                  "This directly works toward your goal of better daily task function",
+                  "Don't get frustrated - celebrate any movement, no matter how small"
+                ],
+                "easier": "Use only larger objects, let right hand do more assisting",
+                "harder": "Try smaller objects, reduce right hand assistance",
+                "warnings": [
+                  "Never force fingers closed",
+                  "Stop if hand cramping occurs",
+                  "Some fatigue is normal, sharp pain is not"
+                ],
+                "video_url": "https://youtube.com/watch?v=hand-dexterity-stroke-recovery",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              },
+
+              {
+                "id": "W1D5-EX005",
+                "name": "Full Body Relaxation & Stretching",
+                "description": "Comprehensive cool-down and week 1 celebration",
+                "equipment": ["Chair"],
+                "steps": [
+                  "Seated full body scan: Close eyes, bring attention to each body part from toes to head, notice what worked hard this week",
+                  "Gentle neck stretches: All directions, 15 seconds each",
+                  "Shoulder and arm stretches: Review from earlier sessions, hold each 20 seconds",
+                  "Torso side bends and gentle twists: 20 seconds each",
+                  "Hip and leg stretches: Hamstrings, hip flexors, calves - 20 seconds each",
+                  "Ankle and foot circles: Both directions",
+                  "Finish: 10 deep, slow breaths - in through nose for 4 counts, hold for 2, out through mouth for 6 counts",
+                  "Final moment: Acknowledge your hard work this week"
+                ],
+                "sets": 1,
+                "reps": null,
+                "hold_sec": 20,
+                "rest_sec": 0,
+                "tips": [
+                  "You completed week 1 - that's a real achievement",
+                  "Your body has been learning all week - this rest helps consolidate it",
+                  "Notice areas that feel less tense than they did Monday",
+                  "Recovery happens during rest, not just during exercise",
+                  "Next week will build on everything you learned this week",
+                  "Take tomorrow (Saturday) off from structured exercise - gentle walking if you feel good"
+                ],
+                "easier": "Shorter holds, or skip any painful stretches",
+                "harder": "Hold stretches 30 seconds, add more repetitions",
+                "warnings": [
+                  "Never force any stretch",
+                  "This should feel relaxing, not stressful"
+                ],
+                "video_url": "https://youtube.com/watch?v=full-body-relaxation-stretching",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              }
+            ],
+            "session_status": "not_started",
+            "completed_date": null
+          }
+        ]
+      },
+
+      {
+        "week": 2,
+        "focus": "Progression & Increased Challenge",
+        "sessions": [
+          {
+            "day": 1,
+            "title": "Building on Week 1 Foundations",
+            "duration_min": 20,
+            "exercises": [
+              {
+                "id": "W2D1-EX001",
+                "name": "Seated Marching with Resistance Band",
+                "description": "Progressed version of week 1 marching - adding resistance to strengthen hip flexors",
+                "equipment": ["Chair", "Resistance band"],
+                "steps": [
+                  "Sit tall, loop resistance band around both feet at arch level",
+                  "Hold band ends in hands for tension control",
+                  "Lift right knee against band resistance, hold 2 seconds",
+                  "Lower with control",
+                  "Lift left knee against resistance (will be harder), hold 2 seconds",
+                  "Use hands to adjust band tension - lighter for left leg if needed",
+                  "Continue alternating"
+                ],
+                "sets": 2,
+                "reps": 10,
+                "hold_sec": null,
+                "rest_sec": 45,
+                "tips": [
+                  "The resistance makes your hip muscles work harder",
+                  "Left leg might need less resistance - that's fine, adjust the band",
+                  "This builds on week 1's movement pattern with added challenge",
+                  "You should feel this in front of thighs and hip flexors"
+                ],
+                "easier": "Use very light resistance, or remove band and do week 1 version",
+                "harder": "Increase band tension, or hold knee lift for 4 seconds",
+                "warnings": [
+                  "Don't use so much resistance that form breaks down",
+                  "Stop if hip pain occurs"
+                ],
+                "video_url": "https://youtube.com/watch?v=seated-march-resistance",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              }
+            ],
+            "session_status": "not_started",
+            "completed_date": null
+          }
+        ]
+      }
+    ],
+
+    "progress": {
+      "total_sessions": 20,
+      "completed_sessions": 0,
+      "completion_percent": 0,
+      "current_week": 1,
+      "current_day": 1,
+      "next_session_date": "2026-02-03"
+    }
+  }
+}
