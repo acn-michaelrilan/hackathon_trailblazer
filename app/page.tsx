@@ -25,13 +25,7 @@ export default function Homepage() {
     <div className="w-full flex-1 flex flex-col items-center justify-center px-4 py-10 bg-white">
       {/* Headline */}
       <h1
-        className="
-        font-poppins font-semibold mb-3
-        text-3xl sm:text-4xl md:text-6xl
-        text-center leading-tight
-        transition-transform duration-500 ease-out
-        hover:-translate-y-1
-      "
+        className="font-poppins font-semibold mb-3 text-3xl sm:text-4xl md:text-6xl text-center leading-tight transition-transform duration-500 ease-out hover:-translate-y-1"
       >
         <span className="text-[#7BA63F]">AI-GUIDED ADAPTIVE</span>
         <br />
@@ -45,29 +39,19 @@ export default function Homepage() {
 
       {/* Buttons */}
       <div className="flex gap-3 mb-10 flex-wrap justify-center max-w-md">
-        <button
-          className="border border-black text-black rounded-md px-4 py-2 text-xs sm:text-sm bg-white
-            transition-all duration-300 ease-out
-            hover:bg-gray-100 hover:-translate-y-0.5 hover:shadow-md"
+        <button className="border border-black text-black rounded-md px-4 py-2 text-xs sm:text-sm bg-white transition-all duration-300 ease-out hover:bg-gray-100 hover:-translate-y-0.5 hover:shadow-md"
         >
           Smart Planning
         </button>
 
-        <button
-          className="border border-black text-black rounded-md px-4 py-2 text-xs sm:text-sm bg-white
-            transition-all duration-300 ease-out
-            hover:bg-gray-100 hover:-translate-y-0.5 hover:shadow-md"
-        >
+        <button className="border border-black text-black rounded-md px-4 py-2 text-xs sm:text-sm bg-white transition-all duration-300 ease-out hover:bg-gray-100 hover:-translate-y-0.5 hover:shadow-md">
           Goal Tracking
         </button>
 
-        <button
-          className="border border-black text-black rounded-md px-4 py-2 text-xs sm:text-sm bg-white
-            transition-all duration-300 ease-out
-            hover:bg-gray-100 hover:-translate-y-0.5 hover:shadow-md"
-        >
+        <h6
+          className=" px-4 py-2 text-xs sm:text-sm bg-white transition-all duration-300 ease-out hover:bg-gray-100 hover:-translate-y-0.5 hover:shadow-md">
           Adaptive Workout
-        </button>
+        </h6>
       </div>
 
       {/* Heartbeat / Logo Image */}
@@ -86,8 +70,7 @@ export default function Homepage() {
       {!showAuthButtons ? (
         <button
           onClick={handleGeneratePlan}
-          className="bg-[#264D73] text-white rounded-md px-8 py-3 font-semibold text-lg
-          transition-all duration-300 ease-out transform hover:-translate-y-0.5 hover:shadow-md hover:bg-[#1f3e5a] mb-6"
+          className="bg-[#264D73] text-white rounded-md px-8 py-3 font-semibold text-lg transition-all duration-300 ease-out transform hover:-translate-y-0.5 hover:shadow-md hover:bg-[#1f3e5a] mb-6"
         >
           Generate Your Plan
         </button>
@@ -95,15 +78,13 @@ export default function Homepage() {
         <div className="flex gap-4 mb-6">
           <button
             onClick={handleLogin}
-            className="border border-black text-black rounded-md px-6 py-2 text-sm font-semibold 
-            transition-all duration-300 ease-out transform hover:-translate-y-0.5 hover:shadow-md hover:bg-gray-100 w-32"
+            className="border border-black text-black rounded-md px-6 py-2 text-sm font-semibold  transition-all duration-300 ease-out transform hover:-translate-y-0.5 hover:shadow-md hover:bg-gray-100 w-32"
           >
             LOGIN
           </button>
           <button
             onClick={handleSignUp}
-            className="bg-[#264D73] text-white rounded-md px-6 py-2 font-semibold 
-            transition-all duration-300 ease-out transform hover:-translate-y-0.5 hover:shadow-md hover:bg-[#1f3e5a] w-32"
+            className="bg-[#264D73] text-white rounded-md px-6 py-2 font-semibold transition-all duration-300 ease-out transform hover:-translate-y-0.5 hover:shadow-md hover:bg-[#1f3e5a] w-32"
           >
             SIGN UP
           </button>
