@@ -1,0 +1,145 @@
+{
+  "user_type_and_risk": {
+    "category": "stroke_recovery_neurological",
+
+    "risk_level": "medium"
+  },
+
+  "basic_profile": {
+    "name": "John M.",
+
+    "age": 68,
+
+    "sex": "male",
+
+    "height_cm": 175,
+
+    "weight_kg": 82,
+
+    "dominant_side": "right"
+  },
+
+  "medical_profile": {
+    "conditions": [
+      {
+        "type": "stroke",
+
+        "subtype": "ischemic",
+
+        "date_of_diagnosis": "2024-08-15",
+
+        "affected_side": "left",
+
+        "severity": "moderate"
+      },
+
+      {
+        "type": "cardiovascular_condition",
+
+        "details": "hypertension_controlled",
+
+        "date_of_diagnosis": "2019-03-20"
+      }
+    ]
+  },
+
+  "functional_ability": {
+    "mobility_level": "standing_with_support",
+
+    "walking_ability": "with_assistive_device",
+
+    "assistive_device": "quad_cane",
+
+    "upper_limb_function": {
+      "left_arm": "limited_movement",
+
+      "right_arm": "near_normal"
+    },
+
+    "range_of_motion": "moderate"
+  },
+
+  "medical_safety_and_risk_flags": {
+    "vitals": {
+      "blood_pressure": "135/85",
+
+      "resting_heart_rate": 72
+    },
+
+    "heart_condition": true,
+
+    "heart_condition_details": "hypertension, managed with medication",
+
+    "pacemaker_or_implants": false,
+
+    "history_of_falls_last_6_months": true,
+
+    "number_of_falls": 2,
+
+    "dizziness_or_fainting_episodes": true,
+
+    "dizziness_details": "occasional when standing up quickly",
+
+    "pain_scale": 3,
+
+    "pain_location": "left shoulder and hip"
+  },
+
+  "current_activity_level": "light_activity",
+
+  "activity_details": "short walks with cane 2-3x per week, gentle stretching daily",
+
+  "goals": {
+    "primary_goal": "improve_balance",
+
+    "secondary_goals": ["improve_mobility", "increase_strength"],
+
+    "specific_targets": [
+      "walk independently without cane within 6 months",
+
+      "improve left arm function for daily tasks",
+
+      "reduce fall risk"
+    ]
+  },
+
+  "exercise_preferences_and_tolerance": {
+    "preferred_session_length": "15_20_min",
+
+    "preferred_intensity": "light",
+
+    "rest_tolerance": "frequent_breaks_needed",
+
+    "rest_frequency": "every 5-7 minutes",
+
+    "time_of_day_preference": "morning",
+
+    "fatigue_concerns": "moderate fatigue after 20 minutes of activity"
+  },
+
+  "exercise_environment": {
+    "location": "home",
+
+    "equipment_available": ["chair", "resistance_band", "balance_aids_wall"],
+
+    "support_person_available": true,
+
+    "support_person_details": "spouse available during exercise sessions"
+  },
+
+  "additional_information": {
+    "medications": ["blood_thinner", "blood_pressure_medication", "statin"],
+
+    "physical_therapy_history": true,
+
+    "pt_sessions_completed": 24,
+
+    "pt_end_date": "2024-12-15",
+
+    "clearance_for_exercise": true,
+
+    "physician_notes": "cleared for moderate exercise with precautions for fall risk"
+  },
+
+  "timestamp": "2026-02-02T10:30:00Z"
+}
