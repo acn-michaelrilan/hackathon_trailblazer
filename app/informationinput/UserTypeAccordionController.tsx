@@ -16,28 +16,35 @@ export default function UserTypeAccordionController() {
       'label[for="stroke_recovery_neurological"]',
     );
     const doneBtns = section.querySelectorAll<HTMLElement>("[data-acc-done]");
-
     const riskRadios = section.querySelectorAll<HTMLInputElement>(
       'input[name="risk_level"]',
     );
 
-    const setRiskEnabled = (enabled: boolean) => {
+    const setAriaExpanded = (expanded: boolean) => {
+      // reflect state on summary for a11y
+      const summary = section.querySelector<HTMLElement>(".acc-summary");
+      if (summary) summary.setAttribute("aria-expanded", String(expanded));
+    };
+
+    const setRiskRequired = (required: boolean) => {
       riskRadios.forEach((r, idx) => {
-        r.disabled = !enabled;
-        r.required = enabled && idx === 0;
+        // only make the first radio required for the group when needed
+        r.required = required && idx === 0;
       });
     };
 
     const open = () => {
       if (details && !details.open) details.open = true;
       section.removeAttribute("data-acc-collapsed");
-      setRiskEnabled(true);
+      setRiskRequired(true); // ✅ only require, don't disable
+      setAriaExpanded(true);
     };
 
     const close = () => {
       if (details && details.open) details.open = false;
       section.setAttribute("data-acc-collapsed", "true");
-      setRiskEnabled(false);
+      setRiskRequired(false); // ✅ keep enabled so the selected value submits
+      setAriaExpanded(false);
     };
 
     const onCategoryChange = () => {
@@ -48,23 +55,24 @@ export default function UserTypeAccordionController() {
     stroke?.addEventListener("change", onCategoryChange);
     general?.addEventListener("change", onCategoryChange);
 
-    // 👇 Prevent the label click from re-triggering the radio change;
-    // just toggle collapse when already on Stroke
+    // Toggle collapse when Stroke label is clicked and Stroke is already selected
     const onStrokeLabelClick = (e: MouseEvent) => {
       if (stroke?.checked) {
-        e.preventDefault(); // keeps radio checked
+        e.preventDefault(); // keeps radio checked; we just toggle collapse
         if (section.getAttribute("data-acc-collapsed") === "true") open();
         else close();
       }
     };
 
+    // Clicking the radio itself should also toggle if it's already selected
     const onStrokeInputClick = () => {
       if (!stroke) return;
       if (stroke.checked) {
-        // toggle collapsed when already selected
+        // Toggle collapsed when already selected
         if (section.getAttribute("data-acc-collapsed") === "true") open();
         else close();
       } else {
+        // If it becomes checked *after* this event tick
         setTimeout(() => {
           if (stroke.checked) open();
         }, 0);
@@ -77,6 +85,7 @@ export default function UserTypeAccordionController() {
     const onDoneClick = () => close();
     doneBtns.forEach((btn) => btn.addEventListener("click", onDoneClick));
 
+    // Initialize based on current selection (and initial collapsed attribute)
     onCategoryChange();
 
     return () => {
