@@ -376,7 +376,7 @@ export default function infopage() {
 
       {/* Header */}
       <h1 style={{ textAlign: "center", fontSize: 36, color: "#1f3fae" }}>
-        LOG YOUR DATA
+        <strong>LOG YOUR DATA</strong>
       </h1>
       <p style={{ textAlign: "center", marginBottom: 40 }}>
         Track and record your information
