@@ -369,131 +369,138 @@ export default function infopage() {
 `;
 
   return (
-    <main style={{ maxWidth: 900, margin: "0 auto", padding: 32 }}>
-      {/* Component-scoped styles (no global CSS) */}
-      <style>{styles}</style>
-      <UserTypeModalController />
+    <div className="min-h-screen bg-white p-6 md:p-12 font-sans text-slate-900">
+      <main
+        style={{
+          maxWidth: 900,
+          margin: "0 auto",
+          padding: 32,
+        }}
+      >
+        {/* Component-scoped styles (no global CSS) */}
+        <style>{styles}</style>
+        <UserTypeModalController />
 
-      {/* Header */}
-      <h1 style={{ textAlign: "center", fontSize: 36, color: "#1f3fae" }}>
-        <strong>LOG YOUR DATA</strong>
-      </h1>
-      <p style={{ textAlign: "center", marginBottom: 40 }}>
-        Track and record your information
-      </p>
+        {/* Header */}
+        <h1 style={{ textAlign: "center", fontSize: 36, color: "#1f3fae" }}>
+          <strong>LOG YOUR DATA</strong>
+        </h1>
+        <p style={{ textAlign: "center", marginBottom: 40 }}>
+          Track and record your information
+        </p>
 
-      <form action={save}>
-        {/* ================= Personal Information ================= */}
-        <section className={rootClass}>
-          <h2 style={{ color: "#1f3fae" }}>Personal Information</h2>
+        <form action={save}>
+          {/* ================= Personal Information ================= */}
+          <section className={rootClass}>
+            <h2 style={{ color: "#1f3fae" }}>Personal Information</h2>
 
-          <div className="personal-grid">
-            {/* Name */}
-            <div className="field">
-              <label>Name</label>
-              <input
-                name="name"
-                type="text"
-                placeholder="enter name"
-                required
-                style={{ width: "100%" }}
-              />
-            </div>
-
-            {/* Age */}
-            <div className="field">
-              <label>Age</label>
-              <input
-                name="age"
-                type="number"
-                placeholder="enter age"
-                required
-                style={{ width: "100%" }}
-              />
-            </div>
-
-            {/* Sex */}
-            <div className="field">
-              <label style={{ whiteSpace: "nowrap" }}>Sex</label>
-              <div className="inline-options">
-                <label className="inline-radio">
-                  <input type="radio" name="sex" value="male" required />
-                  Male
-                </label>
-                <label className="inline-radio">
-                  <input type="radio" name="sex" value="female" />
-                  Female
-                </label>
+            <div className="personal-grid">
+              {/* Name */}
+              <div className="field">
+                <label>Name</label>
+                <input
+                  name="name"
+                  type="text"
+                  placeholder="enter name"
+                  required
+                  style={{ width: "100%" }}
+                />
               </div>
-            </div>
 
-            {/* 👇 Spacer track (desktop only) */}
-            <div className="spacer" aria-hidden="true" />
+              {/* Age */}
+              <div className="field">
+                <label>Age</label>
+                <input
+                  name="age"
+                  type="number"
+                  placeholder="enter age"
+                  required
+                  style={{ width: "100%" }}
+                />
+              </div>
 
-            {/* Height */}
-            <div className="field">
-              <label>Height</label>
-              <input
-                name="height"
-                type="number"
-                placeholder="enter height"
-                style={{ width: "100%" }}
-              />
-            </div>
-
-            {/* Weight */}
-            <div className="field">
-              <label>Weight</label>
-              <input
-                name="weight"
-                type="number"
-                placeholder="enter weight"
-                style={{ width: "100%" }}
-              />
-            </div>
-
-            {/* Dominant Side (pill format, same as User Category) */}
-            <div>
-              <label style={{ whiteSpace: "nowrap" }}>Dominant Side</label>
-
-              <div className="choice-grid" style={{ marginTop: 1 }}>
-                {/* Left */}
-                <div style={{ position: "relative" }}>
-                  <input
-                    className="vh"
-                    type="radio"
-                    id="dominant_left"
-                    name="dominant_side"
-                    value="Left"
-                    required
-                  />
-                  <label className="pill" htmlFor="dominant_left">
-                    Left
+              {/* Sex */}
+              <div className="field">
+                <label style={{ whiteSpace: "nowrap" }}>Sex</label>
+                <div className="inline-options">
+                  <label className="inline-radio">
+                    <input type="radio" name="sex" value="male" required />
+                    Male
                   </label>
-                </div>
-
-                {/* Right */}
-                <div style={{ position: "relative" }}>
-                  <input
-                    className="vh"
-                    type="radio"
-                    id="dominant_right"
-                    name="dominant_side"
-                    value="Right"
-                  />
-                  <label className="pill" htmlFor="dominant_right">
-                    Right
+                  <label className="inline-radio">
+                    <input type="radio" name="sex" value="female" />
+                    Female
                   </label>
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
 
-        {/* ================= User Type & Risk Level (with modal) ================= */}
-        <section className={usrClass} style={{ marginTop: 24 }}>
-          <h2 style={{ color: "#1f3fae" }}>User Type and Risk Level</h2>
-          {/* Hidden “none” radio so we can close the modal by selecting it
+              {/* 👇 Spacer track (desktop only) */}
+              <div className="spacer" aria-hidden="true" />
+
+              {/* Height */}
+              <div className="field">
+                <label>Height</label>
+                <input
+                  name="height"
+                  type="number"
+                  placeholder="enter height"
+                  style={{ width: "100%" }}
+                />
+              </div>
+
+              {/* Weight */}
+              <div className="field">
+                <label>Weight</label>
+                <input
+                  name="weight"
+                  type="number"
+                  placeholder="enter weight"
+                  style={{ width: "100%" }}
+                />
+              </div>
+
+              {/* Dominant Side (pill format, same as User Category) */}
+              <div>
+                <label style={{ whiteSpace: "nowrap" }}>Dominant Side</label>
+
+                <div className="choice-grid" style={{ marginTop: 1 }}>
+                  {/* Left */}
+                  <div style={{ position: "relative" }}>
+                    <input
+                      className="vh"
+                      type="radio"
+                      id="dominant_left"
+                      name="dominant_side"
+                      value="Left"
+                      required
+                    />
+                    <label className="pill" htmlFor="dominant_left">
+                      Left
+                    </label>
+                  </div>
+
+                  {/* Right */}
+                  <div style={{ position: "relative" }}>
+                    <input
+                      className="vh"
+                      type="radio"
+                      id="dominant_right"
+                      name="dominant_side"
+                      value="Right"
+                    />
+                    <label className="pill" htmlFor="dominant_right">
+                      Right
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* ================= User Type & Risk Level (with modal) ================= */}
+          <section className={usrClass} style={{ marginTop: 24 }}>
+            <h2 style={{ color: "#1f3fae" }}>User Type and Risk Level</h2>
+            {/* Hidden “none” radio so we can close the modal by selecting it
           <input
             className="vh"
             type="radio"
@@ -503,305 +510,319 @@ export default function infopage() {
             required
           /> */}
 
-          {/* User Category (pills) */}
-          <div style={{ marginTop: 8, marginBottom: 6 }}></div>
+            {/* User Category (pills) */}
+            <div style={{ marginTop: 8, marginBottom: 6 }}></div>
 
-          <div className="choice-grid">
-            {/* Choice 1 (Stroke) */}
-            <div style={{ position: "relative", marginBottom: 12 }}>
-              <input
-                className="vh"
-                type="radio"
-                id="stroke_recovery_neurological"
-                name="user_category"
-                value="Stroke recovery / neurological condition"
-              />
-              <label className="pill" htmlFor="stroke_recovery_neurological">
-                Stroke recovery / neurological condition
-              </label>
-            </div>
-
-            {/* Choice 2 (General) */}
-            <div style={{ position: "relative" }}>
-              <input
-                className="vh"
-                type="radio"
-                id="general_fitness"
-                name="user_category"
-                value="General fitness & active lifestyle"
-              />
-              <label className="pill" htmlFor="general_fitness">
-                General fitness &amp; active lifestyle
-              </label>
-            </div>
-          </div>
-
-          {/* ===== Modal (shown only when Stroke is selected) ===== */}
-          <div className="modal-backdrop" aria-hidden="true">
-            <div
-              className="modal"
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby="modal-title"
-            >
-              <div className="modal-header">
-                <h3 id="modal-title" className="modal-title">
-                  Important Information
-                </h3>
-                <button
-                  type="button"
-                  className="icon-btn"
-                  data-close-modal="true"
-                  aria-label="Close dialog"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="18"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M6.225 4.811 4.811 6.225 10.586 12l-5.775 5.775 1.414 1.414L12 13.414l5.775 5.775 1.414-1.414L13.414 12l5.775-5.775-1.414-1.414L12 10.586z" />
-                  </svg>
-                </button>
+            <div className="choice-grid">
+              {/* Choice 1 (Stroke) */}
+              <div style={{ position: "relative", marginBottom: 12 }}>
+                <input
+                  className="vh"
+                  type="radio"
+                  id="stroke_recovery_neurological"
+                  name="user_category"
+                  value="Stroke recovery / neurological condition"
+                />
+                <label className="pill" htmlFor="stroke_recovery_neurological">
+                  Stroke recovery / neurological condition
+                </label>
               </div>
 
-              <div className="modal-body">
-                <p>
-                  Since you selected{" "}
-                  <strong>Stroke recovery / neurological condition</strong>,
-                  please answer the following:
-                </p>
+              {/* Choice 2 (General) */}
+              <div style={{ position: "relative" }}>
+                <input
+                  className="vh"
+                  type="radio"
+                  id="general_fitness"
+                  name="user_category"
+                  value="General fitness & active lifestyle"
+                />
+                <label className="pill" htmlFor="general_fitness">
+                  General fitness &amp; active lifestyle
+                </label>
+              </div>
+            </div>
 
-                <div style={{ marginTop: 12 }}>
-                  <label style={{ whiteSpace: "nowrap", fontWeight: 600 }}>
-                    Risk Level
-                  </label>
+            {/* ===== Modal (shown only when Stroke is selected) ===== */}
+            <div className="modal-backdrop" aria-hidden="true">
+              <div
+                className="modal"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="modal-title"
+              >
+                <div className="modal-header">
+                  <h3 id="modal-title" className="modal-title">
+                    Important Information
+                  </h3>
+                  <button
+                    type="button"
+                    className="icon-btn"
+                    data-close-modal="true"
+                    aria-label="Close dialog"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="18"
+                      height="18"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M6.225 4.811 4.811 6.225 10.586 12l-5.775 5.775 1.414 1.414L12 13.414l5.775 5.775 1.414-1.414L13.414 12l5.775-5.775-1.414-1.414L12 10.586z" />
+                    </svg>
+                  </button>
+                </div>
 
-                  <div className="choice-row">
-                    {/* Low */}
-                    <div style={{ position: "relative" }}>
-                      <input
-                        className="vh"
-                        type="radio"
-                        id="risk_low"
-                        name="risk_level"
-                        value="Low"
-                        required
-                      />
-                      <label className="pill" htmlFor="risk_low">
-                        Low
-                      </label>
+                <div className="modal-body">
+                  <p>
+                    Since you selected{" "}
+                    <strong>Stroke recovery / neurological condition</strong>,
+                    please answer the following:
+                  </p>
+
+                  <div style={{ marginTop: 12 }}>
+                    <label style={{ whiteSpace: "nowrap", fontWeight: 600 }}>
+                      Risk Level
+                    </label>
+
+                    <div className="choice-row">
+                      {/* Low */}
+                      <div style={{ position: "relative" }}>
+                        <input
+                          className="vh"
+                          type="radio"
+                          id="risk_low"
+                          name="risk_level"
+                          value="Low"
+                          required
+                        />
+                        <label className="pill" htmlFor="risk_low">
+                          Low
+                        </label>
+                      </div>
+
+                      {/* Medium */}
+                      <div style={{ position: "relative" }}>
+                        <input
+                          className="vh"
+                          type="radio"
+                          id="risk_medium"
+                          name="risk_level"
+                          value="Medium"
+                        />
+                        <label className="pill" htmlFor="risk_medium">
+                          Medium
+                        </label>
+                      </div>
+
+                      {/* High */}
+                      <div style={{ position: "relative" }}>
+                        <input
+                          className="vh"
+                          type="radio"
+                          id="risk_high"
+                          name="risk_level"
+                          value="High"
+                        />
+                        <label className="pill" htmlFor="risk_high">
+                          High
+                        </label>
+                      </div>
                     </div>
 
-                    {/* Medium */}
-                    <div style={{ position: "relative" }}>
-                      <input
-                        className="vh"
-                        type="radio"
-                        id="risk_medium"
-                        name="risk_level"
-                        value="Medium"
-                      />
-                      <label className="pill" htmlFor="risk_medium">
-                        Medium
-                      </label>
-                    </div>
+                    {/* ========== Medical Profile (inside modal) ========== */}
+                    <section className="modal-section">
+                      <h3
+                        style={{
+                          color: "#1f3fae",
+                          marginTop: 12,
+                          marginBottom: 6,
+                        }}
+                      >
+                        Medical Profile
+                      </h3>
+                      <p>Primary Medical Condition</p>
 
-                    {/* High */}
-                    <div style={{ position: "relative" }}>
-                      <input
-                        className="vh"
-                        type="radio"
-                        id="risk_high"
-                        name="risk_level"
-                        value="High"
-                      />
-                      <label className="pill" htmlFor="risk_high">
-                        High
+                      <div
+                        style={{
+                          display: "grid",
+                          gridTemplateColumns: "repeat(3, 1fr)",
+                          gap: 8,
+                          marginTop: 8,
+                        }}
+                      >
+                        <label>
+                          <input
+                            type="checkbox"
+                            name="medical_condition"
+                            value="Stroke Recovery"
+                          />{" "}
+                          Stroke Recovery
+                        </label>
+                        <label>
+                          <input
+                            type="checkbox"
+                            name="medical_condition"
+                            value="Post-Surgery Rehabilitation"
+                          />{" "}
+                          Post-Surgery
+                        </label>
+                        <label>
+                          <input
+                            type="checkbox"
+                            name="medical_condition"
+                            value="Arthritis / Joint Pain"
+                          />{" "}
+                          Arthritis / Joint Pain
+                        </label>
+                        <label>
+                          <input
+                            type="checkbox"
+                            name="medical_condition"
+                            value="Neurological Condition"
+                          />{" "}
+                          Neurological
+                        </label>
+                        <label>
+                          <input
+                            type="checkbox"
+                            name="medical_condition"
+                            value="General Wellness"
+                          />{" "}
+                          General Wellness
+                        </label>
+                        <label>
+                          <input
+                            type="checkbox"
+                            name="medical_condition"
+                            value="Other"
+                          />{" "}
+                          Other
+                        </label>
+                      </div>
+                    </section>
+
+                    <hr style={{ margin: "16px 0" }} />
+
+                    {/* ========== Functional Ability (inside modal) ========== */}
+                    <section className="modal-section">
+                      <h3 style={{ color: "#1f3fae" }}>Functional Ability</h3>
+
+                      <p>Current Mobility Level</p>
+                      <label>
+                        <input
+                          type="radio"
+                          name="mobility"
+                          value="Seated only"
+                        />{" "}
+                        Seated only
                       </label>
-                    </div>
+                      <label style={{ marginLeft: 12 }}>
+                        <input
+                          type="radio"
+                          name="mobility"
+                          value="Assisted standing"
+                        />{" "}
+                        Assisted standing
+                      </label>
+                      <label style={{ marginLeft: 12 }}>
+                        <input
+                          type="radio"
+                          name="mobility"
+                          value="Independent standing"
+                        />{" "}
+                        Independent standing
+                      </label>
+
+                      <p style={{ marginTop: 16 }}>Walking Ability</p>
+                      <label>
+                        <input
+                          type="radio"
+                          name="walking"
+                          value="Cannot walk"
+                        />{" "}
+                        Cannot walk
+                      </label>
+                      <label style={{ marginLeft: 12 }}>
+                        <input
+                          type="radio"
+                          name="walking"
+                          value="With cane / walker"
+                        />{" "}
+                        With cane / walker
+                      </label>
+                      <label style={{ marginLeft: 12 }}>
+                        <input
+                          type="radio"
+                          name="walking"
+                          value="Independent"
+                        />{" "}
+                        Independent
+                      </label>
+
+                      <p style={{ marginTop: 16 }}>Range of Motion</p>
+                      <label>
+                        <input type="radio" name="rom" value="Limited" />{" "}
+                        Limited
+                      </label>
+                      <label style={{ marginLeft: 12 }}>
+                        <input type="radio" name="rom" value="Moderate" />{" "}
+                        Moderate
+                      </label>
+                      <label style={{ marginLeft: 12 }}>
+                        <input
+                          type="radio"
+                          name="rom"
+                          value="Full (with caution)"
+                        />{" "}
+                        Full (with caution)
+                      </label>
+                    </section>
                   </div>
+                </div>
 
-                  {/* ========== Medical Profile (inside modal) ========== */}
-                  <section className="modal-section">
-                    <h3
-                      style={{
-                        color: "#1f3fae",
-                        marginTop: 12,
-                        marginBottom: 6,
-                      }}
-                    >
-                      Medical Profile
-                    </h3>
-                    <p>Primary Medical Condition</p>
+                <div className="modal-footer">
+                  {/* Primary CTA could navigate or just close */}
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    data-close-modal="keep"
+                  >
+                    I Understand
+                  </button>
 
-                    <div
-                      style={{
-                        display: "grid",
-                        gridTemplateColumns: "repeat(3, 1fr)",
-                        gap: 8,
-                        marginTop: 8,
-                      }}
-                    >
-                      <label>
-                        <input
-                          type="checkbox"
-                          name="medical_condition"
-                          value="Stroke Recovery"
-                        />{" "}
-                        Stroke Recovery
-                      </label>
-                      <label>
-                        <input
-                          type="checkbox"
-                          name="medical_condition"
-                          value="Post-Surgery Rehabilitation"
-                        />{" "}
-                        Post-Surgery
-                      </label>
-                      <label>
-                        <input
-                          type="checkbox"
-                          name="medical_condition"
-                          value="Arthritis / Joint Pain"
-                        />{" "}
-                        Arthritis / Joint Pain
-                      </label>
-                      <label>
-                        <input
-                          type="checkbox"
-                          name="medical_condition"
-                          value="Neurological Condition"
-                        />{" "}
-                        Neurological
-                      </label>
-                      <label>
-                        <input
-                          type="checkbox"
-                          name="medical_condition"
-                          value="General Wellness"
-                        />{" "}
-                        General Wellness
-                      </label>
-                      <label>
-                        <input
-                          type="checkbox"
-                          name="medical_condition"
-                          value="Other"
-                        />{" "}
-                        Other
-                      </label>
-                    </div>
-                  </section>
-
-                  <hr style={{ margin: "16px 0" }} />
-
-                  {/* ========== Functional Ability (inside modal) ========== */}
-                  <section className="modal-section">
-                    <h3 style={{ color: "#1f3fae" }}>Functional Ability</h3>
-
-                    <p>Current Mobility Level</p>
-                    <label>
-                      <input type="radio" name="mobility" value="Seated only" />{" "}
-                      Seated only
-                    </label>
-                    <label style={{ marginLeft: 12 }}>
-                      <input
-                        type="radio"
-                        name="mobility"
-                        value="Assisted standing"
-                      />{" "}
-                      Assisted standing
-                    </label>
-                    <label style={{ marginLeft: 12 }}>
-                      <input
-                        type="radio"
-                        name="mobility"
-                        value="Independent standing"
-                      />{" "}
-                      Independent standing
-                    </label>
-
-                    <p style={{ marginTop: 16 }}>Walking Ability</p>
-                    <label>
-                      <input type="radio" name="walking" value="Cannot walk" />{" "}
-                      Cannot walk
-                    </label>
-                    <label style={{ marginLeft: 12 }}>
-                      <input
-                        type="radio"
-                        name="walking"
-                        value="With cane / walker"
-                      />{" "}
-                      With cane / walker
-                    </label>
-                    <label style={{ marginLeft: 12 }}>
-                      <input type="radio" name="walking" value="Independent" />{" "}
-                      Independent
-                    </label>
-
-                    <p style={{ marginTop: 16 }}>Range of Motion</p>
-                    <label>
-                      <input type="radio" name="rom" value="Limited" /> Limited
-                    </label>
-                    <label style={{ marginLeft: 12 }}>
-                      <input type="radio" name="rom" value="Moderate" />{" "}
-                      Moderate
-                    </label>
-                    <label style={{ marginLeft: 12 }}>
-                      <input
-                        type="radio"
-                        name="rom"
-                        value="Full (with caution)"
-                      />{" "}
-                      Full (with caution)
-                    </label>
-                  </section>
+                  <button
+                    type="button"
+                    className="btn btn-ghost"
+                    data-close-modal="discard"
+                  >
+                    Close
+                  </button>
                 </div>
               </div>
-
-              <div className="modal-footer">
-                {/* Primary CTA could navigate or just close */}
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  data-close-modal="keep"
-                >
-                  I Understand
-                </button>
-
-                <button
-                  type="button"
-                  className="btn btn-ghost"
-                  data-close-modal="discard"
-                >
-                  Close
-                </button>
-              </div>
             </div>
+          </section>
+
+          <hr />
+
+          {/* ================= Save ================= */}
+          <div style={{ textAlign: "center", marginTop: 32 }}>
+            <button
+              type="submit"
+              style={{
+                background: "#6cab2f",
+                color: "white",
+                padding: "12px 40px",
+                borderRadius: 8,
+                border: "none",
+                fontSize: 16,
+              }}
+            >
+              Save
+            </button>
           </div>
-        </section>
-
-        <hr />
-
-        {/* ================= Save ================= */}
-        <div style={{ textAlign: "center", marginTop: 32 }}>
-          <button
-            type="submit"
-            style={{
-              background: "#6cab2f",
-              color: "white",
-              padding: "12px 40px",
-              borderRadius: 8,
-              border: "none",
-              fontSize: 16,
-            }}
-          >
-            Save
-          </button>
-        </div>
-      </form>
-    </main>
+        </form>
+      </main>
+    </div>
   );
 }
