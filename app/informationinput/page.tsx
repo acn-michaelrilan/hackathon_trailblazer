@@ -1,4 +1,6 @@
 import UserTypeAccordionController from "./UserTypeAccordionController";
+import UserTypeAccordion from "./UserTypeAccordion";
+
 export default function informationinput() {
   async function save(formData: FormData) {
     "use server";
@@ -146,10 +148,6 @@ export default function informationinput() {
   .muted { color: #6b7280; font-size: 13px; }
 
   /* ========== ADDITIVE: allow the SAME pill/choice styles in Personal Information ========== */
-  /* These rules mirror usr-wrap, scoped to pi-wrap.
-     They won't affect anything until you use .vh/.pill/.choice-grid inside the PI section. */
-
-  /* Choice grid reused in Personal Information */
   .${rootClass} .choice-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -162,7 +160,6 @@ export default function informationinput() {
     }
   }
 
-  /* Hidden radio in Personal Information */
   .${rootClass} .vh {
     position: absolute;
     opacity: 0;
@@ -171,7 +168,6 @@ export default function informationinput() {
     height: 0;
   }
 
-  /* Pill in Personal Information */
   .${rootClass} .pill {
     display: inline-flex;
     align-items: center;
@@ -206,163 +202,162 @@ export default function informationinput() {
     outline: 3px solid rgba(31, 63, 174, 0.4);
     outline-offset: 2px;
   }
-    
 
+  /* Buttons (theme-aligned) */
+  .${usrClass} .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+    transition: transform .05s ease, background .15s ease, color .15s ease, border-color .15s ease, box-shadow .15s ease;
+    text-decoration: none;
+    border: 1px solid transparent;
+  }
 
-/* Buttons (theme-aligned) */
-.${usrClass} .btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 10px 16px;
-  border-radius: 10px;
-  font-weight: 600;
-  cursor: pointer;
-  user-select: none;
-  transition: transform .05s ease, background .15s ease, color .15s ease, border-color .15s ease, box-shadow .15s ease;
-  text-decoration: none;
-  border: 1px solid transparent;
-}
+  .${usrClass} .btn:active { transform: translateY(0.5px); }
 
-.${usrClass} .btn:active { transform: translateY(0.5px); }
+  .${usrClass} .btn-primary {
+    background: #1f3fae;
+    color: #ffffff;
+    border-color: #1f3fae;
+  }
+  .${usrClass} .btn-primary:hover {
+    background: #2448c7;
+    border-color: #2448c7;
+    box-shadow: 0 0 0 3px rgba(31,63,174,0.18);
+  }
 
-.${usrClass} .btn-primary {
-  background: #1f3fae;
-  color: #ffffff;
-  border-color: #1f3fae;
-}
-.${usrClass} .btn-primary:hover {
-  background: #2448c7;
-  border-color: #2448c7;
-  box-shadow: 0 0 0 3px rgba(31,63,174,0.18);
-}
+  .${usrClass} .btn-ghost {
+    background: #ffffff;
+    color: #1f2937;
+    border-color: #e5e7eb;
+  }
+  .${usrClass} .btn-ghost:hover {
+    background: #f8fafc;
+    border-color: #d1d5db;
+  }
 
-.${usrClass} .btn-ghost {
-  background: #ffffff;
-  color: #1f2937;
-  border-color: #e5e7eb;
-}
-.${usrClass} .btn-ghost:hover {
-  background: #f8fafc;
-  border-color: #d1d5db;
-}
+  /* Close “X” button */
+  .${usrClass} .icon-btn {
+    background: transparent;
+    border: none;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #1f3fae;
+  }
+  .${usrClass} .icon-btn:hover {
+    background: #eef2ff;
+  }
 
-/* Close “X” button */
-.${usrClass} .icon-btn {
-  background: transparent;
-  border: none;
-  padding: 8px;
-  border-radius: 8px;
-  cursor: pointer;
-  color: #1f3fae;
-}
-.${usrClass} .icon-btn:hover {
-  background: #eef2ff;
-}
+  /* Pills hug content */
+  .usr-wrap .modal .choice-grid--row .pill {
+    width: auto;
+    white-space: nowrap;
+    padding: 8px 12px;
+    font-size: 14px;
+  }
 
-/* Pills hug content */
-.usr-wrap .modal .choice-grid--row .pill {
-  width: auto;
-  white-space: nowrap;
-  padding: 8px 12px;
-  font-size: 14px;
-}
+  /* Compact pill look just for the modal Risk Level row */
+  .usr-wrap .modal .choice-row .pill {
+    width: auto;
+    padding: 6px 10px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
 
-/* Compact pill look just for the modal Risk Level row */
-.usr-wrap .modal .choice-row .pill {
-  width: auto;           /* 👈 don't stretch; hug text */
-  padding: 6px 10px;     /* 👈 compact size; try 6x10 or 8x12 */
-  font-size: 14px;       /* keep readable */
-  white-space: nowrap;   /* keep each label on one line */
-}
+  /* Optional: make the wrapper <div> around each pill inline-sized too */
+  .usr-wrap .modal .choice-row > div {
+    display: inline-block;
+  }
 
-/* Optional: make the wrapper <div> around each pill inline-sized too */
-.usr-wrap .modal .choice-row > div {
-  display: inline-block;
-}
+  /* ===== Accordion (theme-aligned, replaces modal) ===== */
+  .usr-wrap details.acc {
+    background: #ffffff;
+    color: #111827;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    overflow: clip;
+  }
 
-/* ===== Accordion (theme-aligned, replaces modal) ===== */
-.usr-wrap details.acc {
-  background: #ffffff;
-  color: #111827;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-  overflow: clip;
-}
+  /* 1) By default, keep it hidden */
+  .usr-wrap details[data-acc] {
+    display: none;
+  }
 
-/* 1) By default, keep it hidden */
-.usr-wrap details[data-acc] {
-  display: none;
-}
+  /* 2) Show when Stroke is checked */
+  .usr-wrap:has(#stroke_recovery_neurological:checked) details[data-acc] {
+    display: block;
+  }
 
-/* 2) Show when Stroke is checked */
-.usr-wrap:has(#stroke_recovery_neurological:checked) details[data-acc] {
-  display: block;
-}
+  /* 3) BUT if the section is collapsed, hide it no matter what (wins via !important) */
+  .usr-wrap[data-acc-collapsed="true"] details[data-acc] {
+    display: none !important;
+  }
 
-/* 3) BUT if the section is collapsed, hide it no matter what (wins via !important) */
-.usr-wrap[data-acc-collapsed="true"] details[data-acc] {
-  display: none !important;
-}
-/* summary button (header) */
-.usr-wrap .acc-summary {
-  list-style: none;       /* removes triangle in some UAs */
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 16px 20px;
-  background: #f8faff;    /* blue-tinted header like your modal */
-  border-bottom: 1px solid #eef2f7;
-  font-weight: 700;
-  color: #1f3fae;
-}
+  /* summary button (header) */
+  .usr-wrap .acc-summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 16px 20px;
+    background: #f8faff;
+    border-bottom: 1px solid #eef2f7;
+    font-weight: 700;
+    color: #1f3fae;
+  }
 
-/* hide default marker */
-.usr-wrap .acc-summary::-webkit-details-marker { display: none; }
+  /* hide default marker */
+  .usr-wrap .acc-summary::-webkit-details-marker { display: none; }
 
-/* chevron */
-.usr-wrap .acc-summary .chev {
-  transition: transform .18s ease;
-  color: #1f3fae;
-}
-.usr-wrap details[open] .acc-summary .chev { transform: rotate(180deg); }
+  /* chevron */
+  .usr-wrap .acc-summary .chev {
+    transition: transform .18s ease;
+    color: #1f3fae;
+  }
+  .usr-wrap details[open] .acc-summary .chev { transform: rotate(180deg); }
 
-/* panel */
-.usr-wrap .acc-panel {
-  padding: 16px 20px;
-  line-height: 1.5;
-  background: #ffffff;
-}
+  /* panel */
+  .usr-wrap .acc-panel {
+    padding: 16px 20px;
+    line-height: 1.5;
+    background: #ffffff;
+  }
 
-/* footer buttons area (optional) */
-.usr-wrap .acc-footer {
-  padding: 14px 20px;
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-  border-top: 1px solid #eef2f7;
-  background: #fafbff;
-}
+  /* footer buttons area (optional) */
+  .usr-wrap .acc-footer {
+    padding: 14px 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    border-top: 1px solid #eef2f7;
+    background: #fafbff;
+  }
 
-/* Keep your pill/choice patterns working inside the accordion */
-.usr-wrap .acc-panel .choice-row {
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
-  gap: 6px;
-  margin-top: 8px;
-}
-.usr-wrap .acc-panel .choice-row .pill {
-  width: auto;
-  padding: 6px 10px;
-  font-size: 14px;
-  white-space: nowrap;
-}
-`;
+  /* Keep your pill/choice patterns working inside the accordion */
+  .usr-wrap .acc-panel .choice-row {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+  }
+  .usr-wrap .acc-panel .choice-row .pill {
+    width: auto;
+    padding: 6px 10px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+  `;
 
   return (
     <div className="min-h-screen bg-white p-6 md:p-12 font-sans text-slate-900">
@@ -375,6 +370,8 @@ export default function informationinput() {
       >
         {/* Component-scoped styles (no global CSS) */}
         <style>{styles}</style>
+
+        {/* Controller to wire accordion open/collapse behavior */}
         <UserTypeAccordionController />
 
         {/* Header */}
@@ -493,255 +490,8 @@ export default function informationinput() {
             </div>
           </section>
 
-          {/* ================= User Type & Risk Level (with modal) ================= */}
-          <section
-            className={usrClass}
-            style={{ marginTop: 24 }}
-            data-acc-collapsed="true"
-          >
-            <h2 style={{ color: "#1f3fae" }}>User Type and Risk Level</h2>
-
-            {/* User Category (pills) */}
-            <div style={{ marginTop: 8, marginBottom: 6 }}></div>
-
-            <div className="choice-grid">
-              {/* Choice 1 (Stroke) */}
-              <div style={{ position: "relative", marginBottom: 12 }}>
-                <input
-                  className="vh"
-                  type="radio"
-                  id="stroke_recovery_neurological"
-                  name="user_category"
-                  value="stroke_recovery_neurological"
-                />
-                <label className="pill" htmlFor="stroke_recovery_neurological">
-                  Stroke recovery / neurological condition
-                </label>
-              </div>
-
-              {/* Choice 2 (General) */}
-              <div style={{ position: "relative" }}>
-                <input
-                  className="vh"
-                  type="radio"
-                  id="general_fitness"
-                  name="user_category"
-                  value="general_fitness_active_lifestyle"
-                />
-                <label className="pill" htmlFor="general_fitness">
-                  General fitness &amp; active lifestyle
-                </label>
-              </div>
-            </div>
-
-            {/* ===== Accordion (shown only when Stroke is selected) ===== */}
-            <details className="acc" data-acc>
-              <summary className="acc-summary">
-                <span>Important Information</span>
-                <svg
-                  className="chev"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path d="M12 15.5 6.5 10l1.4-1.4L12 12.7l4.1-4.1L17.5 10z"></path>
-                </svg>
-              </summary>
-
-              <div className="acc-panel">
-                <p>
-                  Since you selected{" "}
-                  <strong>Stroke recovery / neurological condition</strong>,
-                  please answer the following:
-                </p>
-
-                {/* Risk Level */}
-                <div style={{ marginTop: 12 }}>
-                  <label style={{ whiteSpace: "nowrap", fontWeight: 600 }}>
-                    Risk Level
-                  </label>
-                  <div className="choice-row">
-                    <div style={{ position: "relative" }}>
-                      <input
-                        className="vh"
-                        type="radio"
-                        id="risk_low"
-                        name="risk_level"
-                        value="low"
-                        required
-                      />
-                      <label className="pill" htmlFor="risk_low">
-                        Low
-                      </label>
-                    </div>
-                    <div style={{ position: "relative" }}>
-                      <input
-                        className="vh"
-                        type="radio"
-                        id="risk_medium"
-                        name="risk_level"
-                        value="medium"
-                      />
-                      <label className="pill" htmlFor="risk_medium">
-                        Medium
-                      </label>
-                    </div>
-                    <div style={{ position: "relative" }}>
-                      <input
-                        className="vh"
-                        type="radio"
-                        id="risk_high"
-                        name="risk_level"
-                        value="high"
-                      />
-                      <label className="pill" htmlFor="risk_high">
-                        High
-                      </label>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Medical Profile (checkbox grid) */}
-                <section className="modal-section">
-                  <h3
-                    style={{ color: "#1f3fae", marginTop: 12, marginBottom: 6 }}
-                  >
-                    Medical Profile
-                  </h3>
-                  <p>Primary Medical Condition</p>
-                  <div
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: "repeat(3, 1fr)",
-                      gap: 8,
-                      marginTop: 8,
-                    }}
-                  >
-                    <label>
-                      <input
-                        type="checkbox"
-                        name="medical_condition"
-                        value="Stroke Recovery"
-                      />{" "}
-                      Stroke Recovery
-                    </label>
-                    <label>
-                      <input
-                        type="checkbox"
-                        name="medical_condition"
-                        value="Post-Surgery Rehabilitation"
-                      />{" "}
-                      Post-Surgery
-                    </label>
-                    <label>
-                      <input
-                        type="checkbox"
-                        name="medical_condition"
-                        value="Arthritis / Joint Pain"
-                      />{" "}
-                      Arthritis / Joint Pain
-                    </label>
-                    <label>
-                      <input
-                        type="checkbox"
-                        name="medical_condition"
-                        value="Neurological Condition"
-                      />{" "}
-                      Neurological
-                    </label>
-                    <label>
-                      <input
-                        type="checkbox"
-                        name="medical_condition"
-                        value="General Wellness"
-                      />{" "}
-                      General Wellness
-                    </label>
-                    <label>
-                      <input
-                        type="checkbox"
-                        name="medical_condition"
-                        value="Other"
-                      />{" "}
-                      Other
-                    </label>
-                  </div>
-                </section>
-
-                <hr style={{ margin: "16px 0" }} />
-
-                {/* Functional Ability */}
-                <section className="modal-section">
-                  <h3 style={{ color: "#1f3fae" }}>Functional Ability</h3>
-
-                  <p>Current Mobility Level</p>
-                  <label>
-                    <input type="radio" name="mobility" value="Seated only" />{" "}
-                    Seated only
-                  </label>
-                  <label style={{ marginLeft: 12 }}>
-                    <input
-                      type="radio"
-                      name="mobility"
-                      value="Assisted standing"
-                    />{" "}
-                    Assisted standing
-                  </label>
-                  <label style={{ marginLeft: 12 }}>
-                    <input
-                      type="radio"
-                      name="mobility"
-                      value="Independent standing"
-                    />{" "}
-                    Independent standing
-                  </label>
-
-                  <p style={{ marginTop: 16 }}>Walking Ability</p>
-                  <label>
-                    <input type="radio" name="walking" value="Cannot walk" />{" "}
-                    Cannot walk
-                  </label>
-                  <label style={{ marginLeft: 12 }}>
-                    <input
-                      type="radio"
-                      name="walking"
-                      value="With cane / walker"
-                    />{" "}
-                    With cane / walker
-                  </label>
-                  <label style={{ marginLeft: 12 }}>
-                    <input type="radio" name="walking" value="Independent" />{" "}
-                    Independent
-                  </label>
-
-                  <p style={{ marginTop: 16 }}>Range of Motion</p>
-                  <label>
-                    <input type="radio" name="rom" value="Limited" /> Limited
-                  </label>
-                  <label style={{ marginLeft: 12 }}>
-                    <input type="radio" name="rom" value="Moderate" /> Moderate
-                  </label>
-                  <label style={{ marginLeft: 12 }}>
-                    <input
-                      type="radio"
-                      name="rom"
-                      value="Full (with caution)"
-                    />{" "}
-                    Full (with caution)
-                  </label>
-                </section>
-              </div>
-
-              <div className="acc-footer">
-                <button type="button" className="btn btn-primary" data-acc-done>
-                  Done
-                </button>
-              </div>
-            </details>
-          </section>
+          {/* ================= User Type & Risk Level ================= */}
+          <UserTypeAccordion />
 
           <hr />
 
