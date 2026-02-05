@@ -1,4 +1,5 @@
-import UserTypeModalController from "./UserTypeModalController";
+import UserTypeAccordionController from "./UserTypeAccordionController";
+import StrokeAccordion from "./StrokeAccordion";
 export default function informationinput() {
   async function save(formData: FormData) {
     "use server";
@@ -198,83 +199,8 @@ export default function informationinput() {
     outline: 3px solid rgba(31, 63, 174, 0.4);
     outline-offset: 2px;
   }
-    /* ===== Modal (theme-aligned) ===== */
-.${usrClass} .modal-backdrop {
-  display: none;                 /* hidden by default */
-  position: fixed;
-  inset: 0;
-  background: rgba(17, 24, 39, 0.45); /* semi-dark overlay */
-  z-index: 50;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-}
+    
 
-/* Hidden by default */
-.usr-wrap .modal-backdrop {
-  display: none;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .18s ease;
-}
-
-/* Show when JS toggles data-open */
-.usr-wrap[data-open="true"] .modal-backdrop {
-  display: flex;
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* Lift animation */
-.usr-wrap .modal {
-  transform: translateY(8px);
-  transition: transform .18s ease;
-}
-
-.usr-wrap[data-open="true"] .modal {
-  transform: translateY(0);
-}
-.${usrClass} .modal {
-  background: #ffffff;
-  color: #111827;
-  width: 100%;
-  max-width: 560px;
-  border-radius: 12px;
-  box-shadow: 0 20px 48px rgba(0,0,0,0.25);
-  border: 1px solid #e5e7eb;
-  overflow: hidden;
-}
-
-.${usrClass} .modal-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 16px 20px;
-  border-bottom: 1px solid #eef2f7;
-  background: #f8faff;           /* subtle tint to match your blue theme */
-}
-
-.${usrClass} .modal-title {
-  font-weight: 700;
-  color: #1f3fae;                /* your theme color */
-  font-size: 18px;
-  margin: 0;
-}
-
-.${usrClass} .modal-body {
-  padding: 16px 20px;
-  line-height: 1.5;
-}
-
-.${usrClass} .modal-footer {
-  padding: 14px 20px;
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-  border-top: 1px solid #eef2f7;
-  background: #fafbff;
-}
 
 /* Buttons (theme-aligned) */
 .${usrClass} .btn {
@@ -328,30 +254,12 @@ export default function informationinput() {
   background: #eef2ff;
 }
 
-/* Grid with 3 fixed columns in one row inside the modal */
-.usr-wrap .modal .choice-grid--row {
-  display: grid;
-  grid-template-columns: repeat(3, auto);  /* three columns sized to content */
-  gap: 8px;
-  margin-top: 8px;
-  align-items: center;
-}
-
 /* Pills hug content */
 .usr-wrap .modal .choice-grid--row .pill {
   width: auto;
   white-space: nowrap;
   padding: 8px 12px;
   font-size: 14px;
-}
-
-/* One tight row for Risk Level pills inside the modal */
-.usr-wrap .modal .choice-row {
-  display: flex;
-  flex-wrap: nowrap;     /* keep all three on one line */
-  align-items: center;
-  gap: 6px;              /* 👈 reduce space between pills (try 4–8px) */
-  margin-top: 8px;
 }
 
 /* Compact pill look just for the modal Risk Level row */
@@ -366,6 +274,88 @@ export default function informationinput() {
 .usr-wrap .modal .choice-row > div {
   display: inline-block;
 }
+
+/* ===== Accordion (theme-aligned, replaces modal) ===== */
+.usr-wrap details.acc {
+  background: #ffffff;
+  color: #111827;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  overflow: clip;
+}
+
+/* 1) By default, keep it hidden */
+.usr-wrap details[data-acc] {
+  display: none;
+}
+
+/* 2) Show when Stroke is checked */
+.usr-wrap:has(#stroke_recovery_neurological:checked) details[data-acc] {
+  display: block;
+}
+
+/* 3) BUT if the section is collapsed, hide it no matter what (wins via !important) */
+.usr-wrap[data-acc-collapsed="true"] details[data-acc] {
+  display: none !important;
+}
+
+/* summary button (header) */
+.usr-wrap .acc-summary {
+  list-style: none;       /* removes triangle in some UAs */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 20px;
+  background: #f8faff;    /* blue-tinted header like your modal */
+  border-bottom: 1px solid #eef2f7;
+  font-weight: 700;
+  color: #1f3fae;
+}
+
+/* hide default marker */
+.usr-wrap .acc-summary::-webkit-details-marker { display: none; }
+
+/* chevron */
+.usr-wrap .acc-summary .chev {
+  transition: transform .18s ease;
+  color: #1f3fae;
+}
+.usr-wrap details[open] .acc-summary .chev { transform: rotate(180deg); }
+
+/* panel */
+.usr-wrap .acc-panel {
+  padding: 16px 20px;
+  line-height: 1.5;
+  background: #ffffff;
+}
+
+/* footer buttons area (optional) */
+.usr-wrap .acc-footer {
+  padding: 14px 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  border-top: 1px solid #eef2f7;
+  background: #fafbff;
+}
+
+/* Keep your pill/choice patterns working inside the accordion */
+.usr-wrap .acc-panel .choice-row {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+}
+.usr-wrap .acc-panel .choice-row .pill {
+  width: auto;
+  padding: 6px 10px;
+  font-size: 14px;
+  white-space: nowrap;
+}
 `;
 
   return (
@@ -379,7 +369,7 @@ export default function informationinput() {
       >
         {/* Component-scoped styles (no global CSS) */}
         <style>{styles}</style>
-        <UserTypeModalController />
+        <UserTypeAccordionController />
 
         {/* Header */}
         <h1 style={{ textAlign: "center", fontSize: 36, color: "#1f3fae" }}>
@@ -497,24 +487,14 @@ export default function informationinput() {
             </div>
           </section>
 
-          {/* ================= User Type & Risk Level (with modal) ================= */}
+          {/* ================= User Type & Risk Level ================= */}
           <section className={usrClass} style={{ marginTop: 24 }}>
             <h2 style={{ color: "#1f3fae" }}>User Type and Risk Level</h2>
-            {/* Hidden “none” radio so we can close the modal by selecting it
-          <input
-            className="vh"
-            type="radio"
-            id="user_category_none"
-            name="user_category"
-            value="Stroke recovery / neurological condition"
-            required
-          /> */}
 
-            {/* User Category (pills) */}
-            <div style={{ marginTop: 8, marginBottom: 6 }}></div>
+            <div style={{ marginTop: 8, marginBottom: 6 }} />
 
             <div className="choice-grid">
-              {/* Choice 1 (Stroke) */}
+              {/* Stroke */}
               <div style={{ position: "relative", marginBottom: 12 }}>
                 <input
                   className="vh"
@@ -522,13 +502,15 @@ export default function informationinput() {
                   id="stroke_recovery_neurological"
                   name="user_category"
                   value="Stroke recovery / neurological condition"
+                  /* optional: enforce selection */
+                  // required
                 />
                 <label className="pill" htmlFor="stroke_recovery_neurological">
                   Stroke recovery / neurological condition
                 </label>
               </div>
 
-              {/* Choice 2 (General) */}
+              {/* General */}
               <div style={{ position: "relative" }}>
                 <input
                   className="vh"
@@ -538,269 +520,14 @@ export default function informationinput() {
                   value="General fitness & active lifestyle"
                 />
                 <label className="pill" htmlFor="general_fitness">
+                  {/* fix double-encoded ampersand */}
                   General fitness &amp; active lifestyle
                 </label>
               </div>
             </div>
 
-            {/* ===== Modal (shown only when Stroke is selected) ===== */}
-            <div className="modal-backdrop" aria-hidden="true">
-              <div
-                className="modal"
-                role="dialog"
-                aria-modal="true"
-                aria-labelledby="modal-title"
-              >
-                <div className="modal-header">
-                  <h3 id="modal-title" className="modal-title">
-                    Important Information
-                  </h3>
-                  <button
-                    type="button"
-                    className="icon-btn"
-                    data-close-modal="true"
-                    aria-label="Close dialog"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="18"
-                      height="18"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M6.225 4.811 4.811 6.225 10.586 12l-5.775 5.775 1.414 1.414L12 13.414l5.775 5.775 1.414-1.414L13.414 12l5.775-5.775-1.414-1.414L12 10.586z" />
-                    </svg>
-                  </button>
-                </div>
-
-                <div className="modal-body">
-                  <p>
-                    Since you selected{" "}
-                    <strong>Stroke recovery / neurological condition</strong>,
-                    please answer the following:
-                  </p>
-
-                  <div style={{ marginTop: 12 }}>
-                    <label style={{ whiteSpace: "nowrap", fontWeight: 600 }}>
-                      Risk Level
-                    </label>
-
-                    <div className="choice-row">
-                      {/* Low */}
-                      <div style={{ position: "relative" }}>
-                        <input
-                          className="vh"
-                          type="radio"
-                          id="risk_low"
-                          name="risk_level"
-                          value="Low"
-                          required
-                        />
-                        <label className="pill" htmlFor="risk_low">
-                          Low
-                        </label>
-                      </div>
-
-                      {/* Medium */}
-                      <div style={{ position: "relative" }}>
-                        <input
-                          className="vh"
-                          type="radio"
-                          id="risk_medium"
-                          name="risk_level"
-                          value="Medium"
-                        />
-                        <label className="pill" htmlFor="risk_medium">
-                          Medium
-                        </label>
-                      </div>
-
-                      {/* High */}
-                      <div style={{ position: "relative" }}>
-                        <input
-                          className="vh"
-                          type="radio"
-                          id="risk_high"
-                          name="risk_level"
-                          value="High"
-                        />
-                        <label className="pill" htmlFor="risk_high">
-                          High
-                        </label>
-                      </div>
-                    </div>
-
-                    {/* ========== Medical Profile (inside modal) ========== */}
-                    <section className="modal-section">
-                      <h3
-                        style={{
-                          color: "#1f3fae",
-                          marginTop: 12,
-                          marginBottom: 6,
-                        }}
-                      >
-                        Medical Profile
-                      </h3>
-                      <p>Primary Medical Condition</p>
-
-                      <div
-                        style={{
-                          display: "grid",
-                          gridTemplateColumns: "repeat(3, 1fr)",
-                          gap: 8,
-                          marginTop: 8,
-                        }}
-                      >
-                        <label>
-                          <input
-                            type="checkbox"
-                            name="medical_condition"
-                            value="Stroke Recovery"
-                          />{" "}
-                          Stroke Recovery
-                        </label>
-                        <label>
-                          <input
-                            type="checkbox"
-                            name="medical_condition"
-                            value="Post-Surgery Rehabilitation"
-                          />{" "}
-                          Post-Surgery
-                        </label>
-                        <label>
-                          <input
-                            type="checkbox"
-                            name="medical_condition"
-                            value="Arthritis / Joint Pain"
-                          />{" "}
-                          Arthritis / Joint Pain
-                        </label>
-                        <label>
-                          <input
-                            type="checkbox"
-                            name="medical_condition"
-                            value="Neurological Condition"
-                          />{" "}
-                          Neurological
-                        </label>
-                        <label>
-                          <input
-                            type="checkbox"
-                            name="medical_condition"
-                            value="General Wellness"
-                          />{" "}
-                          General Wellness
-                        </label>
-                        <label>
-                          <input
-                            type="checkbox"
-                            name="medical_condition"
-                            value="Other"
-                          />{" "}
-                          Other
-                        </label>
-                      </div>
-                    </section>
-
-                    <hr style={{ margin: "16px 0" }} />
-
-                    {/* ========== Functional Ability (inside modal) ========== */}
-                    <section className="modal-section">
-                      <h3 style={{ color: "#1f3fae" }}>Functional Ability</h3>
-
-                      <p>Current Mobility Level</p>
-                      <label>
-                        <input
-                          type="radio"
-                          name="mobility"
-                          value="Seated only"
-                        />{" "}
-                        Seated only
-                      </label>
-                      <label style={{ marginLeft: 12 }}>
-                        <input
-                          type="radio"
-                          name="mobility"
-                          value="Assisted standing"
-                        />{" "}
-                        Assisted standing
-                      </label>
-                      <label style={{ marginLeft: 12 }}>
-                        <input
-                          type="radio"
-                          name="mobility"
-                          value="Independent standing"
-                        />{" "}
-                        Independent standing
-                      </label>
-
-                      <p style={{ marginTop: 16 }}>Walking Ability</p>
-                      <label>
-                        <input
-                          type="radio"
-                          name="walking"
-                          value="Cannot walk"
-                        />{" "}
-                        Cannot walk
-                      </label>
-                      <label style={{ marginLeft: 12 }}>
-                        <input
-                          type="radio"
-                          name="walking"
-                          value="With cane / walker"
-                        />{" "}
-                        With cane / walker
-                      </label>
-                      <label style={{ marginLeft: 12 }}>
-                        <input
-                          type="radio"
-                          name="walking"
-                          value="Independent"
-                        />{" "}
-                        Independent
-                      </label>
-
-                      <p style={{ marginTop: 16 }}>Range of Motion</p>
-                      <label>
-                        <input type="radio" name="rom" value="Limited" />{" "}
-                        Limited
-                      </label>
-                      <label style={{ marginLeft: 12 }}>
-                        <input type="radio" name="rom" value="Moderate" />{" "}
-                        Moderate
-                      </label>
-                      <label style={{ marginLeft: 12 }}>
-                        <input
-                          type="radio"
-                          name="rom"
-                          value="Full (with caution)"
-                        />{" "}
-                        Full (with caution)
-                      </label>
-                    </section>
-                  </div>
-                </div>
-
-                <div className="modal-footer">
-                  {/* Primary CTA could navigate or just close */}
-                  <button
-                    type="button"
-                    className="btn btn-primary"
-                    data-close-modal="keep"
-                  >
-                    I Understand
-                  </button>
-
-                  <button
-                    type="button"
-                    className="btn btn-ghost"
-                    data-close-modal="discard"
-                  >
-                    Close
-                  </button>
-                </div>
-              </div>
-            </div>
+            {/* ===== Accordion (now a separate component) ===== */}
+            <StrokeAccordion />
           </section>
 
           <hr />
