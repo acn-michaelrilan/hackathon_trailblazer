@@ -1,5 +1,5 @@
 import UserTypeModalController from "./UserTypeModalController";
-export default function infopage() {
+export default function informationinput() {
   async function save(formData: FormData) {
     "use server";
 
