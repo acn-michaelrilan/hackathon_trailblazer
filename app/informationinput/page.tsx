@@ -14,9 +14,34 @@ export default function informationinput() {
       dominant_side: formData.get("dominant_side")?.toString() || null,
     };
 
+    // 1) Read all selected conditions
+    const conditionsRaw = formData
+      .getAll("medical_condition")
+      .map((v) => v.toString());
+
+    // 2) Read the custom "Other" text
+    const otherDetails = (formData.get("medical_condition_other") ?? "")
+      .toString()
+      .trim();
+
+    const hasOther = conditionsRaw.includes("other");
+
+    // Replace "Other" with the user's typed text (if present)
+    const conditions = hasOther
+      ? [
+          ...conditionsRaw.filter((c) => c !== "other"),
+          ...(otherDetails ? [otherDetails] : []), // only include when not empty
+        ]
+      : conditionsRaw;
+
+    const mergedConditions = Array.from(new Set(conditions.filter(Boolean)));
+
+    // (optional) de-duplicate & remove empties just in case
+    const uniqueConditions = Array.from(new Set(conditions.filter(Boolean)));
+
     const medical_profile = {
       conditions: {
-        type: formData.getAll("medical_condition").map((v) => v.toString()),
+        type: mergedConditions,
       },
     };
 

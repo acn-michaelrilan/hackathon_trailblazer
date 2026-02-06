@@ -131,7 +131,7 @@ export default function UserTypeAccordion() {
                 <input
                   type="checkbox"
                   name="medical_condition"
-                  value="Stroke Recovery"
+                  value="stroke"
                 />{" "}
                 Stroke Recovery
               </label>
@@ -139,7 +139,15 @@ export default function UserTypeAccordion() {
                 <input
                   type="checkbox"
                   name="medical_condition"
-                  value="Post-Surgery Rehabilitation"
+                  value="neurological_condition"
+                />{" "}
+                Neurological condition
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="medical_condition"
+                  value="post_surgery"
                 />{" "}
                 Post-Surgery
               </label>
@@ -147,7 +155,7 @@ export default function UserTypeAccordion() {
                 <input
                   type="checkbox"
                   name="medical_condition"
-                  value="Arthritis / Joint Pain"
+                  value="arthritis_joint_paim"
                 />{" "}
                 Arthritis / Joint Pain
               </label>
@@ -155,21 +163,19 @@ export default function UserTypeAccordion() {
                 <input
                   type="checkbox"
                   name="medical_condition"
-                  value="Neurological Condition"
+                  value="cardiovascular_condition"
                 />{" "}
-                Neurological
+                Cardiovascular condition
               </label>
-              <label>
+              <label style={{ whiteSpace: "nowrap" }}>
+                <input type="checkbox" name="medical_condition" value="other" />{" "}
+                Other:
                 <input
-                  type="checkbox"
-                  name="medical_condition"
-                  value="General Wellness"
-                />{" "}
-                General Wellness
-              </label>
-              <label>
-                <input type="checkbox" name="medical_condition" value="Other" />{" "}
-                Other
+                  type="text"
+                  name="medical_condition_other"
+                  placeholder="Please specify"
+                  style={{ marginLeft: 4 }}
+                />
               </label>
             </div>
           </section>
