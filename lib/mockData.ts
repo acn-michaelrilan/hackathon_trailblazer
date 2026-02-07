@@ -1,21 +1,32 @@
-import type { Exercise, ExercisePlanData } from "@/types";
+import type { ExercisePlanData } from "@/types";
 
 export const MOCK_DATA: ExercisePlanData = {
   exercise_plan: {
-    plan_info: { user_name: "John Doe", primary_goal: "Stroke Recovery" },
+    plan_info: {
+      plan_id: "mock-plan-001",
+      user_name: "John Doe",
+      primary_goal: "Stroke Recovery",
+      total_weeks: 4,
+      sessions_per_week: 3,
+    },
     weekly_schedule: [
       {
+        week: 1,
+        focus: "Foundation Building",
         sessions: [
           {
             day: 1,
             title: "Arm & Legs Foundations",
-            session_status: "in_progress",
+            session_status: "completed",
+            duration_min: 45,
             exercises: [
               {
                 id: "1",
+                sessionExerciseId: "se-001",
                 name: "Arm Raises",
                 sets: 3,
                 reps: 10,
+                rest_sec: 30,
                 description:
                   "Arm Raises is a gentle mobility and strengthening exercise that targets the muscles of the shoulders and arms.",
                 steps: [
@@ -25,13 +36,16 @@ export const MOCK_DATA: ExercisePlanData = {
                   "Lower with control.",
                 ],
                 video_url: "#",
-                status: "not_started",
+                status: "completed",
+                completed_sets: 3,
               },
               {
                 id: "2",
+                sessionExerciseId: "se-002",
                 name: "Hand Open and Close",
                 sets: 3,
                 reps: 10,
+                rest_sec: 20,
                 description:
                   "Hand Open and Close targets the muscles of the hands, fingers, and forearm for dexterity.",
                 steps: [
@@ -40,13 +54,16 @@ export const MOCK_DATA: ExercisePlanData = {
                   "Repeat with control.",
                 ],
                 video_url: "#",
-                status: "not_started",
+                status: "completed",
+                completed_sets: 3,
               },
               {
                 id: "3",
+                sessionExerciseId: "se-003",
                 name: "Seated Marching",
                 sets: 3,
                 reps: 10,
+                rest_sec: 30,
                 description:
                   "Seated Marching is a low-impact exercise that strengthens the hip flexors and core.",
                 steps: [
@@ -62,24 +79,26 @@ export const MOCK_DATA: ExercisePlanData = {
           {
             day: 2,
             title: "Core Stability",
+            session_status: "in_progress",
+            duration_min: 40,
             exercises: [],
-            session_status: "unlocked",
           },
           {
             day: 3,
             title: "Full Body Mobility",
-            exercises: [],
-            session_status: "unlocked",
-          },
-          {
-            day: 4,
-            title: "Abs and Back Strengthening",
-            exercises: [],
             session_status: "locked",
+            duration_min: 50,
+            exercises: [],
           },
         ],
       },
     ],
-    progress: { completion_percent: 25, current_week: 1, current_day: 1 },
+    progress: {
+      completion_percent: 25,
+      current_week: 1,
+      current_day: 1,
+      total_sessions: 12,
+      completed_sessions: 3,
+    },
   },
 };
