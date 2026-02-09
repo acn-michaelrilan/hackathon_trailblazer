@@ -6,6 +6,7 @@ import {
   UserTypeAndRisk,
   MedicalProfile,
   FunctionalAbility,
+  MedicalSafetyAndRiskFlags,
 } from "../../types";
 
 export default function informationinput() {
@@ -125,12 +126,43 @@ export default function informationinput() {
       },
     };
 
+    const sys = formData.get("bp_sys")?.toString().trim() ?? "";
+    const dia = formData.get("bp_dia")?.toString().trim() ?? "";
+    const blood_pressure = sys && dia ? `${sys}/${dia}` : "";
+
+    const yesNo = (k: string) => formData.get(k)?.toString() === "yes";
+    const toNum = (v: FormDataEntryValue | null, fallback = 0) => {
+      if (v == null) return fallback;
+      const n = Number(v);
+      return Number.isFinite(n) ? n : fallback;
+    };
+
+    const medical_safety_and_risk_flags: MedicalSafetyAndRiskFlags = {
+      medical_safety_and_risk_flags: {
+        vitals: {
+          blood_pressure,
+          resting_heart_rate: toNum(formData.get("resting_heart_rate"), 0),
+        },
+        heart_condition: yesNo("heart_condition"),
+        heart_condition_details:
+          formData.get("heart_condition_details")?.toString() ?? "",
+        pacemaker_or_implants: yesNo("pacemaker_or_implant"),
+        history_of_falls_last_6_months: yesNo("history_of_falls_last_6_months"),
+        number_of_falls: toNum(formData.get("number_of_falls"), 0),
+        dizziness_or_fainting_episodes: yesNo("dizziness_or_fainting_episodes"),
+        dizziness_details: formData.get("dizziness_details")?.toString() ?? "",
+        pain_scale: toNum(formData.get("pain_scale"), 0),
+        pain_location: formData.get("pain_location")?.toString() ?? "",
+      },
+    };
+
     // Compose final JSON (avoid double nesting with spread)
     const payload = {
       ...basic_profile,
       ...user_type_and_risk,
       ...medical_profile,
       ...functional_ability,
+      ...medical_safety_and_risk_flags,
     };
 
     console.log(JSON.stringify(payload, null, 2));
@@ -294,6 +326,8 @@ export default function informationinput() {
                   type="number"
                   placeholder="enter age"
                   required
+                  min={1}
+                  max={98}
                   style={{ width: "100%" }}
                 />
               </div>

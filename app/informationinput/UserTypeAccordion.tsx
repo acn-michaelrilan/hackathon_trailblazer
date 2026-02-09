@@ -2,6 +2,7 @@
 "use client";
 
 import { useState } from "react";
+import MedicalSafetyRiskFlags from "./MedicalSafetyRiskFlags";
 
 type ConditionKey =
   | "stroke"
@@ -28,6 +29,8 @@ export default function UserTypeAccordion() {
   const toggleCondition = (key: ConditionKey) => {
     setSelectedConditions((prev) => ({ ...prev, [key]: !prev[key] }));
   };
+
+  // --- Medical Safety & Risk Flags ---
 
   return (
     <section
@@ -674,6 +677,11 @@ export default function UserTypeAccordion() {
               <option value="impaired">Impaired</option>
             </select>
           </section>
+
+          <hr style={{ margin: "16px 0" }} />
+
+          {/* ⬇️ Medical Safety & Risk Flags — below Functional Ability */}
+          <MedicalSafetyRiskFlags />
         </div>
 
         <div className="acc-footer">
