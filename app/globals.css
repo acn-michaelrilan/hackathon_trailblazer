@@ -24,3 +24,9 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Prevent background from scrolling when modal is open */
+html.modal-open,
+html.modal-open body {
+  overflow: hidden;
+}

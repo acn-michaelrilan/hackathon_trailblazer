@@ -1,0 +1,891 @@
+{
+  "exercise_plan": {
+    "plan_info": {
+      "plan_id": "EP-2026-SK34-002",
+      "user_name": "Sarah K.",
+      "created_date": "2026-02-02",
+      "total_weeks": 8,
+      "sessions_per_week": 5,
+      "difficulty": "intermediate",
+      "primary_goal": "increase_strength",
+      "safety_notes": [
+        "Warm up thoroughly before each strength session to prevent injury",
+        "Stay hydrated - drink water before, during, and after workouts",
+        "Listen to your body - distinguish between good muscle fatigue and harmful pain",
+        "Maintain proper form over heavy weight - quality beats quantity",
+        "Allow 48 hours recovery between intense strength sessions for same muscle groups"
+      ]
+    },
+
+    "weekly_schedule": [
+      {
+        "week": 1,
+        "focus": "Building Foundation - Strength & Endurance Base",
+        "sessions": [
+          {
+            "day": 1,
+            "title": "Upper Body Strength & Core",
+            "duration_min": 45,
+            "exercises": [
+              {
+                "id": "W1D1-EX001",
+                "name": "Dynamic Warm-up Circuit",
+                "description": "Prepare body for strength training by activating muscles, increasing blood flow, and improving range of motion",
+                "equipment": ["None - bodyweight only"],
+                "steps": [
+                  "Arm circles: 10 forward, 10 backward with arms extended",
+                  "Cat-cow stretches: 10 reps, moving through full spinal flexion and extension",
+                  "Inchworms: 6 reps - walk hands out to plank, walk feet to hands, stand up",
+                  "Shoulder taps in plank: 20 total (10 per side), maintaining stable core",
+                  "Bodyweight squats: 12 reps with arms overhead to open shoulders",
+                  "Jumping jacks: 30 seconds moderate pace"
+                ],
+                "sets": 1,
+                "reps": null,
+                "hold_sec": null,
+                "rest_sec": 0,
+                "tips": [
+                  "This warm-up should elevate heart rate to 60-70% max",
+                  "Focus on quality movement - you're preparing muscles for work",
+                  "If anything feels tight, spend extra time on that movement",
+                  "By end of warm-up, you should feel loose and energized"
+                ],
+                "easier": "Reduce reps by 30%, skip jumping jacks or substitute marching in place",
+                "harder": "Add 5 burpees at the end, or increase jumping jacks to 60 seconds",
+                "warnings": [
+                  "Stop if experiencing joint pain",
+                  "Don't skip warm-up - injury prevention is critical"
+                ],
+                "video_url": "https://youtube.com/watch?v=dynamic-warmup-strength",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              },
+
+              {
+                "id": "W1D1-EX002",
+                "name": "Push-ups (Standard or Modified)",
+                "description": "Compound upper body exercise targeting chest, shoulders, and triceps - foundation for upper body strength",
+                "equipment": ["Yoga mat or floor space"],
+                "steps": [
+                  "Start in plank position: hands slightly wider than shoulders, body in straight line from head to heels",
+                  "Engage core by pulling belly button toward spine",
+                  "Lower body by bending elbows until chest is 2-3 inches from floor (or as low as comfortable)",
+                  "Keep elbows at 45-degree angle to body, not flared out to 90 degrees",
+                  "Push through palms to return to starting position",
+                  "Maintain straight body line throughout - don't let hips sag or pike up",
+                  "Exhale on push up, inhale on lowering"
+                ],
+                "sets": 3,
+                "reps": 12,
+                "hold_sec": null,
+                "rest_sec": 90,
+                "tips": [
+                  "Full range of motion is more important than high reps",
+                  "If form breaks down, switch to easier version mid-set",
+                  "Squeeze glutes and core throughout - this is a full-body exercise",
+                  "Look slightly ahead of hands, not straight down, to maintain neck alignment",
+                  "These build strength for everyday pushing movements and running arm drive"
+                ],
+                "easier": "Knee push-ups (knees on ground), or incline push-ups (hands on bench/counter)",
+                "harder": "Add 2-second pause at bottom, or elevate feet on bench, or add 2 reps per set",
+                "warnings": [
+                  "Stop if experiencing wrist or shoulder pain",
+                  "Don't let lower back sag - engage core throughout",
+                  "Avoid if you have acute shoulder injury"
+                ],
+                "video_url": "https://youtube.com/watch?v=proper-pushup-form",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              },
+
+              {
+                "id": "W1D1-EX003",
+                "name": "Dumbbell Rows (Single Arm)",
+                "description": "Build back strength and improve posture - critical for balanced upper body development and running economy",
+                "equipment": ["Dumbbells (8-12 kg)", "Bench or sturdy chair"],
+                "steps": [
+                  "Place left knee and left hand on bench for support, right foot on floor",
+                  "Hold dumbbell in right hand, arm hanging straight down",
+                  "Keep back flat and parallel to floor, core engaged",
+                  "Pull dumbbell up toward hip, driving elbow back and up",
+                  "Squeeze shoulder blade at top of movement, hold 1 second",
+                  "Lower dumbbell with control back to starting position",
+                  "Complete all right arm reps, then switch to left arm"
+                ],
+                "sets": 3,
+                "reps": 10,
+                "hold_sec": null,
+                "rest_sec": 90,
+                "tips": [
+                  "Think 'elbow to sky' - lead the movement with elbow, not hand",
+                  "Don't rotate torso - keep shoulders square to floor",
+                  "Pull dumbbell to hip, not toward shoulder",
+                  "This strengthens muscles used in running arm swing and improves posture",
+                  "Control the weight on the way down - eccentric phase builds strength"
+                ],
+                "easier": "Use lighter weight (5-8 kg), or do bent-over rows with both arms simultaneously",
+                "harder": "Increase weight by 2 kg, add 1-second pause at top, or increase reps to 12",
+                "warnings": [
+                  "Stop if experiencing lower back pain - may indicate too heavy or poor form",
+                  "Keep neck neutral - don't crane head up",
+                  "Don't round back - maintain flat spine throughout"
+                ],
+                "video_url": "https://youtube.com/watch?v=single-arm-dumbbell-row",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              },
+
+              {
+                "id": "W1D1-EX004",
+                "name": "Overhead Dumbbell Press",
+                "description": "Develop shoulder strength and stability - important for overhead activities and athletic performance",
+                "equipment": [
+                  "Dumbbells (5-10 kg)",
+                  "Chair or bench with back support"
+                ],
+                "steps": [
+                  "Sit on bench with back support, feet flat on floor",
+                  "Hold dumbbells at shoulder height, palms facing forward, elbows at 90 degrees",
+                  "Engage core and press dumbbells up and slightly inward until arms are fully extended",
+                  "Dumbbells should nearly touch at top, directly over shoulders",
+                  "Lower dumbbells with control back to shoulder height",
+                  "Don't let dumbbells drop below ear level on descent",
+                  "Keep back against bench - don't arch excessively"
+                ],
+                "sets": 3,
+                "reps": 10,
+                "hold_sec": null,
+                "rest_sec": 90,
+                "tips": [
+                  "Press weight UP, not forward - maintain vertical path",
+                  "Breathe out on press, in on lowering",
+                  "Stop just short of locking elbows at top to maintain tension",
+                  "This builds strength for overhead reaching, swimming, tennis",
+                  "Strong shoulders improve running posture and reduce fatigue"
+                ],
+                "easier": "Use lighter weight (3-5 kg), or do alternating arms (one at a time)",
+                "harder": "Increase weight by 2 kg, do standing overhead press for more core challenge, or add 2 reps",
+                "warnings": [
+                  "Stop if experiencing sharp shoulder pain",
+                  "Don't arch lower back excessively - engage core",
+                  "Avoid if you have shoulder impingement issues"
+                ],
+                "video_url": "https://youtube.com/watch?v=dumbbell-overhead-press",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              },
+
+              {
+                "id": "W1D1-EX005",
+                "name": "Plank Hold with Variations",
+                "description": "Core stability exercise essential for running efficiency, injury prevention, and overall functional strength",
+                "equipment": ["Yoga mat or floor space"],
+                "steps": [
+                  "Start in forearm plank: elbows under shoulders, forearms on ground, body in straight line",
+                  "Engage core by pulling belly button to spine, squeeze glutes",
+                  "Hold standard plank for 30 seconds, breathing normally",
+                  "Rest 15 seconds",
+                  "Hold plank with right arm extended forward for 15 seconds",
+                  "Rest 15 seconds",
+                  "Hold plank with left arm extended forward for 15 seconds",
+                  "Rest and repeat entire sequence"
+                ],
+                "sets": 2,
+                "reps": null,
+                "hold_sec": 30,
+                "rest_sec": 60,
+                "tips": [
+                  "Quality over duration - perfect form for 20 seconds beats sloppy 60 seconds",
+                  "Don't hold breath - maintain steady breathing throughout",
+                  "Imagine pulling elbows and toes toward each other to engage core",
+                  "Strong core directly translates to better running form and faster times",
+                  "If hips start sagging, drop to knees immediately to maintain quality"
+                ],
+                "easier": "Knee plank (knees on ground), or reduce hold time to 15-20 seconds, or skip arm variations",
+                "harder": "Increase hold to 45-60 seconds, add shoulder taps, or do full plank from hands instead of forearms",
+                "warnings": [
+                  "Stop if lower back hurts - drop to knees or rest",
+                  "Don't let hips sag or pike up - maintain straight line",
+                  "Avoid if you have wrist issues (use forearm version)"
+                ],
+                "video_url": "https://youtube.com/watch?v=perfect-plank-form",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              },
+
+              {
+                "id": "W1D1-EX006",
+                "name": "Russian Twists",
+                "description": "Rotational core exercise to strengthen obliques and improve running stability and power transfer",
+                "equipment": ["Dumbbell (5-8 kg) or medicine ball", "Yoga mat"],
+                "steps": [
+                  "Sit on floor with knees bent, feet flat, holding weight at chest level",
+                  "Lean back slightly (45-degree angle) to engage core, keep back straight",
+                  "Lift feet 2-3 inches off ground (or keep on ground for easier version)",
+                  "Rotate torso to bring weight toward right side, tapping weight on floor beside hip",
+                  "Rotate through center to left side, tapping weight on floor beside left hip",
+                  "That's one rep - continue alternating with controlled movement",
+                  "Keep chest up and shoulders back throughout"
+                ],
+                "sets": 3,
+                "reps": 20,
+                "hold_sec": null,
+                "rest_sec": 60,
+                "tips": [
+                  "Rotation comes from core/obliques, not just moving arms side to side",
+                  "Keep lower body stable - legs shouldn't swing with rotation",
+                  "Breathe rhythmically - don't hold breath",
+                  "This directly improves your running efficiency on turns and hills",
+                  "Start lighter than you think - this exercise is deceptively challenging"
+                ],
+                "easier": "Keep feet on ground, use lighter weight or no weight, or reduce reps to 12-15",
+                "harder": "Extend legs straighter, use heavier weight (10 kg), or increase reps to 30",
+                "warnings": [
+                  "Stop if experiencing lower back pain - may be leaning back too far",
+                  "Avoid if you have acute lower back issues",
+                  "Don't jerk or use momentum - control the rotation"
+                ],
+                "video_url": "https://youtube.com/watch?v=russian-twists-proper-form",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              },
+
+              {
+                "id": "W1D1-EX007",
+                "name": "Cool-down: Upper Body & Core Stretches",
+                "description": "Prevent muscle tightness and promote recovery after strength work",
+                "equipment": ["Yoga mat", "Wall or doorway"],
+                "steps": [
+                  "Doorway chest stretch: Place forearm on door frame, step forward until stretch in chest/shoulder, hold 30 seconds each side",
+                  "Overhead tricep stretch: Reach right arm overhead, bend elbow down back, gently pull elbow with left hand, hold 30 seconds, repeat left arm",
+                  "Seated spinal twist: Sit cross-legged, place right hand on left knee, twist left, hold 30 seconds, repeat right side",
+                  "Cat-cow stretch: 10 slow reps on hands and knees",
+                  "Child's pose: Hold 60 seconds, focus on breathing deeply",
+                  "Deep breathing: 10 slow breaths - 4 count inhale, 6 count exhale"
+                ],
+                "sets": 1,
+                "reps": null,
+                "hold_sec": 30,
+                "rest_sec": 0,
+                "tips": [
+                  "Stretching is not optional - it's injury prevention and recovery",
+                  "Never bounce in stretches - hold steady and breathe into them",
+                  "You should feel gentle pulling, never sharp pain",
+                  "This is mental recovery time too - reflect on workout quality",
+                  "Good flexibility supports your yoga practice and running"
+                ],
+                "easier": "Reduce hold times to 15-20 seconds",
+                "harder": "Hold stretches for 45-60 seconds, add foam rolling",
+                "warnings": [
+                  "Stop any stretch causing sharp pain",
+                  "Don't force range of motion"
+                ],
+                "video_url": "https://youtube.com/watch?v=upper-body-cooldown-stretches",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              }
+            ],
+            "session_status": "not_started",
+            "completed_date": null
+          },
+
+          {
+            "day": 2,
+            "title": "Endurance Run - Aerobic Base Building",
+            "duration_min": 40,
+            "exercises": [
+              {
+                "id": "W1D2-EX001",
+                "name": "Easy Conversational Pace Run",
+                "description": "Build aerobic base for half marathon training - foundation for endurance",
+                "equipment": [
+                  "Running shoes",
+                  "Water bottle",
+                  "Fitness tracker/watch optional"
+                ],
+                "steps": [
+                  "5-minute warm-up walk, gradually increasing pace",
+                  "Begin running at conversational pace (you should be able to speak full sentences)",
+                  "Target: 30 minutes continuous running at 65-75% max heart rate",
+                  "Focus on form: midfoot strike, 170-180 steps per minute cadence, relaxed shoulders",
+                  "If needed, take 1-minute walk breaks every 10 minutes (run-walk method)",
+                  "Final 5 minutes: gradually slow to walking pace for cool-down"
+                ],
+                "sets": 1,
+                "reps": null,
+                "hold_sec": null,
+                "rest_sec": 0,
+                "tips": [
+                  "This should feel EASY - building aerobic base requires patience",
+                  "If you can't hold conversation, slow down",
+                  "Focus on time on feet, not speed - distance will come",
+                  "Your current 5K pace is too fast for base building - slow down 30-60 seconds per km",
+                  "Proper aerobic base prevents injury and improves race performance"
+                ],
+                "easier": "Run-walk intervals: 5 min run, 1 min walk, repeat - or reduce to 20 minutes total",
+                "harder": "Increase to 40 minutes continuous, or add 4x30-second pickups at faster pace",
+                "warnings": [
+                  "Stop if experiencing sharp joint pain, especially knees or ankles",
+                  "Stay well-hydrated in early morning runs",
+                  "Don't run through pain - rest is productive"
+                ],
+                "video_url": "https://youtube.com/watch?v=proper-running-form-easy-pace",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              },
+
+              {
+                "id": "W1D2-EX002",
+                "name": "Post-Run Dynamic Stretching",
+                "description": "Maintain flexibility and prevent tightness after running",
+                "equipment": ["None"],
+                "steps": [
+                  "Walking lunges with twist: 10 per leg - lunge forward, twist toward front leg",
+                  "Leg swings: 10 forward/back, 10 side-to-side per leg, holding wall for balance",
+                  "Standing quad stretch: 30 seconds per leg",
+                  "Standing calf stretch: 30 seconds per leg against wall",
+                  "Hip flexor stretch: 30 seconds per side in lunge position",
+                  "Pigeon pose or figure-4 stretch: 30 seconds per side for hip/glute flexibility",
+                  "Deep breathing: 5 slow breaths to finish"
+                ],
+                "sets": 1,
+                "reps": null,
+                "hold_sec": 30,
+                "rest_sec": 0,
+                "tips": [
+                  "Post-run stretching prevents injury and improves recovery",
+                  "Focus on hip flexors and calves - these tighten most from running",
+                  "Stretching when warm (post-run) is more effective than cold stretching",
+                  "This complements your yoga practice nicely"
+                ],
+                "easier": "Shorter holds (15-20 seconds), or skip dynamic portions and do only static stretches",
+                "harder": "Hold stretches 45 seconds each, add foam rolling for IT band and quads",
+                "warnings": [
+                  "Never force a stretch into pain",
+                  "Be careful with hamstring stretches if you have history of pulls"
+                ],
+                "video_url": "https://youtube.com/watch?v=post-run-stretching-routine",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              }
+            ],
+            "session_status": "not_started",
+            "completed_date": null
+          },
+
+          {
+            "day": 3,
+            "title": "Lower Body Strength & Power",
+            "duration_min": 50,
+            "exercises": [
+              {
+                "id": "W1D3-EX001",
+                "name": "Dynamic Lower Body Warm-up",
+                "description": "Activate glutes, hips, and legs before heavy strength work",
+                "equipment": ["Resistance band (optional)"],
+                "steps": [
+                  "Glute bridges: 15 reps, squeezing glutes at top",
+                  "Bodyweight squats: 15 reps, full range of motion",
+                  "Lateral band walks: 10 steps each direction (if using band), or lateral lunges if no band",
+                  "High knees: 30 seconds in place",
+                  "Butt kicks: 30 seconds in place",
+                  "World's greatest stretch: 5 reps per side (lunge with rotation and overhead reach)"
+                ],
+                "sets": 1,
+                "reps": null,
+                "hold_sec": null,
+                "rest_sec": 0,
+                "tips": [
+                  "Feel glutes and hips activating - these are your power generators",
+                  "Lower body warm-up is critical for injury prevention",
+                  "You should feel warm and loose after this",
+                  "This prepares you for heavy squats and lunges"
+                ],
+                "easier": "Reduce reps by 50%, skip high knees/butt kicks",
+                "harder": "Add resistance band for all movements, increase duration to 10 minutes",
+                "warnings": [
+                  "Stop if experiencing knee or hip pain",
+                  "Don't rush - quality activation is key"
+                ],
+                "video_url": "https://youtube.com/watch?v=lower-body-warmup-dynamic",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              },
+
+              {
+                "id": "W1D3-EX002",
+                "name": "Goblet Squats",
+                "description": "Fundamental lower body strength exercise targeting quads, glutes, and core - essential for running power",
+                "equipment": ["Dumbbell (8-12 kg) or kettlebell"],
+                "steps": [
+                  "Hold dumbbell vertically at chest level with both hands cupping top end",
+                  "Stand with feet slightly wider than shoulder-width, toes pointed slightly out",
+                  "Engage core, chest up, shoulders back",
+                  "Lower down by pushing hips back and bending knees, keeping weight at chest",
+                  "Descend until thighs are parallel to floor (or as deep as comfortable with good form)",
+                  "Drive through full foot (not just toes) to stand back up",
+                  "Squeeze glutes at top, fully extend hips",
+                  "Keep knees tracking over toes throughout - don't let them cave inward"
+                ],
+                "sets": 4,
+                "reps": 12,
+                "hold_sec": null,
+                "rest_sec": 120,
+                "tips": [
+                  "The weight at chest helps keep torso upright - use this to your advantage",
+                  "Think 'sit back into chair' not just 'bend knees'",
+                  "Push through heels and midfoot equally - should feel entire foot engaged",
+                  "This builds the leg strength needed for hill running and late-race surges",
+                  "Keep chest up by focusing eyes on point 6 feet ahead",
+                  "Squats are the king of lower body exercises - master this movement"
+                ],
+                "easier": "Reduce weight (5-8 kg), or reduce depth (half squats), or box squats (sit to bench)",
+                "harder": "Increase weight by 2-4 kg, add 2-second pause at bottom, or increase reps to 15",
+                "warnings": [
+                  "Stop if experiencing knee pain (muscle burn is OK, joint pain is not)",
+                  "Don't let knees cave inward - push them out actively",
+                  "Keep heels on ground - if they lift, reduce depth or improve ankle mobility"
+                ],
+                "video_url": "https://youtube.com/watch?v=goblet-squat-perfect-form",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              },
+
+              {
+                "id": "W1D3-EX003",
+                "name": "Romanian Deadlifts (RDLs)",
+                "description": "Posterior chain exercise targeting hamstrings, glutes, and lower back - critical for running power and injury prevention",
+                "equipment": ["Dumbbells (8-12 kg each) or barbell"],
+                "steps": [
+                  "Stand holding dumbbells in front of thighs, feet hip-width apart",
+                  "Slight bend in knees (soft knees), shoulders back, core engaged",
+                  "Hinge at hips by pushing hips back, lowering weights down front of legs",
+                  "Keep back flat (neutral spine), chest up, weights close to legs",
+                  "Lower until you feel strong hamstring stretch (typically to mid-shin)",
+                  "Squeeze glutes and drive hips forward to return to standing",
+                  "Think 'hips to wall behind you' on descent, 'hips to wall in front' on ascent"
+                ],
+                "sets": 3,
+                "reps": 10,
+                "hold_sec": null,
+                "rest_sec": 90,
+                "tips": [
+                  "This is a HIP HINGE, not a squat - knees stay in same position",
+                  "Feel the stretch in hamstrings, not rounding in lower back",
+                  "Keep weights skimming down and up legs - they should almost touch shins",
+                  "Strong hamstrings and glutes prevent common running injuries",
+                  "This exercise directly improves your running stride power",
+                  "Don't go too heavy - perfect form is essential"
+                ],
+                "easier": "Use lighter weight (5-8 kg), reduce range of motion (stop at knees), or do single-leg RDL with body weight only",
+                "harder": "Increase weight by 2-4 kg, add 2-second pause at bottom stretch, or do single-leg RDLs with dumbbells",
+                "warnings": [
+                  "Stop if feeling pain in lower back - should only feel hamstring stretch",
+                  "Don't round back - maintain neutral spine throughout",
+                  "If you can't feel hamstrings, reduce weight and focus on form"
+                ],
+                "video_url": "https://youtube.com/watch?v=romanian-deadlift-form",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              },
+
+              {
+                "id": "W1D3-EX004",
+                "name": "Bulgarian Split Squats",
+                "description": "Unilateral leg strength exercise to correct imbalances and build single-leg power for running",
+                "equipment": [
+                  "Bench or sturdy chair",
+                  "Dumbbells (5-8 kg each) optional"
+                ],
+                "steps": [
+                  "Stand 2-3 feet in front of bench, facing away from it",
+                  "Place top of left foot on bench behind you (shoelaces down)",
+                  "Hold dumbbells at sides (or hands on hips for bodyweight version)",
+                  "Lower straight down by bending right knee until right thigh is parallel to floor",
+                  "Keep torso upright, front knee tracking over toes",
+                  "Drive through right heel to return to starting position",
+                  "Complete all reps on right leg, then switch to left leg elevated"
+                ],
+                "sets": 3,
+                "reps": 10,
+                "hold_sec": null,
+                "rest_sec": 90,
+                "tips": [
+                  "Front leg does 90% of work - back leg is just for balance",
+                  "Keep weight centered over front foot - don't lean forward excessively",
+                  "This reveals and fixes left-right strength imbalances",
+                  "Critical for running - every stride is single-leg",
+                  "Start with bodyweight to master balance, add weight when stable",
+                  "Front shin should stay relatively vertical"
+                ],
+                "easier": "Bodyweight only (no dumbbells), reduce depth, or hold onto wall for balance",
+                "harder": "Increase weight by 2 kg per hand, add 2 reps, or pause 2 seconds at bottom",
+                "warnings": [
+                  "Stop if front knee hurts - may need to adjust stance distance",
+                  "Don't let front knee cave inward",
+                  "This is challenging - it's OK if one leg is significantly weaker"
+                ],
+                "video_url": "https://youtube.com/watch?v=bulgarian-split-squat",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              },
+
+              {
+                "id": "W1D3-EX005",
+                "name": "Calf Raises (Standing)",
+                "description": "Strengthen calves for push-off power in running and injury prevention",
+                "equipment": ["Step or raised platform", "Wall for balance"],
+                "steps": [
+                  "Stand on edge of step with balls of feet on step, heels hanging off",
+                  "Hold wall lightly for balance",
+                  "Lower heels below step level to feel calf stretch - 2 seconds",
+                  "Rise up onto toes as high as possible - 2 seconds",
+                  "Hold at top for 1 second, squeezing calves",
+                  "Lower back down with control",
+                  "For final set, do single-leg (10 reps per leg) to identify imbalances"
+                ],
+                "sets": 3,
+                "reps": 15,
+                "hold_sec": null,
+                "rest_sec": 60,
+                "tips": [
+                  "Full range of motion is key - deep stretch to high rise",
+                  "Control the eccentric (lowering) phase - this builds strength",
+                  "Calves often get neglected but are crucial for running efficiency",
+                  "Strong calves reduce risk of Achilles tendinitis",
+                  "If cramping, ease off and stretch calves"
+                ],
+                "easier": "Do from floor (not elevated), or hold wall more firmly for balance",
+                "harder": "Hold dumbbell in one hand, or do entire set single-leg, or add weight vest",
+                "warnings": [
+                  "Stop if experiencing Achilles pain",
+                  "Don't bounce at bottom - smooth controlled movement"
+                ],
+                "video_url": "https://youtube.com/watch?v=standing-calf-raises",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              },
+
+              {
+                "id": "W1D3-EX006",
+                "name": "Lower Body & Hip Stretches",
+                "description": "Essential post-strength stretching for recovery and flexibility maintenance",
+                "equipment": ["Yoga mat"],
+                "steps": [
+                  "Standing quad stretch: 30 seconds per leg, pull heel to glute",
+                  "Standing hamstring stretch: 30 seconds per leg, foot on low step, lean forward from hips",
+                  "Pigeon pose: 45 seconds per side for deep hip stretch",
+                  "Low lunge (hip flexor stretch): 30 seconds per side",
+                  "Seated butterfly stretch: 45 seconds, pressing knees toward floor",
+                  "Supine figure-4 stretch: 30 seconds per side for glutes",
+                  "Lying hamstring stretch: 30 seconds per leg, use strap or towel if needed"
+                ],
+                "sets": 1,
+                "reps": null,
+                "hold_sec": 30,
+                "rest_sec": 0,
+                "tips": [
+                  "Hips and legs need serious stretching after strength work",
+                  "Breathe deeply - exhale helps you sink deeper into stretches",
+                  "Hip flexibility is crucial for running efficiency and injury prevention",
+                  "This complements your yoga practice",
+                  "Consistency with stretching matters more than intensity"
+                ],
+                "easier": "Reduce hold times to 20 seconds, skip pigeon pose if uncomfortable",
+                "harder": "Hold stretches 60 seconds each, add foam rolling for IT band and quads",
+                "warnings": [
+                  "Stop if experiencing sharp pain",
+                  "Don't force hips beyond comfortable range"
+                ],
+                "video_url": "https://youtube.com/watch?v=lower-body-stretching-routine",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              }
+            ],
+            "session_status": "not_started",
+            "completed_date": null
+          },
+
+          {
+            "day": 4,
+            "title": "Core-Focused Yoga Flow",
+            "duration_min": 45,
+            "exercises": [
+              {
+                "id": "W1D4-EX001",
+                "name": "Vinyasa Flow with Core Emphasis",
+                "description": "Power yoga session focusing on core strength, flexibility, and mind-body connection - complements running and strength training",
+                "equipment": ["Yoga mat", "Block optional"],
+                "steps": [
+                  "Sun Salutation A: 5 rounds to warm up - move with breath",
+                  "Sun Salutation B: 5 rounds including warrior poses",
+                  "Core sequence: Boat pose (30 sec hold), low plank to high plank transitions (10 reps), side plank each side (30 sec)",
+                  "Standing balance series: Tree pose, warrior III, half moon - 45 seconds each side",
+                  "Hip opening sequence: Lizard pose, pigeon pose, frog pose - 60 seconds each side",
+                  "Cool down: Seated forward fold, supine twists, savasana (5 minutes)"
+                ],
+                "sets": 1,
+                "reps": null,
+                "hold_sec": null,
+                "rest_sec": 0,
+                "tips": [
+                  "This session balances your strength training with flexibility work",
+                  "Focus on breath - this is moving meditation",
+                  "Core work in yoga translates directly to running efficiency",
+                  "Balance poses improve proprioception for trail running",
+                  "Let go of perfection - yoga is practice, not performance"
+                ],
+                "easier": "Skip warrior III and half moon, reduce hold times by 15 seconds, or do gentle flow instead of power yoga",
+                "harder": "Hold poses 60 seconds each, add arm balances (crow pose), or increase to 90-minute session",
+                "warnings": [
+                  "Don't force flexibility - ease into poses gradually",
+                  "Skip inversions if you have blood pressure concerns",
+                  "Modify warrior III if you have balance issues"
+                ],
+                "video_url": "https://youtube.com/watch?v=power-yoga-core-flow",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              }
+            ],
+            "session_status": "not_started",
+            "completed_date": null
+          },
+
+          {
+            "day": 5,
+            "title": "Tempo Run + Core Finisher",
+            "duration_min": 50,
+            "exercises": [
+              {
+                "id": "W1D5-EX001",
+                "name": "Tempo Run (Comfortably Hard Pace)",
+                "description": "Threshold training to improve lactate clearance and race pace - key workout for half marathon prep",
+                "equipment": ["Running shoes", "Water", "Watch/tracker"],
+                "steps": [
+                  "Warm-up: 10 minutes easy jogging",
+                  "4x100m strides: accelerate smoothly to 85% effort, walk back recovery",
+                  "Tempo portion: 20 minutes at comfortably hard pace (80-85% max HR)",
+                  "Pace should be: can speak short phrases but not full sentences",
+                  "Target: approximately 15-20 seconds per km slower than your 5K race pace",
+                  "Focus on maintaining even effort and good form",
+                  "Cool-down: 10 minutes easy jogging, gradually slowing to walk"
+                ],
+                "sets": 1,
+                "reps": null,
+                "hold_sec": null,
+                "rest_sec": 0,
+                "tips": [
+                  "Tempo runs are THE workout for half marathon improvement",
+                  "Comfortably hard means: hard enough to be challenging, not so hard you're gasping",
+                  "Even pacing is critical - don't start too fast",
+                  "This teaches your body to clear lactate efficiently",
+                  "You should finish feeling worked but not destroyed",
+                  "Recovery between tempo runs is essential - 4-5 days minimum"
+                ],
+                "easier": "Reduce tempo portion to 15 minutes, or run at slightly easier pace (75-80% max HR)",
+                "harder": "Increase tempo to 25-30 minutes, or add hills to tempo section",
+                "warnings": [
+                  "Stop if experiencing chest pain or extreme breathlessness",
+                  "Don't do tempo runs on consecutive days",
+                  "Skip if feeling fatigued or recovering from illness"
+                ],
+                "video_url": "https://youtube.com/watch?v=tempo-run-explained",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              },
+
+              {
+                "id": "W1D5-EX002",
+                "name": "Core Finisher Circuit (Post-Run)",
+                "description": "Quick high-intensity core work to build running-specific strength when muscles are fatigued - mimics race conditions",
+                "equipment": ["Yoga mat"],
+                "steps": [
+                  "Plank hold: 45 seconds",
+                  "Bicycle crunches: 30 total (15 per side, alternating)",
+                  "Dead bugs: 20 total (10 per side)",
+                  "Side plank: 30 seconds each side",
+                  "Mountain climbers: 30 seconds maximum effort",
+                  "Rest 60 seconds, repeat circuit 2 more times"
+                ],
+                "sets": 3,
+                "reps": null,
+                "hold_sec": null,
+                "rest_sec": 60,
+                "tips": [
+                  "Doing core work when tired (post-run) teaches core to work when fatigued - exactly what happens in races",
+                  "Maintain quality form even as you fatigue",
+                  "This short circuit builds serious core endurance",
+                  "Strong core prevents form breakdown in late race stages",
+                  "Push hard but maintain control - sloppy reps don't count"
+                ],
+                "easier": "Reduce circuit to 2 rounds, or reduce hold/rep counts by 30%",
+                "harder": "Add 4th round, increase plank holds to 60 seconds, or add weighted movements",
+                "warnings": [
+                  "Stop if lower back hurts during any movement",
+                  "Don't sacrifice form for speed - control is key",
+                  "Skip if extremely fatigued from tempo run"
+                ],
+                "video_url": "https://youtube.com/watch?v=core-circuit-runners",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              },
+
+              {
+                "id": "W1D5-EX003",
+                "name": "Full Body Recovery Stretching",
+                "description": "Comprehensive post-workout stretching focusing on running muscles and areas worked this week",
+                "equipment": ["Yoga mat", "Foam roller optional"],
+                "steps": [
+                  "Downward dog: 60 seconds - feel full body stretch",
+                  "Low lunge with quad stretch: 45 seconds per side",
+                  "Pigeon pose: 60 seconds per side - deep hip opener",
+                  "Seated forward fold: 60 seconds - hamstrings and lower back",
+                  "Supine spinal twist: 45 seconds per side",
+                  "Happy baby pose: 60 seconds - hip and lower back release",
+                  "Legs up the wall: 3-5 minutes - aids recovery and reduces leg fatigue",
+                  "Savasana: 5 minutes - complete relaxation and integration"
+                ],
+                "sets": 1,
+                "reps": null,
+                "hold_sec": 45,
+                "rest_sec": 0,
+                "tips": [
+                  "This is recovery - not a test of flexibility",
+                  "Breathe deeply through every stretch - 5-second inhales, 7-second exhales",
+                  "Legs up wall is magic for runner recovery - it aids circulation",
+                  "Use this time to mentally review your week's training",
+                  "Savasana is when your body integrates the week's work - don't skip it",
+                  "You earned this rest - take tomorrow (Saturday) completely off from structured training"
+                ],
+                "easier": "Reduce hold times to 30 seconds, skip legs up wall if uncomfortable",
+                "harder": "Increase hold times to 90 seconds, add yin yoga poses",
+                "warnings": [
+                  "Never force any stretch beyond mild discomfort",
+                  "Be gentle with hip stretches if you have any hip issues"
+                ],
+                "video_url": "https://youtube.com/watch?v=runner-recovery-yoga",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              }
+            ],
+            "session_status": "not_started",
+            "completed_date": null
+          }
+        ]
+      },
+
+      {
+        "week": 2,
+        "focus": "Volume Increase - Building Work Capacity",
+        "sessions": [
+          {
+            "day": 1,
+            "title": "Upper Body Strength - Increased Volume",
+            "duration_min": 50,
+            "exercises": [
+              {
+                "id": "W2D1-EX001",
+                "name": "Push-ups - Progressed Volume",
+                "description": "Week 2 progression: adding reps and tempo variation",
+                "equipment": ["Yoga mat"],
+                "steps": [
+                  "Same form as Week 1",
+                  "Set 1: 15 reps standard tempo",
+                  "Set 2: 12 reps with 3-second eccentric (slow lowering)",
+                  "Set 3: Max reps (shoot for 15+) standard tempo",
+                  "Maintain perfect form - quality over quantity"
+                ],
+                "sets": 3,
+                "reps": 15,
+                "hold_sec": null,
+                "rest_sec": 90,
+                "tips": [
+                  "The slow eccentric set builds serious strength",
+                  "This volume increase challenges muscles to adapt",
+                  "By Week 8, you'll be doing 20+ reps easily",
+                  "Strong upper body improves running arm drive efficiency"
+                ],
+                "easier": "Knee push-ups, or reduce to 10-12 reps per set",
+                "harder": "Add weight vest, or try diamond push-ups for tricep emphasis",
+                "warnings": [
+                  "Stop if form breaks down significantly",
+                  "Watch for wrist discomfort - may need hand position adjustment"
+                ],
+                "video_url": "https://youtube.com/watch?v=pushup-tempo-variations",
+                "status": "not_started",
+                "completed_sets": 0,
+                "notes": ""
+              }
+            ],
+            "session_status": "not_started",
+            "completed_date": null
+          }
+        ]
+      },
+
+      {
+        "week": 3,
+        "focus": "Intensity Progression - Quality Over Quantity",
+        "sessions": []
+      },
+
+      {
+        "week": 4,
+        "focus": "Recovery Week - Reduced Volume, Maintain Intensity",
+        "sessions": []
+      },
+
+      {
+        "week": 5,
+        "focus": "Half Marathon Specific - Long Runs Begin",
+        "sessions": []
+      },
+
+      {
+        "week": 6,
+        "focus": "Peak Volume - Building Race Endurance",
+        "sessions": []
+      },
+
+      {
+        "week": 7,
+        "focus": "Strength Maintenance + Race Prep",
+        "sessions": []
+      },
+
+      {
+        "week": 8,
+        "focus": "Taper & Peak Preparation",
+        "sessions": []
+      }
+    ],
+
+    "progress": {
+      "total_sessions": 40,
+      "completed_sessions": 0,
+      "completion_percent": 0,
+      "current_week": 1,
+      "current_day": 1,
+      "next_session_date": "2026-02-03"
+    }
+  }
+}
