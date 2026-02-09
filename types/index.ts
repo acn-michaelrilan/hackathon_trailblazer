@@ -46,6 +46,7 @@ export interface ExerciseParams {
 }
 
 export interface SessionExercise extends ExerciseParams, ExerciseProgress {
+  session_exercise_id: string;
   position: number;
   status: string;
   exercise_definitions: ExerciseDefinition;
