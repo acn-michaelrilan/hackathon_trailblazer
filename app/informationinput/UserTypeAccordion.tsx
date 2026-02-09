@@ -1,6 +1,33 @@
 // ./UserTypeAccordion.tsx
+"use client";
+
+import { useState } from "react";
+
+type ConditionKey =
+  | "stroke"
+  | "neurological_condition"
+  | "post_surgery"
+  | "arthritis_joint_pain"
+  | "cardiovascular_condition"
+  | "other";
+
 export default function UserTypeAccordion() {
-  const usrClass = "usr-wrap"; // keep class name to match your styles
+  const usrClass = "usr-wrap";
+
+  const [selectedConditions, setSelectedConditions] = useState<
+    Record<ConditionKey, boolean>
+  >({
+    stroke: false,
+    neurological_condition: false,
+    post_surgery: false,
+    arthritis_joint_pain: false,
+    cardiovascular_condition: false,
+    other: false,
+  });
+
+  const toggleCondition = (key: ConditionKey) => {
+    setSelectedConditions((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
 
   return (
     <section
@@ -11,7 +38,7 @@ export default function UserTypeAccordion() {
       <h2 style={{ color: "#1f3fae" }}>User Type and Risk Level</h2>
 
       {/* User Category (pills) */}
-      <div style={{ marginTop: 8, marginBottom: 6 }}></div>
+      <div style={{ marginTop: 8, marginBottom: 6 }} />
 
       <div className="choice-grid">
         {/* Choice 1 (Stroke) */}
@@ -113,70 +140,442 @@ export default function UserTypeAccordion() {
             </div>
           </div>
 
-          {/* Medical Profile (checkbox grid) */}
+          {/* Medical Profile */}
           <section className="modal-section">
             <h3 style={{ color: "#1f3fae", marginTop: 12, marginBottom: 6 }}>
               Medical Profile
             </h3>
+
             <p>Primary Medical Condition</p>
+
             <div
               style={{
                 display: "grid",
                 gridTemplateColumns: "repeat(3, 1fr)",
-                gap: 8,
+                gap: 12,
                 marginTop: 8,
               }}
             >
-              <label>
-                <input
-                  type="checkbox"
-                  name="medical_condition"
-                  value="stroke"
-                />{" "}
-                Stroke Recovery
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  name="medical_condition"
-                  value="neurological_condition"
-                />{" "}
-                Neurological condition
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  name="medical_condition"
-                  value="post_surgery"
-                />{" "}
-                Post-Surgery
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  name="medical_condition"
-                  value="arthritis_joint_paim"
-                />{" "}
-                Arthritis / Joint Pain
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  name="medical_condition"
-                  value="cardiovascular_condition"
-                />{" "}
-                Cardiovascular condition
-              </label>
-              <label style={{ whiteSpace: "nowrap" }}>
-                <input type="checkbox" name="medical_condition" value="other" />{" "}
-                Other:
+              {/* --- STROKE ----------------------------------------------------------- */}
+              <div>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="medical_condition_stroke"
+                    checked={selectedConditions.stroke}
+                    onChange={() => toggleCondition("stroke")}
+                  />{" "}
+                  Stroke Recovery
+                </label>
+
+                {selectedConditions.stroke && (
+                  <div style={{ marginTop: 8 }}>
+                    <p style={{ fontWeight: "bold" }}>Subtype</p>
+                    <select
+                      name="stroke_subtype"
+                      style={{ width: "100%", padding: 6 }}
+                    >
+                      <option value="">Select</option>
+                      <option value="ischemic">Ischemic Stroke</option>
+                      <option value="hemorrhagic">Hemorrhagic Stroke</option>
+                      <option value="transient_ischemic_attack">
+                        Transient Ischemic Attack
+                      </option>
+                      <option value="lacunar">Lacunar Stroke</option>
+                      <option value="subarachnoid_hemorrhage">
+                        Subarachnoid Hemorrhage
+                      </option>
+                    </select>
+
+                    <p style={{ marginTop: 8, fontWeight: "bold" }}>
+                      Date of Diagnosis
+                    </p>
+                    <input
+                      type="date"
+                      name="stroke_date"
+                      style={{ width: "100%", padding: 6 }}
+                    />
+
+                    <p style={{ marginTop: 8, fontWeight: "bold" }}>
+                      Affected Side
+                    </p>
+                    <select
+                      name="stroke_side"
+                      style={{ width: "100%", padding: 6 }}
+                    >
+                      <option value="">Select</option>
+                      <option value="left">Left</option>
+                      <option value="right">Right</option>
+                      <option value="bilateral">Bilateral</option>
+                      <option value="none">None</option>
+                    </select>
+
+                    <p style={{ marginTop: 8, fontWeight: "bold" }}>Severity</p>
+                    <select
+                      name="stroke_severity"
+                      style={{ width: "100%", padding: 6 }}
+                    >
+                      <option value="">Select</option>
+                      <option value="mild">Mild</option>
+                      <option value="moderate">Moderate</option>
+                      <option value="severe">Severe</option>
+                    </select>
+                  </div>
+                )}
+              </div>
+
+              {/* --- NEUROLOGICAL CONDITION ------------------------------------------ */}
+              <div>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="medical_condition_neurological_condition"
+                    checked={selectedConditions.neurological_condition}
+                    onChange={() => toggleCondition("neurological_condition")}
+                  />{" "}
+                  Neurological Condition
+                </label>
+
+                {selectedConditions.neurological_condition && (
+                  <div style={{ marginTop: 8 }}>
+                    <p style={{ fontWeight: "bold" }}>Subtype</p>
+                    <select
+                      name="neurological_condition_subtype"
+                      style={{ width: "100%", padding: 6 }}
+                    >
+                      <option value="">Select</option>
+                      <option value="parkinsons_disease">
+                        Parkinson's Disease
+                      </option>
+                      <option value="multiple_sclerosis">
+                        Multiple Sclerosis
+                      </option>
+                      <option value="alzheimers_disease">
+                        Alzheimer's Disease
+                      </option>
+                      <option value="epilepsy">Epilepsy</option>
+                      <option value="amyotropic_lateral_sclerosis">
+                        Amyotrophic Lateral Sclerosis
+                      </option>
+                    </select>
+
+                    <p style={{ marginTop: 8, fontWeight: "bold" }}>
+                      Date of Diagnosis
+                    </p>
+                    <input
+                      type="date"
+                      name="neurological_condition_date"
+                      style={{ width: "100%", padding: 6 }}
+                    />
+
+                    <p style={{ marginTop: 8, fontWeight: "bold" }}>
+                      Affected Side
+                    </p>
+                    <select
+                      name="neurological_condition_side"
+                      style={{ width: "100%", padding: 6 }}
+                    >
+                      <option value="">Select</option>
+                      <option value="left">Left</option>
+                      <option value="right">Right</option>
+                      <option value="bilateral">Bilateral</option>
+                      <option value="none">None</option>
+                    </select>
+
+                    <p style={{ marginTop: 8, fontWeight: "bold" }}>Severity</p>
+                    <select
+                      name="neurological_condition_severity"
+                      style={{ width: "100%", padding: 6 }}
+                    >
+                      <option value="">Select</option>
+                      <option value="mild">Mild</option>
+                      <option value="moderate">Moderate</option>
+                      <option value="severe">Severe</option>
+                    </select>
+                  </div>
+                )}
+              </div>
+
+              {/* --- POST-SURGERY ---------------------------------------------------- */}
+              <div>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="medical_condition_post_surgery"
+                    checked={selectedConditions.post_surgery}
+                    onChange={() => toggleCondition("post_surgery")}
+                  />{" "}
+                  Post-Surgery
+                </label>
+
+                {selectedConditions.post_surgery && (
+                  <div style={{ marginTop: 8 }}>
+                    <p style={{ fontWeight: "bold" }}>Subtype</p>
+                    <select
+                      name="post_surgery_subtype"
+                      style={{ width: "100%", padding: 6 }}
+                    >
+                      <option value="">Select</option>
+                      <option value="orthopedic_surgery">
+                        Orthopedic Surgery
+                      </option>
+                      <option value="cardiac_surgery">Cardiac Surgery</option>
+                      <option value="neurosurgery">Neurological Surgery</option>
+                      <option value="abdominal_surgery">
+                        Abdominal Surgery
+                      </option>
+                      <option value="tumor_removal_surgery">
+                        Cancer/Tumor Removal Surgery
+                      </option>
+                    </select>
+
+                    <p style={{ marginTop: 8, fontWeight: "bold" }}>
+                      Date of Diagnosis
+                    </p>
+                    <input
+                      type="date"
+                      name="post_surgery_date"
+                      style={{ width: "100%", padding: 6 }}
+                    />
+
+                    <p style={{ marginTop: 8, fontWeight: "bold" }}>
+                      Affected Side
+                    </p>
+                    <select
+                      name="post_surgery_side"
+                      style={{ width: "100%", padding: 6 }}
+                    >
+                      <option value="">Select</option>
+                      <option value="left">Left</option>
+                      <option value="right">Right</option>
+                      <option value="bilateral">Bilateral</option>
+                      <option value="none">None</option>
+                    </select>
+
+                    <p style={{ marginTop: 8, fontWeight: "bold" }}>Severity</p>
+                    <select
+                      name="post_surgery_severity"
+                      style={{ width: "100%", padding: 6 }}
+                    >
+                      <option value="">Select</option>
+                      <option value="mild">Mild</option>
+                      <option value="moderate">Moderate</option>
+                      <option value="severe">Severe</option>
+                    </select>
+                  </div>
+                )}
+              </div>
+
+              {/* --- ARTHRITIS / JOINT PAIN ----------------------------------------- */}
+              <div>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="medical_condition_arthritis_joint_pain"
+                    checked={selectedConditions.arthritis_joint_pain}
+                    onChange={() => toggleCondition("arthritis_joint_pain")}
+                  />{" "}
+                  Arthritis / Joint Pain
+                </label>
+
+                {selectedConditions.arthritis_joint_pain && (
+                  <div style={{ marginTop: 8 }}>
+                    <p style={{ fontWeight: "bold" }}>Subtype</p>
+                    <select
+                      name="arthritis_joint_pain_subtype"
+                      style={{ width: "100%", padding: 6 }}
+                    >
+                      <option value="">Select</option>
+                      <option value="osteoarthritis">Osteoarthritis</option>
+                      <option value="rheumatoid_arthtritis">
+                        Rheumatoid Arthtritis
+                      </option>
+                      <option value="psoriatic_arthritis">
+                        Psoriatic Arthritis
+                      </option>
+                      <option value="gout">Gout</option>
+                      <option value="ankylosing_spondylitis">
+                        Ankylosing Spondylitis
+                      </option>
+                    </select>
+
+                    <p style={{ marginTop: 8, fontWeight: "bold" }}>
+                      Date of Diagnosis
+                    </p>
+                    <input
+                      type="date"
+                      name="arthritis_joint_pain_date"
+                      style={{ width: "100%", padding: 6 }}
+                    />
+
+                    <p style={{ marginTop: 8, fontWeight: "bold" }}>
+                      Affected Side
+                    </p>
+                    <select
+                      name="arthritis_joint_pain_side"
+                      style={{ width: "100%", padding: 6 }}
+                    >
+                      <option value="">Select</option>
+                      <option value="left">Left</option>
+                      <option value="right">Right</option>
+                      <option value="bilateral">Bilateral</option>
+                      <option value="none">None</option>
+                    </select>
+
+                    <p style={{ marginTop: 8, fontWeight: "bold" }}>Severity</p>
+                    <select
+                      name="arthritis_joint_pain_severity"
+                      style={{ width: "100%", padding: 6 }}
+                    >
+                      <option value="">Select</option>
+                      <option value="mild">Mild</option>
+                      <option value="moderate">Moderate</option>
+                      <option value="severe">Severe</option>
+                    </select>
+                  </div>
+                )}
+              </div>
+
+              {/* --- CARDIOVASCULAR CONDITION --------------------------------------- */}
+              <div>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="medical_condition_cardiovascular_condition"
+                    checked={selectedConditions.cardiovascular_condition}
+                    onChange={() => toggleCondition("cardiovascular_condition")}
+                  />{" "}
+                  Cardiovascular Condition
+                </label>
+
+                {selectedConditions.cardiovascular_condition && (
+                  <div style={{ marginTop: 8 }}>
+                    <p style={{ fontWeight: "bold" }}>Subtype</p>
+                    <select
+                      name="cardiovascular_condition_subtype"
+                      style={{ width: "100%", padding: 6 }}
+                    >
+                      <option value="">Select</option>
+                      <option value="coronary_artery_disease">
+                        Coronary Artery Disease
+                      </option>
+                      <option value="heart_failure">Heart Faliure</option>
+                      <option value="hypertension">Hypertension</option>
+                      <option value="atrial_fibrillation">
+                        Atrial Fibrillation
+                      </option>
+                      <option value="peripheral_artery_disease">
+                        Peripheral Artery Disease
+                      </option>
+                    </select>
+
+                    <p style={{ marginTop: 8, fontWeight: "bold" }}>
+                      Date of Diagnosis
+                    </p>
+                    <input
+                      type="date"
+                      name="cardiovascular_condition_date"
+                      style={{ width: "100%", padding: 6 }}
+                    />
+
+                    <p style={{ marginTop: 8, fontWeight: "bold" }}>
+                      Affected Side
+                    </p>
+                    <select
+                      name="cardiovascular_condition_side"
+                      style={{ width: "100%", padding: 6 }}
+                    >
+                      <option value="">Select</option>
+                      <option value="left">Left</option>
+                      <option value="right">Right</option>
+                      <option value="bilateral">Bilateral</option>
+                      <option value="none">None</option>
+                    </select>
+
+                    <p style={{ marginTop: 8, fontWeight: "bold" }}>Severity</p>
+                    <select
+                      name="cardiovascular_condition_severity"
+                      style={{ width: "100%", padding: 6 }}
+                    >
+                      <option value="">Select</option>
+                      <option value="mild">Mild</option>
+                      <option value="moderate">Moderate</option>
+                      <option value="severe">Severe</option>
+                    </select>
+                  </div>
+                )}
+              </div>
+
+              {/* --- OTHER ----------------------------------------------------------- */}
+              <div style={{ whiteSpace: "nowrap" }}>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="medical_condition_other"
+                    checked={selectedConditions.other}
+                    onChange={() => toggleCondition("other")}
+                  />{" "}
+                  Other:
+                </label>
                 <input
                   type="text"
-                  name="medical_condition_other"
+                  name="other_condition_name"
                   placeholder="Please specify"
                   style={{ marginLeft: 4 }}
                 />
-              </label>
+
+                {selectedConditions.other && (
+                  <div style={{ marginTop: 8 }}>
+                    <p style={{ fontWeight: "bold" }}>Subtype</p>
+                    <select
+                      name="other_subtype"
+                      style={{ width: "100%", padding: 6 }}
+                    >
+                      <option value="">Select</option>
+                      <option value="degenerative">Degenerative</option>
+                      <option value="injury_related">Injury-related</option>
+                      <option value="post_operative">
+                        Post-operative Complication
+                      </option>
+                      <option value="none_specific">None-specific</option>
+                    </select>
+
+                    <p style={{ marginTop: 8, fontWeight: "bold" }}>
+                      Date of Diagnosis
+                    </p>
+                    <input
+                      type="date"
+                      name="other_date"
+                      style={{ width: "100%", padding: 6 }}
+                    />
+
+                    <p style={{ marginTop: 8, fontWeight: "bold" }}>
+                      Affected Side
+                    </p>
+                    <select
+                      name="other_side"
+                      style={{ width: "100%", padding: 6 }}
+                    >
+                      <option value="">Select</option>
+                      <option value="left">Left</option>
+                      <option value="right">Right</option>
+                      <option value="bilateral">Bilateral</option>
+                      <option value="none">None</option>
+                    </select>
+
+                    <p style={{ marginTop: 8, fontWeight: "bold" }}>Severity</p>
+                    <select
+                      name="other_severity"
+                      style={{ width: "100%", padding: 6 }}
+                    >
+                      <option value="">Select</option>
+                      <option value="mild">Mild</option>
+                      <option value="moderate">Moderate</option>
+                      <option value="severe">Severe</option>
+                    </select>
+                  </div>
+                )}
+              </div>
             </div>
           </section>
 
@@ -186,49 +585,94 @@ export default function UserTypeAccordion() {
           <section className="modal-section">
             <h3 style={{ color: "#1f3fae" }}>Functional Ability</h3>
 
+            {/* Current Mobility Level */}
             <p>Current Mobility Level</p>
             <label>
-              <input type="radio" name="mobility" value="Seated only" /> Seated
-              only
+              <input type="radio" name="mobility_level" value="Seated only" />{" "}
+              Seated only
             </label>
             <label style={{ marginLeft: 12 }}>
-              <input type="radio" name="mobility" value="Assisted standing" />{" "}
+              <input
+                type="radio"
+                name="mobility_level"
+                value="Assisted standing"
+              />{" "}
               Assisted standing
             </label>
             <label style={{ marginLeft: 12 }}>
               <input
                 type="radio"
-                name="mobility"
+                name="mobility_level"
                 value="Independent standing"
               />{" "}
               Independent standing
             </label>
 
+            {/* Walking Ability */}
             <p style={{ marginTop: 16 }}>Walking Ability</p>
             <label>
-              <input type="radio" name="walking" value="Cannot walk" /> Cannot
-              walk
+              <input type="radio" name="walking_ability" value="Cannot walk" />{" "}
+              Cannot walk
             </label>
             <label style={{ marginLeft: 12 }}>
-              <input type="radio" name="walking" value="With cane / walker" />{" "}
+              <input
+                type="radio"
+                name="walking_ability"
+                value="With cane / walker"
+              />{" "}
               With cane / walker
             </label>
             <label style={{ marginLeft: 12 }}>
-              <input type="radio" name="walking" value="Independent" />{" "}
+              <input type="radio" name="walking_ability" value="Independent" />{" "}
               Independent
             </label>
 
+            {/* Range of Motion */}
             <p style={{ marginTop: 16 }}>Range of Motion</p>
             <label>
-              <input type="radio" name="rom" value="Limited" /> Limited
+              <input type="radio" name="range_of_motion" value="Limited" />{" "}
+              Limited
             </label>
             <label style={{ marginLeft: 12 }}>
-              <input type="radio" name="rom" value="Moderate" /> Moderate
+              <input type="radio" name="range_of_motion" value="Moderate" />{" "}
+              Moderate
             </label>
             <label style={{ marginLeft: 12 }}>
-              <input type="radio" name="rom" value="Full (with caution)" /> Full
-              (with caution)
+              <input
+                type="radio"
+                name="range_of_motion"
+                value="Full (with caution)"
+              />{" "}
+              Full (with caution)
             </label>
+
+            {/* Assistive Device (dropdown) */}
+            <p style={{ marginTop: 16 }}>Assistive Device</p>
+            <select name="assistive_device" style={{ padding: 6 }}>
+              <option value="">Select</option>
+              <option value="none">None</option>
+              <option value="cane">Cane</option>
+              <option value="walker">Walker</option>
+              <option value="crutches">Crutches</option>
+              <option value="wheelchair">Wheelchair</option>
+            </select>
+
+            {/* Upper Limb Function */}
+            <p style={{ marginTop: 16 }}>Upper Limb Function (Left)</p>
+            <select name="upper_limb_left" style={{ padding: 6 }}>
+              <option value="">Select</option>
+              <option value="normal">Normal</option>
+              <option value="limited">Limited</option>
+              <option value="impaired">Impaired</option>
+            </select>
+
+            <p style={{ marginTop: 12 }}>Upper Limb Function (Right)</p>
+            <select name="upper_limb_right" style={{ padding: 6 }}>
+              <option value="">Select</option>
+              <option value="normal">Normal</option>
+              <option value="limited">Limited</option>
+              <option value="impaired">Impaired</option>
+            </select>
           </section>
         </div>
 
@@ -241,4 +685,3 @@ export default function UserTypeAccordion() {
     </section>
   );
 }
-``;
