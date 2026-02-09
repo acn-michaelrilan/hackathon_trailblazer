@@ -1,20 +1,29 @@
 import UserTypeAccordionController from "./UserTypeAccordionController";
 import UserTypeAccordion from "./UserTypeAccordion";
+import { BasicProfile } from "./input";
+import { UserTypeAndRisk } from "./input";
+import { MedicalProfile } from "./input";
+import { FunctionalAbility } from "./input";
 
 export default function informationinput() {
   async function save(formData: FormData) {
     "use server";
 
-    const basic_profile = {
-      name: (formData.get("name") ?? "").toString().trim(),
-      age: formData.get("age") ? Number(formData.get("age")) : null,
-      sex: formData.get("sex")?.toString() || null,
-      height_cm: formData.get("height") ? Number(formData.get("height")) : null,
-      weight_kg: formData.get("weight") ? Number(formData.get("weight")) : null,
-      dominant_side: formData.get("dominant_side")?.toString() || null,
+    const basic_profile: BasicProfile = {
+      basic_profile: {
+        name: formData.get("name")?.toString() ?? "",
+        age: Number(formData.get("age")?.toString() ?? 0),
+        sex: formData.get("sex")?.toString() ?? "",
+        height_cm: Number(formData.get("height")?.toString() ?? 0),
+        weight_kg: Number(formData.get("weight")?.toString() ?? 0),
+        dominant_side: formData.get("dominant_side")?.toString() ?? "",
+      },
     };
 
-    // 1) Read all selected conditions
+    const selectedConditions = formData.getAll("medical_condition");
+    const rawDate = formData.get("date_of_diagnosis")?.toString() ?? "";
+    const [y, m, d] = rawDate.split("-");
+    const formattedDate = rawDate ? `${m}-${d}-${y}` : "";
     const conditionsRaw = formData
       .getAll("medical_condition")
       .map((v) => v.toString());
@@ -36,34 +45,46 @@ export default function informationinput() {
 
     const mergedConditions = Array.from(new Set(conditions.filter(Boolean)));
 
-    // (optional) de-duplicate & remove empties just in case
-    const uniqueConditions = Array.from(new Set(conditions.filter(Boolean)));
-
-    const medical_profile = {
-      conditions: {
-        type: mergedConditions,
+    const medical_profile: MedicalProfile = {
+      medical_profile: {
+        conditions: mergedConditions.map((cond) => ({
+          type: cond.toString(),
+          subtype: formData.get("medical_subtype")?.toString() ?? "",
+          date_of_diagnosis: formattedDate,
+          affected_side: formData.get("affected_side")?.toString() ?? "",
+          severity: formData.get("severity")?.toString() ?? "",
+        })),
+        notes: formData.get("notes")?.toString() ?? "",
       },
     };
 
-    const functional_ability = {
-      mobility_level: formData.get("mobility")?.toString() || null,
-      walking_ability: formData.get("walking")?.toString() || null,
-      range_of_motion: formData.get("rom")?.toString() || null,
+    const functional_ability: FunctionalAbility = {
+      functional_ability: {
+        mobility_level: formData.get("mobility_level")?.toString() ?? "",
+        walking_ability: formData.get("walking_ability")?.toString() ?? "",
+        assistive_device: formData.get("assistive_device")?.toString() ?? "",
+        upper_limb_function: {
+          left_arm: formData.get("upper_limb_left")?.toString() ?? "",
+          right_arm: formData.get("upper_limb_right")?.toString() ?? "",
+        },
+        range_of_motion: formData.get("range_of_motion")?.toString() ?? "",
+      },
     };
 
-    const user_type_and_risk = {
-      category: formData.get("user_category")?.toString() || null,
-      risk_level: formData.get("risk_level")?.toString() || null, // optional (not shown yet)
+    const user_type_and_risk: UserTypeAndRisk = {
+      user_type_and_risk: {
+        category: formData.get("user_category")?.toString() ?? "",
+        risk_level: formData.get("risk_level")?.toString() ?? "",
+      },
     };
 
-    // ✅ Server-side log (Node/server only)
     console.log(
       JSON.stringify(
         {
-          basic_profile,
-          user_type_and_risk,
-          medical_profile,
-          functional_ability,
+          ...basic_profile,
+          ...user_type_and_risk,
+          ...medical_profile,
+          ...functional_ability,
         },
         null,
         2,
