@@ -1,6 +1,7 @@
 // app/informationinput/page.tsx
 import UserTypeAccordionController from "./UserTypeAccordionController";
 import UserTypeAccordion from "./UserTypeAccordion";
+import { redirect } from "next/navigation";
 import {
   BasicProfile,
   UserTypeAndRisk,
@@ -9,6 +10,7 @@ import {
   MedicalSafetyAndRiskFlags,
   CurrentActivityLevel,
 } from "../../types";
+import { Link } from "lucide-react";
 
 export default function informationinput() {
   async function save(formData: FormData) {
@@ -270,6 +272,8 @@ export default function informationinput() {
     };
 
     console.log(JSON.stringify(payload, null, 2));
+
+    redirect("/overview");
   }
 
   // ====== Component-scoped styles (no global CSS) ======
