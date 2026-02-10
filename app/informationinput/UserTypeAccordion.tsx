@@ -4,6 +4,9 @@
 import { Activity, useState } from "react";
 import MedicalSafetyRiskFlags from "./MedicalSafetyRiskFlags";
 import CurrentActivityLevel from "./CurrentActivityLevel";
+import ExercisePreferencesTolerance from "./ExercisePreferencesTolerance";
+import ExerciseEnvironment from "./ExerciseEnvironment";
+import AdditionalInformation from "./AdditionalInformation";
 
 type ConditionKey =
   | "stroke"
@@ -592,14 +595,14 @@ export default function UserTypeAccordion() {
             {/* Current Mobility Level */}
             <p>Current Mobility Level</p>
             <label>
-              <input type="radio" name="mobility_level" value="Seated only" />{" "}
+              <input type="radio" name="mobility_level" value="seated_only" />{" "}
               Seated only
             </label>
             <label style={{ marginLeft: 12 }}>
               <input
                 type="radio"
                 name="mobility_level"
-                value="Assisted standing"
+                value="assisted_standing"
               />{" "}
               Assisted standing
             </label>
@@ -607,7 +610,7 @@ export default function UserTypeAccordion() {
               <input
                 type="radio"
                 name="mobility_level"
-                value="Independent standing"
+                value="independent_standing"
               />{" "}
               Independent standing
             </label>
@@ -615,37 +618,37 @@ export default function UserTypeAccordion() {
             {/* Walking Ability */}
             <p style={{ marginTop: 16 }}>Walking Ability</p>
             <label>
-              <input type="radio" name="walking_ability" value="Cannot walk" />{" "}
+              <input type="radio" name="walking_ability" value="cannot_walk" />{" "}
               Cannot walk
             </label>
             <label style={{ marginLeft: 12 }}>
               <input
                 type="radio"
                 name="walking_ability"
-                value="With cane / walker"
+                value="with_cane_walker"
               />{" "}
               With cane / walker
             </label>
             <label style={{ marginLeft: 12 }}>
-              <input type="radio" name="walking_ability" value="Independent" />{" "}
+              <input type="radio" name="walking_ability" value="independent" />{" "}
               Independent
             </label>
 
             {/* Range of Motion */}
             <p style={{ marginTop: 16 }}>Range of Motion</p>
             <label>
-              <input type="radio" name="range_of_motion" value="Limited" />{" "}
+              <input type="radio" name="range_of_motion" value="limited" />{" "}
               Limited
             </label>
             <label style={{ marginLeft: 12 }}>
-              <input type="radio" name="range_of_motion" value="Moderate" />{" "}
+              <input type="radio" name="range_of_motion" value="moderate" />{" "}
               Moderate
             </label>
             <label style={{ marginLeft: 12 }}>
               <input
                 type="radio"
                 name="range_of_motion"
-                value="Full (with caution)"
+                value="full_with_caution"
               />{" "}
               Full (with caution)
             </label>
@@ -685,6 +688,16 @@ export default function UserTypeAccordion() {
           <MedicalSafetyRiskFlags />
           <hr style={{ margin: "16px 0" }} />
           <CurrentActivityLevel />
+
+          {/* NEW SECTIONS */}
+          <hr style={{ margin: "16px 0" }} />
+          <ExercisePreferencesTolerance />
+
+          <hr style={{ margin: "16px 0" }} />
+          <ExerciseEnvironment />
+
+          <hr style={{ margin: "16px 0" }} />
+          <AdditionalInformation />
         </div>
 
         <div className="acc-footer">

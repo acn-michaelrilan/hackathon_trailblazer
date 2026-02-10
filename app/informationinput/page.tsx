@@ -9,9 +9,10 @@ import {
   FunctionalAbility,
   MedicalSafetyAndRiskFlags,
   CurrentActivityLevel,
+  ExercisePreferencesAndTolerance,
+  ExerciseEnvironment,
+  AdditionalInformation,
 } from "../../types";
-import { Link } from "lucide-react";
-
 export default function informationinput() {
   async function save(formData: FormData) {
     "use server";
@@ -261,6 +262,59 @@ export default function informationinput() {
       specific_targets: actPickFromMap(actTargetsMap),
     };
 
+    // --- Exercise Preferences & Tolerance ---
+    const exercise_preferences_and_tolerance: ExercisePreferencesAndTolerance =
+      {
+        exercise_preferences_and_tolerance: {
+          preferred_session_length: toStr(
+            formData.get("preferred_session_length"),
+            "",
+          ),
+          preferred_intensity: toStr(formData.get("preferred_intensity"), ""),
+          rest_tolerance: toStr(formData.get("rest_tolerance"), ""),
+          rest_frequency: toStr(formData.get("rest_frequency"), ""), // value from hidden/computed field
+          time_of_day_preference: toStr(
+            formData.get("time_of_day_preference"),
+            "",
+          ),
+          fatigue_concerns: toStr(formData.get("fatigue_concerns"), ""),
+        },
+      };
+
+    // --- Exercise Environment ---
+    const equipment_available_raw = formData.getAll("equipment_available");
+    const exercise_environment: ExerciseEnvironment = {
+      exercise_environment: {
+        location: toStr(formData.get("location"), ""),
+        equipment_available: equipment_available_raw
+          .map((v) => v?.toString().trim())
+          .filter(Boolean) as string[],
+        support_person_available: yesNo("support_person_available"), // expects radio values "yes" / "no"
+        support_person_details: toStr(
+          formData.get("support_person_details"),
+          "",
+        ),
+      },
+    };
+
+    // --- Additional Information ---
+    // Note: Your type expects `timestamp` INSIDE `additional_information`
+    const medications_raw = formData.getAll("medications");
+    const submittedTimestamp = toStr(formData.get("timestamp"), "");
+    const additional_information: AdditionalInformation = {
+      additional_information: {
+        medications: medications_raw
+          .map((v) => v?.toString().trim())
+          .filter(Boolean) as string[],
+        physical_therapy_history: yesNo("physical_therapy_history"),
+        pt_sessions_completed: toNum(formData.get("pt_sessions_completed"), 0),
+        pt_end_date: toStr(formData.get("pt_end_date"), ""),
+        clearance_for_exercise: yesNo("clearance_for_exercise"),
+        physician_notes: toStr(formData.get("physician_notes"), ""),
+        timestamp: submittedTimestamp || new Date().toISOString(),
+      },
+    };
+
     // Compose final JSON (avoid double nesting with spread)
     const payload = {
       ...basic_profile,
@@ -269,6 +323,10 @@ export default function informationinput() {
       ...functional_ability,
       ...medical_safety_and_risk_flags,
       ...current_activity_level,
+      ...exercise_preferences_and_tolerance,
+      ...exercise_environment,
+      ...additional_information,
+      submittedTimestamp,
     };
 
     console.log(JSON.stringify(payload, null, 2));
