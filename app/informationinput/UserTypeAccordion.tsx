@@ -1,8 +1,9 @@
 // ./UserTypeAccordion.tsx
 "use client";
 
-import { useState } from "react";
+import { Activity, useState } from "react";
 import MedicalSafetyRiskFlags from "./MedicalSafetyRiskFlags";
+import CurrentActivityLevel from "./CurrentActivityLevel";
 
 type ConditionKey =
   | "stroke"
@@ -682,6 +683,8 @@ export default function UserTypeAccordion() {
 
           {/* ⬇️ Medical Safety & Risk Flags — below Functional Ability */}
           <MedicalSafetyRiskFlags />
+          <hr style={{ margin: "16px 0" }} />
+          <CurrentActivityLevel />
         </div>
 
         <div className="acc-footer">

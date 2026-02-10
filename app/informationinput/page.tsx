@@ -7,6 +7,7 @@ import {
   MedicalProfile,
   FunctionalAbility,
   MedicalSafetyAndRiskFlags,
+  CurrentActivityLevel,
 } from "../../types";
 
 export default function informationinput() {
@@ -156,6 +157,108 @@ export default function informationinput() {
       },
     };
 
+    // --- Current Activity Level ---
+    const toStr = (v: FormDataEntryValue | null, fallback = "") =>
+      (v?.toString() ?? "").trim() || fallback;
+
+    // Secondary goal checkboxes → array
+    const secGoalChecked = (name: string) =>
+      formData.get(name)?.toString() === "on";
+    const pickFromMap = (map: Record<string, string>) =>
+      Object.entries(map)
+        .filter(([name]) => secGoalChecked(name))
+        .map(([, value]) => value);
+
+    // Maps that reflect your CurrentActivityLevel.tsx names/values
+    const secondaryGoalsMap: Record<string, string> = {
+      goal_improve_mobility: "improve_mobility",
+      goal_improve_balance: "improve_balance",
+      goal_increase_endurance: "increase_endurance",
+      goal_move_independently: "move_independently",
+    };
+
+    const targetsMap: Record<string, string> = {
+      target_climb_stairs: "climb_stairs",
+      target_get_in_out_bed: "get_in_out_bed",
+      target_stand_without_hands: "stand_without_hands",
+      target_use_hand_daily_tasks: "use_hand_daily_tasks",
+      target_walk_longer: "walk_longer",
+      target_regain_balance_turning: "regain_balance_turning",
+      target_return_to_driving: "return_to_driving",
+      target_return_to_work_or_school: "return_to_work_or_school",
+      target_carry_groceries: "carry_groceries",
+      target_improve_coordination: "improve_coordination",
+      target_walk_uneven_surfaces: "walk_uneven_surfaces",
+      target_reduce_spasticity: "reduce_spasticity",
+      target_improve_grip: "improve_grip",
+      target_bathe_independently: "bathe_independently",
+      target_return_to_sports: "return_to_sports",
+    };
+
+    // --- Current Activity Level (conflict-free helpers) ---
+    const actGetStr = (v: FormDataEntryValue | null, fallback = "") =>
+      (v?.toString() ?? "").trim() || fallback;
+
+    const actIsChecked = (name: string) => formData.get(name) != null; // presence-based
+
+    const actPickFromMap = (map: Record<string, string>) =>
+      Object.entries(map)
+        .filter(([name]) => actIsChecked(name))
+        .map(([, value]) => value);
+
+    // Primary goals (radio) — only the 4 options present in your updated UI
+    const actAllowedPrimary = new Set([
+      "reduce_pain",
+      "restore_strength",
+      "recover_after_surgery",
+      "prevent_decline",
+    ]);
+    const actPrimaryRaw = actGetStr(formData.get("primary_goal"), "");
+    const actPrimary = actAllowedPrimary.has(actPrimaryRaw)
+      ? actPrimaryRaw
+      : "";
+
+    // Secondary goals (checkboxes) — from your updated UI
+    const actSecondaryGoalsMap: Record<string, string> = {
+      goal_improve_mobility: "improve_mobility",
+      goal_improve_balance: "improve_balance",
+      goal_increase_endurance: "increase_endurance",
+      goal_move_independently: "move_independently",
+    };
+    const actSecondaryGoals = actPickFromMap(actSecondaryGoalsMap);
+
+    // Specific targets (checkboxes)
+    const actTargetsMap: Record<string, string> = {
+      target_climb_stairs: "climb_stairs",
+      target_get_in_out_bed: "get_in_out_bed",
+      target_stand_without_hands: "stand_without_hands",
+      target_use_hand_daily_tasks: "use_hand_daily_tasks",
+      target_walk_longer: "walk_longer",
+      target_regain_balance_turning: "regain_balance_turning",
+      target_return_to_driving: "return_to_driving",
+      target_return_to_work_or_school: "return_to_work_or_school",
+      target_carry_groceries: "carry_groceries",
+      target_improve_coordination: "improve_coordination",
+      target_walk_uneven_surfaces: "walk_uneven_surfaces",
+      target_reduce_spasticity: "reduce_spasticity",
+      target_improve_grip: "improve_grip",
+      target_bathe_independently: "bathe_independently",
+      target_return_to_sports: "return_to_sports",
+    };
+
+    const current_activity_level: CurrentActivityLevel = {
+      current_activity_level: actGetStr(
+        formData.get("current_activity_level"),
+        "",
+      ),
+      activity_details: actGetStr(formData.get("activity_details"), ""),
+      goals: {
+        primary_goal: actPrimary,
+        secondary_goals: actSecondaryGoals,
+      },
+      specific_targets: actPickFromMap(actTargetsMap),
+    };
+
     // Compose final JSON (avoid double nesting with spread)
     const payload = {
       ...basic_profile,
@@ -163,6 +266,7 @@ export default function informationinput() {
       ...medical_profile,
       ...functional_ability,
       ...medical_safety_and_risk_flags,
+      ...current_activity_level,
     };
 
     console.log(JSON.stringify(payload, null, 2));
