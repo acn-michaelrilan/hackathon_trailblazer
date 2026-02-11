@@ -187,12 +187,12 @@ export default function OverviewDashboard() {
                 <div
                   key={ex.id}
                   className={`bg-white p-6 rounded-3xl border shadow-sm flex items-center justify-between group transition-all hover:shadow-md
-                    ${ex.status === "completed" ? "border-green-100 bg-green-50/30" : "border-slate-100"}
+                    ${ex.status.trim() === "completed" ? "border-green-100 bg-green-50/30" : "border-slate-100"}
                   `}
                 >
                   <div className="flex items-center gap-6">
                     <div
-                      className={`p-3 rounded-full ${ex.status === "completed" ? "bg-green-100 text-green-600" : "bg-slate-50 text-slate-300"}`}
+                      className={`p-3 rounded-full ${ex.status.trim() === "completed" ? "bg-green-100 text-green-600" : "bg-slate-50 text-slate-300"}`}
                     >
                       <PlayCircle size={24} />
                     </div>
