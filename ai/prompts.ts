@@ -1,4 +1,4 @@
-import type { ExercisePlanData } from "@/types";
+import type { InformationInputData } from "@/types";
 import { EXERCISE_EXAMPLES } from "./examples";
 import { EXERCISE_PLAN_OUTPUT_SCHEMA, SCHEMA_NOTES } from "./schema";
 
@@ -34,7 +34,7 @@ ${EXERCISE_EXAMPLES}
 
 Now, given the user's input below, generate a comprehensive, medically-appropriate exercise plan following the same format, quality standards, and safety protocols as demonstrated in the examples above.`;
 
-export function createExercisePlanPrompt(input: ExercisePlanData): string {
+export function createExercisePlanPrompt(input: InformationInputData): string {
   return `INPUT:
 ${JSON.stringify(input, null, 2)}
 
