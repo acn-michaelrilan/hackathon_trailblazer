@@ -14,7 +14,6 @@ import {
   AdditionalInformation,
 } from "../../types";
 import { createClient } from "@/backend/server";
-import { redirect } from "next/navigation";
 
 const supabase = await createClient();
 
