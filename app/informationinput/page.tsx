@@ -435,9 +435,17 @@ export default function informationinput() {
     background: #ffffff; color: #111827; border: 1px solid #e5e7eb; border-radius: 12px;
     box-shadow: 0 8px 24px rgba(0,0,0,0.08); overflow: clip;
   }
-  .usr-wrap details[data-acc] { display: none; }
-  .usr-wrap:has(#stroke_recovery_neurological:checked) details[data-acc] { display: block; }
-  .usr-wrap[data-acc-collapsed="true"] details[data-acc] { display: none !important; }
+  
+  /* Hide all accordions by default */
+.usr-wrap details[data-acc] { display: none; }
+
+/* Show based on which one is open (set by JS) */
+.usr-wrap[data-acc-open="stroke"] details[data-acc="stroke"] { display: block; }
+.usr-wrap[data-acc-open="general"] details[data-acc="general"] { display: block; }
+
+/* Collapsed state overrides visibility */
+.usr-wrap[data-acc-collapsed="true"] details[data-acc] { display: none !important; }
+
 
   .usr-wrap .acc-summary {
     list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px;
