@@ -38,22 +38,23 @@ export default function Homepage() {
       </p>
 
       {/* Buttons */}
-      <div className="flex gap-3 mb-10 flex-wrap justify-center max-w-md">
-        <button className="border border-black text-black rounded-md px-4 py-2 text-xs sm:text-sm bg-white transition-all duration-300 ease-out hover:bg-gray-100 hover:-translate-y-0.5 hover:shadow-md"
-        >
-          Smart Planning
-        </button>
+      {/* Feature Pills (NOT CLICKABLE — design only) */}
+  <div className="flex gap-3 mb-10 flex-wrap justify-center max-w-md">
+    <span aria-hidden="true" className="border border-black text-black rounded-md px-4 py-2 text-xs sm:text-sm bg-white pointer-events-none select-none cursor-default"
+    >
+      Smart Planning
+    </span>
 
-        <button className="border border-black text-black rounded-md px-4 py-2 text-xs sm:text-sm bg-white transition-all duration-300 ease-out hover:bg-gray-100 hover:-translate-y-0.5 hover:shadow-md">
-          Goal Tracking
-        </button>
+    <span aria-hidden="true" className="border border-black text-black rounded-md px-4 py-2 text-xs sm:text-sm bg-white pointer-events-none select-none cursor-default"
+    >
+      Goal Tracking
+    </span>
 
-        <h6
-          className=" px-4 py-2 text-xs sm:text-sm bg-white transition-all duration-300 ease-out hover:bg-gray-100 hover:-translate-y-0.5 hover:shadow-md">
-          Adaptive Workout
-        </h6>
-      </div>
-
+    <span aria-hidden="true" className="border border-black text-black rounded-md px-4 py-2 text-xs sm:text-sm bg-white pointer-events-none select-none cursor-default"
+    >
+      Adaptive Workout
+    </span>
+  </div>
       {/* Heartbeat / Logo Image */}
       <div className="w-40 sm:w-52 md:w-64 mb-10">
         <Image

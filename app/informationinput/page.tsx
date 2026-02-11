@@ -13,7 +13,18 @@ import {
   ExerciseEnvironment,
   AdditionalInformation,
 } from "../../types";
-export default function informationinput() {
+import { createClient } from "@/backend/server";
+
+const supabase = await createClient();
+
+const {
+  data: { user },
+} = await supabase.auth.getUser();
+if (!user) {
+  redirect("/login");
+}
+
+export default async function InformationInput() {
   async function save(formData: FormData) {
     "use server";
 
@@ -330,9 +341,18 @@ export default function informationinput() {
     };
 
     console.log(JSON.stringify(payload, null, 2));
-
-    redirect("/overview");
   }
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect("/login");
+  }
+  const userId = user.id;
+  console.log(userId);
 
   // ====== Component-scoped styles (no global CSS) ======
   const DESKTOP_BP = 1280;

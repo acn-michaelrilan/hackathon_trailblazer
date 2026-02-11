@@ -150,7 +150,7 @@ export default function OverviewDashboard() {
 
           {/* User Info Card */}
           <div className="bg-blue-100/60 rounded-[2rem] p-8 flex justify-between items-center border border-blue-100 relative overflow-hidden">
-            <div className="z-10 relative">
+            <div className="z-1 relative">
               <h2 className="text-3xl font-bold text-slate-800">
                 {plan_info.user_name}
               </h2>
@@ -158,11 +158,11 @@ export default function OverviewDashboard() {
                 Goal: {plan_info.primary_goal}
               </p>
             </div>
-            <div className="text-right z-10 relative">
+            <div className="text-right relative">
               <p className="text-5xl font-bold text-blue-400">
                 {Math.round(progress.completion_percent)}%
               </p>
-              <p className="text-[10px] uppercase font-bold text-blue-300">
+              <p className="text-[10px] uppercase z-1 font-bold text-blue-300">
                 Total Completion
               </p>
             </div>
@@ -248,7 +248,7 @@ export default function OverviewDashboard() {
                   }`}
                 >
                   <div
-                    className={`absolute left-0 w-6 h-6 rounded-full border-4 border-white z-10 shadow-sm transition-all duration-300
+                    className={`absolute left-0 w-6 h-6 rounded-full border-4 border-white z-1 shadow-sm transition-all duration-300
                       ${
                         isActive
                           ? "bg-blue-600 scale-110"
