@@ -123,9 +123,9 @@ export async function getExercisePlanData(
                 }),
             };
 
-            console.log(
-              `  Total exercises for Day ${sess.day}: ${session.exercises.length}`,
-            );
+            // console.log(
+            //   `  Total exercises for Day ${sess.day}: ${session.exercises.length}`,
+            // );
             return session;
           }),
       })),
