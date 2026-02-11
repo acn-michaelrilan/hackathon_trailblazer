@@ -10,7 +10,7 @@ export async function POST(request: Request) {
     //   return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     // }
 
-    const { sessionExerciseId, completedSets } = await request.json();
+    const { sessionExerciseId } = await request.json();
 
     // Validate inputs
     if (!sessionExerciseId) {
@@ -21,17 +21,13 @@ export async function POST(request: Request) {
     }
 
     // Update exercise status
-    const { error } = await supabase
-      .from("session_exercises")
-      .update({
-        status: "completed",
-        completed_sets: completedSets,
-      })
-      .eq("session_exercise_id", sessionExerciseId);
+    const { data, error } = await supabase.rpc("complete_session_exercise", {
+      p_session_exercise_id: sessionExerciseId,
+    });
 
     if (error) throw error;
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json(data);
   } catch (err) {
     console.error("Error updating progress:", err);
     return NextResponse.json(

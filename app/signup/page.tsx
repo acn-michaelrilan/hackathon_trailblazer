@@ -1,151 +1,160 @@
+
+
 "use client";
 
 import React, { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { signUpUser } from "@/app/auth/actions";
 
 export default function UserProfile() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
-
+  
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [showConfirmPassword, setShowConfirmPassword] =
-    useState<boolean>(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const router = useRouter();
-
-  /* ---------------- SIGN UP HANDLER ---------------- */
-  const handleButtonClick = (): void => {
+  
+  const handleButtonClick = async (): Promise<void> => {
     if (!email || !password || !confirmPassword) {
-      console.log("❌ Please fill all fields");
+      console.log(" Please fill all fields");
       return;
     }
 
     if (password !== confirmPassword) {
-      console.log("❌ Passwords do not match");
+      console.log(" Passwords do not match");
+      return;
+    }
+
+    setLoading(true); 
+
+    const result = await signUpUser(email, password);
+
+    if (result?.error) {
+      console.log( result.error);
+      setLoading(false); 
       return;
     }
 
     console.log("✅ SIGN UP SUCCESS");
-    console.log("Email:", email);
-    console.log("Password:", password);
 
-    // Redirect after signup
-    setTimeout(() => {
-      router.push("/login");
-    }, 1000);
+    router.push("/login");
   };
 
-  const passwordsMatch =
-    password.length > 0 && password === confirmPassword;
+  const passwordsMatch = password.length > 0 && password === confirmPassword;
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen px-4 bg-white">
-      
-      {/* Title */}
-      <h1 className="font-poppins font-semibold text-[#264D73] mb-6 sm:mb-8 text-4xl sm:text-5xl md:text-6xl text-center">
-        SIGN UP
-      </h1>
+    // Key change: use flex-1 + grid so it centers in the space BELOW the navbar
+    <div className="flex-1 w-full grid place-items-center px-4 bg-white">
+      <div className="w-full max-w-sm sm:max-w-md flex flex-col items-center">
+        {/* Smaller title */}
+        <h1 className="font-semibold text-[#264D73] mb-4 text-2xl sm:text-3xl text-center tracking-tight">
+          SIGN UP
+        </h1>
 
-      <div className="w-full max-w-md rounded-2xl bg-white p-6 sm:p-8 shadow-xl">
-        <p className="text-center text-sm text-gray-400 mb-6">
-          Create your account
-        </p>
+        {/* Smaller card */}
+        <div className="w-full rounded-xl bg-white p-6 sm:p-7 shadow-xl border border-gray-100">
+          <p className="text-center text-md text-gray-400 mb-5">
+            Create your account
+          </p>
 
-        {/* Email */}
-        <div className="mb-4">
-          <label className="block text-sm font-medium mb-1 text-gray-700">
-            Email
-          </label>
-          <input
-            type="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full rounded-md bg-gray-100 px-4 py-2.5 text-sm outline-none"
-          />
-        </div>
-
-        {/* Password */}
-        <div className="mb-4">
-          <label className="block text-sm font-medium mb-1 text-gray-700">
-            Password
-          </label>
-
-          <div className="relative">
+          {/* Email */}
+          <div className="mb-4">
+            <label className="block text-s font-semibold mb-1.5 text-gray-600">
+              Email
+            </label>
             <input
-              type={showPassword ? "text" : "password"}
-              placeholder="Enter your password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full rounded-md bg-gray-100 px-4 py-2.5 text-sm outline-none pr-10"
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full rounded-lg bg-gray-50 px-3 py-2.5 text-sm outline-none border border-transparent focus:border-[#7BA63F] focus:ring-4 focus:ring-green-100 transition-all"
             />
-
-            <button
-              type="button"
-              onClick={() => setShowPassword((prev) => !prev)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
-            >
-              {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-            </button>
           </div>
-        </div>
 
-        {/* Confirm Password */}
-        <div className="mb-2">
-          <label className="block text-sm font-medium mb-1 text-gray-700">
-            Confirm Password
-          </label>
+          {/* Password */}
+          <div className="mb-4">
+            <label className="block text-s font-semibold mb-1.5 text-gray-600">
+              Password
+            </label>
 
-          <div className="relative">
-            <input
-              type={showConfirmPassword ? "text" : "password"}
-              placeholder="Confirm your password"
-              value={confirmPassword}
-              onChange={(e) =>
-                setConfirmPassword(e.target.value)
-              }
-              className="w-full rounded-md bg-gray-100 px-4 py-2.5 text-sm outline-none pr-10"
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full rounded-lg bg-gray-50 px-3 py-2.5 text-sm outline-none pr-10 border border-transparent focus:border-[#7BA63F] focus:ring-4 focus:ring-green-100 transition-all"
+              />
 
-            <button
-              type="button"
-              onClick={() =>
-                setShowConfirmPassword((prev) => !prev)
-              }
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
-            >
-              {showConfirmPassword ? (
-                <EyeOff size={18} />
-              ) : (
-                <Eye size={18} />
-              )}
-            </button>
+              <button
+                type="button"
+                onClick={() => setShowPassword((prev) => !prev)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"
+              >
+                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              </button>
+            </div>
           </div>
-        </div>
 
-        {/* Password mismatch */}
-        {confirmPassword.length > 0 &&
-          password !== confirmPassword && (
-            <p className="text-sm text-red-500 mb-4">
+          {/* Confirm Password */}
+          <div className="mb-2">
+            <label className="block text-s font-semibold mb-1.5 text-gray-600">
+              Confirm Password
+            </label>
+
+            <div className="relative">
+              <input
+                type={showConfirmPassword ? "text" : "password"}
+                placeholder="Confirm your password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className="w-full rounded-lg bg-gray-50 px-3 py-2.5 text-sm outline-none pr-10 border border-transparent focus:border-[#7BA63F] focus:ring-4 focus:ring-green-100 transition-all"
+              />
+
+              <button
+                type="button"
+                onClick={() => setShowConfirmPassword((prev) => !prev)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"
+              >
+                {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              </button>
+            </div>
+          </div>
+
+          {/* Password mismatch */}
+          {confirmPassword.length > 0 && password !== confirmPassword && (
+            <p className="text-s text-red-500 mt-2 mb-3">
               Passwords do not match
             </p>
           )}
 
-        {/* Button */}
-        <button
-          onClick={handleButtonClick}
-          disabled={!passwordsMatch || !email}
-          className={`w-full rounded-xl py-3 text-white font-semibold transition
-          ${
-            passwordsMatch && email
-              ? "bg-green-500 hover:bg-green-600"
-              : "bg-gray-300 cursor-not-allowed"
-          }`}
-        >
-          Sign up
-        </button>
+          <a href="/login" className=" mt-4 w-full text-center rounded-lg border border-gray-200 py-2 text-sm font-semibold text-gray-700 hover:border-[#7BA63F] hover:text-[#7BA63F] transition"
+          >
+            Back to Login
+          </a>
+                  <button
+                    onClick={handleButtonClick}
+                    disabled={!passwordsMatch || !email || loading}
+                    className={`w-full rounded-lg py-2.5 text-white font-bold text-sm transition-all active:scale-95 mt-2 flex items-center justify-center
+                      ${
+                        passwordsMatch && email && !loading
+                          ? "bg-[#7BA63F] hover:bg-[#6a8f35] shadow-md shadow-green-100"
+                          : "bg-gray-200 text-gray-400 cursor-not-allowed"
+                      }`}
+                  >
+                    {loading ? (
+                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    ) : (
+                      "Sign up"
+                    )}
+                </button>
+                        
+
+        </div>
       </div>
     </div>
   );

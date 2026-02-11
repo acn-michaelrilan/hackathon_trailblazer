@@ -2,19 +2,22 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { AlertCircle } from "lucide-react"; // Nice warning icon
+import { logoutUser } from "../auth/actions";
 
 export default function UserProfile() {
   const [isDarkPage, setIsDarkPage] = useState<boolean>(false);
-  const [showLogoutModal, setShowLogoutModal] = useState<boolean>(false); // New State
+  
   const router = useRouter();
 
   const handleButtonClick = (): void => {
     setIsDarkPage(true);
   };
-
+  const backOverview = async (): Promise<void> => {
+    router.push("/overview");// redirect to homepage
+  };
   // 🔹 Actual Logout Logic
-  const confirmLogout = (): void => {
-    router.push("/"); // redirect to homepage
+  const confirmLogout = async (): Promise<void> => {
+    router.replace("/overview");// redirect to homepage
   };
 
   return (
@@ -65,53 +68,21 @@ export default function UserProfile() {
         </button>
 
         {/* 🔹 Trigger Logout Modal */}
-        <button
+        {/* <button
           onClick={() => setShowLogoutModal(true)}
           className="w-full rounded-xl bg-red-500 py-3 text-white font-semibold hover:bg-red-600 transition shadow-md"
         >
           Logout
+        </button> */}
+        <button
+          onClick={() => backOverview()}
+          className="w-full rounded-xl bg-red-500 py-3 text-white font-semibold hover:bg-red-600 transition shadow-md"
+        >
+          Back to Overview
         </button>
       </div>
 
-      {/* --- LOGOUT CONFIRMATION MODAL --- */}
-      {showLogoutModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          {/* Backdrop Blur */}
-          <div 
-            className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-200"
-            onClick={() => setShowLogoutModal(false)} 
-          />
-          
-          {/* Modal Card */}
-          <div className="relative bg-white rounded-3xl w-full max-w-sm p-8 shadow-2xl animate-in zoom-in duration-200 text-center">
-            <div className="flex justify-center mb-4">
-              <div className="p-3 bg-red-100 rounded-full text-red-500">
-                <AlertCircle size={40} />
-              </div>
-            </div>
-            
-            <h2 className="text-xl font-bold text-gray-800 mb-2">Are you sure?</h2>
-            <p className="text-gray-500 text-sm mb-8">
-              You are about to log out of your profile. You will need to sign in again to access your data.
-            </p>
-
-            <div className="flex flex-col gap-3">
-              <button
-                onClick={confirmLogout}
-                className="w-full bg-red-500 text-white py-3 rounded-xl font-bold hover:bg-red-600 transition-all active:scale-95"
-              >
-                Yes, Log Me Out
-              </button>
-              <button
-                onClick={() => setShowLogoutModal(false)}
-                className="w-full bg-gray-100 text-gray-600 py-3 rounded-xl font-bold hover:bg-gray-200 transition-all"
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      
     </div>
   );
 }
