@@ -24,9 +24,7 @@ export default function Homepage() {
     // UPDATED CONTAINER CLASSES:
     <div className="w-full flex-1 flex flex-col items-center justify-center px-4 py-10 bg-white">
       {/* Headline */}
-      <h1
-        className="font-poppins font-semibold mb-3 text-3xl sm:text-4xl md:text-6xl text-center leading-tight transition-transform duration-500 ease-out hover:-translate-y-1"
-      >
+      <h1 className="font-poppins font-semibold mb-3 text-3xl sm:text-4xl md:text-6xl text-center leading-tight transition-transform duration-500 ease-out hover:-translate-y-1">
         <span className="text-[#7BA63F]">AI-GUIDED ADAPTIVE</span>
         <br />
         <span className="text-[#264D73]">EXERCISE PLANNER</span>
@@ -39,22 +37,28 @@ export default function Homepage() {
 
       {/* Buttons */}
       {/* Feature Pills (NOT CLICKABLE — design only) */}
-  <div className="flex gap-3 mb-10 flex-wrap justify-center max-w-md">
-    <span aria-hidden="true" className="border border-black text-black rounded-md px-4 py-2 text-xs sm:text-sm bg-white pointer-events-none select-none cursor-default"
-    >
-      Smart Planning
-    </span>
+      <div className="flex gap-3 mb-10 flex-wrap justify-center max-w-md">
+        <span
+          aria-hidden="true"
+          className="border border-black text-black rounded-md px-4 py-2 text-xs sm:text-sm bg-white pointer-events-none select-none cursor-default"
+        >
+          Smart Planning
+        </span>
 
-    <span aria-hidden="true" className="border border-black text-black rounded-md px-4 py-2 text-xs sm:text-sm bg-white pointer-events-none select-none cursor-default"
-    >
-      Goal Tracking
-    </span>
+        <span
+          aria-hidden="true"
+          className="border border-black text-black rounded-md px-4 py-2 text-xs sm:text-sm bg-white pointer-events-none select-none cursor-default"
+        >
+          Goal Tracking
+        </span>
 
-    <span aria-hidden="true" className="border border-black text-black rounded-md px-4 py-2 text-xs sm:text-sm bg-white pointer-events-none select-none cursor-default"
-    >
-      Adaptive Workout
-    </span>
-  </div>
+        <span
+          aria-hidden="true"
+          className="border border-black text-black rounded-md px-4 py-2 text-xs sm:text-sm bg-white pointer-events-none select-none cursor-default"
+        >
+          Adaptive Workout
+        </span>
+      </div>
       {/* Heartbeat / Logo Image */}
       <div className="w-40 sm:w-52 md:w-64 mb-10">
         <Image
