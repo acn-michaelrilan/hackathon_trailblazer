@@ -1,6 +1,7 @@
 // app/informationinput/page.tsx
 import UserTypeAccordionController from "./UserTypeAccordionController";
 import UserTypeAccordion from "./UserTypeAccordion";
+import TestAIButton from "./SendPromptToAIButton";
 import { redirect } from "next/navigation";
 import {
   BasicProfile,
@@ -15,15 +16,13 @@ import {
 } from "../../types";
 import { createClient } from "@/backend/server";
 
-
-
 export default async function InformationInput() {
   const supabase = await createClient();
 
   const {
     data: { user },
   } = await supabase.auth.getUser();
-  
+
   if (!user) {
     redirect("/login");
   }
@@ -642,6 +641,7 @@ export default async function InformationInput() {
             >
               Save
             </button>
+            <TestAIButton />
           </div>
         </form>
       </main>

@@ -6,6 +6,7 @@ export async function POST(request: Request) {
     // Use mock data as the default input for generating the exercise plan
     const plan = await exerciseService.generatePlan(INPUT_MOCK_DATA);
     console.log("New Plan ID:", plan.exercise_plan.plan_info.plan_id);
+    console.log("Generated Plan:", plan);
 
     return Response.json(plan, { status: 200 });
   } catch (error) {

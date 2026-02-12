@@ -7,7 +7,7 @@ import { InformationInputData, ExercisePlanData } from "@/types";
 
 const client = new OpenAI({
   apiKey: process.env.NEXT_PUBLIC_LLM_API_KEY,
-  //   baseURL: "https://api.groq.com/openai/v1",
+  baseURL: "https://api.groq.com/openai/v1",
 });
 
 /**
@@ -20,10 +20,13 @@ export class ExerciseService {
    */
   async generatePlan(data: InformationInputData): Promise<ExercisePlanData> {
     const isHighRisk = data.user_type_and_risk.risk_level === "high";
-    const model = isHighRisk ? "gpt-5" : "gpt-4o-mini";
+    const reasoningModel = "openai/gpt-oss-120b"; // Hypothetical reasoning-capable model
+    const standardModel = "openai/gpt-oss-120b"; // Hypothetical faster, cheaper model
+    const model = isHighRisk ? reasoningModel : standardModel;
 
+    const useReasoning = false;
     try {
-      if (isHighRisk || model.startsWith("gpt-5") || model.startsWith("o")) {
+      if (useReasoning) {
         return await this.generateWithReasoning(data, model);
       }
       return await this.generateStandard(data, model);

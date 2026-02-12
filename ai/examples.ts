@@ -5,6 +5,8 @@ import activeUserInput from "@/data/examples/active-user-input.json";
 import activeUserOutput from "@/data/examples/active-user-output.json";
 
 export const EXERCISE_EXAMPLES = `
+TRAINING EXAMPLES:
+Below are examples demonstrating the expected quality, detail level, safety considerations, and format. Pay special attention to how medical conditions (stroke recovery, cardiac issues) are handled with extensive safety notes and gradual progressions:
 ---
 EXAMPLE 1 - STROKE RECOVERY:
 
