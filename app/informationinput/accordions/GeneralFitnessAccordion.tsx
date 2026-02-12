@@ -2,7 +2,7 @@
 "use client";
 
 import MedicalSafetyRiskFlags from "../MedicalSafetyRiskFlags";
-import CurrentActivityLevel from "../CurrentActivityLevel";
+import GeneralCurrentActivityLevel from "../GeneralCurrentActivityLevel";
 import ExercisePreferencesTolerance from "../ExercisePreferencesTolerance";
 import ExerciseEnvironment from "../ExerciseEnvironment";
 import AdditionalInformation from "../AdditionalInformation";
@@ -89,42 +89,15 @@ export default function GeneralFitnessAccordion() {
               Later, you can replace these with general-only fields and adjust save() accordingly. */}
           <div style={{ marginTop: 8 }}>
             <label className="muted">
-              Tip: If none apply, you can skip this section.
+              Do you have any health conditions we should be aware of?
             </label>
           </div>
 
-          {/* Example: reuse some existing checkboxes */}
-          <div style={{ marginTop: 12 }}>
-            <label>
-              <input
-                type="checkbox"
-                name="medical_condition_cardiovascular_condition"
-              />{" "}
-              Cardiovascular condition
-            </label>
-          </div>
-
-          <div style={{ marginTop: 8 }}>
-            <label>
-              <input
-                type="checkbox"
-                name="medical_condition_arthritis_joint_pain"
-              />{" "}
-              Joint pain / overuse
-            </label>
-          </div>
-
-          <div style={{ marginTop: 8 }}>
-            <label>
-              <input type="checkbox" name="medical_condition_other" /> Other
-            </label>
-            <input
-              type="text"
-              name="other_condition_name"
-              placeholder="Please specify"
-              style={{ marginLeft: 4 }}
-            />
-          </div>
+          <textarea
+            name="notes"
+            rows={2}
+            style={{ width: "100%", padding: 6 }}
+          />
         </section>
 
         <hr style={{ margin: "16px 0" }} />
@@ -135,43 +108,99 @@ export default function GeneralFitnessAccordion() {
 
           <p>Current Mobility Level</p>
           <label>
-            <input type="radio" name="mobility_level" value="seated_only" />{" "}
-            Seated only
+            <input
+              type="radio"
+              name="mobility_level"
+              value="fully_independent"
+            />{" "}
+            Fully Independent
           </label>
           <label style={{ marginLeft: 12 }}>
             <input
               type="radio"
               name="mobility_level"
-              value="assisted_standing"
+              value="independent_with_mild_difficulty"
             />{" "}
-            Assisted standing
+            Independent with mild difficulty
           </label>
           <label style={{ marginLeft: 12 }}>
             <input
               type="radio"
               name="mobility_level"
-              value="independent_standing"
+              value="requires_assistive_device"
             />{" "}
-            Independent standing
+            Requires assistive device (e.g., cane, walker)
+          </label>
+          <label style={{ marginLeft: 12 }}>
+            <input
+              type="radio"
+              name="mobility_level"
+              value="requires_physical_assistance"
+            />{" "}
+            Requires physical assistance from another person
+          </label>
+          <label style={{ marginLeft: 12 }}>
+            <input
+              type="radio"
+              name="mobility_level"
+              value="limited_seated_or_bed_bound"
+            />{" "}
+            Limited mobility (primarily seated or bed‑bound)
           </label>
 
           <p style={{ marginTop: 16 }}>Walking Ability</p>
           <label>
-            <input type="radio" name="walking_ability" value="cannot_walk" />{" "}
-            Cannot walk
+            <input
+              type="radio"
+              name="walking_ability"
+              value="independent_without_limitations"
+            />{" "}
+            Walks independently without limitations
           </label>
           <label style={{ marginLeft: 12 }}>
             <input
               type="radio"
               name="walking_ability"
-              value="with_cane_walker"
+              value="independent_with_discomfort"
             />{" "}
-            With cane / walker
+            Walks independently but with occasional discomfort
           </label>
           <label style={{ marginLeft: 12 }}>
-            <input type="radio" name="walking_ability" value="independent" />{" "}
-            Independent
+            <input
+              type="radio"
+              name="walking_ability"
+              value="short_distance_walks_only"
+            />{" "}
+            Short‑distance walking only
           </label>
+          <label style={{ marginLeft: 12 }}>
+            <input
+              type="radio"
+              name="walking_ability"
+              value="walks_with_assistive_device"
+            />{" "}
+            Walks with assistive device
+          </label>
+          <label style={{ marginLeft: 12 }}>
+            <input type="radio" name="walking_ability" value="unable_to_walk" />{" "}
+            Unable to walk
+          </label>
+
+          <p style={{ marginTop: 16 }}>Upper Limb Function (Left)</p>
+          <select name="upper_limb_left" style={{ padding: 6 }}>
+            <option value="">Select</option>
+            <option value="normal">Normal</option>
+            <option value="limited">Limited</option>
+            <option value="impaired">Impaired</option>
+          </select>
+
+          <p style={{ marginTop: 12 }}>Upper Limb Function (Right)</p>
+          <select name="upper_limb_right" style={{ padding: 6 }}>
+            <option value="">Select</option>
+            <option value="normal">Normal</option>
+            <option value="limited">Limited</option>
+            <option value="impaired">Impaired</option>
+          </select>
 
           <p style={{ marginTop: 16 }}>Range of Motion</p>
           <label>
@@ -190,39 +219,13 @@ export default function GeneralFitnessAccordion() {
             />{" "}
             Full (with caution)
           </label>
-
-          <p style={{ marginTop: 16 }}>Assistive Device</p>
-          <select name="assistive_device" style={{ padding: 6 }}>
-            <option value="">Select</option>
-            <option value="none">None</option>
-            <option value="cane">Cane</option>
-            <option value="walker">Walker</option>
-            <option value="crutches">Crutches</option>
-            <option value="wheelchair">Wheelchair</option>
-          </select>
-
-          <p style={{ marginTop: 16 }}>Upper Limb Function (Left)</p>
-          <select name="upper_limb_left" style={{ padding: 6 }}>
-            <option value="">Select</option>
-            <option value="normal">Normal</option>
-            <option value="limited">Limited</option>
-            <option value="impaired">Impaired</option>
-          </select>
-
-          <p style={{ marginTop: 12 }}>Upper Limb Function (Right)</p>
-          <select name="upper_limb_right" style={{ padding: 6 }}>
-            <option value="">Select</option>
-            <option value="normal">Normal</option>
-            <option value="limited">Limited</option>
-            <option value="impaired">Impaired</option>
-          </select>
         </section>
 
         <hr style={{ margin: "16px 0" }} />
 
         <MedicalSafetyRiskFlags />
         <hr style={{ margin: "16px 0" }} />
-        <CurrentActivityLevel />
+        <GeneralCurrentActivityLevel />
 
         <hr style={{ margin: "16px 0" }} />
         <ExercisePreferencesTolerance />

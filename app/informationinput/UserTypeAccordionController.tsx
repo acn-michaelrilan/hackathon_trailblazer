@@ -32,7 +32,19 @@ export default function UserTypeAccordionController() {
     // Done buttons
     const doneBtns = section.querySelectorAll<HTMLElement>("[data-acc-done]");
 
-    // Helper: set aria-expanded per-accordion
+    // Enable/disable all fields inside a details element
+    const setFieldsDisabled = (root: Element | null, disabled: boolean) => {
+      if (!root) return;
+      const fields = root.querySelectorAll<
+        HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+      >("input, select, textarea");
+      fields.forEach((el) => (el.disabled = disabled));
+    };
+
+    // On first load, disable both until a category is chosen (optional safety)
+    setFieldsDisabled(strokeDetails, true);
+    setFieldsDisabled(generalDetails, true);
+
     const setAriaExpanded = (
       which: "stroke" | "general",
       expanded: boolean,
@@ -42,9 +54,7 @@ export default function UserTypeAccordionController() {
       if (summary) summary.setAttribute("aria-expanded", String(expanded));
     };
 
-    // Helper: make risk radios required only inside active accordion
     const setRiskRequired = (which: "stroke" | "general" | "none") => {
-      // reset both
       const all = section.querySelectorAll<HTMLInputElement>(
         'details[data-acc] input[type="radio"][name="risk_level"]',
       );
@@ -57,30 +67,65 @@ export default function UserTypeAccordionController() {
         scope?.querySelectorAll<HTMLInputElement>(
           'input[type="radio"][name="risk_level"]',
         ) ?? [];
-      // Only the first radio in the active group must be required
       Array.from(radios).forEach((r, idx) => (r.required = idx === 0));
     };
 
     const collapseAll = () => {
       section.setAttribute("data-acc-collapsed", "true");
-      section.removeAttribute("data-acc-open"); // <-- clear active key
+      section.removeAttribute("data-acc-open");
+      section.removeAttribute("data-acc-ui"); // clear hidden state
 
       if (strokeDetails) strokeDetails.open = false;
       if (generalDetails) generalDetails.open = false;
+
+      // Disable both when collapsed
+      setFieldsDisabled(strokeDetails, true);
+      setFieldsDisabled(generalDetails, true);
 
       setAriaExpanded("stroke", false);
       setAriaExpanded("general", false);
       setRiskRequired("none");
     };
 
-    const openWhich = (which: "stroke" | "general") => {
-      // Mark active accordion
+    // NEW: show UI again (remove hidden switch)
+    const showUI = () => {
+      section.removeAttribute("data-acc-ui");
+    };
+
+    // NEW: hide the accordion UI, but keep active inputs enabled
+    const hideUIKeepActive = () => {
+      const openKey = section.getAttribute("data-acc-open");
+      if (openKey === "stroke") {
+        // close details visually
+        if (strokeDetails) strokeDetails.open = false;
+        // keep active enabled; inactive disabled
+        setFieldsDisabled(strokeDetails, false);
+        setFieldsDisabled(generalDetails, true);
+        setAriaExpanded("stroke", false);
+      } else if (openKey === "general") {
+        if (generalDetails) generalDetails.open = false;
+        setFieldsDisabled(generalDetails, false);
+        setFieldsDisabled(strokeDetails, true);
+        setAriaExpanded("general", false);
+      }
+      // mark the UI as hidden (CSS hides both accordions)
+      section.setAttribute("data-acc-ui", "hidden");
+      // keep data-acc-open so we know which set is active and which fields must stay enabled
       section.removeAttribute("data-acc-collapsed");
-      section.setAttribute("data-acc-open", which); // <-- set active key
+    };
+
+    const openWhich = (which: "stroke" | "general") => {
+      section.removeAttribute("data-acc-collapsed");
+      section.setAttribute("data-acc-open", which);
+      showUI(); // make sure UI is visible when opening
 
       if (which === "stroke") {
         if (strokeDetails && !strokeDetails.open) strokeDetails.open = true;
         if (generalDetails && generalDetails.open) generalDetails.open = false;
+
+        // Enable stroke, disable general
+        setFieldsDisabled(strokeDetails, false);
+        setFieldsDisabled(generalDetails, true);
 
         setAriaExpanded("stroke", true);
         setAriaExpanded("general", false);
@@ -88,6 +133,10 @@ export default function UserTypeAccordionController() {
       } else {
         if (generalDetails && !generalDetails.open) generalDetails.open = true;
         if (strokeDetails && strokeDetails.open) strokeDetails.open = false;
+
+        // Enable general, disable stroke
+        setFieldsDisabled(generalDetails, false);
+        setFieldsDisabled(strokeDetails, true);
 
         setAriaExpanded("general", true);
         setAriaExpanded("stroke", false);
@@ -101,32 +150,25 @@ export default function UserTypeAccordionController() {
       else collapseAll();
     };
 
-    // Toggle collapse when clicking the label of already-selected pill
+    // When already selected category label is clicked -> hide UI but keep active enabled
     const onStrokeLabelClick = (e: MouseEvent) => {
       if (stroke?.checked) {
         e.preventDefault();
-        // Toggle state
-        if (section.getAttribute("data-acc-collapsed") === "true")
-          openWhich("stroke");
-        else collapseAll();
+        hideUIKeepActive();
       }
     };
     const onGeneralLabelClick = (e: MouseEvent) => {
       if (general?.checked) {
         e.preventDefault();
-        if (section.getAttribute("data-acc-collapsed") === "true")
-          openWhich("general");
-        else collapseAll();
+        hideUIKeepActive();
       }
     };
 
-    // Clicking radio itself when already selected toggles collapse
+    // Clicking the radio when already selected -> hide UI but keep active enabled
     const onStrokeInputClick = () => {
       if (!stroke) return;
       if (stroke.checked) {
-        if (section.getAttribute("data-acc-collapsed") === "true")
-          openWhich("stroke");
-        else collapseAll();
+        hideUIKeepActive();
       } else {
         setTimeout(() => {
           if (stroke.checked) openWhich("stroke");
@@ -136,9 +178,7 @@ export default function UserTypeAccordionController() {
     const onGeneralInputClick = () => {
       if (!general) return;
       if (general.checked) {
-        if (section.getAttribute("data-acc-collapsed") === "true")
-          openWhich("general");
-        else collapseAll();
+        hideUIKeepActive();
       } else {
         setTimeout(() => {
           if (general.checked) openWhich("general");
@@ -146,8 +186,22 @@ export default function UserTypeAccordionController() {
       }
     };
 
-    // Done buttons close everything (you could also close only the active)
-    const onDoneClick = () => collapseAll();
+    // Done buttons -> hide UI but DO NOT disable active fields
+    const onDoneClick = () => hideUIKeepActive();
+
+    // Safety: ensure active fields are enabled right before submit
+    const form = section.closest("form");
+    const onFormSubmit = () => {
+      const openKey = section.getAttribute("data-acc-open");
+      if (openKey === "general") {
+        setFieldsDisabled(generalDetails, false);
+        setFieldsDisabled(strokeDetails, true);
+      } else if (openKey === "stroke") {
+        setFieldsDisabled(strokeDetails, false);
+        setFieldsDisabled(generalDetails, true);
+      }
+    };
+    form?.addEventListener("submit", onFormSubmit);
 
     // Wire up
     stroke?.addEventListener("change", onCategoryChange);
@@ -169,6 +223,7 @@ export default function UserTypeAccordionController() {
       strokeLabel?.removeEventListener("click", onStrokeLabelClick);
       generalLabel?.removeEventListener("click", onGeneralLabelClick);
       doneBtns.forEach((btn) => btn.removeEventListener("click", onDoneClick));
+      form?.removeEventListener("submit", onFormSubmit);
     };
   }, []);
 
