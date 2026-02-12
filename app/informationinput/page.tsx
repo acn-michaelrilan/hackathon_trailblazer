@@ -15,16 +15,19 @@ import {
 } from "../../types";
 import { createClient } from "@/backend/server";
 
-const supabase = await createClient();
 
-const {
-  data: { user },
-} = await supabase.auth.getUser();
-if (!user) {
-  redirect("/login");
-}
 
 export default async function InformationInput() {
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  
+  if (!user) {
+    redirect("/login");
+  }
+
   async function save(formData: FormData) {
     "use server";
 
@@ -363,15 +366,7 @@ export default async function InformationInput() {
 
     console.log(JSON.stringify(payload, null, 2));
   }
-  const supabase = await createClient();
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    redirect("/login");
-  }
   const userId = user.id;
   console.log(userId);
 
