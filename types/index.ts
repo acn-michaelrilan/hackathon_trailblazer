@@ -209,7 +209,7 @@ export type MedicalSafetyAndRiskFlags = {
     };
     heart_condition: boolean;
     heart_condition_details: string;
-    pacemaker_or_implant: boolean;
+    pacemaker_or_implants: boolean;
     history_of_falls_last_6_months: boolean;
     number_of_falls: number;
     dizziness_or_fainting_episodes: boolean;

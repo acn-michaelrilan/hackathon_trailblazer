@@ -18,14 +18,12 @@ export default function ExerciseModalContent({
   const handleComplete = async () => {
     try {
       setIsCompleting(true);
-
       // Call secure API endpoint instead of direct Supabase access
       const response = await fetch("/api/exercise-progress", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           sessionExerciseId: activeEx.sessionExerciseId,
-          completedSets: activeEx.sets,
         }),
       });
 
@@ -34,7 +32,6 @@ export default function ExerciseModalContent({
         throw new Error(errorData.error || "Failed to update progress");
       }
 
-      // Call parent callback to refresh data after successful completion
       if (onComplete) onComplete();
     } catch (err) {
       console.error("Error updating exercise:", err);

@@ -1,14 +1,30 @@
 // app/informationinput/page.tsx
 import UserTypeAccordionController from "./UserTypeAccordionController";
 import UserTypeAccordion from "./UserTypeAccordion";
+import { redirect } from "next/navigation";
 import {
   BasicProfile,
   UserTypeAndRisk,
   MedicalProfile,
   FunctionalAbility,
+  MedicalSafetyAndRiskFlags,
+  CurrentActivityLevel,
+  ExercisePreferencesAndTolerance,
+  ExerciseEnvironment,
+  AdditionalInformation,
 } from "../../types";
+import { createClient } from "@/backend/server";
 
-export default function informationinput() {
+const supabase = await createClient();
+
+const {
+  data: { user },
+} = await supabase.auth.getUser();
+if (!user) {
+  redirect("/login");
+}
+
+export default async function InformationInput() {
   async function save(formData: FormData) {
     "use server";
 
@@ -125,16 +141,241 @@ export default function informationinput() {
       },
     };
 
+    const sys = formData.get("bp_sys")?.toString().trim() ?? "";
+    const dia = formData.get("bp_dia")?.toString().trim() ?? "";
+    const blood_pressure = sys && dia ? `${sys}/${dia}` : "";
+
+    const yesNo = (k: string) => formData.get(k)?.toString() === "yes";
+    const toNum = (v: FormDataEntryValue | null, fallback = 0) => {
+      if (v == null) return fallback;
+      const n = Number(v);
+      return Number.isFinite(n) ? n : fallback;
+    };
+
+    const medical_safety_and_risk_flags: MedicalSafetyAndRiskFlags = {
+      medical_safety_and_risk_flags: {
+        vitals: {
+          blood_pressure,
+          resting_heart_rate: toNum(formData.get("resting_heart_rate"), 0),
+        },
+        heart_condition: yesNo("heart_condition"),
+        heart_condition_details:
+          formData.get("heart_condition_details")?.toString() ?? "",
+        pacemaker_or_implants: yesNo("pacemaker_or_implant"),
+        history_of_falls_last_6_months: yesNo("history_of_falls_last_6_months"),
+        number_of_falls: toNum(formData.get("number_of_falls"), 0),
+        dizziness_or_fainting_episodes: yesNo("dizziness_or_fainting_episodes"),
+        dizziness_details: formData.get("dizziness_details")?.toString() ?? "",
+        pain_scale: toNum(formData.get("pain_scale"), 0),
+        pain_location: formData.get("pain_location")?.toString() ?? "",
+      },
+    };
+
+    // --- Current Activity Level ---
+    const toStr = (v: FormDataEntryValue | null, fallback = "") =>
+      (v?.toString() ?? "").trim() || fallback;
+
+    // Secondary goal checkboxes → array
+    const secGoalChecked = (name: string) =>
+      formData.get(name)?.toString() === "on";
+    const pickFromMap = (map: Record<string, string>) =>
+      Object.entries(map)
+        .filter(([name]) => secGoalChecked(name))
+        .map(([, value]) => value);
+
+    // Maps that reflect your CurrentActivityLevel.tsx names/values
+    const secondaryGoalsMap: Record<string, string> = {
+      goal_improve_mobility: "improve_mobility",
+      goal_improve_balance: "improve_balance",
+      goal_increase_endurance: "increase_endurance",
+      goal_move_independently: "move_independently",
+    };
+
+    const targetsMap: Record<string, string> = {
+      target_climb_stairs: "climb_stairs",
+      target_get_in_out_bed: "get_in_out_bed",
+      target_stand_without_hands: "stand_without_hands",
+      target_use_hand_daily_tasks: "use_hand_daily_tasks",
+      target_walk_longer: "walk_longer",
+      target_regain_balance_turning: "regain_balance_turning",
+      target_return_to_driving: "return_to_driving",
+      target_return_to_work_or_school: "return_to_work_or_school",
+      target_carry_groceries: "carry_groceries",
+      target_improve_coordination: "improve_coordination",
+      target_walk_uneven_surfaces: "walk_uneven_surfaces",
+      target_reduce_spasticity: "reduce_spasticity",
+      target_improve_grip: "improve_grip",
+      target_bathe_independently: "bathe_independently",
+      target_return_to_sports: "return_to_sports",
+    };
+
+    // --- Current Activity Level (conflict-free helpers) ---
+    const actGetStr = (v: FormDataEntryValue | null, fallback = "") =>
+      (v?.toString() ?? "").trim() || fallback;
+
+    const actIsChecked = (name: string) => formData.get(name) != null; // presence-based
+
+    const actPickFromMap = (map: Record<string, string>) =>
+      Object.entries(map)
+        .filter(([name]) => actIsChecked(name))
+        .map(([, value]) => value);
+
+    // Primary goals (radio) — only the 4 options present in your updated UI
+    const actAllowedPrimary = new Set([
+      "reduce_pain",
+      "restore_strength",
+      "recover_after_surgery",
+      "prevent_decline",
+      //general goals
+      "weight_management",
+      "increase_strength",
+      "cardio_fitness",
+      "flexibility_mobility",
+    ]);
+    const actPrimaryRaw = actGetStr(formData.get("primary_goal"), "");
+    const actPrimary = actAllowedPrimary.has(actPrimaryRaw)
+      ? actPrimaryRaw
+      : "";
+
+    // Secondary goals (checkboxes) — from your updated UI
+    const actSecondaryGoalsMap: Record<string, string> = {
+      goal_improve_mobility: "improve_mobility",
+      goal_improve_balance: "improve_balance",
+      goal_increase_endurance: "increase_endurance",
+      goal_move_independently: "move_independently",
+      //general sec goals
+
+      goal_increase_steps: "increase_steps",
+      goal_improve_posture: "improve_posture",
+      goal_reduce_stress: "reduce_stress",
+      goal_gain_energy: "gain_energy",
+      goal_improve_endurance: "improve_endurance",
+      goal_general_toning: "general_toning",
+    };
+    const actSecondaryGoals = actPickFromMap(actSecondaryGoalsMap);
+
+    // Specific targets (checkboxes)
+    const actTargetsMap: Record<string, string> = {
+      target_climb_stairs: "climb_stairs",
+      target_get_in_out_bed: "get_in_out_bed",
+      target_stand_without_hands: "stand_without_hands",
+      target_use_hand_daily_tasks: "use_hand_daily_tasks",
+      target_walk_longer: "walk_longer",
+      target_regain_balance_turning: "regain_balance_turning",
+      target_return_to_driving: "return_to_driving",
+      target_return_to_work_or_school: "return_to_work_or_school",
+      target_carry_groceries: "carry_groceries",
+      target_improve_coordination: "improve_coordination",
+      target_walk_uneven_surfaces: "walk_uneven_surfaces",
+      target_reduce_spasticity: "reduce_spasticity",
+      target_improve_grip: "improve_grip",
+      target_bathe_independently: "bathe_independently",
+      target_return_to_sports: "return_to_sports",
+      //general targets
+
+      target_run_5k: "run_5k",
+      target_do_10k_steps: "ten_k_steps_per_day",
+      target_increase_vo2: "increase_cardio_capacity",
+      target_full_body_strength: "full_body_strength",
+      target_mobility_flow: "daily_mobility_flow",
+      target_event_ready: "event_training",
+    };
+
+    const current_activity_level: CurrentActivityLevel = {
+      current_activity_level: actGetStr(
+        formData.get("current_activity_level"),
+        "",
+      ),
+      activity_details: actGetStr(formData.get("activity_details"), ""),
+      goals: {
+        primary_goal: actPrimary,
+        secondary_goals: actSecondaryGoals,
+      },
+      specific_targets: actPickFromMap(actTargetsMap),
+    };
+
+    // --- Exercise Preferences & Tolerance ---
+    const exercise_preferences_and_tolerance: ExercisePreferencesAndTolerance =
+      {
+        exercise_preferences_and_tolerance: {
+          preferred_session_length: toStr(
+            formData.get("preferred_session_length"),
+            "",
+          ),
+          preferred_intensity: toStr(formData.get("preferred_intensity"), ""),
+          rest_tolerance: toStr(formData.get("rest_tolerance"), ""),
+          rest_frequency: toStr(formData.get("rest_frequency"), ""), // value from hidden/computed field
+          time_of_day_preference: toStr(
+            formData.get("time_of_day_preference"),
+            "",
+          ),
+          fatigue_concerns: toStr(formData.get("fatigue_concerns"), ""),
+        },
+      };
+
+    // --- Exercise Environment ---
+    const equipment_available_raw = formData.getAll("equipment_available");
+    const exercise_environment: ExerciseEnvironment = {
+      exercise_environment: {
+        location: toStr(formData.get("location"), ""),
+        equipment_available: equipment_available_raw
+          .map((v) => v?.toString().trim())
+          .filter(Boolean) as string[],
+        support_person_available: yesNo("support_person_available"), // expects radio values "yes" / "no"
+        support_person_details: toStr(
+          formData.get("support_person_details"),
+          "",
+        ),
+      },
+    };
+
+    // --- Additional Information ---
+    // Note: Your type expects `timestamp` INSIDE `additional_information`
+    const medications_raw = formData.getAll("medications");
+    const submittedTimestamp = toStr(formData.get("timestamp"), "");
+    const additional_information: AdditionalInformation = {
+      additional_information: {
+        medications: medications_raw
+          .map((v) => v?.toString().trim())
+          .filter(Boolean) as string[],
+        physical_therapy_history: yesNo("physical_therapy_history"),
+        pt_sessions_completed: toNum(formData.get("pt_sessions_completed"), 0),
+        pt_end_date: toStr(formData.get("pt_end_date"), ""),
+        clearance_for_exercise: yesNo("clearance_for_exercise"),
+        physician_notes: toStr(formData.get("physician_notes"), ""),
+        timestamp: submittedTimestamp || new Date().toISOString(),
+      },
+    };
+
     // Compose final JSON (avoid double nesting with spread)
     const payload = {
       ...basic_profile,
       ...user_type_and_risk,
       ...medical_profile,
       ...functional_ability,
+      ...medical_safety_and_risk_flags,
+      ...current_activity_level,
+      ...exercise_preferences_and_tolerance,
+      ...exercise_environment,
+      ...additional_information,
+      submittedTimestamp,
     };
 
     console.log(JSON.stringify(payload, null, 2));
+
+    redirect("/overview");
   }
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect("/login");
+  }
+  const userId = user.id;
+  console.log(userId);
 
   // ====== Component-scoped styles (no global CSS) ======
   const DESKTOP_BP = 1280;
@@ -237,9 +478,20 @@ export default function informationinput() {
     background: #ffffff; color: #111827; border: 1px solid #e5e7eb; border-radius: 12px;
     box-shadow: 0 8px 24px rgba(0,0,0,0.08); overflow: clip;
   }
-  .usr-wrap details[data-acc] { display: none; }
-  .usr-wrap:has(#stroke_recovery_neurological:checked) details[data-acc] { display: block; }
-  .usr-wrap[data-acc-collapsed="true"] details[data-acc] { display: none !important; }
+  
+  /* Hide all accordions by default */
+.usr-wrap details[data-acc] { display: none; }
+
+/* Show based on which one is open (set by JS) */
+.usr-wrap[data-acc-open="stroke"] details[data-acc="stroke"] { display: block; }
+.usr-wrap[data-acc-open="general"] details[data-acc="general"] { display: block; }
+
+/* Collapsed state overrides visibility */
+.usr-wrap[data-acc-collapsed="true"] details[data-acc] { display: none !important; }
+
+/* NEW: if UI is set to hidden, hide accordions even if data-acc-open is set */
+.usr-wrap[data-acc-ui="hidden"] details[data-acc] { display: none !important; }
+
 
   .usr-wrap .acc-summary {
     list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px;
@@ -294,6 +546,8 @@ export default function informationinput() {
                   type="number"
                   placeholder="enter age"
                   required
+                  min={1}
+                  max={98}
                   style={{ width: "100%" }}
                 />
               </div>
