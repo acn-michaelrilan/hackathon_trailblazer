@@ -15,16 +15,19 @@ import {
 } from "../../types";
 import { createClient } from "@/backend/server";
 
-const supabase = await createClient();
 
-const {
-  data: { user },
-} = await supabase.auth.getUser();
-if (!user) {
-  redirect("/login");
-}
 
 export default async function InformationInput() {
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  
+  if (!user) {
+    redirect("/login");
+  }
+
   async function save(formData: FormData) {
     "use server";
 
@@ -365,15 +368,7 @@ export default async function InformationInput() {
 
     redirect("/overview");
   }
-  const supabase = await createClient();
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    redirect("/login");
-  }
   const userId = user.id;
   console.log(userId);
 
