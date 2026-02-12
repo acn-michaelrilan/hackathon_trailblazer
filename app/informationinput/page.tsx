@@ -226,6 +226,11 @@ export default async function InformationInput() {
       "restore_strength",
       "recover_after_surgery",
       "prevent_decline",
+      //general goals
+      "weight_management",
+      "increase_strength",
+      "cardio_fitness",
+      "flexibility_mobility",
     ]);
     const actPrimaryRaw = actGetStr(formData.get("primary_goal"), "");
     const actPrimary = actAllowedPrimary.has(actPrimaryRaw)
@@ -238,6 +243,14 @@ export default async function InformationInput() {
       goal_improve_balance: "improve_balance",
       goal_increase_endurance: "increase_endurance",
       goal_move_independently: "move_independently",
+      //general sec goals
+
+      goal_increase_steps: "increase_steps",
+      goal_improve_posture: "improve_posture",
+      goal_reduce_stress: "reduce_stress",
+      goal_gain_energy: "gain_energy",
+      goal_improve_endurance: "improve_endurance",
+      goal_general_toning: "general_toning",
     };
     const actSecondaryGoals = actPickFromMap(actSecondaryGoalsMap);
 
@@ -258,6 +271,14 @@ export default async function InformationInput() {
       target_improve_grip: "improve_grip",
       target_bathe_independently: "bathe_independently",
       target_return_to_sports: "return_to_sports",
+      //general targets
+
+      target_run_5k: "run_5k",
+      target_do_10k_steps: "ten_k_steps_per_day",
+      target_increase_vo2: "increase_cardio_capacity",
+      target_full_body_strength: "full_body_strength",
+      target_mobility_flow: "daily_mobility_flow",
+      target_event_ready: "event_training",
     };
 
     const current_activity_level: CurrentActivityLevel = {
@@ -455,9 +476,20 @@ export default async function InformationInput() {
     background: #ffffff; color: #111827; border: 1px solid #e5e7eb; border-radius: 12px;
     box-shadow: 0 8px 24px rgba(0,0,0,0.08); overflow: clip;
   }
-  .usr-wrap details[data-acc] { display: none; }
-  .usr-wrap:has(#stroke_recovery_neurological:checked) details[data-acc] { display: block; }
-  .usr-wrap[data-acc-collapsed="true"] details[data-acc] { display: none !important; }
+  
+  /* Hide all accordions by default */
+.usr-wrap details[data-acc] { display: none; }
+
+/* Show based on which one is open (set by JS) */
+.usr-wrap[data-acc-open="stroke"] details[data-acc="stroke"] { display: block; }
+.usr-wrap[data-acc-open="general"] details[data-acc="general"] { display: block; }
+
+/* Collapsed state overrides visibility */
+.usr-wrap[data-acc-collapsed="true"] details[data-acc] { display: none !important; }
+
+/* NEW: if UI is set to hidden, hide accordions even if data-acc-open is set */
+.usr-wrap[data-acc-ui="hidden"] details[data-acc] { display: none !important; }
+
 
   .usr-wrap .acc-summary {
     list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px;
