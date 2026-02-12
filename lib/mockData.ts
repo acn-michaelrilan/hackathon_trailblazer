@@ -126,6 +126,7 @@ export const INPUT_MOCK_DATA = {
   functional_ability: {
     mobility_level: "independent_standing",
     walking_ability: "independent_normal_pace",
+    assistive_device: "none",
     upper_limb_function: {
       left_arm: "near_normal",
       right_arm: "near_normal",
@@ -139,10 +140,14 @@ export const INPUT_MOCK_DATA = {
       resting_heart_rate: 58,
     },
     heart_condition: false,
+    heart_condition_details: "none",
     pacemaker_or_implants: false,
     history_of_falls_last_6_months: false,
+    number_of_falls: 0,
     dizziness_or_fainting_episodes: false,
+    dizziness_details: "none",
     pain_scale: 0,
+    pain_location: "none",
   },
 
   current_activity_level: "active",
@@ -153,17 +158,19 @@ export const INPUT_MOCK_DATA = {
   goals: {
     primary_goal: "increase_strength",
     secondary_goals: ["improve_endurance", "general_wellness"],
-    specific_targets: [
-      "run a half marathon in 6 months",
-      "increase core strength",
-      "maintain flexibility",
-    ],
   },
+
+  specific_targets: [
+    "run a half marathon in 6 months",
+    "increase core strength",
+    "maintain flexibility",
+  ],
 
   exercise_preferences_and_tolerance: {
     preferred_session_length: "30_plus_min",
     preferred_intensity: "moderate",
     rest_tolerance: "normal",
+    rest_frequency: "normal",
     time_of_day_preference: "early_morning",
     fatigue_concerns: "none",
   },
@@ -176,14 +183,16 @@ export const INPUT_MOCK_DATA = {
       "balance_aids_wall",
     ],
     support_person_available: false,
+    support_person_details: "none",
   },
 
   additional_information: {
     medications: [],
     physical_therapy_history: false,
+    pt_sessions_completed: 0,
+    pt_end_date: "",
     clearance_for_exercise: true,
     physician_notes: "annual checkup - all clear",
+    timestamp: "2026-02-02T10:30:00Z",
   },
-
-  timestamp: "2026-02-02T10:30:00Z",
 };

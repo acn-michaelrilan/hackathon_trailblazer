@@ -1,8 +1,18 @@
 import { exerciseService } from "@/backend/llm/service";
 import { INPUT_MOCK_DATA } from "@/lib/mockData";
 
-async function handleGenerate() {
-  // This will automatically choose the right API based on the mock data
-  const plan = await exerciseService.generatePlan(INPUT_MOCK_DATA);
-  console.log("New Plan ID:", plan.exercise_plan.plan_info.plan_id);
+export async function POST(request: Request) {
+  try {
+    // Use mock data as the default input for generating the exercise plan
+    const plan = await exerciseService.generatePlan(INPUT_MOCK_DATA);
+    console.log("New Plan ID:", plan.exercise_plan.plan_info.plan_id);
+
+    return Response.json(plan, { status: 200 });
+  } catch (error) {
+    console.error("Error generating plan:", error);
+    return Response.json(
+      { error: "Failed to generate exercise plan" },
+      { status: 500 },
+    );
+  }
 }
