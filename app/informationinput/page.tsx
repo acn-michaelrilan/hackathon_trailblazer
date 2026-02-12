@@ -362,6 +362,8 @@ export default async function InformationInput() {
     };
 
     console.log(JSON.stringify(payload, null, 2));
+
+    redirect("/overview");
   }
   const supabase = await createClient();
 
