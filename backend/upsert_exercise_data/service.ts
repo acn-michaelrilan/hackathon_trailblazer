@@ -1,4 +1,6 @@
-{
+import { createClient } from "@/backend/server";
+
+const payload = {
   "profile":{
     "user_id": "1ba7a4fa-daab-4f1a-b4bf-416c2b0dda64"
   },
@@ -1078,4 +1080,10 @@
       "next_session_date": "2026-02-03"
     }
   }
+}
+
+export async function upsertExerciseData(userId: string, exerciseData: any) {
+  const supabase = await createClient();
+  
+
 }
