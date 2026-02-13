@@ -3,11 +3,9 @@
 
 export default function GeneralCurrentActivityLevel() {
   const sectionClass = "msr-section";
-  const groupClass = "msr-group";
 
   const styles = `
     .${sectionClass} .hint { color: #6b7280; font-size: 12px; margin-top: 4px; }
-    .${groupClass} label + label { margin-left: 12px; }
   `;
 
   return (
@@ -47,7 +45,6 @@ export default function GeneralCurrentActivityLevel() {
         Choose your primary goal:
       </p>
       <div
-        className={groupClass}
         style={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
@@ -85,7 +82,6 @@ export default function GeneralCurrentActivityLevel() {
         Choose secondary goals (optional):
       </p>
       <div
-        className={groupClass}
         style={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
@@ -150,7 +146,6 @@ export default function GeneralCurrentActivityLevel() {
       </p>
 
       <div
-        className={groupClass}
         style={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
@@ -159,7 +154,7 @@ export default function GeneralCurrentActivityLevel() {
         }}
       >
         <label>
-          <input type="checkbox" name="target_run_5k" value="run_5k" /> Run 5k
+          <input type="checkbox" name="target_run_5k" value="run_5k" /> Run 5km
         </label>
 
         <label>
