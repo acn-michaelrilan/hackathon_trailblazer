@@ -102,88 +102,221 @@ export default function GeneralFitnessAccordion() {
 
         <hr style={{ margin: "16px 0" }} />
 
-        {/* Reuse the same sections */}
+        <h3 style={{ color: "#1f3fae" }}>Functional Ability</h3>
+
+        {/* Current Mobility Level */}
+        <p style={{ marginTop: 8, marginBottom: 4 }}>Current Mobility Level</p>
         <section className="modal-section">
-          <h3 style={{ color: "#1f3fae" }}>Functional Ability</h3>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: 8,
+            }}
+          >
+            <label
+              style={{
+                display: "grid",
+                gridTemplateColumns: "20px 1fr",
+                columnGap: 10,
+                alignItems: "start",
+              }}
+            >
+              <input
+                type="radio"
+                name="mobility_level"
+                value="fully_independent"
+              />
+              <span>Fully Independent</span>
+            </label>
 
-          <p>Current Mobility Level</p>
-          <label>
-            <input
-              type="radio"
-              name="mobility_level"
-              value="fully_independent"
-            />{" "}
-            Fully Independent
-          </label>
-          <label style={{ marginLeft: 12 }}>
-            <input
-              type="radio"
-              name="mobility_level"
-              value="independent_with_mild_difficulty"
-            />{" "}
-            Independent with mild difficulty
-          </label>
-          <label style={{ marginLeft: 12 }}>
-            <input
-              type="radio"
-              name="mobility_level"
-              value="requires_assistive_device"
-            />{" "}
-            Requires assistive device (e.g., cane, walker)
-          </label>
-          <label style={{ marginLeft: 12 }}>
-            <input
-              type="radio"
-              name="mobility_level"
-              value="requires_physical_assistance"
-            />{" "}
-            Requires physical assistance from another person
-          </label>
-          <label style={{ marginLeft: 12 }}>
-            <input
-              type="radio"
-              name="mobility_level"
-              value="limited_seated_or_bed_bound"
-            />{" "}
-            Limited mobility (primarily seated or bed‑bound)
-          </label>
+            <label
+              style={{
+                display: "grid",
+                gridTemplateColumns: "20px 1fr",
+                columnGap: 10,
+                alignItems: "start",
+              }}
+            >
+              <input
+                type="radio"
+                name="mobility_level"
+                value="independent_with_mild_difficulty"
+              />
+              <span>Independent with mild difficulty</span>
+            </label>
 
-          <p style={{ marginTop: 16 }}>Walking Ability</p>
+            <label
+              style={{
+                display: "grid",
+                gridTemplateColumns: "20px 1fr",
+                columnGap: 10,
+                alignItems: "start",
+              }}
+            >
+              <input
+                type="radio"
+                name="mobility_level"
+                value="requires_assistive_device"
+              />
+              <span>Requires assistive device (e.g., cane, walker)</span>
+            </label>
+
+            <label
+              style={{
+                display: "grid",
+                gridTemplateColumns: "20px 1fr",
+                columnGap: 10,
+                alignItems: "start",
+              }}
+            >
+              <input
+                type="radio"
+                name="mobility_level"
+                value="requires_physical_assistance"
+              />
+              <span>Requires physical assistance from another person</span>
+            </label>
+
+            <label
+              style={{
+                display: "grid",
+                gridTemplateColumns: "20px 1fr",
+                columnGap: 10,
+                alignItems: "start",
+              }}
+            >
+              <input
+                type="radio"
+                name="mobility_level"
+                value="limited_seated_or_bed_bound"
+              />
+              <span>Limited mobility (primarily seated or bed‑bound)</span>
+            </label>
+          </div>
+
+          {/* Walking Ability */}
+          <p style={{ marginTop: 16, marginBottom: 4 }}>Walking Ability</p>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: 8,
+            }}
+          >
+            <label
+              style={{
+                display: "grid",
+                gridTemplateColumns: "20px 1fr",
+                columnGap: 10,
+                alignItems: "start",
+              }}
+            >
+              <input
+                type="radio"
+                name="walking_ability"
+                value="independent_without_limitations"
+              />
+              <span>Walks independently without limitations</span>
+            </label>
+
+            <label
+              style={{
+                display: "grid",
+                gridTemplateColumns: "20px 1fr",
+                columnGap: 10,
+                alignItems: "start",
+              }}
+            >
+              <input
+                type="radio"
+                name="walking_ability"
+                value="independent_with_discomfort"
+              />
+              <span>Walks independently but with occasional discomfort</span>
+            </label>
+
+            <label
+              style={{
+                display: "grid",
+                gridTemplateColumns: "20px 1fr",
+                columnGap: 10,
+                alignItems: "start",
+              }}
+            >
+              <input
+                type="radio"
+                name="walking_ability"
+                value="short_distance_walks_only"
+              />
+              <span>Short‑distance walking only</span>
+            </label>
+
+            <label
+              style={{
+                display: "grid",
+                gridTemplateColumns: "20px 1fr",
+                columnGap: 10,
+                alignItems: "start",
+              }}
+            >
+              <input
+                type="radio"
+                name="walking_ability"
+                value="walks_with_assistive_device"
+              />
+              <span>Walks with assistive device</span>
+            </label>
+
+            <label
+              style={{
+                display: "grid",
+                gridTemplateColumns: "20px 1fr",
+                columnGap: 10,
+                alignItems: "start",
+              }}
+            >
+              <input
+                type="radio"
+                name="walking_ability"
+                value="unable_to_walk"
+              />
+              <span>Unable to walk</span>
+            </label>
+          </div>
+
+          <p style={{ marginTop: 16 }}>Upper Limb Function (Left)</p>
+          <select name="upper_limb_left" style={{ padding: 6 }}>
+            <option value="">Select</option>
+            <option value="normal">Normal</option>
+            <option value="limited">Limited</option>
+            <option value="impaired">Impaired</option>
+          </select>
+
+          <p style={{ marginTop: 12 }}>Upper Limb Function (Right)</p>
+          <select name="upper_limb_right" style={{ padding: 6 }}>
+            <option value="">Select</option>
+            <option value="normal">Normal</option>
+            <option value="limited">Limited</option>
+            <option value="impaired">Impaired</option>
+          </select>
+
+          <p style={{ marginTop: 16 }}>Range of Motion</p>
           <label>
-            <input
-              type="radio"
-              name="walking_ability"
-              value="independent_without_limitations"
-            />{" "}
-            Walks independently without limitations
+            <input type="radio" name="range_of_motion" value="limited" />{" "}
+            Limited
+          </label>
+          <label style={{ marginLeft: 12 }}>
+            <input type="radio" name="range_of_motion" value="moderate" />{" "}
+            Moderate
           </label>
           <label style={{ marginLeft: 12 }}>
             <input
               type="radio"
-              name="walking_ability"
-              value="independent_with_discomfort"
+              name="range_of_motion"
+              value="full_with_caution"
             />{" "}
-            Walks independently but with occasional discomfort
-          </label>
-          <label style={{ marginLeft: 12 }}>
-            <input
-              type="radio"
-              name="walking_ability"
-              value="short_distance_walks_only"
-            />{" "}
-            Short‑distance walking only
-          </label>
-          <label style={{ marginLeft: 12 }}>
-            <input
-              type="radio"
-              name="walking_ability"
-              value="walks_with_assistive_device"
-            />{" "}
-            Walks with assistive device
-          </label>
-          <label style={{ marginLeft: 12 }}>
-            <input type="radio" name="walking_ability" value="unable_to_walk" />{" "}
-            Unable to walk
+            Full (with caution)
           </label>
 
           <p style={{ marginTop: 16 }}>Upper Limb Function (Left)</p>
