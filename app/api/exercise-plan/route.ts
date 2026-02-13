@@ -20,7 +20,9 @@ export async function GET(request: Request) {
     //   return NextResponse.json({ error: "Plan ID required" }, { status: 400 });
     // }
 
-    const data = await getExercisePlanData("EP-2026-SK34-002");
+    // const data = await getExercisePlanData("EP-2026-SK34-002");
+    const data = await getExercisePlanData("EP-2026-JM68-001");
+
 
     if (!data) {
       return NextResponse.json({ error: "Plan not found" }, { status: 404 });

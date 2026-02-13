@@ -132,26 +132,25 @@ export default function UserProfile() {
             </p>
           )}
 
-          <a href="/login" className=" mt-4 w-full text-center rounded-lg border border-gray-200 py-2 text-sm font-semibold text-gray-700 hover:border-[#7BA63F] hover:text-[#7BA63F] transition"
+          <button
+            onClick={handleButtonClick}
+            disabled={!passwordsMatch || !email || loading}
+            className={`w-full rounded-lg py-2.5 text-white font-bold text-sm transition-all active:scale-95 mt-2 flex items-center justify-center
+              ${
+                passwordsMatch && email && !loading
+                  ? "bg-[#7BA63F] hover:bg-[#6a8f35] shadow-md shadow-green-100"
+                  : "bg-gray-200 text-gray-400 cursor-not-allowed"
+              }`}
           >
-            Back to Login
-          </a>
-                  <button
-                    onClick={handleButtonClick}
-                    disabled={!passwordsMatch || !email || loading}
-                    className={`w-full rounded-lg py-2.5 text-white font-bold text-sm transition-all active:scale-95 mt-2 flex items-center justify-center
-                      ${
-                        passwordsMatch && email && !loading
-                          ? "bg-[#7BA63F] hover:bg-[#6a8f35] shadow-md shadow-green-100"
-                          : "bg-gray-200 text-gray-400 cursor-not-allowed"
-                      }`}
-                  >
-                    {loading ? (
-                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    ) : (
-                      "Sign up"
-                    )}
-                </button>
+            {loading ? (
+              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+            ) : (
+              "Sign up"
+            )}
+        </button>
+        <p className="text-s text-gray-600 cursor-pointer">
+          Already Registered? <a href="/login">Click Here</a>
+        </p>
                         
 
         </div>

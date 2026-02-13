@@ -1,23 +1,27 @@
-import { createServerClient } from "@supabase/ssr";
+
+import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
 export async function createClient() {
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
 
   return createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
-        async getAll() {
-          return (await cookieStore).getAll();
+        getAll() {
+          return cookieStore.getAll();
         },
-        setAll(cookiesToSet) {
+        setAll(cookiesToSet: { name: string; value: string; options: CookieOptions }[]) {
           try {
-            cookiesToSet.forEach(async ({ name, value, options }) =>
-              (await cookieStore).set(name, value, options)
-            );
-          } catch {}
+            for (const { name, value, options } of cookiesToSet) {
+              cookieStore.set(name, value, options);
+            }
+          } catch {
+            // If this runs during Server Component render, Next will throw.
+            // Ignore here; persist cookies via middleware/route handler instead.
+          }
         },
       },
     }
@@ -26,6 +30,15 @@ export async function createClient() {
 
 export async function getUserSession() {
   const supabase = await createClient();
-  const { data } = await supabase.auth.getSession();
-  return data.session?.user ?? null;
+
+  const {
+    data: { user },
+    error,
+  } = await supabase.auth.getUser();
+
+  if (error || !user) {
+    return null;
+  }
+
+  return user;
 }

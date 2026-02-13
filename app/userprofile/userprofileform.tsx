@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState, useMemo, useTransition } from "react";
+import { useEffect, useMemo, useState, useTransition } from "react";
 
 interface Account {
   id: string;
@@ -15,20 +15,54 @@ export default function UserProfileForm({
   account,
   userEmail,
   updateFullName,
+  hasExercisePlan,
+  userId,
 }: {
   account: Account;
   userEmail: string | undefined;
   updateFullName: (fullName: string) => Promise<void>;
+  hasExercisePlan: boolean;
+  userId: string;
 }) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
 
   const initialFullName = account?.full_name || "";
   const [fullName, setFullName] = useState(initialFullName);
-  const [memberSince] = useState(
-    account?.member_since?.split("T")[0] || ""
-  );
+
+  const [memberSince] = useState(account?.member_since?.split("T")[0] || "");
   const [accountStatus] = useState(account?.account_status || "");
+
+  // ✅ Use local state so UI can change when API confirms plan exists
+  const [hasPlan, setHasPlan] = useState<boolean>(hasExercisePlan);
+  const [checkingPlan, setCheckingPlan] = useState<boolean>(!hasExercisePlan);
+
+  // ✅ If initial server says false, re-check using API (200 => enable UI)
+  useEffect(() => {
+    let cancelled = false;
+
+    async function recheckPlan() {
+      if (hasPlan) return;
+
+      setCheckingPlan(true);
+      try {
+        const res = await fetch(`/api/check-plan?user_id=${userId}`, {
+          cache: "no-store",
+        });
+
+        if (!cancelled && res.ok) {
+          setHasPlan(true);
+        }
+      } finally {
+        if (!cancelled) setCheckingPlan(false);
+      }
+    }
+
+    recheckPlan();
+    return () => {
+      cancelled = true;
+    };
+  }, [hasPlan, userId]);
 
   const isChanged = useMemo(() => {
     return fullName.trim() !== initialFullName.trim();
@@ -38,15 +72,16 @@ export default function UserProfileForm({
     const confirmed = window.confirm(
       "Are you sure you want to update your full name?"
     );
-
     if (!confirmed) return;
 
     startTransition(async () => {
       await updateFullName(fullName);
       alert("Profile updated successfully!");
-      router.refresh(); // 🔥 refresh server data
+      router.refresh(); // refresh server data
     });
   };
+
+  const inputDisabled = !hasPlan || checkingPlan;
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen px-4 bg-gray-50">
@@ -56,22 +91,36 @@ export default function UserProfileForm({
 
       <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-xl">
         <div className="space-y-4">
-
           <div>
             <label className="block text-sm font-medium mb-1">Name</label>
             <input
               type="text"
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
-              className="w-full rounded-md bg-gray-100 px-4 py-2.5"
+              disabled={inputDisabled}
+              className={`w-full rounded-md px-4 py-2.5 ${
+                inputDisabled
+                  ? "bg-gray-200 cursor-not-allowed"
+                  : "bg-gray-100"
+              }`}
             />
+            {!hasPlan && !checkingPlan && (
+              <p className="text-xs text-gray-500 mt-1">
+                Full name editing is enabled after an exercise plan is created.
+              </p>
+            )}
+            {checkingPlan && (
+              <p className="text-xs text-gray-500 mt-1">
+                Checking exercise plan...
+              </p>
+            )}
           </div>
 
           <div>
             <label className="block text-sm font-medium mb-1">Email</label>
             <input
               type="email"
-              value={userEmail}
+              value={userEmail || ""}
               disabled
               className="w-full rounded-md bg-gray-200 px-4 py-2.5"
             />
@@ -101,7 +150,7 @@ export default function UserProfileForm({
           </div>
         </div>
 
-        {isChanged && (
+        {isChanged && hasPlan && (
           <button
             onClick={handleUpdate}
             disabled={isPending}
@@ -112,10 +161,10 @@ export default function UserProfileForm({
         )}
 
         <button
-          onClick={() => router.push("/overview")}
+          onClick={() => router.push(hasPlan ? "/overview" : "/informationinput")}
           className="w-full rounded-xl bg-red-500 py-3 text-white font-semibold mt-3 shadow-md hover:bg-red-600 transition"
         >
-          Back to Overview
+          {hasPlan ? "Back to Overview" : "Back to Information Input Page"}
         </button>
       </div>
     </div>
