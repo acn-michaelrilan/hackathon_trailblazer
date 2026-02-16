@@ -113,6 +113,7 @@
 
 "use client";
 import { insertFunctionalAbility } from "@/backend/informationinput/service";
+import { INPUT_MOCK_DATA } from "@/lib/mockData";
 import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -137,15 +138,9 @@ export default function Homepage() {
 
   /* 🔹 TEST INSERT HANDLER */
   const handleTestInsert = async () => {
-    if (!name) {
-      alert("⚠️ Please enter a name first.");
-      return;
-    }
-
-    setIsInserting(true);
 
     try {
-      const result = await insertFunctionalAbility(name); // ✅ pass dynamic value
+      const result = await insertFunctionalAbility(INPUT_MOCK_DATA, "0edd3fab-9eaf-4663-b9ab-150912f2182a" ); // ✅ pass dynamic value
 
       if (result?.success === false) {
         alert("❌ Insert failed: " + result.error);
