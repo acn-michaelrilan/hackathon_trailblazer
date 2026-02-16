@@ -543,89 +543,115 @@ export default function StrokeAccordion() {
         <section className="modal-section">
           <h3 style={{ color: "#1f3fae" }}>Functional Ability</h3>
 
-          <p>Current Mobility Level</p>
-          <label>
-            <input type="radio" name="mobility_level" value="seated_only" />{" "}
-            Seated only
-          </label>
-          <label style={{ marginLeft: 12 }}>
-            <input
-              type="radio"
-              name="mobility_level"
-              value="assisted_standing"
-            />{" "}
-            Assisted standing
-          </label>
-          <label style={{ marginLeft: 12 }}>
-            <input
-              type="radio"
-              name="mobility_level"
-              value="independent_standing"
-            />{" "}
-            Independent standing
-          </label>
+          {/* Row 1: Mobility + Walking + ROM */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+              gap: 12,
+              alignItems: "end",
+              marginTop: 8,
+            }}
+          >
+            <div>
+              <p style={{ margin: 0, marginBottom: 6 }}>
+                Current Mobility Level
+              </p>
+              <select
+                name="mobility_level"
+                style={{ padding: 6, width: "100%" }}
+              >
+                <option value="">Select</option>
+                <option value="seated_only">Seated only</option>
+                <option value="assisted_standing">Assisted standing</option>
+                <option value="independent_standing">
+                  Independent standing
+                </option>
+              </select>
+            </div>
 
-          <p style={{ marginTop: 16 }}>Walking Ability</p>
-          <label>
-            <input type="radio" name="walking_ability" value="cannot_walk" />{" "}
-            Cannot walk
-          </label>
-          <label style={{ marginLeft: 12 }}>
-            <input
-              type="radio"
-              name="walking_ability"
-              value="with_cane_walker"
-            />{" "}
-            With cane / walker
-          </label>
-          <label style={{ marginLeft: 12 }}>
-            <input type="radio" name="walking_ability" value="independent" />{" "}
-            Independent
-          </label>
+            <div>
+              <p style={{ margin: 0, marginBottom: 6 }}>Walking Ability</p>
+              <select
+                name="walking_ability"
+                style={{ padding: 6, width: "100%" }}
+              >
+                <option value="">Select</option>
+                <option value="cannot_walk">Cannot walk</option>
+                <option value="with_cane_walker">With cane / walker</option>
+                <option value="independent">Independent</option>
+              </select>
+            </div>
 
-          <p style={{ marginTop: 16 }}>Range of Motion</p>
-          <label>
-            <input type="radio" name="range_of_motion" value="limited" />{" "}
-            Limited
-          </label>
-          <label style={{ marginLeft: 12 }}>
-            <input type="radio" name="range_of_motion" value="moderate" />{" "}
-            Moderate
-          </label>
-          <label style={{ marginLeft: 12 }}>
-            <input
-              type="radio"
-              name="range_of_motion"
-              value="full_with_caution"
-            />{" "}
-            Full (with caution)
-          </label>
+            <div>
+              <p style={{ margin: 0, marginBottom: 6 }}>Range of Motion</p>
+              <select
+                name="range_of_motion"
+                style={{ padding: 6, width: "100%" }}
+              >
+                <option value="">Select</option>
+                <option value="limited">Limited</option>
+                <option value="moderate">Moderate</option>
+                <option value="full_with_caution">Full (with caution)</option>
+              </select>
+            </div>
+          </div>
 
-          <p style={{ marginTop: 16 }}>Assistive Device</p>
-          <select name="assistive_device" style={{ padding: 6 }}>
-            <option value="">Select</option>
-            <option value="none">None</option>
-            <option value="cane">Cane</option>
-            <option value="walker">Walker</option>
-            <option value="crutches">Crutches</option>
-            <option value="wheelchair">Wheelchair</option>
-          </select>
+          {/* Row 2: Assistive Device + Upper Limb Left + Upper Limb Right */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+              gap: 12,
+              alignItems: "end",
+              marginTop: 16,
+            }}
+          >
+            <div>
+              <p style={{ margin: 0, marginBottom: 6 }}>
+                Upper Limb Function (Left)
+              </p>
+              <select
+                name="upper_limb_left"
+                style={{ padding: 6, width: "100%" }}
+              >
+                <option value="">Select</option>
+                <option value="normal">Normal</option>
+                <option value="limited">Limited</option>
+                <option value="impaired">Impaired</option>
+              </select>
+            </div>
 
-          <p style={{ marginTop: 16 }}>Upper Limb Function (Left)</p>
-          <select name="upper_limb_left" style={{ padding: 6 }}>
-            <option value="">Select</option>
-            <option value="normal">Normal</option>
-            <option value="limited">Limited</option>
-            <option value="impaired">Impaired</option>
-          </select>
+            <div>
+              <p style={{ margin: 0, marginBottom: 6 }}>
+                Upper Limb Function (Right)
+              </p>
+              <select
+                name="upper_limb_right"
+                style={{ padding: 6, width: "100%" }}
+              >
+                <option value="">Select</option>
+                <option value="normal">Normal</option>
+                <option value="limited">Limited</option>
+                <option value="impaired">Impaired</option>
+              </select>
+            </div>
 
-          <p style={{ marginTop: 12 }}>Upper Limb Function (Right)</p>
-          <select name="upper_limb_right" style={{ padding: 6 }}>
-            <option value="">Select</option>
-            <option value="normal">Normal</option>
-            <option value="limited">Limited</option>
-            <option value="impaired">Impaired</option>
-          </select>
+            <div>
+              <p style={{ margin: 0, marginBottom: 6 }}>Assistive Device</p>
+              <select
+                name="assistive_device"
+                style={{ padding: 6, width: "100%" }}
+              >
+                <option value="">Select</option>
+                <option value="none">None</option>
+                <option value="cane">Cane</option>
+                <option value="walker">Walker</option>
+                <option value="crutches">Crutches</option>
+                <option value="wheelchair">Wheelchair</option>
+              </select>
+            </div>
+          </div>
         </section>
 
         <hr style={{ margin: "16px 0" }} />

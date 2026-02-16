@@ -3,17 +3,6 @@ import UserTypeAccordionController from "./UserTypeAccordionController";
 import UserTypeAccordion from "./UserTypeAccordion";
 import TestAIButton from "./SendPromptToAIButton";
 import { redirect } from "next/navigation";
-import {
-  BasicProfile,
-  UserTypeAndRisk,
-  MedicalProfile,
-  FunctionalAbility,
-  MedicalSafetyAndRiskFlags,
-  CurrentActivityLevel,
-  ExercisePreferencesAndTolerance,
-  ExerciseEnvironment,
-  AdditionalInformation,
-} from "../../types";
 import { createClient } from "@/backend/server";
 import { buildPayload } from "./payloadBuilder";
 
@@ -218,7 +207,9 @@ export default async function InformationInput() {
 
               {/* Sex */}
               <div className="field">
-                <label style={{ whiteSpace: "nowrap" }}>Sex</label>
+                <label style={{ whiteSpace: "nowrap" }}>
+                  Sex <span style={{ color: "red" }}>*</span>{" "}
+                </label>
                 <div className="inline-options">
                   <label className="inline-radio">
                     <input type="radio" name="sex" value="male" required />
@@ -236,29 +227,37 @@ export default async function InformationInput() {
 
               {/* Height */}
               <div className="field">
-                <label>Height</label>
+                <label>
+                  Height <span style={{ color: "red" }}>*</span>
+                </label>
                 <input
                   name="height"
                   type="number"
-                  placeholder="enter height in cm"
+                  placeholder="Enter height in cm"
                   style={{ width: "100%" }}
+                  required
                 />
               </div>
 
               {/* Weight */}
               <div className="field">
-                <label>Weight</label>
+                <label>
+                  Weight <span style={{ color: "red" }}>*</span>
+                </label>
                 <input
                   name="weight"
                   type="number"
-                  placeholder="enter weight in kg"
+                  placeholder="Enter weight in kg"
                   style={{ width: "100%" }}
+                  required
                 />
               </div>
 
               {/* Dominant Side */}
               <div>
-                <label style={{ whiteSpace: "nowrap" }}>Dominant Side</label>
+                <label style={{ whiteSpace: "nowrap" }}>
+                  Dominant Side <span style={{ color: "red" }}>*</span>
+                </label>
 
                 <div className="choice-grid" style={{ marginTop: 1 }}>
                   <div style={{ position: "relative" }}>
