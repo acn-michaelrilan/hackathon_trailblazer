@@ -285,22 +285,6 @@ export default function GeneralFitnessAccordion() {
             </label>
           </div>
 
-          <p style={{ marginTop: 16 }}>Upper Limb Function (Left)</p>
-          <select name="upper_limb_left" style={{ padding: 6 }}>
-            <option value="">Select</option>
-            <option value="normal">Normal</option>
-            <option value="limited">Limited</option>
-            <option value="impaired">Impaired</option>
-          </select>
-
-          <p style={{ marginTop: 12 }}>Upper Limb Function (Right)</p>
-          <select name="upper_limb_right" style={{ padding: 6 }}>
-            <option value="">Select</option>
-            <option value="normal">Normal</option>
-            <option value="limited">Limited</option>
-            <option value="impaired">Impaired</option>
-          </select>
-
           <p style={{ marginTop: 16 }}>Range of Motion</p>
           <label>
             <input type="radio" name="range_of_motion" value="limited" />{" "}
@@ -334,24 +318,6 @@ export default function GeneralFitnessAccordion() {
             <option value="limited">Limited</option>
             <option value="impaired">Impaired</option>
           </select>
-
-          <p style={{ marginTop: 16 }}>Range of Motion</p>
-          <label>
-            <input type="radio" name="range_of_motion" value="limited" />{" "}
-            Limited
-          </label>
-          <label style={{ marginLeft: 12 }}>
-            <input type="radio" name="range_of_motion" value="moderate" />{" "}
-            Moderate
-          </label>
-          <label style={{ marginLeft: 12 }}>
-            <input
-              type="radio"
-              name="range_of_motion"
-              value="full_with_caution"
-            />{" "}
-            Full (with caution)
-          </label>
         </section>
 
         <hr style={{ margin: "16px 0" }} />
