@@ -3,8 +3,11 @@ import { INPUT_MOCK_DATA } from "@/lib/mockData";
 
 export async function POST(request: Request) {
   try {
+
+     const { data } = await request.json();
     // Use mock data as the default input for generating the exercise plan
-    const plan = await exerciseService.generatePlan(INPUT_MOCK_DATA);
+    //INPUT_MOCK_DATA
+    const plan = await exerciseService.generatePlan(data);
     console.log("New Plan ID:", plan.exercise_plan.plan_info.plan_id);
     console.log("Generated Plan:", plan);
 

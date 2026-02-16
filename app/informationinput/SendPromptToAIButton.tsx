@@ -1,11 +1,26 @@
 "use client";
 
+import { buildPayload } from "./payloadBuilder";
+
 const sendPromptToAI = async () => {
   try {
+    // Get the form element
+    const form = document.querySelector("form");
+    if (!form) {
+      alert("Form not found");
+      return;
+    }
+
+    // Build payload from form data
+    const formData = new FormData(form);
+    const payload = buildPayload(formData);
+
+    console.log("Sending payload:", payload);
+
     const response = await fetch("/api/generate-plan", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({}), // Empty body is fine since API uses mock data
+      body: JSON.stringify({ data: payload }),
     });
 
     if (!response.ok) {
@@ -39,6 +54,7 @@ export default function SendPromptToAIButton() {
         borderRadius: 8,
         border: "none",
         fontSize: 16,
+        marginLeft: "12px",
       }}
     >
       Test AI
