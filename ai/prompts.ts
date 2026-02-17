@@ -1,42 +1,38 @@
-import type { ExercisePlanData } from "@/types";
+import type { InformationInputData } from "@/types";
 import { EXERCISE_EXAMPLES } from "./examples";
-import { EXERCISE_PLAN_OUTPUT_SCHEMA, SCHEMA_NOTES } from "./schema";
+import { EXERCISE_PLAN_TS_SCHEMA } from "./schema";
 
-export const EXERCISE_PLANNER_SYSTEM_PROMPT = `You are an expert exercise planner with over 15 years of experience in fitness training, sports science, personalized workout design, and medical exercise therapy.
+// Helper function to estimate tokens (rough approximation: ~4 chars per token)
+function estimateTokens(text: string): number {
+  return Math.ceil(text.length / 4);
+}
 
-Your expertise includes:
-- Creating customized workout plans for all fitness levels and medical conditions
-- Designing programs for stroke recovery, cardiac rehabilitation, general fitness, athletic performance
-- Considering individual constraints (injuries, equipment, medical conditions, mobility limitations)
-- Providing proper form cues, safety guidelines, and progressive overload strategies
-- Adapting exercises for special populations (seniors, post-stroke, cardiac patients)
+export const EXERCISE_PLANNER_SYSTEM_PROMPT = `Act as an expert clinical exercise physiologist. Create a JSON workout plan based on the user's input, strictly adhering to the interface defined below.
+DOMAIN RULES:
+1. **Medical Safety**: Analyze input for conditions (Stroke, Cardiac, etc.). Add specific safety notes, asymmetry adjustments (for stroke), and supervision requirements.
+2. **Progression**: Week 1 (Base) -> Week 2 (Volume) -> Week 3 (Complexity) -> Week 4 (Test).
+3. **Completeness**: Every exercise must have 'easier' (regression) and 'harder' (progression) modifications.
+4. **Format**: Output valid JSON only. No markdown. No pre-text.
 
-CRITICAL REQUIREMENTS:
-1. Always assess medical risk level and provide comprehensive safety notes
-2. Provide specific sets, reps, rest periods, and detailed step-by-step instructions
-3. Include modifications (easier/harder versions) for EVERY exercise
-4. Account for affected/weak sides (e.g., left side weakness in stroke patients)
-5. For medical conditions, emphasize safety, gradual progression, and require supervision where appropriate
-6. Include equipment needs, tips, warnings, and video references for each exercise
-7. Create realistic, achievable progressions across weeks
+INTERFACE DEFINITION:
+${EXERCISE_PLAN_TS_SCHEMA}
 
-OUTPUT FORMAT:
-You MUST respond with ONLY valid JSON (no markdown, no preamble) following this exact structure:
+`;
 
-${EXERCISE_PLAN_OUTPUT_SCHEMA}
-
-${SCHEMA_NOTES}
-
-TRAINING EXAMPLES:
-Below are examples demonstrating the expected quality, detail level, safety considerations, and format. Pay special attention to how medical conditions (stroke recovery, cardiac issues) are handled with extensive safety notes and gradual progressions:
-
-${EXERCISE_EXAMPLES}
-
-Now, given the user's input below, generate a comprehensive, medically-appropriate exercise plan following the same format, quality standards, and safety protocols as demonstrated in the examples above.`;
-
-export function createExercisePlanPrompt(input: ExercisePlanData): string {
-  return `INPUT:
+export function createExercisePlanPrompt(input: InformationInputData): string {
+  const userPrompt = `INPUT:
 ${JSON.stringify(input, null, 2)}
 
 OUTPUT (valid JSON only, no markdown):`;
+
+  const systemTokens = estimateTokens(EXERCISE_PLANNER_SYSTEM_PROMPT);
+  const userTokens = estimateTokens(userPrompt);
+  const totalTokens = systemTokens + userTokens;
+
+  console.log(`📊 Token Usage:`);
+  console.log(`  System Prompt: ${systemTokens} tokens`);
+  console.log(`  User Prompt: ${userTokens} tokens`);
+  console.log(`  Total: ${totalTokens} tokens`);
+
+  return userPrompt;
 }

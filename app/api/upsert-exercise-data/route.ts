@@ -1,6 +1,101 @@
-{
+// app/api/upsert-plan/route.ts
+import { NextResponse } from "next/server";
+import { createClient } from "@/backend/server";
+
+export async function POST() {
+  const supabase = await createClient();
+  // const payload = {
+  //   profile: {
+  //     user_id: "808e6e6c-c32a-4a58-952a-a329ec02ad79",
+  //   },
+  //   exercise_plan: {
+  //     plan_info: {
+  //       plan_id: "EP-2026-JM68-001",
+  //       created_date: "2026-02-02",
+  //       total_weeks: 4,
+  //       sessions_per_week: 5,
+  //       difficulty: "beginner",
+  //       primary_goal: "improve_balance",
+  //       safety_notes: [
+  //         "Have spouse present during all standing exercises",
+  //         "Stop immediately if experiencing dizziness - sit down and wait 5 minutes",
+  //         "Use wall or chair for support at all times during balance work",
+  //         "Monitor blood pressure before exercise (should be below 140/90)",
+  //         "Take frequent breaks every 5-7 minutes as needed",
+  //         "Watch for signs of overexertion due to blood thinner medication",
+  //       ],
+  //     },
+  //     weekly_schedule: [
+  //       {
+  //         week: 1,
+  //         focus: "Foundation & Baseline - Building Confidence",
+  //         sessions: [
+  //           {
+  //             day: 1,
+  //             title: "Balance Foundations & Left Side Activation",
+  //             duration_min: 18,
+  //             exercises: [
+  //               {
+  //                 id: "W1D1-EX001",
+  //                 name: "Seated Marching",
+  //                 description:
+  //                   "Gentle warm-up to activate hip flexors and improve leg coordination, with special focus on left leg movement awareness",
+  //                 equipment: ["Sturdy chair with armrests"],
+  //                 steps: [
+  //                   "Sit tall in chair with back supported, feet flat on floor hip-width apart",
+  //                   "Place hands on armrests for stability",
+  //                   "Lift RIGHT knee up 2-3 inches, hold for 2 seconds while breathing out",
+  //                   "Lower right foot slowly and controlled",
+  //                   "Lift LEFT knee up 2-3 inches (use hands to gently assist under thigh if needed), hold 2 seconds",
+  //                   "Lower left foot slowly",
+  //                   "Continue alternating, spending extra mental focus on the left leg movement",
+  //                 ],
+  //                 sets: 2,
+  //                 reps: 8,
+  //                 hold_sec: null,
+  //                 rest_sec: 45,
+  //                 tips: [
+  //                   "Keep shoulders level and centered - don't lean to either side",
+  //                   "It's normal for left leg to lift lower than right - any movement is progress",
+  //                   "Use your right hand to help lift left leg if needed",
+  //                   "Focus your attention on what the left leg is doing - this brain connection is important",
+  //                   "If you feel any dizziness, stop and rest",
+  //                 ],
+  //                 easier:
+  //                   "Just slide left foot forward and back on floor instead of lifting (marching in place)",
+  //                 harder:
+  //                   "Lift knee 4-5 inches higher, or try without using hands to assist left leg",
+  //                 warnings: [
+  //                   "Stop if you feel dizzy or lightheaded",
+  //                   "Don't hold your breath - keep breathing naturally",
+  //                   "Ensure chair is stable and won't slide",
+  //                 ],
+  //                 video_url: "https://youtube.com/watch?v=seated-march-stroke",
+  //                 status: "not_started",
+  //                 completed_sets: 0,
+  //                 notes: "",
+  //               },
+  //             ],
+  //             session_status: "not_started",
+  //             completed_date: null,
+  //           },
+  //         ],
+  //       },
+  //     ],
+  //     progress: {
+  //       total_sessions: 20,
+  //       completed_sessions: 0,
+  //       completion_percent: 0,
+  //       current_week: 1,
+  //       current_day: 1,
+  //       next_session_date: "2026-02-03",
+  //     },
+  //   },
+  // };
+
+  const payload = {
   "profile":{
-    "user_id": "1ba7a4fa-daab-4f1a-b4bf-416c2b0dda64"
+    "user_id": "808e6e6c-c32a-4a58-952a-a329ec02ad79"
   },
   "exercise_plan": {
     "plan_info": {
@@ -1078,4 +1173,19 @@
       "next_session_date": "2026-02-03"
     }
   }
+}
+
+  // 👇 Call your Postgres function (RPC)
+  const { error } = await supabase.rpc("upsert_user_exercise_data", {
+    payload,
+  });
+
+  if (error) {
+    return NextResponse.json(
+      { ok: false, message: error.message, details: error },
+      { status: 500 }
+    );
+  }
+
+  return NextResponse.json({ ok: true });
 }

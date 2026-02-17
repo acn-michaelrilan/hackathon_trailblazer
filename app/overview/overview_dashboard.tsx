@@ -2,16 +2,46 @@
 
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
-import { PlayCircle, ArrowLeft, Loader2, RefreshCw } from "lucide-react";
+import { PlayCircle, Loader2, RefreshCw, Trophy, X, PartyPopper } from "lucide-react";
 import type { Exercise, ExercisePlanData, Session } from "@/types";
 import Modal from "@/app/component/modal";
 import { SESSION_STATUS } from "@/backend/utils/constants";
-import { MOCK_DATA } from "@/lib/mockData"; // eslint-disable-line @typescript-eslint/no-unused-vars
 
-// Lazy load the modal content for performance
+// Lazy load the modal content
 const ExerciseModalContent = dynamic(() => import("./exercise_modal_content"), {
   ssr: false,
 });
+
+// --- SUB-COMPONENT: Success/Congrats Modal ---
+function CompletionModal({ onClose }: { onClose: () => void }) {
+  return (
+    <div className="text-center space-y-6 p-4">
+      <div className="relative inline-block">
+        <div className="absolute inset-0 bg-yellow-200 blur-xl rounded-full opacity-50 animate-pulse" />
+        <div className="relative bg-yellow-100 p-6 rounded-full inline-flex items-center justify-center mb-2 ring-8 ring-yellow-50">
+          <Trophy size={64} className="text-yellow-600 animate-bounce" />
+        </div>
+        <div className="absolute -top-2 -right-2">
+            <PartyPopper className="text-yellow-500 animate-spin-slow" size={32} />
+        </div>
+      </div>
+      
+      <div className="space-y-2">
+        <h2 className="text-3xl font-bold text-slate-800">Session Complete!</h2>
+        <p className="text-slate-500 max-w-xs mx-auto">
+          You smashed it! All exercises for today are done. Keep up the momentum!
+        </p>
+      </div>
+
+      <button
+        onClick={onClose}
+        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-2xl text-lg shadow-lg shadow-blue-200 transition-all active:scale-95"
+      >
+        Continue
+      </button>
+    </div>
+  );
+}
 
 export default function OverviewDashboard() {
   // --- Data State ---
@@ -20,23 +50,22 @@ export default function OverviewDashboard() {
   const [error, setError] = useState<string | null>(null);
 
   // --- UI State ---
-  const [view, setView] = useState<"overview" | "detail">("overview");
   const [activeEx, setActiveEx] = useState<Exercise | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isCongratsOpen, setIsCongratsOpen] = useState(false); // New State
   const [selectedDay, setSelectedDay] = useState<number>(1);
 
-  // --- 1. Fetch Data from API Route ---
-  const fetchPlanData = async () => {
+  // --- 1. Fetch Data ---
+  // Modified to return the data promise so we can chain logic after update
+  const fetchPlanData = async (): Promise<ExercisePlanData | null> => {
     try {
       setLoading(true);
       setError(null);
 
-      // Call your API route
       const res = await fetch("/api/exercise-plan");
 
       if (!res.ok) {
-        if (res.status === 401)
-          throw new Error("Please log in to view your plan");
+        if (res.status === 401) throw new Error("Please log in to view your plan");
         if (res.status === 404) throw new Error("No active plan found");
         throw new Error("Failed to load plan");
       }
@@ -44,53 +73,56 @@ export default function OverviewDashboard() {
       const jsonData: ExercisePlanData = await res.json();
       setData(jsonData);
 
-      // Initialize the selected day based on progress (only on first load)
+      // Initialize selected day only on first load (when data is null)
       if (!data && jsonData.exercise_plan.progress.current_day) {
         setSelectedDay(jsonData.exercise_plan.progress.current_day);
       }
-    } catch (err) {
-      setError(
-        err instanceof Error ? err.message : "An unknown error occurred",
-      );
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // --- 1B. ALTERNATIVE: Fetch Data from Mock Data ---
-  // Uncomment the function below and the useEffect to use mock data instead of fetching from API
-  /*
-  const fetchPlanData = async () => {
-    try {
-      setLoading(true);
-      setError(null);
       
-      // Simulate network delay
-      await new Promise((resolve) => setTimeout(resolve, 500));
-      
-      // Use mock data
-      setData(MOCK_DATA);
-
-      // Initialize the selected day based on progress (only on first load)
-      if (!data && MOCK_DATA.exercise_plan.progress.current_day) {
-        setSelectedDay(MOCK_DATA.exercise_plan.progress.current_day);
-      }
+      return jsonData;
     } catch (err) {
       setError(err instanceof Error ? err.message : "An unknown error occurred");
+      return null;
     } finally {
       setLoading(false);
     }
   };
-  */
 
-  // Initial Fetch on Mount
+  // Initial Mount
   useEffect(() => {
     fetchPlanData();
-    // Note: fetchPlanData intentionally not in dependencies - run once on mount
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // --- 2. Loading & Error States ---
-  if (loading) {
+  // --- Logic: Check for Completion after an update ---
+  const handleExerciseCompleted = async () => {
+    // 1. Close the exercise detail modal
+    setIsModalOpen(false);
+    
+    // 2. Refresh data to get latest statuses
+    const newData = await fetchPlanData();
+
+    if (newData) {
+      // 3. Find the current session in the new data
+      const currentWeekSessions = newData.exercise_plan.weekly_schedule[0]?.sessions || [];
+      const updatedSession = currentWeekSessions.find((s) => s.day === selectedDay);
+
+      if (updatedSession) {
+        // 4. Check if ALL exercises are completed
+        const allExercisesDone = updatedSession.exercises.every(
+          (ex) => ex.status.trim() === 'completed' || ex.status === SESSION_STATUS.COMPLETED
+        );
+
+        // 5. If all done, show the celebration modal
+        if (allExercisesDone) {
+            // Optional: slight delay for UX smoothness
+            setTimeout(() => setIsCongratsOpen(true), 300);
+        }
+      }
+    }
+  };
+
+  // --- Loading & Error Views ---
+  if (loading && !data) { // Only show full loader if no data exists yet
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-white text-slate-400 gap-4">
         <Loader2 className="animate-spin text-blue-600" size={48} />
@@ -106,7 +138,7 @@ export default function OverviewDashboard() {
           <p className="text-red-500 font-bold mb-2">Error Loading Dashboard</p>
           <p className="text-sm mb-4">{error}</p>
           <button
-            onClick={fetchPlanData}
+            onClick={() => fetchPlanData()}
             className="px-6 py-2 bg-white border border-red-200 text-red-500 rounded-full text-sm font-bold hover:bg-red-50 transition-colors"
           >
             Try Again
@@ -116,7 +148,7 @@ export default function OverviewDashboard() {
     );
   }
 
-  // --- 3. Prepare Data for Render ---
+  // --- Prepare Data for Render ---
   const { plan_info, weekly_schedule, progress } = data.exercise_plan;
   const currentWeekSessions = weekly_schedule[0]?.sessions || [];
 
@@ -138,9 +170,8 @@ export default function OverviewDashboard() {
                 Week {progress.current_week} - Day {selectedDay}
               </p>
             </div>
-            {/* Optional Refresh Button */}
             <button
-              onClick={fetchPlanData}
+              onClick={() => fetchPlanData()}
               className="p-2 text-slate-300 hover:text-blue-600 transition-colors"
               title="Refresh Data"
             >
@@ -166,7 +197,6 @@ export default function OverviewDashboard() {
                 Total Completion
               </p>
             </div>
-            {/* Decorator Circle */}
             <div className="absolute -right-10 -bottom-20 w-64 h-64 bg-blue-200/50 rounded-full blur-3xl" />
           </div>
 
@@ -291,23 +321,27 @@ export default function OverviewDashboard() {
         </aside>
       </main>
 
-      {/* Detail Modal */}
+      {/* Exercise Detail Modal */}
       <Modal
         key={activeEx?.id ?? "no-ex"}
         open={isModalOpen}
-        onClose={() => {
-          setIsModalOpen(false);
-        }}
+        onClose={() => setIsModalOpen(false)}
         title={activeEx ? `Detail - ${activeEx.name}` : "Exercise Detail"}
       >
         <ExerciseModalContent
           selectedDay={selectedDay}
           activeEx={activeEx}
-          onComplete={() => {
-            setIsModalOpen(false);
-            fetchPlanData();
-          }}
+          onComplete={handleExerciseCompleted} // <--- Pass the new handler here
         />
+      </Modal>
+
+      {/* CONGRATULATIONS MODAL */}
+      <Modal
+        open={isCongratsOpen}
+        onClose={() => setIsCongratsOpen(false)}
+        title="" // Empty title for cleaner look
+      >
+        <CompletionModal onClose={() => setIsCongratsOpen(false)} />
       </Modal>
     </div>
   );

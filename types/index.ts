@@ -260,3 +260,14 @@ export type AdditionalInformation = {
     timestamp: string;
   };
 };
+
+// Master input interface
+export type InformationInputData = UserTypeAndRisk &
+  BasicProfile &
+  MedicalProfile &
+  FunctionalAbility &
+  MedicalSafetyAndRiskFlags &
+  CurrentActivityLevel &
+  ExercisePreferencesAndTolerance &
+  ExerciseEnvironment &
+  AdditionalInformation;
