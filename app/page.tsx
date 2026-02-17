@@ -258,7 +258,7 @@ export default function Homepage() {
     const checkAuthAndRedirect = async () => {
       try {
         // If your route is app/api/user/route.ts, change this to "/api/user"
-        const res = await fetch("/api/auth/user", { method: "GET" });
+        const res = await fetch("/api/user", { method: "GET" });
 
         if (!res.ok) {
           // Treat API errors as unauthenticated

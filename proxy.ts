@@ -39,7 +39,23 @@ export default async function proxy(req: NextRequest) {
 
   // Redirect authenticated users trying to access login/signup pages
   if (user && isAuthPage) {
-    return NextResponse.redirect(new URL("/informationinput", req.url));
+    // return NextResponse.redirect(new URL("/informationinput", req.url));
+    // Check if user has an exercise plan
+    const { data: existingPlan } = await supabase
+      .from("exercise_plans")
+      .select("user_id")
+      .eq("user_id", user.id)
+      .maybeSingle();
+
+    console.log('existingplan?',existingPlan);
+
+    if (existingPlan) {
+      // User already has a plan -> go to overview
+      return NextResponse.redirect(new URL("/overview", req.url));
+    } else {
+      // User does NOT have a plan -> go to information input
+      return NextResponse.redirect(new URL("/informationinput", req.url));
+    }
   }
 
   return res;
