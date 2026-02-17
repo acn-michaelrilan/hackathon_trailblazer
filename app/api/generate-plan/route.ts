@@ -37,10 +37,7 @@ export async function POST(request: Request) {
     const insertResult = await insertInformationInput(INPUT_MOCK_DATA, userId);
 
     if (!insertResult.success) {
-      console.error(
-        "❌ Database insertion failed:",
-        insertResult.error || insertResult.errors,
-      );
+      console.error("❌ Database insertion failed:", insertResult.error);
       return NextResponse.json(
         { error: "Failed to save user profile. Plan generation aborted." },
         { status: 500 },
