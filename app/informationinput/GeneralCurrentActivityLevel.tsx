@@ -5,8 +5,57 @@ export default function GeneralCurrentActivityLevel() {
   const sectionClass = "msr-section";
 
   const styles = `
-    .${sectionClass} .hint { color: #6b7280; font-size: 12px; margin-top: 4px; }
-  `;
+  .${sectionClass} .hint { color: #6b7280; font-size: 12px; margin-top: 4px; }
+
+  /* Make summary look like a normal dropdown */
+  .${sectionClass} details > summary::-webkit-details-marker { display: none; }
+
+  /* Fix checkbox + wrapped text alignment */
+  .${sectionClass} .checkItem {
+    display: grid;
+    grid-template-columns: 16px 1fr;
+    gap: 10px;
+    align-items: start;
+    line-height: 1.3;
+  }
+  .${sectionClass} .checkItem input[type="checkbox"] { margin-top: 2px; }
+
+  /* Scrollable dropdown list */
+  .${sectionClass} .dropdownList {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 200px;
+    overflow-y: auto;
+    padding-right: 6px;
+  }
+
+  /* ✅ NEW: align Primary / Secondary / Targets in one row */
+  .${sectionClass} .goalRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    align-items: start;
+    margin-top: 8px;
+  }
+
+  .${sectionClass} .goalField {
+    min-width: 0; /* prevents overflow in grid columns */
+  }
+
+  .${sectionClass} .goalField select,
+  .${sectionClass} .goalField details {
+    width: 100%;
+  }
+
+  /* responsive: stack on smaller screens */
+  @media (max-width: 900px) {
+    .${sectionClass} .goalRow {
+      grid-template-columns: 1fr;
+    }
+  }
+`;
 
   return (
     <section className={`modal-section ${sectionClass}`}>
@@ -40,167 +89,199 @@ export default function GeneralCurrentActivityLevel() {
         What are your health and fitness goals?
       </p>
 
-      {/* Primary goal (radio) */}
-      <p className="hint" style={{ marginTop: 8 }}>
-        Choose your primary goal:
-      </p>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: 8,
-          marginTop: 4,
-        }}
-      >
-        <label>
-          <input type="radio" name="primary_goal" value="weight_management" />{" "}
-          Weight management
-        </label>
+      <div className="goalRow">
+        {/* ✅ Primary goal */}
+        <div className="goalField">
+          <p className="hint" style={{ marginTop: 0 }}>
+            Choose your primary goal:
+          </p>
 
-        <label>
-          <input type="radio" name="primary_goal" value="increase_strength" />{" "}
-          Build muscle / increase strength
-        </label>
+          <select name="primary_goal" style={{ padding: 6, width: "100%" }}>
+            <option value="">Select</option>
+            <option value="weight_management">Weight management</option>
+            <option value="increase_strength">
+              Build muscle / increase strength
+            </option>
+            <option value="cardio_fitness">Cardio fitness</option>
+            <option value="flexibility_mobility">
+              Flexibility &amp; mobility
+            </option>
+          </select>
+        </div>
 
-        <label>
-          <input type="radio" name="primary_goal" value="cardio_fitness" />{" "}
-          Cardio fitness
-        </label>
+        {/* ✅ Secondary goals */}
+        <div className="goalField">
+          <p className="hint" style={{ marginTop: 0 }}>
+            Choose secondary goals (optional):
+          </p>
 
-        <label>
-          <input
-            type="radio"
-            name="primary_goal"
-            value="flexibility_mobility"
-          />{" "}
-          Flexibility &amp; mobility
-        </label>
-      </div>
+          <details
+            style={{
+              border: "1px solid #d1d5db",
+              borderRadius: 6,
+              padding: 8,
+              background: "#fff",
+            }}
+          >
+            <summary
+              style={{
+                cursor: "pointer",
+                listStyle: "none",
+                outline: "none",
+                userSelect: "none",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: 8,
+                fontSize: 16,
+              }}
+            >
+              <span>Select</span>
+              <span style={{ color: "#6b7280" }}>▾</span>
+            </summary>
 
-      {/* Secondary goals (checkboxes) */}
-      <p className="hint" style={{ marginTop: 8 }}>
-        Choose secondary goals (optional):
-      </p>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: 8,
-          marginTop: 4,
-        }}
-      >
-        <label>
-          <input
-            type="checkbox"
-            name="goal_increase_steps"
-            value="increase_steps"
-          />{" "}
-          Increase daily steps
-        </label>
+            <div className="dropdownList">
+              <label className="checkItem">
+                <input
+                  type="checkbox"
+                  name="goal_increase_steps"
+                  value="increase_steps"
+                />
+                <span>Increase daily steps</span>
+              </label>
 
-        <label>
-          <input
-            type="checkbox"
-            name="goal_improve_posture"
-            value="improve_posture"
-          />{" "}
-          Improve posture / core
-        </label>
+              <label className="checkItem">
+                <input
+                  type="checkbox"
+                  name="goal_improve_posture"
+                  value="improve_posture"
+                />
+                <span>Improve posture / core</span>
+              </label>
 
-        <label>
-          <input
-            type="checkbox"
-            name="goal_reduce_stress"
-            value="reduce_stress"
-          />{" "}
-          Reduce stress
-        </label>
+              <label className="checkItem">
+                <input
+                  type="checkbox"
+                  name="goal_reduce_stress"
+                  value="reduce_stress"
+                />
+                <span>Reduce stress</span>
+              </label>
 
-        <label>
-          <input type="checkbox" name="goal_gain_energy" value="gain_energy" />{" "}
-          Gain energy
-        </label>
+              <label className="checkItem">
+                <input
+                  type="checkbox"
+                  name="goal_gain_energy"
+                  value="gain_energy"
+                />
+                <span>Gain energy</span>
+              </label>
 
-        <label>
-          <input
-            type="checkbox"
-            name="goal_improve_endurance"
-            value="improve_endurance"
-          />{" "}
-          Improve endurance
-        </label>
+              <label className="checkItem">
+                <input
+                  type="checkbox"
+                  name="goal_improve_endurance"
+                  value="improve_endurance"
+                />
+                <span>Improve endurance</span>
+              </label>
 
-        <label>
-          <input
-            type="checkbox"
-            name="goal_general_toning"
-            value="general_toning"
-          />{" "}
-          General toning
-        </label>
-      </div>
+              <label className="checkItem">
+                <input
+                  type="checkbox"
+                  name="goal_general_toning"
+                  value="general_toning"
+                />
+                <span>General toning</span>
+              </label>
+            </div>
+          </details>
+        </div>
 
-      {/* Specific targets */}
-      <p style={{ marginTop: 20, marginBottom: 16 }}>
-        What specific targets would you like to work toward?
-      </p>
+        {/* ✅ Specific targets */}
+        <div className="goalField">
+          <p className="hint" style={{ marginTop: 0 }}>
+            Specific targets:
+          </p>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: 8,
-          marginTop: 4,
-        }}
-      >
-        <label>
-          <input type="checkbox" name="target_run_5k" value="run_5k" /> Run 5km
-        </label>
+          <details
+            style={{
+              border: "1px solid #d1d5db",
+              borderRadius: 6,
+              padding: 8,
+              background: "#fff",
+            }}
+          >
+            <summary
+              style={{
+                cursor: "pointer",
+                listStyle: "none",
+                outline: "none",
+                userSelect: "none",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: 8,
+                fontSize: 16,
+              }}
+            >
+              <span>Select</span>
+              <span style={{ color: "#6b7280" }}>▾</span>
+            </summary>
 
-        <label>
-          <input
-            type="checkbox"
-            name="target_do_10k_steps"
-            value="ten_k_steps_per_day"
-          />{" "}
-          10k steps/day
-        </label>
+            <div className="dropdownList" style={{ maxHeight: 180 }}>
+              <label className="checkItem">
+                <input type="checkbox" name="target_run_5k" value="run_5k" />
+                <span>Run 5km</span>
+              </label>
 
-        <label>
-          <input
-            type="checkbox"
-            name="target_increase_vo2"
-            value="increase_cardio_capacity"
-          />{" "}
-          Increase cardio capacity
-        </label>
+              <label className="checkItem">
+                <input
+                  type="checkbox"
+                  name="target_do_10k_steps"
+                  value="ten_k_steps_per_day"
+                />
+                <span>10k steps/day</span>
+              </label>
 
-        <label>
-          <input
-            type="checkbox"
-            name="target_full_body_strength"
-            value="full_body_strength"
-          />{" "}
-          Full-body strength routine
-        </label>
+              <label className="checkItem">
+                <input
+                  type="checkbox"
+                  name="target_increase_vo2"
+                  value="increase_cardio_capacity"
+                />
+                <span>Increase cardio capacity</span>
+              </label>
 
-        <label>
-          <input
-            type="checkbox"
-            name="target_mobility_flow"
-            value="daily_mobility_flow"
-          />{" "}
-          Daily mobility flow
-        </label>
+              <label className="checkItem">
+                <input
+                  type="checkbox"
+                  name="target_full_body_strength"
+                  value="full_body_strength"
+                />
+                <span>Full-body strength routine</span>
+              </label>
 
-        <label>
-          <input
-            type="checkbox"
-            name="target_event_ready"
-            value="event_training"
-          />{" "}
-          Train for an event
-        </label>
+              <label className="checkItem">
+                <input
+                  type="checkbox"
+                  name="target_mobility_flow"
+                  value="daily_mobility_flow"
+                />
+                <span>Daily mobility flow</span>
+              </label>
+
+              <label className="checkItem">
+                <input
+                  type="checkbox"
+                  name="target_event_ready"
+                  value="event_training"
+                />
+                <span>Train for an event</span>
+              </label>
+            </div>
+          </details>
+        </div>
       </div>
     </section>
   );
