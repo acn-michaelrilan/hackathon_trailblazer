@@ -90,7 +90,7 @@ export default function ExerciseEnvironment() {
         </div>
 
         {/* Equipment available (dropdown) */}
-        <div className="row" style={{ marginTop: 0 }}>
+        <div className="row" style={{ marginTop: -7 }}>
           <p>Equipment available (Optional)</p>
 
           <details

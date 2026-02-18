@@ -77,7 +77,7 @@ export default function GeneralCurrentActivityLevel() {
 
       {/* Activity details */}
       <p style={{ marginTop: 16 }}>
-        What are your usual activities? (optional)
+        What are your usual activities? (Optional)
       </p>
       <textarea
         name="activity_details"
