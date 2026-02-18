@@ -136,6 +136,8 @@ export default function ExerciseModalContent({
                 Watch Tutorial on YouTube
               </a>
             )}
+
+            
           </div>
 
           {/* Right Side: Detailed Instructions */}
@@ -168,24 +170,40 @@ export default function ExerciseModalContent({
             {/* Tips & Warnings */}
             {((activeEx.tips && activeEx.tips.length > 0) ||
               (activeEx.warnings && activeEx.warnings.length > 0)) && (
-              <div className="grid grid-cols-1 gap-4">
-                {activeEx.tips &&
-                  activeEx.tips.map((tip, i) => (
-                    <div
-                      key={i}
-                      className="bg-green-50 border border-green-100 p-4 rounded-2xl text-xs text-green-800"
-                    >
-                      <span className="font-bold">TIP:</span> {tip}
-                    </div>
-                  ))}
-                {activeEx.warnings?.map((warning, i) => (
-                  <div
-                    key={i}
-                    className="bg-red-50 border border-red-100 p-4 rounded-2xl text-xs text-red-800"
-                  >
-                    <span className="font-bold">CAUTION:</span> {warning}
+              <div className="space-y-4">
+                {activeEx.tips && activeEx.tips.length > 0 && (
+                  <div className="bg-emerald-50/80 backdrop-blur-sm border border-emerald-100 rounded-3xl p-6 shadow-sm">
+                    <h4 className="text-[11px] font-black text-emerald-600 uppercase tracking-widest mb-3 flex items-center gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                      Pro Tips
+                    </h4>
+                    <ul className="space-y-3">
+                      {activeEx.tips.map((tip, i) => (
+                        <li key={i} className="flex gap-3 text-sm text-emerald-800/90 leading-relaxed items-start">
+                          <span className="text-emerald-400 font-black text-xs mt-0.5">•</span>
+                          <span>{tip}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                ))}
+                )}
+
+                {activeEx.warnings && activeEx.warnings.length > 0 && (
+                  <div className="bg-rose-50/80 backdrop-blur-sm border border-rose-100 rounded-3xl p-6 shadow-sm">
+                    <h4 className="text-[11px] font-black text-rose-600 uppercase tracking-widest mb-3 flex items-center gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-rose-500" />
+                      Caution
+                    </h4>
+                    <ul className="space-y-3">
+                      {activeEx.warnings.map((warning, i) => (
+                        <li key={i} className="flex gap-3 text-sm text-rose-800/90 leading-relaxed items-start">
+                          <span className="text-rose-400 font-black text-xs mt-0.5">•</span>
+                          <span>{warning}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
             )}
           </div>
