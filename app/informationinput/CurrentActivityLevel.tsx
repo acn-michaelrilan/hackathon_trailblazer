@@ -4,9 +4,38 @@ export default function CurrentActivityLevel() {
   const groupClass = "msr-group";
 
   const styles = `
-    .${sectionClass} .hint { color: #6b7280; font-size: 12px; margin-top: 4px; }
-    .${groupClass} label + label { margin-left: 12px; }
-  `;
+  .${sectionClass} .hint { color: #6b7280; font-size: 12px; margin-top: 4px; }
+  .${groupClass} label + label { margin-left: 12px; }
+
+  /* make summary look like a normal dropdown */
+  details > summary::-webkit-details-marker { display: none; }
+
+  /* ✅ container for primary/secondary/targets in one row */
+  .goalRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    align-items: start;
+    margin-top: 8px;
+  }
+
+  .goalField {
+    min-width: 0;
+  }
+
+  /* ensure full width controls */
+  .goalField select,
+  .goalField details {
+    width: 100%;
+  }
+
+  /* responsive: stack on smaller screens */
+  @media (max-width: 900px) {
+    .goalRow {
+      grid-template-columns: 1fr;
+    }
+  }
+`;
 
   return (
     <section className={`modal-section ${sectionClass}`}>
@@ -47,239 +76,454 @@ export default function CurrentActivityLevel() {
         What are your health and movement goals?
       </p>
 
-      {/* NEW: Primary goal (radio) */}
-      <p className="hint" style={{ marginTop: 8 }}>
-        Choose your primary goal:
-      </p>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: 8,
-          marginTop: 4,
-        }}
-      >
-        <label>
-          <input type="radio" name="primary_goal" value="reduce_pain" /> Reduce
-          pain
-        </label>
+      <div className="goalRow">
+        {/* PRIMARY GOAL */}
+        <div className="goalField">
+          <p className="hint" style={{ marginTop: 0 }}>
+            Choose your primary goal:
+          </p>
 
-        <label>
-          <input type="radio" name="primary_goal" value="restore_strength" />{" "}
-          Restore strength
-        </label>
+          <select name="primary_goal" style={{ padding: 6, width: "100%" }}>
+            <option value="">Select</option>
+            <option value="reduce_pain">Reduce pain</option>
+            <option value="restore_strength">Restore strength</option>
+            <option value="recover_after_surgery">
+              Recover after surgery/injury
+            </option>
+            <option value="prevent_decline">Prevent future injury</option>
+          </select>
+        </div>
 
-        <label>
-          <input
-            type="radio"
-            name="primary_goal"
-            value="recover_after_surgery"
-          />{" "}
-          Recover after surgery/injury
-        </label>
+        {/* SECONDARY GOAL */}
+        <div className="goalField">
+          <p className="hint" style={{ marginTop: 0 }}>
+            Choose your secondary goal:
+          </p>
 
-        <label>
-          <input type="radio" name="primary_goal" value="prevent_decline" />{" "}
-          Prevent future injury
-        </label>
-      </div>
+          <details
+            style={{
+              border: "1px solid #d1d5db",
+              borderRadius: 6,
+              padding: 8,
+              background: "#fff",
+            }}
+          >
+            <summary
+              style={{
+                cursor: "pointer",
+                listStyle: "none",
+                outline: "none",
+                userSelect: "none",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: 8,
+                fontSize: 16,
+              }}
+            >
+              <span>Select</span>
+              <span style={{ color: "#6b7280" }}>▾</span>
+            </summary>
 
-      <p className="hint" style={{ marginTop: 8 }}>
-        Choose your secondary goal:
-      </p>
+            <div
+              style={{
+                marginTop: 10,
+                display: "flex",
+                flexDirection: "column",
+                gap: 10,
+                maxHeight: 180,
+                overflowY: "auto",
+                paddingRight: 6,
+              }}
+            >
+              <label
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "16px 1fr",
+                  gap: 10,
+                  alignItems: "start",
+                  lineHeight: 1.3,
+                }}
+              >
+                <input
+                  type="checkbox"
+                  name="goal_improve_mobility"
+                  value="improve_mobility"
+                  style={{ marginTop: 2 }}
+                />
+                <span>Improve mobility &amp; ROM</span>
+              </label>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: 8,
-          marginTop: 4,
-        }}
-      >
-        <label>
-          <input
-            type="checkbox"
-            name="goal_improve_mobility"
-            value="improve_mobility"
-          />{" "}
-          Improve mobility &amp; ROM
-        </label>
+              <label
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "16px 1fr",
+                  gap: 10,
+                  alignItems: "start",
+                  lineHeight: 1.3,
+                }}
+              >
+                <input
+                  type="checkbox"
+                  name="goal_improve_balance"
+                  value="improve_balance"
+                  style={{ marginTop: 2 }}
+                />
+                <span>Improve balance &amp; prevent falls</span>
+              </label>
 
-        <label>
-          <input
-            type="checkbox"
-            name="goal_improve_balance"
-            value="improve_balance"
-          />{" "}
-          Improve balance &amp; prevent falls
-        </label>
+              <label
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "16px 1fr",
+                  gap: 10,
+                  alignItems: "start",
+                  lineHeight: 1.3,
+                }}
+              >
+                <input
+                  type="checkbox"
+                  name="goal_increase_endurance"
+                  value="increase_endurance"
+                  style={{ marginTop: 2 }}
+                />
+                <span>Increase endurance</span>
+              </label>
 
-        <label>
-          <input
-            type="checkbox"
-            name="goal_increase_endurance"
-            value="increase_endurance"
-          />{" "}
-          Increase endurance
-        </label>
+              <label
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "16px 1fr",
+                  gap: 10,
+                  alignItems: "start",
+                  lineHeight: 1.3,
+                }}
+              >
+                <input
+                  type="checkbox"
+                  name="goal_move_independently"
+                  value="move_independently"
+                  style={{ marginTop: 2 }}
+                />
+                <span>Move independently</span>
+              </label>
+            </div>
+          </details>
+        </div>
 
-        <label>
-          <input
-            type="checkbox"
-            name="goal_move_independently"
-            value="move_independently"
-          />{" "}
-          Move independently
-        </label>
-      </div>
+        {/* SPECIFIC TARGETS */}
+        <div className="goalField">
+          <p className="hint" style={{ marginTop: 0 }}>
+            Specific targets:
+          </p>
 
-      {/* specific targets */}
-      <p style={{ marginTop: 20, marginBottom: 16 }}>
-        What specific targets would you like to work toward?
-      </p>
+          <details
+            style={{
+              border: "1px solid #d1d5db",
+              borderRadius: 6,
+              padding: 8,
+              background: "#fff",
+            }}
+          >
+            <summary
+              style={{
+                cursor: "pointer",
+                listStyle: "none",
+                userSelect: "none",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: 8,
+                fontSize: 16,
+              }}
+            >
+              <span>Select</span>
+              <span style={{ color: "#6b7280" }}>▾</span>
+            </summary>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: 8,
-          marginTop: 4,
-        }}
-      >
-        <label>
-          <input
-            type="checkbox"
-            name="target_climb_stairs"
-            value="climb_stairs"
-          />{" "}
-          Climb stairs without assistance
-        </label>
+            <div
+              style={{
+                marginTop: 10,
+                display: "flex",
+                flexDirection: "column",
+                gap: 10,
+                maxHeight: 200,
+                overflowY: "auto",
+                paddingRight: 6,
+              }}
+            >
+              <label
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "16px 1fr",
+                  gap: 10,
+                  alignItems: "start",
+                  lineHeight: 1.3,
+                }}
+              >
+                <input
+                  type="checkbox"
+                  name="target_climb_stairs"
+                  value="climb_stairs"
+                  style={{ marginTop: 2 }}
+                />
+                <span>Climb stairs without assistance</span>
+              </label>
 
-        <label>
-          <input
-            type="checkbox"
-            name="target_get_in_out_bed"
-            value="get_in_out_bed"
-          />{" "}
-          Get in and out of bed independently
-        </label>
+              <label
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "16px 1fr",
+                  gap: 10,
+                  alignItems: "start",
+                  lineHeight: 1.3,
+                }}
+              >
+                <input
+                  type="checkbox"
+                  name="target_get_in_out_bed"
+                  value="get_in_out_bed"
+                  style={{ marginTop: 2 }}
+                />
+                <span>Get in and out of bed independently</span>
+              </label>
 
-        <label>
-          <input
-            type="checkbox"
-            name="target_stand_without_hands"
-            value="stand_without_hands"
-          />{" "}
-          Stand up from a chair without using hands
-        </label>
+              <label
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "16px 1fr",
+                  gap: 10,
+                  alignItems: "start",
+                  lineHeight: 1.3,
+                }}
+              >
+                <input
+                  type="checkbox"
+                  name="target_stand_without_hands"
+                  value="stand_without_hands"
+                  style={{ marginTop: 2 }}
+                />
+                <span>Stand up from a chair without using hands</span>
+              </label>
 
-        <label>
-          <input
-            type="checkbox"
-            name="target_use_hand_daily_tasks"
-            value="use_hand_daily_tasks"
-          />{" "}
-          Use my affected hand to eat and dress
-        </label>
+              <label
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "16px 1fr",
+                  gap: 10,
+                  alignItems: "start",
+                  lineHeight: 1.3,
+                }}
+              >
+                <input
+                  type="checkbox"
+                  name="target_use_hand_daily_tasks"
+                  value="use_hand_daily_tasks"
+                  style={{ marginTop: 2 }}
+                />
+                <span>Use my affected hand to eat and dress</span>
+              </label>
 
-        <label>
-          <input
-            type="checkbox"
-            name="target_walk_longer"
-            value="walk_longer"
-          />{" "}
-          Walk longer distances without getting tired
-        </label>
+              <label
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "16px 1fr",
+                  gap: 10,
+                  alignItems: "start",
+                  lineHeight: 1.3,
+                }}
+              >
+                <input
+                  type="checkbox"
+                  name="target_walk_longer"
+                  value="walk_longer"
+                  style={{ marginTop: 2 }}
+                />
+                <span>Walk longer distances without getting tired</span>
+              </label>
 
-        <label>
-          <input
-            type="checkbox"
-            name="target_regain_balance_turning"
-            value="regain_balance_turning"
-          />{" "}
-          Regain balance while turning or changing direction
-        </label>
+              <label
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "16px 1fr",
+                  gap: 10,
+                  alignItems: "start",
+                  lineHeight: 1.3,
+                }}
+              >
+                <input
+                  type="checkbox"
+                  name="target_regain_balance_turning"
+                  value="regain_balance_turning"
+                  style={{ marginTop: 2 }}
+                />
+                <span>Regain balance while turning or changing direction</span>
+              </label>
 
-        <label>
-          <input
-            type="checkbox"
-            name="target_return_to_driving"
-            value="return_to_driving"
-          />{" "}
-          Return to driving safely
-        </label>
+              <label
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "16px 1fr",
+                  gap: 10,
+                  alignItems: "start",
+                  lineHeight: 1.3,
+                }}
+              >
+                <input
+                  type="checkbox"
+                  name="target_return_to_driving"
+                  value="return_to_driving"
+                  style={{ marginTop: 2 }}
+                />
+                <span>Return to driving safely</span>
+              </label>
 
-        <label>
-          <input
-            type="checkbox"
-            name="target_return_to_work_or_school"
-            value="return_to_work_or_school"
-          />{" "}
-          Go back to work or school
-        </label>
+              <label
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "16px 1fr",
+                  gap: 10,
+                  alignItems: "start",
+                  lineHeight: 1.3,
+                }}
+              >
+                <input
+                  type="checkbox"
+                  name="target_return_to_work_or_school"
+                  value="return_to_work_or_school"
+                  style={{ marginTop: 2 }}
+                />
+                <span>Go back to work or school</span>
+              </label>
 
-        <label>
-          <input
-            type="checkbox"
-            name="target_carry_groceries"
-            value="carry_groceries"
-          />{" "}
-          Carry groceries without losing balance
-        </label>
+              <label
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "16px 1fr",
+                  gap: 10,
+                  alignItems: "start",
+                  lineHeight: 1.3,
+                }}
+              >
+                <input
+                  type="checkbox"
+                  name="target_carry_groceries"
+                  value="carry_groceries"
+                  style={{ marginTop: 2 }}
+                />
+                <span>Carry groceries without losing balance</span>
+              </label>
 
-        <label>
-          <input
-            type="checkbox"
-            name="target_improve_coordination"
-            value="improve_coordination"
-          />{" "}
-          Improve coordination of my affected side
-        </label>
+              <label
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "16px 1fr",
+                  gap: 10,
+                  alignItems: "start",
+                  lineHeight: 1.3,
+                }}
+              >
+                <input
+                  type="checkbox"
+                  name="target_improve_coordination"
+                  value="improve_coordination"
+                  style={{ marginTop: 2 }}
+                />
+                <span>Improve coordination of my affected side</span>
+              </label>
 
-        <label>
-          <input
-            type="checkbox"
-            name="target_walk_uneven_surfaces"
-            value="walk_uneven_surfaces"
-          />{" "}
-          Walk on uneven surfaces safely
-        </label>
+              <label
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "16px 1fr",
+                  gap: 10,
+                  alignItems: "start",
+                  lineHeight: 1.3,
+                }}
+              >
+                <input
+                  type="checkbox"
+                  name="target_walk_uneven_surfaces"
+                  value="walk_uneven_surfaces"
+                  style={{ marginTop: 2 }}
+                />
+                <span>Walk on uneven surfaces safely</span>
+              </label>
 
-        <label>
-          <input
-            type="checkbox"
-            name="target_reduce_spasticity"
-            value="reduce_spasticity"
-          />{" "}
-          Reduce spasticity or stiffness in affected limbs
-        </label>
+              <label
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "16px 1fr",
+                  gap: 10,
+                  alignItems: "start",
+                  lineHeight: 1.3,
+                }}
+              >
+                <input
+                  type="checkbox"
+                  name="target_reduce_spasticity"
+                  value="reduce_spasticity"
+                  style={{ marginTop: 2 }}
+                />
+                <span>Reduce spasticity or stiffness in affected limbs</span>
+              </label>
 
-        <label>
-          <input
-            type="checkbox"
-            name="target_improve_grip"
-            value="improve_grip"
-          />{" "}
-          Improve hand grip and fine motor control
-        </label>
+              <label
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "16px 1fr",
+                  gap: 10,
+                  alignItems: "start",
+                  lineHeight: 1.3,
+                }}
+              >
+                <input
+                  type="checkbox"
+                  name="target_improve_grip"
+                  value="improve_grip"
+                  style={{ marginTop: 2 }}
+                />
+                <span>Improve hand grip and fine motor control</span>
+              </label>
 
-        <label>
-          <input
-            type="checkbox"
-            name="target_bathe_independently"
-            value="bathe_independently"
-          />{" "}
-          Bathe and toilet independently
-        </label>
+              <label
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "16px 1fr",
+                  gap: 10,
+                  alignItems: "start",
+                  lineHeight: 1.3,
+                }}
+              >
+                <input
+                  type="checkbox"
+                  name="target_bathe_independently"
+                  value="bathe_independently"
+                  style={{ marginTop: 2 }}
+                />
+                <span>Bathe and toilet independently</span>
+              </label>
 
-        <label>
-          <input
-            type="checkbox"
-            name="target_return_to_sports"
-            value="return_to_sports"
-          />{" "}
-          Return to recreational activities or sports
-        </label>
+              <label
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "16px 1fr",
+                  gap: 10,
+                  alignItems: "start",
+                  lineHeight: 1.3,
+                }}
+              >
+                <input
+                  type="checkbox"
+                  name="target_return_to_sports"
+                  value="return_to_sports"
+                  style={{ marginTop: 2 }}
+                />
+                <span>Return to recreational activities or sports</span>
+              </label>
+            </div>
+          </details>
+        </div>
       </div>
     </section>
   );
