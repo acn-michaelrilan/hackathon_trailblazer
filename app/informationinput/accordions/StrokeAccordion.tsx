@@ -271,7 +271,6 @@ export default function StrokeAccordion() {
       !riskChecked || !hasOne || Object.keys(nextFieldErrors).length > 0;
 
     if (hasErrors) {
-      // scroll to first error field for better UX
       const firstName =
         (!riskChecked && "risk_level") ||
         (!hasOne && "medical_profile") ||
@@ -287,6 +286,17 @@ export default function StrokeAccordion() {
           behavior: "smooth",
           block: "start",
         });
+      } else if (firstName === "specific_targets") {
+        root?.querySelector('[data-targets="true"]')?.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+
+        // Optional: auto-open the targets dropdown so user sees it immediately
+        const targetsDetails = root?.querySelector(
+          '[data-targets="true"] details',
+        ) as HTMLDetailsElement | null;
+        if (targetsDetails) targetsDetails.open = true;
       } else if (firstName) {
         root?.querySelector(`[name="${firstName}"]`)?.scrollIntoView({
           behavior: "smooth",

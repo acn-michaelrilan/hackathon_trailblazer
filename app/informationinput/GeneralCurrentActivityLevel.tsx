@@ -64,8 +64,10 @@ export default function GeneralCurrentActivityLevel() {
       <h3 style={{ color: "#1f3fae" }}>Current Activity Level</h3>
 
       {/* Activity level */}
-      <p style={{ marginTop: 16 }}>How active are you currently?</p>
-      <select name="current_activity_level" style={{ padding: 6 }}>
+      <p style={{ marginTop: 16 }}>
+        How active are you currently? <span style={{ color: "red" }}>*</span>
+      </p>
+      <select name="current_activity_level" required style={{ padding: 6 }}>
         <option value="">Select</option>
         <option value="sedentary">Sedentary (little/no exercise)</option>
         <option value="lightly_active">Lightly active (1–3×/week)</option>
@@ -93,10 +95,14 @@ export default function GeneralCurrentActivityLevel() {
         {/* ✅ Primary goal */}
         <div className="goalField">
           <p className="hint" style={{ marginTop: 0 }}>
-            Choose your primary goal:
+            Choose your primary goal: <span style={{ color: "red" }}>*</span>
           </p>
 
-          <select name="primary_goal" style={{ padding: 6, width: "100%" }}>
+          <select
+            name="primary_goal"
+            required
+            style={{ padding: 6, width: "100%" }}
+          >
             <option value="">Select</option>
             <option value="weight_management">Weight management</option>
             <option value="increase_strength">
@@ -112,7 +118,7 @@ export default function GeneralCurrentActivityLevel() {
         {/* ✅ Secondary goals */}
         <div className="goalField">
           <p className="hint" style={{ marginTop: 0 }}>
-            Choose secondary goals (optional):
+            Choose secondary goals (Optional):
           </p>
 
           <details
@@ -201,7 +207,7 @@ export default function GeneralCurrentActivityLevel() {
         {/* ✅ Specific targets */}
         <div className="goalField">
           <p className="hint" style={{ marginTop: 0 }}>
-            Specific targets:
+            Specific targets: (Optional)
           </p>
 
           <details

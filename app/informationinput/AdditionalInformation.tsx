@@ -145,7 +145,7 @@ export default function AdditionalInformation() {
               />
             </div>
             <div>
-              <p>Last PT end date</p>
+              <p>Last PT session date</p>
               <input
                 type="date"
                 name="pt_end_date"
