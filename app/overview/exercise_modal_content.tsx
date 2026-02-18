@@ -1,7 +1,6 @@
 "use client";
-
 import { useState } from "react";
-import { CheckCircle2, PlayCircle, Loader2 } from "lucide-react";
+import { CheckCircle2, PlayCircle, Loader2, ExternalLink } from "lucide-react";
 import type { ExerciseViewProps } from "@/types";
 import { SESSION_STATUS } from "@/backend/utils/constants";
 
@@ -14,11 +13,9 @@ export default function ExerciseModalContent({
 
   if (!activeEx) return null;
 
-  // Handler to update status in DB via API
   const handleComplete = async () => {
     try {
       setIsCompleting(true);
-      // Call secure API endpoint instead of direct Supabase access
       const response = await fetch("/api/exercise-progress", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -62,20 +59,14 @@ export default function ExerciseModalContent({
           )}
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 items-start">
+        <div className="grid md:grid-cols-2 gap-8 items-start mb-8">
           {/* Left Side: Visuals & Metadata */}
           <div className="space-y-6">
             <div className="aspect-video bg-slate-100 rounded-3xl overflow-hidden shadow-sm border border-slate-200 flex items-center justify-center">
               {activeEx.video_url ? (
-                /* You could embed the video here if desired */
                 <div className="text-center p-6">
-                  <PlayCircle
-                    size={48}
-                    className="text-blue-500 mx-auto mb-2"
-                  />
-                  <p className="text-sm text-slate-500 font-medium">
-                    Video Tutorial Available
-                  </p>
+                  <PlayCircle size={48} className="text-blue-500 mx-auto mb-2" />
+                  <p className="text-sm text-slate-500 font-medium">Video Tutorial Available</p>
                 </div>
               ) : (
                 <p className="text-slate-400 italic">No video preview</p>
@@ -83,56 +74,40 @@ export default function ExerciseModalContent({
             </div>
 
             <div className="bg-blue-50/50 p-6 rounded-3xl border border-blue-100">
-              <h4 className="text-sm font-bold text-blue-900 uppercase tracking-widest mb-4">
-                Target Stats
-              </h4>
+              <h4 className="text-sm font-bold text-blue-900 uppercase tracking-widest mb-4">Target Stats</h4>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <p className="text-2xl font-bold text-slate-900">
-                    {activeEx.sets}
-                  </p>
-                  <p className="text-xs text-slate-500 uppercase font-bold">
-                    Total Sets
-                  </p>
+                  <p className="text-2xl font-bold text-slate-900">{activeEx.sets}</p>
+                  <p className="text-xs text-slate-500 uppercase font-bold">Total Sets</p>
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-slate-900">
-                    {activeEx.reps}
-                  </p>
-                  <p className="text-xs text-slate-500 uppercase font-bold">
-                    Reps Per Set
-                  </p>
+                  <p className="text-2xl font-bold text-slate-900">{activeEx.reps}</p>
+                  <p className="text-xs text-slate-500 uppercase font-bold">Reps Per Set</p>
                 </div>
                 {activeEx.hold_sec && (
                   <div>
-                    <p className="text-2xl font-bold text-slate-900">
-                      {activeEx.hold_sec}s
-                    </p>
-                    <p className="text-xs text-slate-500 uppercase font-bold">
-                      Hold Time
-                    </p>
+                    <p className="text-2xl font-bold text-slate-900">{activeEx.hold_sec}s</p>
+                    <p className="text-xs text-slate-500 uppercase font-bold">Hold Time</p>
                   </div>
                 )}
                 {activeEx.rest_sec && (
                   <div>
-                    <p className="text-2xl font-bold text-slate-900">
-                      {activeEx.rest_sec}s
-                    </p>
-                    <p className="text-xs text-slate-500 uppercase font-bold">
-                      Rest Period
-                    </p>
+                    <p className="text-2xl font-bold text-slate-900">{activeEx.rest_sec}s</p>
+                    <p className="text-xs text-slate-500 uppercase font-bold">Rest Period</p>
                   </div>
                 )}
               </div>
             </div>
 
+            {/* YouTube Link - Retained and styled */}
             {activeEx.video_url && (
               <a
                 href={activeEx.video_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block w-full text-center bg-white border-2 border-blue-600 text-blue-600 font-bold py-3 rounded-xl hover:bg-blue-50 transition-colors"
+                className="flex items-center justify-center gap-2 w-full text-center bg-white border-2 border-blue-600 text-blue-600 font-bold py-3 rounded-xl hover:bg-blue-50 transition-colors shadow-sm"
               >
+                <ExternalLink size={18} />
                 Watch Tutorial on YouTube
               </a>
             )}
@@ -141,63 +116,69 @@ export default function ExerciseModalContent({
           {/* Right Side: Detailed Instructions */}
           <div className="space-y-6">
             <section className="bg-slate-50 rounded-3xl p-6 border border-slate-100">
-              <h3 className="font-bold text-lg mb-2 text-slate-900">
-                Description
-              </h3>
+              <h3 className="font-bold text-lg mb-2 text-slate-900">Description</h3>
               <p className="text-slate-600 leading-relaxed text-sm">
-                {activeEx.description ||
-                  "No description provided for this exercise."}
+                {activeEx.description || "No description provided for this exercise."}
               </p>
             </section>
 
             {activeEx.steps && activeEx.steps.length > 0 && (
               <section className="bg-slate-50 rounded-3xl p-6 border border-slate-100">
-                <h3 className="font-bold text-lg mb-4 text-slate-900">
-                  Exercise Steps
-                </h3>
+                <h3 className="font-bold text-lg mb-4 text-slate-900">Exercise Steps</h3>
                 <ol className="text-slate-600 space-y-4 list-decimal ml-4 text-sm">
                   {activeEx.steps.map((step, index) => (
-                    <li key={index} className="pl-2">
-                      {step}
-                    </li>
+                    <li key={index} className="pl-2">{step}</li>
                   ))}
                 </ol>
               </section>
             )}
-
-            {/* Tips & Warnings */}
-            {((activeEx.tips && activeEx.tips.length > 0) ||
-              (activeEx.warnings && activeEx.warnings.length > 0)) && (
-              <div className="grid grid-cols-1 gap-4">
-                {activeEx.tips &&
-                  activeEx.tips.map((tip, i) => (
-                    <div
-                      key={i}
-                      className="bg-green-50 border border-green-100 p-4 rounded-2xl text-xs text-green-800"
-                    >
-                      <span className="font-bold">TIP:</span> {tip}
-                    </div>
-                  ))}
-                {activeEx.warnings?.map((warning, i) => (
-                  <div
-                    key={i}
-                    className="bg-red-50 border border-red-100 p-4 rounded-2xl text-xs text-red-800"
-                  >
-                    <span className="font-bold">CAUTION:</span> {warning}
-                  </div>
-                ))}
-              </div>
-            )}
           </div>
         </div>
 
-        {/* Action Button */}
-        <div className="flex justify-end mt-10">
+        {/* --- MOVED OUTSIDE: CAUTION & TIPS SECTION --- */}
+        <div className="grid md:grid-cols-2 gap-6 mb-10">
+          {/* Caution Card */}
+          {activeEx.warnings && activeEx.warnings.length > 0 && (
+            <div className="bg-rose-50/40 border border-rose-100 rounded-[2.5rem] p-8 shadow-sm">
+              <h4 className="text-xs font-black text-rose-500 uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-rose-500" />
+                Caution
+              </h4>
+              <ul className="space-y-3">
+                {activeEx.warnings.map((warning, i) => (
+                  <li key={i} className="flex gap-3 text-sm text-rose-900/80 leading-relaxed items-start">
+                    <span className="text-rose-400 font-bold">•</span>
+                    <span>{warning}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Pro Tips Card */}
+          {activeEx.tips && activeEx.tips.length > 0 && (
+            <div className="bg-emerald-50/40 border border-emerald-100 rounded-[2.5rem] p-8 shadow-sm">
+              <h4 className="text-xs font-black text-emerald-500 uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                Pro Tips
+              </h4>
+              <ul className="space-y-3">
+                {activeEx.tips.map((tip, i) => (
+                  <li key={i} className="flex gap-3 text-sm text-emerald-900/80 leading-relaxed items-start">
+                    <span className="text-emerald-400 font-bold">•</span>
+                    <span>{tip}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+
+        {/* Final Action Button */}
+        <div className="flex justify-end">
           <button
             onClick={handleComplete}
-            disabled={
-              isCompleting || activeEx.status === SESSION_STATUS.COMPLETED
-            }
+            disabled={isCompleting || activeEx.status === SESSION_STATUS.COMPLETED}
             className={`
               flex items-center gap-2 font-bold py-4 px-12 rounded-2xl text-lg transition-all shadow-lg active:scale-95
               ${
