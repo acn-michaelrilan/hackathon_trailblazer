@@ -271,3 +271,8 @@ export type InformationInputData = UserTypeAndRisk &
   ExercisePreferencesAndTolerance &
   ExerciseEnvironment &
   AdditionalInformation;
+
+export interface LoadingOverlayProps {
+  isOpen: boolean;
+  message?: string;
+}
