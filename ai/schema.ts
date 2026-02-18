@@ -45,7 +45,7 @@ type ExercisePlanOutput = {
           harder: string; // MANDATORY: Progression option
           // Safety warnings, contraindications, stop conditions
           warnings: string[]; 
-          // Format: https://youtube.com/watch?v=[exercise-name]
+          // Content of video_url: must be the sample url of youtube video that demonstrates the exercise.
           video_url: string; 
           status: 'not_started' | 'in_progress' | 'completed';
           completed_sets: number; // Default 0

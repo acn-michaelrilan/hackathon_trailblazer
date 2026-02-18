@@ -7,21 +7,36 @@ export async function GET(request: Request) {
     const supabase = await createClient();
     const {
       data: { user },
+      error: userError,
     } = await supabase.auth.getUser();
 
+    console.log('getting user',user?.id);
     // if (!user) {
     //   return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     // }
+    const { data: plan, error: planError } = await supabase
+      .from("exercise_plans")
+      .select("plan_id")
+      .eq("user_id", user?.id)
+      .single(); 
 
-    const { searchParams } = new URL(request.url);
-    const planId = searchParams.get("planId");
+    if (planError || !plan) {
+      return NextResponse.json(
+        { error: "Exercise plan not found for user" },
+        { status: 404 }
+      );
+    }
+    const planId = plan.plan_id;
+    console.log('found plan id', planId);
+    // const { searchParams } = new URL(request.url);
+    // const planId = searchParams.get("planId");
 
     // if (!planId) {
     //   return NextResponse.json({ error: "Plan ID required" }, { status: 400 });
     // }
 
     // const data = await getExercisePlanData("EP-2026-SK34-002");
-    const data = await getExercisePlanData("EP-2026-JM68-001");
+    const data = await getExercisePlanData(planId);
 
 
     if (!data) {

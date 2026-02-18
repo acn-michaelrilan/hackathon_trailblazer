@@ -1,0 +1,895 @@
+{
+    "profile":{
+    "user_id": "1ba7a4fa-daab-4f1a-b4bf-416c2b0dda64"
+    },
+    "exercise_plan": {
+        "plan_info": {
+            "plan_id": "EP-2026-MNL1-002",
+            "created_date": "2026-02-16",
+            "total_weeks": 1,
+            "sessions_per_week": 5,
+            "difficulty": "intermediate",
+            "primary_goal": "Increase total-body strength to support half-marathon training, improve core stability, enhance running economy, and maintain flexibility with a gym-friendly 5-day plan.",
+            "safety_notes": [
+                "Low risk and cleared for exercise; still stop immediately for chest pain, unusual shortness of breath, dizziness/fainting, new palpitations, or severe headache.",
+                "Pain rule: 0–2/10 acceptable; 3–4/10 modify (reduce load/range/speed); 5+/10 or sharp/nerve pain = stop and reassess.",
+                "Warm up 5–10 minutes before strength or running; ramp intensity gradually (no sudden speed/load jumps).",
+                "Maintain neutral spine for hinges/squats/rows; avoid breath-holding—exhale on effort, inhale on lowering.",
+                "Progress gradually: change only ONE variable at a time (load OR reps OR sets OR running intensity) weekly, and only if recovery is good.",
+                "Use stable, non-slip surfaces for step-ups/lunges; use wall support only for balance, not to pull.",
+                "For resistance bands, anchor securely and inspect for wear/tears before use to prevent snapping.",
+                "Hydrate and fuel appropriately; avoid high-intensity sessions if ill, feverish, or significantly sleep-deprived."
+            ]
+        },
+        "weekly_schedule": [
+            {
+                "week": 1,
+                "focus": "5-Day Strength + Run Support Block (2 lower-focused days, 1 upper-focused day, 2 run-quality/core days)",
+                "sessions": [
+                    {
+                        "day": 1,
+                        "title": "Lower Body Strength + Calf Capacity",
+                        "duration_min": 50,
+                        "session_status": "not_started",
+                        "completed_date": null,
+                        "exercises": [
+                            {
+                                "id": "W1D1-EX001",
+                                "name": "Goblet Squat",
+                                "description": "Builds quad/glute strength and trunk bracing to support running posture and power.",
+                                "equipment": [
+                                    "light_weights"
+                                ],
+                                "steps": [
+                                    "Stand with feet shoulder-width, toes slightly out; hold one dumbbell at chest with elbows down.",
+                                    "Brace core (ribs down). Inhale and sit hips back and down as knees track over 2nd–3rd toes.",
+                                    "Lower to a comfortable depth with neutral spine (stop before back rounds).",
+                                    "Exhale and drive through midfoot/heel to stand tall; squeeze glutes at the top."
+                                ],
+                                "sets": 3,
+                                "reps": 10,
+                                "hold_sec": null,
+                                "rest_sec": 75,
+                                "tips": [
+                                    "Keep chest tall and weight close to the body.",
+                                    "Maintain tripod foot contact (big toe, little toe, heel).",
+                                    "Avoid knees collapsing inward; push knees slightly out."
+                                ],
+                                "easier": "Bodyweight squat to a box/bench (sit lightly then stand).",
+                                "harder": "Add a 2-second pause at the bottom or increase load slightly with perfect form.",
+                                "warnings": [
+                                    "Stop if sharp knee pain occurs or pain worsens during the set.",
+                                    "Avoid rounding the lower back at the bottom."
+                                ],
+                                "video_url": "https://www.youtube.com/watch?v=X_x6wA9d1HM",
+                                "status": "not_started",
+                                "completed_sets": 0,
+                                "notes": ""
+                            },
+                            {
+                                "id": "W1D1-EX002",
+                                "name": "Dumbbell Romanian Deadlift (RDL)",
+                                "description": "Strengthens hamstrings/glutes and teaches hip hinge mechanics for stride power and posterior-chain resilience.",
+                                "equipment": [
+                                    "light_weights"
+                                ],
+                                "steps": [
+                                    "Stand holding two dumbbells in front of thighs; feet hip-width; knees softly bent.",
+                                    "Brace core and push hips back while keeping dumbbells close to legs.",
+                                    "Lower until strong hamstring stretch (stop before spine rounds).",
+                                    "Exhale and drive hips forward to stand tall; squeeze glutes at the top."
+                                ],
+                                "sets": 3,
+                                "reps": 10,
+                                "hold_sec": null,
+                                "rest_sec": 90,
+                                "tips": [
+                                    "Think 'hips back' (hinge), not 'bend at the waist'.",
+                                    "Keep neck neutral; shoulders packed down and back.",
+                                    "Control the lowering phase; no bouncing."
+                                ],
+                                "easier": "Reduce range of motion to just below knees and use lighter weights.",
+                                "harder": "Use a 3-second slow lowering phase (eccentric) while keeping form.",
+                                "warnings": [
+                                    "Stop for sharp low-back pain, tingling, or numbness.",
+                                    "Do not lock knees or hyperextend at the top."
+                                ],
+                                "video_url": "https://www.youtube.com/watch?v=hQgFixeXdZo",
+                                "status": "not_started",
+                                "completed_sets": 0,
+                                "notes": ""
+                            },
+                            {
+                                "id": "W1D1-EX003",
+                                "name": "Reverse Lunge",
+                                "description": "Builds single-leg strength and hip control with typically less forward knee stress than forward lunges.",
+                                "equipment": [
+                                    "None"
+                                ],
+                                "steps": [
+                                    "Stand tall with feet hip-width; brace core.",
+                                    "Step one foot back and lower until both knees bend ~90° (back knee hovers above floor).",
+                                    "Keep front knee tracking over toes; chest tall.",
+                                    "Press through front heel to return to standing; repeat then switch sides."
+                                ],
+                                "sets": 3,
+                                "reps": 8,
+                                "hold_sec": null,
+                                "rest_sec": 75,
+                                "tips": [
+                                    "Step back far enough to keep front shin relatively vertical.",
+                                    "Control the descent (2–3 seconds down).",
+                                    "Keep hips level; avoid wobbling."
+                                ],
+                                "easier": "Shorten the step length and reduce depth; use wall support for balance.",
+                                "harder": "Hold light dumbbells or add a 1-second pause at the bottom.",
+                                "warnings": [
+                                    "Stop if sharp knee pain occurs; reduce depth or switch to split squat hold.",
+                                    "Avoid letting the front knee cave inward."
+                                ],
+                                "video_url": "https://www.youtube.com/watch?v=RvMv4y2ukYY",
+                                "status": "not_started",
+                                "completed_sets": 0,
+                                "notes": ""
+                            },
+                            {
+                                "id": "W1D1-EX004",
+                                "name": "Step-Up",
+                                "description": "Improves unilateral leg strength and hip stability; supports better knee tracking for running.",
+                                "equipment": [
+                                    "light_weights",
+                                    "balance_aids_wall"
+                                ],
+                                "steps": [
+                                    "Stand facing a sturdy step/box; place whole foot on the step.",
+                                    "Drive through the step foot to stand up (minimal push from trailing foot).",
+                                    "Stand tall at the top; bring trailing foot up.",
+                                    "Step down under control; complete reps then switch legs."
+                                ],
+                                "sets": 2,
+                                "reps": 10,
+                                "hold_sec": null,
+                                "rest_sec": 75,
+                                "tips": [
+                                    "Keep knee aligned over 2nd–3rd toes; avoid collapsing inward.",
+                                    "Use a step height at or below knee height to start.",
+                                    "Control the lowering phase to build stability."
+                                ],
+                                "easier": "Lower step height and perform bodyweight only.",
+                                "harder": "Hold light dumbbells or use a slow 3-second lowering phase.",
+                                "warnings": [
+                                    "Ensure the step is stable and non-slip.",
+                                    "Stop if sharp knee pain occurs."
+                                ],
+                                "video_url": "https://www.youtube.com/watch?v=V0pvXq1fYR8",
+                                "status": "not_started",
+                                "completed_sets": 0,
+                                "notes": ""
+                            },
+                            {
+                                "id": "W1D1-EX005",
+                                "name": "Single-Leg Calf Raise",
+                                "description": "Builds calf/Achilles capacity for propulsion and lower-leg injury prevention in runners.",
+                                "equipment": [
+                                    "balance_aids_wall"
+                                ],
+                                "steps": [
+                                    "Stand near a wall for light fingertip support; shift weight to one foot.",
+                                    "Rise up slowly onto the ball of the foot (about 2 seconds up).",
+                                    "Pause briefly at the top, then lower slowly (about 3 seconds down).",
+                                    "Complete reps and switch legs."
+                                ],
+                                "sets": 3,
+                                "reps": 12,
+                                "hold_sec": null,
+                                "rest_sec": 60,
+                                "tips": [
+                                    "Keep knee straight but not locked for gastrocnemius emphasis.",
+                                    "No bouncing; control every rep.",
+                                    "Keep hips level; avoid leaning."
+                                ],
+                                "easier": "Double-leg calf raises or smaller range on flat ground.",
+                                "harder": "Perform on a step for more range or hold a light dumbbell.",
+                                "warnings": [
+                                    "Stop if Achilles pain becomes sharp or increases.",
+                                    "Avoid fast, bouncing reps."
+                                ],
+                                "video_url": "https://www.youtube.com/watch?v=u1Yc75YdiJA",
+                                "status": "not_started",
+                                "completed_sets": 0,
+                                "notes": ""
+                            }
+                        ]
+                    },
+                    {
+                        "day": 2,
+                        "title": "Run Intervals + Core Stability",
+                        "duration_min": 45,
+                        "session_status": "not_started",
+                        "completed_date": null,
+                        "exercises": [
+                            {
+                                "id": "W1D2-EX001",
+                                "name": "Treadmill Interval Run (1:2 Work:Rest)",
+                                "description": "Builds speed endurance and aerobic power while keeping effort controlled.",
+                                "equipment": [
+                                    "gym"
+                                ],
+                                "steps": [
+                                    "Warm up 8 minutes easy jog (RPE 3/10).",
+                                    "Complete 6 rounds: 1 minute hard (RPE 8/10) + 2 minutes easy (RPE 3/10).",
+                                    "Cool down 5 minutes easy jog or brisk walk.",
+                                    "Optional: set treadmill incline to 1% for outdoor-like effort."
+                                ],
+                                "sets": 6,
+                                "reps": null,
+                                "hold_sec": 60,
+                                "rest_sec": 120,
+                                "tips": [
+                                    "Hard segments should be challenging but repeatable—avoid sprinting.",
+                                    "Keep cadence quick and steps light (avoid overstriding).",
+                                    "If form breaks, reduce speed during hard segments."
+                                ],
+                                "easier": "Do 4 rounds or use 45 seconds hard / 2 minutes easy.",
+                                "harder": "Increase to 7–8 rounds or add 1–2% incline on hard segments.",
+                                "warnings": [
+                                    "Stop for dizziness, chest pain, or unusual shortness of breath.",
+                                    "Stop for sharp joint pain; reduce speed or switch to low-impact cardio."
+                                ],
+                                "video_url": "https://www.youtube.com/watch?v=sO0mHyok1RE",
+                                "status": "not_started",
+                                "completed_sets": 0,
+                                "notes": ""
+                            },
+                            {
+                                "id": "W1D2-EX002",
+                                "name": "Bird Dog",
+                                "description": "Improves trunk and hip stability, supporting spinal control and balanced gait.",
+                                "equipment": [
+                                    "None"
+                                ],
+                                "steps": [
+                                    "Start on all fours with hands under shoulders and knees under hips.",
+                                    "Brace core and keep back flat; avoid shifting weight.",
+                                    "Extend opposite arm and leg to parallel; keep hips square.",
+                                    "Return with control and alternate sides."
+                                ],
+                                "sets": 2,
+                                "reps": 10,
+                                "hold_sec": null,
+                                "rest_sec": 45,
+                                "tips": [
+                                    "Reach long (not high) to avoid low-back arching.",
+                                    "Move slowly and breathe steadily.",
+                                    "Keep gaze down to maintain neutral neck."
+                                ],
+                                "easier": "Extend only the leg or only the arm (one limb at a time).",
+                                "harder": "Add a 2-second hold at full extension each rep.",
+                                "warnings": [
+                                    "Stop if low-back pinching occurs; reduce range and re-brace."
+                                ],
+                                "video_url": "https://www.youtube.com/watch?v=Q2KdDhe_W5A",
+                                "status": "not_started",
+                                "completed_sets": 0,
+                                "notes": ""
+                            },
+                            {
+                                "id": "W1D2-EX003",
+                                "name": "Dead Bug",
+                                "description": "Trains deep core stability to reduce low-back stress during running and lifting.",
+                                "equipment": [
+                                    "None"
+                                ],
+                                "steps": [
+                                    "Lie on your back; hips/knees at 90°, arms up.",
+                                    "Press low back gently into the floor; ribs down.",
+                                    "Extend opposite arm and leg slowly without back lifting.",
+                                    "Return to start and switch sides."
+                                ],
+                                "sets": 3,
+                                "reps": 8,
+                                "hold_sec": null,
+                                "rest_sec": 45,
+                                "tips": [
+                                    "Exhale during extension to keep ribs down.",
+                                    "Reduce range if low back lifts.",
+                                    "Slow, controlled reps > speed."
+                                ],
+                                "easier": "Heel taps only with arms still.",
+                                "harder": "Add a brief 1–2 second pause at end range each rep.",
+                                "warnings": [
+                                    "Stop if you feel low-back pain; decrease range and re-brace."
+                                ],
+                                "video_url": "https://www.youtube.com/watch?v=Fcfp9Aa17ig",
+                                "status": "not_started",
+                                "completed_sets": 0,
+                                "notes": ""
+                            },
+                            {
+                                "id": "W1D2-EX004",
+                                "name": "Side Plank",
+                                "description": "Strengthens lateral core/hip stabilizers to reduce pelvic drop and improve running efficiency.",
+                                "equipment": [
+                                    "None"
+                                ],
+                                "steps": [
+                                    "Lie on your side with elbow under shoulder; legs stacked or staggered.",
+                                    "Lift hips to form a straight line from head to feet.",
+                                    "Keep ribs down and glutes engaged; breathe steadily.",
+                                    "Hold, then switch sides."
+                                ],
+                                "sets": 3,
+                                "reps": null,
+                                "hold_sec": 25,
+                                "rest_sec": 45,
+                                "tips": [
+                                    "Keep shoulders stacked; don’t roll forward.",
+                                    "Squeeze glutes to stabilize hips.",
+                                    "Stop before form breaks."
+                                ],
+                                "easier": "Side plank from knees (bent legs).",
+                                "harder": "Increase hold to 35–40 seconds or add a small top-leg lift.",
+                                "warnings": [
+                                    "Stop if shoulder pain increases; regress to knees."
+                                ],
+                                "video_url": "https://www.youtube.com/watch?v=iNbH7_edNI8",
+                                "status": "not_started",
+                                "completed_sets": 0,
+                                "notes": ""
+                            },
+                            {
+                                "id": "W1D2-EX005",
+                                "name": "Pallof Press (Resistance Band)",
+                                "description": "Anti-rotation core strength to stabilize trunk during running and lifting.",
+                                "equipment": [
+                                    "resistance_band"
+                                ],
+                                "steps": [
+                                    "Anchor band at chest height; stand sideways with feet shoulder-width.",
+                                    "Hold band at chest with both hands; step out to create tension.",
+                                    "Brace core and press hands straight out without rotating.",
+                                    "Return to chest with control; complete reps then switch sides."
+                                ],
+                                "sets": 3,
+                                "reps": 10,
+                                "hold_sec": null,
+                                "rest_sec": 60,
+                                "tips": [
+                                    "Squeeze glutes and keep ribs down.",
+                                    "Move slowly; resist band pull.",
+                                    "Keep knees soft and posture tall."
+                                ],
+                                "easier": "Stand closer to anchor (less tension).",
+                                "harder": "Add a 2-second hold with arms extended each rep.",
+                                "warnings": [
+                                    "Stop if you feel twisting low-back discomfort; reduce tension."
+                                ],
+                                "video_url": "https://www.youtube.com/watch?v=jeblEB1nqvI",
+                                "status": "not_started",
+                                "completed_sets": 0,
+                                "notes": ""
+                            }
+                        ]
+                    },
+                    {
+                        "day": 3,
+                        "title": "Upper Body Strength + Posture + Core",
+                        "duration_min": 45,
+                        "session_status": "not_started",
+                        "completed_date": null,
+                        "exercises": [
+                            {
+                                "id": "W1D3-EX001",
+                                "name": "Push-Up",
+                                "description": "Builds chest/shoulder/triceps strength and trunk stiffness for posture and arm drive.",
+                                "equipment": [
+                                    "None"
+                                ],
+                                "steps": [
+                                    "Start in a high plank: hands under shoulders, core braced, glutes tight.",
+                                    "Lower under control; elbows 30–45° from body; chest approaches floor.",
+                                    "Keep body in a straight line (no sagging hips).",
+                                    "Exhale and press back up."
+                                ],
+                                "sets": 3,
+                                "reps": 10,
+                                "hold_sec": null,
+                                "rest_sec": 75,
+                                "tips": [
+                                    "Keep shoulders away from ears.",
+                                    "Hands can be slightly wider than shoulders if comfortable.",
+                                    "Maintain strong plank throughout."
+                                ],
+                                "easier": "Incline push-up on a bench or wall.",
+                                "harder": "Slow 3-second lowering or add a 1-second pause at the bottom.",
+                                "warnings": [
+                                    "Stop for sharp shoulder pain; regress to incline and reduce depth."
+                                ],
+                                "video_url": "https://www.youtube.com/watch?v=i9sTjhN4Z3M",
+                                "status": "not_started",
+                                "completed_sets": 0,
+                                "notes": ""
+                            },
+                            {
+                                "id": "W1D3-EX002",
+                                "name": "Dumbbell Bent-Over Row",
+                                "description": "Strengthens lats/upper back for shoulder health and upright posture.",
+                                "equipment": [
+                                    "light_weights"
+                                ],
+                                "steps": [
+                                    "Stand hip-width holding dumbbells; hinge to ~45° with flat back.",
+                                    "Brace core; let arms hang under shoulders.",
+                                    "Row elbows toward lower ribs; squeeze shoulder blades.",
+                                    "Lower with control and repeat."
+                                ],
+                                "sets": 3,
+                                "reps": 10,
+                                "hold_sec": null,
+                                "rest_sec": 75,
+                                "tips": [
+                                    "Lead with elbows; avoid shrugging.",
+                                    "No swinging; pause briefly at top.",
+                                    "Keep neck neutral."
+                                ],
+                                "easier": "Single-arm supported row with one hand on a bench.",
+                                "harder": "Add a 1-second pause at the top each rep or increase load slightly.",
+                                "warnings": [
+                                    "Stop if low-back discomfort increases; support on a bench and reduce load."
+                                ],
+                                "video_url": "https://www.youtube.com/watch?v=8yqWpLd_b6Y",
+                                "status": "not_started",
+                                "completed_sets": 0,
+                                "notes": ""
+                            },
+                            {
+                                "id": "W1D3-EX003",
+                                "name": "Band Pull-Apart",
+                                "description": "Improves scapular control and posture by activating rear delts/rhomboids.",
+                                "equipment": [
+                                    "resistance_band"
+                                ],
+                                "steps": [
+                                    "Stand tall; hold band at shoulder height with arms straight (soft elbows).",
+                                    "Pull band apart by squeezing shoulder blades back and down.",
+                                    "Pause briefly at end range.",
+                                    "Return slowly while keeping tension."
+                                ],
+                                "sets": 2,
+                                "reps": 18,
+                                "hold_sec": null,
+                                "rest_sec": 45,
+                                "tips": [
+                                    "Don’t shrug; shoulders down.",
+                                    "Keep ribs stacked (avoid arching low back).",
+                                    "Control the return—no snapping."
+                                ],
+                                "easier": "Use a lighter band or reduce range of motion.",
+                                "harder": "Add a 2-second hold at end range each rep.",
+                                "warnings": [
+                                    "Stop if shoulder pinching occurs; reduce range and set scapula down/back."
+                                ],
+                                "video_url": "https://www.youtube.com/watch?v=KvlCAx2Fk2U",
+                                "status": "not_started",
+                                "completed_sets": 0,
+                                "notes": ""
+                            },
+                            {
+                                "id": "W1D3-EX004",
+                                "name": "Band External Rotation (Elbow at Side)",
+                                "description": "Strengthens rotator cuff for shoulder stability and injury prevention.",
+                                "equipment": [
+                                    "resistance_band"
+                                ],
+                                "steps": [
+                                    "Anchor band at elbow height; stand sideways to anchor.",
+                                    "Keep elbow pinned at side at 90°; towel between elbow and ribs if needed.",
+                                    "Rotate forearm outward without moving elbow or twisting torso.",
+                                    "Return slowly with control."
+                                ],
+                                "sets": 2,
+                                "reps": 12,
+                                "hold_sec": null,
+                                "rest_sec": 45,
+                                "tips": [
+                                    "Use light resistance; prioritize control.",
+                                    "Keep shoulder blade gently down/back.",
+                                    "Move only at the shoulder."
+                                ],
+                                "easier": "Use a lighter band and smaller range.",
+                                "harder": "Add a 2-second pause at end range each rep.",
+                                "warnings": [
+                                    "Stop if pain/catching increases; reduce tension and range."
+                                ],
+                                "video_url": "https://www.youtube.com/watch?v=_UvmPNGtlPM",
+                                "status": "not_started",
+                                "completed_sets": 0,
+                                "notes": ""
+                            },
+                            {
+                                "id": "W1D3-EX005",
+                                "name": "Front Plank (Forearm)",
+                                "description": "Builds core endurance for stable posture and efficient breathing during longer runs.",
+                                "equipment": [
+                                    "None"
+                                ],
+                                "steps": [
+                                    "Place forearms on floor with elbows under shoulders; legs extended.",
+                                    "Brace core (ribs down) and squeeze glutes to form a straight line.",
+                                    "Hold while breathing slowly; stop before form breaks.",
+                                    "Rest and repeat."
+                                ],
+                                "sets": 3,
+                                "reps": null,
+                                "hold_sec": 35,
+                                "rest_sec": 45,
+                                "tips": [
+                                    "Push the floor away to stabilize shoulders.",
+                                    "Don’t let hips sag or pike.",
+                                    "Keep neck neutral."
+                                ],
+                                "easier": "Knee plank with the same bracing cues.",
+                                "harder": "Increase hold to 45 seconds or add shoulder taps with strict control.",
+                                "warnings": [
+                                    "Stop if low-back pain occurs; reset with stronger glute squeeze and shorter holds."
+                                ],
+                                "video_url": "https://www.youtube.com/watch?v=HaH4JvdBCfE",
+                                "status": "not_started",
+                                "completed_sets": 0,
+                                "notes": ""
+                            }
+                        ]
+                    },
+                    {
+                        "day": 4,
+                        "title": "Tempo Run + Glute/Core + Mobility",
+                        "duration_min": 45,
+                        "session_status": "not_started",
+                        "completed_date": null,
+                        "exercises": [
+                            {
+                                "id": "W1D4-EX001",
+                                "name": "Dynamic Warm-Up (Run Prep)",
+                                "description": "Prepares joints/tissues for impact and improves stride mechanics before tempo work.",
+                                "equipment": [
+                                    "balance_aids_wall"
+                                ],
+                                "steps": [
+                                    "Easy jog or brisk walk 5 minutes.",
+                                    "Leg swings front/back: 10 per leg (hold wall).",
+                                    "Leg swings side-to-side: 10 per leg (control pelvis).",
+                                    "Walking lunges: 10 total (5 each side) with tall posture.",
+                                    "2 x 20-second relaxed strides with 40 seconds easy between (optional)."
+                                ],
+                                "sets": 1,
+                                "reps": null,
+                                "hold_sec": 480,
+                                "rest_sec": 0,
+                                "tips": [
+                                    "Keep movements controlled—no ballistic swinging.",
+                                    "Build intensity gradually.",
+                                    "Stay tall and relaxed through shoulders."
+                                ],
+                                "easier": "Skip strides and keep warm-up to brisk walk + leg swings only.",
+                                "harder": "Add one extra stride (3 total) if feeling great.",
+                                "warnings": [
+                                    "If any joint pain appears during warm-up, reduce range/intensity immediately."
+                                ],
+                                "video_url": "https://www.youtube.com/watch?v=If5SIlB3Qhw",
+                                "status": "not_started",
+                                "completed_sets": 0,
+                                "notes": ""
+                            },
+                            {
+                                "id": "W1D4-EX002",
+                                "name": "Tempo Run (Comfortably Hard)",
+                                "description": "Builds sustained speed endurance (threshold) needed for half-marathon pacing.",
+                                "equipment": [
+                                    "gym"
+                                ],
+                                "steps": [
+                                    "After warm-up, run 12 minutes at comfortably hard effort (RPE ~7/10).",
+                                    "You should be able to speak short phrases but not hold a full conversation.",
+                                    "Finish with 5–8 minutes easy jog/walk cooldown."
+                                ],
+                                "sets": 1,
+                                "reps": null,
+                                "hold_sec": 720,
+                                "rest_sec": 0,
+                                "tips": [
+                                    "Hold steady effort; don’t turn it into a race.",
+                                    "Relax shoulders, keep cadence smooth.",
+                                    "If effort creeps too high, slow slightly and stay controlled."
+                                ],
+                                "easier": "2 x 6 minutes tempo with 2 minutes easy between.",
+                                "harder": "Increase tempo to 15 minutes if recovery is excellent.",
+                                "warnings": [
+                                    "Stop for dizziness, chest pain, or unusual shortness of breath.",
+                                    "Avoid pushing pace if legs feel heavy from earlier sessions."
+                                ],
+                                "video_url": "https://www.youtube.com/watch?v=If5SIlB3Qhw",
+                                "status": "not_started",
+                                "completed_sets": 0,
+                                "notes": ""
+                            },
+                            {
+                                "id": "W1D4-EX003",
+                                "name": "Glute Bridge / Hip Thrust (Bodyweight)",
+                                "description": "Strengthens glutes/hamstrings to support hip extension power and reduce compensations in running.",
+                                "equipment": [
+                                    "None"
+                                ],
+                                "steps": [
+                                    "Lie on your back with knees bent, feet flat hip-width.",
+                                    "Brace core and squeeze glutes to lift hips until shoulders–hips–knees align.",
+                                    "Pause briefly at the top, then lower slowly with control.",
+                                    "Repeat without letting knees flare excessively."
+                                ],
+                                "sets": 3,
+                                "reps": 12,
+                                "hold_sec": null,
+                                "rest_sec": 60,
+                                "tips": [
+                                    "Drive through heels and keep ribs down (avoid back arching).",
+                                    "Squeeze glutes at the top; don’t push with low back.",
+                                    "Keep knees tracking over toes."
+                                ],
+                                "easier": "Reduce range of motion or perform 2 sets of 10.",
+                                "harder": "Single-leg glute bridge (alternate legs) or add a 2–3 second hold at top.",
+                                "warnings": [
+                                    "Stop if you feel sharp low-back pain; reset with stronger core brace and smaller range."
+                                ],
+                                "video_url": "https://www.youtube.com/watch?v=lEkjRUmUa80",
+                                "status": "not_started",
+                                "completed_sets": 0,
+                                "notes": ""
+                            },
+                            {
+                                "id": "W1D4-EX004",
+                                "name": "Half-Kneeling Hip Flexor Stretch",
+                                "description": "Maintains hip extension range to support stride length and reduce anterior hip tightness post-run.",
+                                "equipment": [
+                                    "None"
+                                ],
+                                "steps": [
+                                    "Kneel on one knee with the other foot forward (lunge stance).",
+                                    "Tuck pelvis slightly (posterior pelvic tilt) and squeeze the back-side glute.",
+                                    "Gently shift forward until you feel a stretch in the front of the hip.",
+                                    "Hold, then switch sides."
+                                ],
+                                "sets": 2,
+                                "reps": null,
+                                "hold_sec": 30,
+                                "rest_sec": 15,
+                                "tips": [
+                                    "Keep torso tall; don’t arch low back.",
+                                    "Squeeze glute on the kneeling side for a better stretch.",
+                                    "Breathe slowly and relax into the hold."
+                                ],
+                                "easier": "Shorten hold to 20 seconds and reduce forward shift.",
+                                "harder": "Raise the same-side arm overhead and slightly side-bend away (gentle).",
+                                "warnings": [
+                                    "Stop if you feel pinching in the front of the hip; reduce range."
+                                ],
+                                "video_url": "https://www.youtube.com/watch?v=If5SIlB3Qhw",
+                                "status": "not_started",
+                                "completed_sets": 0,
+                                "notes": ""
+                            },
+                            {
+                                "id": "W1D4-EX005",
+                                "name": "Hamstring Stretch (Hip Hinge Hold)",
+                                "description": "Maintains posterior chain flexibility and reduces post-run stiffness.",
+                                "equipment": [
+                                    "None"
+                                ],
+                                "steps": [
+                                    "Stand tall and place one heel slightly forward with toes up.",
+                                    "Hinge at hips with a flat back until you feel a mild hamstring stretch.",
+                                    "Keep knee softly straight (not locked).",
+                                    "Hold, then switch sides."
+                                ],
+                                "sets": 2,
+                                "reps": null,
+                                "hold_sec": 30,
+                                "rest_sec": 15,
+                                "tips": [
+                                    "Hinge from hips, not rounding the spine.",
+                                    "Keep shoulders relaxed and breathe.",
+                                    "Stretch to mild discomfort only."
+                                ],
+                                "easier": "Decrease hinge depth and hold for 20 seconds.",
+                                "harder": "Increase hold to 40 seconds if comfortable.",
+                                "warnings": [
+                                    "Stop if sharp pain occurs; do not bounce."
+                                ],
+                                "video_url": "https://www.youtube.com/watch?v=If5SIlB3Qhw",
+                                "status": "not_started",
+                                "completed_sets": 0,
+                                "notes": ""
+                            }
+                        ]
+                    },
+                    {
+                        "day": 5,
+                        "title": "Full-Body Strength (Runner Support) + Anti-Rotation",
+                        "duration_min": 50,
+                        "session_status": "not_started",
+                        "completed_date": null,
+                        "exercises": [
+                            {
+                                "id": "W1D5-EX001",
+                                "name": "Goblet Squat (Moderate Volume)",
+                                "description": "Reinforces squat pattern and leg strength endurance for overall athletic capacity.",
+                                "equipment": [
+                                    "light_weights"
+                                ],
+                                "steps": [
+                                    "Set up as Day 1.",
+                                    "Use a moderate load you can control for all reps.",
+                                    "Keep knees tracking and spine neutral.",
+                                    "Stand tall and reset breath each rep."
+                                ],
+                                "sets": 3,
+                                "reps": 12,
+                                "hold_sec": null,
+                                "rest_sec": 75,
+                                "tips": [
+                                    "Quality reps only; stop 1–2 reps before form breaks.",
+                                    "Keep ribs down and weight close."
+                                ],
+                                "easier": "Bodyweight squat 3x12.",
+                                "harder": "Add a 1-second pause at the bottom each rep.",
+                                "warnings": [
+                                    "Avoid knee collapse and low-back rounding."
+                                ],
+                                "video_url": "https://www.youtube.com/watch?v=X_x6wA9d1HM",
+                                "status": "not_started",
+                                "completed_sets": 0,
+                                "notes": ""
+                            },
+                            {
+                                "id": "W1D5-EX002",
+                                "name": "Glute Bridge / Hip Thrust (Bodyweight)",
+                                "description": "Strengthens glutes for hip extension power and pelvic control in running.",
+                                "equipment": [
+                                    "None"
+                                ],
+                                "steps": [
+                                    "Lie on back, knees bent, feet flat hip-width.",
+                                    "Brace core and lift hips by squeezing glutes.",
+                                    "Pause briefly at the top; lower slowly.",
+                                    "Repeat with controlled tempo."
+                                ],
+                                "sets": 3,
+                                "reps": 12,
+                                "hold_sec": null,
+                                "rest_sec": 60,
+                                "tips": [
+                                    "Drive through heels; keep ribs down.",
+                                    "Avoid flaring ribs or arching low back.",
+                                    "Keep knees aligned over toes."
+                                ],
+                                "easier": "2 sets of 10 with smaller range.",
+                                "harder": "Single-leg glute bridge (8 reps each side) or 2–3 second top hold.",
+                                "warnings": [
+                                    "Stop if low-back pain increases; reset brace and reduce range."
+                                ],
+                                "video_url": "https://www.youtube.com/watch?v=lEkjRUmUa80",
+                                "status": "not_started",
+                                "completed_sets": 0,
+                                "notes": ""
+                            },
+                            {
+                                "id": "W1D5-EX003",
+                                "name": "Step-Up",
+                                "description": "Single-leg strength and stability to support balanced mechanics and reduce asymmetries.",
+                                "equipment": [
+                                    "light_weights",
+                                    "balance_aids_wall"
+                                ],
+                                "steps": [
+                                    "Use a sturdy step; place whole foot on top.",
+                                    "Drive through step foot to stand; minimal push from trailing foot.",
+                                    "Stand tall at top; step down slowly.",
+                                    "Complete reps and switch sides."
+                                ],
+                                "sets": 3,
+                                "reps": 8,
+                                "hold_sec": null,
+                                "rest_sec": 75,
+                                "tips": [
+                                    "Control the lowering phase.",
+                                    "Keep knee aligned; pelvis level.",
+                                    "Use wall support lightly if needed."
+                                ],
+                                "easier": "Lower step height and do bodyweight only.",
+                                "harder": "Hold dumbbells or add a 3-second descent.",
+                                "warnings": [
+                                    "Stop if sharp knee pain occurs.",
+                                    "Ensure step is stable and non-slip."
+                                ],
+                                "video_url": "https://www.youtube.com/watch?v=V0pvXq1fYR8",
+                                "status": "not_started",
+                                "completed_sets": 0,
+                                "notes": ""
+                            },
+                            {
+                                "id": "W1D5-EX004",
+                                "name": "Dumbbell Bent-Over Row",
+                                "description": "Builds back strength and postural endurance; supports shoulder health for lifting/yoga.",
+                                "equipment": [
+                                    "light_weights"
+                                ],
+                                "steps": [
+                                    "Hinge forward with flat back; brace core.",
+                                    "Row elbows toward lower ribs; squeeze shoulder blades.",
+                                    "Lower with control and repeat.",
+                                    "Keep neck neutral throughout."
+                                ],
+                                "sets": 3,
+                                "reps": 10,
+                                "hold_sec": null,
+                                "rest_sec": 75,
+                                "tips": [
+                                    "No swinging; pause briefly at top.",
+                                    "Keep shoulders down (avoid shrugging).",
+                                    "Feel back muscles working."
+                                ],
+                                "easier": "Single-arm supported row on a bench.",
+                                "harder": "Add a 1-second top pause each rep or slightly increase load.",
+                                "warnings": [
+                                    "Stop if low-back discomfort increases; reduce load or support on a bench."
+                                ],
+                                "video_url": "https://www.youtube.com/watch?v=8yqWpLd_b6Y",
+                                "status": "not_started",
+                                "completed_sets": 0,
+                                "notes": ""
+                            },
+                            {
+                                "id": "W1D5-EX005",
+                                "name": "Pallof Press (Resistance Band)",
+                                "description": "Reinforces anti-rotation control for trunk stability and efficient force transfer.",
+                                "equipment": [
+                                    "resistance_band"
+                                ],
+                                "steps": [
+                                    "Anchor band at chest height; stand sideways with feet shoulder-width.",
+                                    "Hold band at chest; step away to create tension.",
+                                    "Press straight out, pause briefly, return slowly.",
+                                    "Complete reps then switch sides."
+                                ],
+                                "sets": 3,
+                                "reps": 12,
+                                "hold_sec": null,
+                                "rest_sec": 60,
+                                "tips": [
+                                    "Squeeze glutes; ribs down.",
+                                    "No rotation—move straight forward.",
+                                    "Keep breathing steady."
+                                ],
+                                "easier": "Reduce band tension by standing closer.",
+                                "harder": "Add a 2-second hold at full extension each rep.",
+                                "warnings": [
+                                    "Stop if twisting low-back discomfort occurs; reduce tension and re-brace."
+                                ],
+                                "video_url": "https://www.youtube.com/watch?v=jeblEB1nqvI",
+                                "status": "not_started",
+                                "completed_sets": 0,
+                                "notes": ""
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "progress": {
+            "total_sessions": 5,
+            "completed_sessions": 0,
+            "completion_percent": 0,
+            "current_week": 1,
+            "current_day": 1,
+            "next_session_date": "2026-02-17"
+        }
+    }
+}
