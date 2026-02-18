@@ -73,9 +73,9 @@ export async function getExercisePlanData(
         sessions: week.plan_sessions
           .sort((a: SessionData, b: SessionData) => a.day - b.day)
           .map((sess: SessionData) => {
-            console.log(
-              `📅 SESSION - Week ${week.week_num}, Day ${sess.day}: "${sess.title}" (${sess.duration_min}min), Status: ${sess.session_status}`,
-            );
+            // console.log(
+            //   `📅 SESSION - Week ${week.week_num}, Day ${sess.day}: "${sess.title}" (${sess.duration_min}min), Status: ${sess.session_status}`,
+            // );
 
             const session = {
               day: sess.day,
