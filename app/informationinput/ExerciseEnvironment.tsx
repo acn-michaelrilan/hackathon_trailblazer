@@ -225,7 +225,12 @@ export default function ExerciseEnvironment() {
               type="text"
               name="support_person_details"
               placeholder="Describe who they are and how they can assist you..."
-              style={{ width: "100%" }}
+              style={{
+                border: "1px solid #cbd5e1",
+                borderRadius: 6,
+                padding: "8px 10px",
+                width: "100%",
+              }}
             />
           </div>
         )}

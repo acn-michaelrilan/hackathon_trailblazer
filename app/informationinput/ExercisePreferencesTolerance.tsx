@@ -111,6 +111,12 @@ export default function ExercisePreferencesTolerance() {
           name="fatigue_concerns"
           rows={2}
           placeholder="Describe if any..."
+          style={{
+            border: "1px solid #cbd5e1",
+            borderRadius: 6,
+            padding: "8px 10px",
+            width: "100%",
+          }}
         />
       </div>
     </section>

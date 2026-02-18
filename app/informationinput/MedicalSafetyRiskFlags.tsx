@@ -16,6 +16,42 @@ export default function MedicalSafetyRiskFlags() {
   const [dizziness, setDizziness] = useState<YesNo>("");
 
   const styles = `
+  
+  .${sectionClass} input[type="text"],
+  .${sectionClass} input[type="number"],
+  .${sectionClass} input[type="date"],
+  .${sectionClass} textarea,
+  .${sectionClass} select {
+    border: 1px solid #cbd5e1;       /* light gray */
+    border-radius: 6px;
+    background: #fff;
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .modal-section select {
+    border: 1px solid #cbd5e1;       /* light gray outline */
+    border-radius: 6px;
+    padding: 8px 36px 8px 10px;      /* extra right padding for arrow */
+    background-color: #fff;
+    outline: none;
+
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    /* small dropdown arrow */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px 16px;
+  }
+
+  .modal-section select:focus {
+    border-color: #1f3fae;
+    box-shadow: 0 0 0 2px rgba(31, 63, 174, 0.2);
+  }
+
     /* Scoped styles for conditional display */
     .${sectionClass} .${depClass} { display: none; }
 
@@ -57,7 +93,7 @@ export default function MedicalSafetyRiskFlags() {
               type="number"
               inputMode="numeric"
               name="bp_sys"
-              placeholder="Systolic"
+              placeholder="  Systolic"
               min={70}
               max={250}
               required
@@ -68,7 +104,7 @@ export default function MedicalSafetyRiskFlags() {
               type="number"
               inputMode="numeric"
               name="bp_dia"
-              placeholder="Diastolic"
+              placeholder="  Diastolic"
               min={40}
               max={150}
               required
@@ -86,7 +122,7 @@ export default function MedicalSafetyRiskFlags() {
             type="number"
             inputMode="numeric"
             name="resting_heart_rate"
-            placeholder="e.g., 72"
+            placeholder="  e.g., 72"
             min={30}
             max={220}
             required
@@ -132,7 +168,7 @@ export default function MedicalSafetyRiskFlags() {
           <input
             type="text"
             name="heart_condition_details"
-            placeholder="Details (e.g., hypertension, meds)"
+            placeholder="  Details (e.g., hypertension, meds)"
             style={{ width: "100%" }}
             required={heartYes}
             disabled={!heartYes}
@@ -176,7 +212,7 @@ export default function MedicalSafetyRiskFlags() {
           <input
             type="text"
             name="pacemaker_or_implant_details"
-            placeholder="Device type/notes (optional)"
+            placeholder="  Device type/notes (optional)"
             style={{ width: "100%" }}
           />
         </div>
@@ -222,7 +258,7 @@ export default function MedicalSafetyRiskFlags() {
             name="number_of_falls"
             min={1}
             max={50}
-            placeholder="Number of falls"
+            placeholder="  Number of falls"
             style={{ width: 200 }}
             required={fallsYes}
             disabled={!fallsYes}
@@ -267,7 +303,7 @@ export default function MedicalSafetyRiskFlags() {
           <input
             type="text"
             name="dizziness_details"
-            placeholder="Details (e.g., on standing, frequency)"
+            placeholder="  Details (e.g., on standing, frequency)"
             style={{ width: "100%" }}
             required={dizzinessYes}
             disabled={!dizzinessYes}
@@ -302,7 +338,7 @@ export default function MedicalSafetyRiskFlags() {
         <input
           type="text"
           name="pain_location"
-          placeholder="Where is the pain located?"
+          placeholder="  Where is the pain located?"
           style={{ width: "100%" }}
         />
       </div>

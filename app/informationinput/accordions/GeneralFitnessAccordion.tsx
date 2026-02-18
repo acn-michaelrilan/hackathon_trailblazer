@@ -92,6 +92,33 @@ export default function GeneralFitnessAccordion() {
 
   return (
     <details ref={detailsRef} className="acc" data-acc="general">
+      <style>{`
+  .modal-section select {
+    border: 1px solid #cbd5e1;       /* light gray outline */
+    border-radius: 6px;
+    padding: 8px 36px 8px 10px;      /* extra right padding for arrow */
+    background-color: #fff;
+    outline: none;
+
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    /* small dropdown arrow */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px 16px;
+  }
+
+  .modal-section select:focus {
+    border-color: #1f3fae;
+    box-shadow: 0 0 0 2px rgba(31, 63, 174, 0.2);
+  }
+
+
+`}</style>
+
       <summary className="acc-summary">
         <span>Important Information</span>
         <svg

@@ -141,7 +141,12 @@ export default function AdditionalInformation() {
                 name="pt_sessions_completed"
                 min={0}
                 placeholder="e.g., 24"
-                style={{ width: "100%", padding: 6 }}
+                style={{
+                  border: "1px solid #cbd5e1",
+                  borderRadius: 6,
+                  padding: "8px 10px",
+                  width: "100%",
+                }}
               />
             </div>
             <div>
@@ -149,7 +154,12 @@ export default function AdditionalInformation() {
               <input
                 type="date"
                 name="pt_end_date"
-                style={{ width: "100%", padding: 6 }}
+                style={{
+                  border: "1px solid #cbd5e1",
+                  borderRadius: 6,
+                  padding: "8px 10px",
+                  width: "35%",
+                }}
               />
             </div>
           </div>
@@ -195,7 +205,12 @@ export default function AdditionalInformation() {
               name="physician_notes"
               rows={2}
               placeholder="Enter physician notes…"
-              style={{ width: "100%", padding: 6 }}
+              style={{
+                border: "1px solid #cbd5e1",
+                borderRadius: 6,
+                padding: "8px 10px",
+                width: "100%",
+              }}
             />
           </div>
         ) : (
