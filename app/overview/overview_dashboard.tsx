@@ -326,7 +326,7 @@ export default function OverviewDashboard() {
           </div>
 
           <div className="bg-blue-100/60 rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-8 flex justify-between items-center border border-blue-100 relative overflow-hidden">
-            <div className="z-10 relative">
+            <div className="z-0 relative">
               <h2 className="text-2xl md:text-3xl font-bold text-slate-800">
                 {plan_info.user_name}
               </h2>
@@ -334,7 +334,7 @@ export default function OverviewDashboard() {
                 Goal: {plan_info.primary_goal}
               </p>
             </div>
-            <div className="text-right z-10">
+            <div className="text-right z-0">
               <p className="text-4xl md:text-5xl font-bold text-blue-400">
                 {Math.round(progress.completion_percent)}%
               </p>

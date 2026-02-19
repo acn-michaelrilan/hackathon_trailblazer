@@ -1,4 +1,3 @@
-// app/informationinput/page.tsx
 import UserTypeAccordionController from "./UserTypeAccordionController";
 import UserTypeAccordion from "./UserTypeAccordion";
 import TestAIButton from "./SendPromptToAIButton";
@@ -19,16 +18,11 @@ export default async function InformationInput() {
 
   async function save(formData: FormData) {
     "use server";
-
     const payload = buildPayload(formData);
-
     console.log(JSON.stringify(payload, null, 2));
-
-    // redirect("/overview");
   }
 
   const userId = user.id;
-  console.log(userId);
 
   // ====== Component-scoped styles (no global CSS) ======
   const DESKTOP_BP = 1280;
@@ -40,7 +34,20 @@ export default async function InformationInput() {
   const usrClass = "usr-wrap";
 
   const styles = `
-  /* (styles unchanged — keeping your existing CSS here) */
+  /* Background Animation Logic */
+  @keyframes float {
+    0% { transform: translate(0, 0) scale(1); }
+    40% { transform: translate(30px, -50px) scale(1.1); }
+    60% { transform: translate(-20px, 20px) scale(0.9); }
+    100% { transform: translate(0, 0) scale(1); }
+  }
+  .animate-blob {
+    animation: float 20s infinite ease-in-out;
+  }
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+
   .${rootClass} .personal-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(${MIN_ITEM_WIDTH}px, 1fr));
@@ -155,6 +162,11 @@ export default async function InformationInput() {
 /* NEW: if UI is set to hidden, hide accordions even if data-acc-open is set */
 .usr-wrap[data-acc-ui="hidden"] details[data-acc] { display: none !important; }
 
+  .usr-wrap details[data-acc] { display: none; }
+  .usr-wrap[data-acc-open="stroke"] details[data-acc="stroke"] { display: block; }
+  .usr-wrap[data-acc-open="general"] details[data-acc="general"] { display: block; }
+  .usr-wrap[data-acc-collapsed="true"] details[data-acc] { display: none !important; }
+  .usr-wrap[data-acc-ui="hidden"] details[data-acc] { display: none !important; }
 
   .usr-wrap .acc-summary {
     list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px;
@@ -170,8 +182,15 @@ export default async function InformationInput() {
   `;
 
   return (
-    <div className="min-h-screen bg-white p-6 md:p-12 font-sans text-slate-900">
-      <main style={{ maxWidth: 900, margin: "0 auto", padding: 32 }}>
+    <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-[#f8fafc] via-[#eef2ff] to-[#f0fdf4] p-6 md:p-12 font-sans text-slate-900">
+      {/* Animated Blobs */}
+      <div className="absolute top-0 -left-10 w-72 h-72 bg-[#7BA63F]/10 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob" />
+      <div className="absolute bottom-0 -right-10 w-72 h-72 bg-[#264D73]/10 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000" />
+
+      <main
+        className="relative z-10"
+        style={{ maxWidth: 900, margin: "0 auto", padding: 32 }}
+      >
         <style>{styles}</style>
 
         <UserTypeAccordionController />
@@ -184,12 +203,10 @@ export default async function InformationInput() {
         </p>
 
         <form action={save}>
-          {/* ================= Personal Information ================= */}
           <section className={rootClass}>
             <h2 style={{ color: "#1f3fae" }}>Personal Information</h2>
 
             <div className="personal-grid">
-              {/* Name */}
               <div className="field">
                 <label>Name</label>
                 <input
@@ -201,7 +218,6 @@ export default async function InformationInput() {
                 />
               </div>
 
-              {/* Age */}
               <div className="field">
                 <label>Age</label>
                 <input
@@ -215,7 +231,6 @@ export default async function InformationInput() {
                 />
               </div>
 
-              {/* Sex */}
               <div className="field">
                 <label style={{ whiteSpace: "nowrap" }}>
                   Sex <span style={{ color: "red" }}>*</span>{" "}
@@ -232,10 +247,8 @@ export default async function InformationInput() {
                 </div>
               </div>
 
-              {/* Spacer (desktop only) */}
               <div className="spacer" aria-hidden="true" />
 
-              {/* Height */}
               <div className="field">
                 <label>
                   Height <span style={{ color: "red" }}>*</span>
@@ -249,7 +262,6 @@ export default async function InformationInput() {
                 />
               </div>
 
-              {/* Weight */}
               <div className="field">
                 <label>
                   Weight <span style={{ color: "red" }}>*</span>
@@ -263,7 +275,6 @@ export default async function InformationInput() {
                 />
               </div>
 
-              {/* Dominant Side */}
               <div>
                 <label style={{ whiteSpace: "nowrap" }}>
                   Dominant Side <span style={{ color: "red" }}>*</span>
@@ -300,12 +311,10 @@ export default async function InformationInput() {
             </div>
           </section>
 
-          {/* ================= User Type & Risk Level + Medical Profile ================= */}
           <UserTypeAccordion />
 
           <hr />
 
-          {/* ================= Save ================= */}
           <div style={{ textAlign: "center", marginTop: 32 }}>
             <button
               type="submit"
