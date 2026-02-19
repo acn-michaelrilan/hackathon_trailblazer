@@ -213,7 +213,12 @@ export default function GeneralFitnessAccordion() {
           <textarea
             name="notes"
             rows={2}
-            style={{ width: "100%", padding: 6 }}
+            style={{
+              border: "1px solid #cbd5e1",
+              borderRadius: 6,
+              padding: "8px 10px",
+              width: "100%",
+            }}
           />
         </section>
 
