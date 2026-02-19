@@ -1,10 +1,57 @@
 // ./MedicalSafetyRiskFlags.tsx
+"use client";
+
+import { useState } from "react";
+
+type YesNo = "yes" | "no" | "";
+
 export default function MedicalSafetyRiskFlags() {
   const sectionClass = "msr-section";
   const groupClass = "msr-group";
   const depClass = "msr-dep";
 
+  // Track radio selections to control required/disabled for dependent fields
+  const [heartCondition, setHeartCondition] = useState<YesNo>("");
+  const [falls, setFalls] = useState<YesNo>("");
+  const [dizziness, setDizziness] = useState<YesNo>("");
+
   const styles = `
+  
+  .${sectionClass} input[type="text"],
+  .${sectionClass} input[type="number"],
+  .${sectionClass} input[type="date"],
+  .${sectionClass} textarea,
+  .${sectionClass} select {
+    border: 1px solid #cbd5e1;       /* light gray */
+    border-radius: 6px;
+    background: #fff;
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .modal-section select {
+    border: 1px solid #cbd5e1;       /* light gray outline */
+    border-radius: 6px;
+    padding: 8px 36px 8px 10px;      /* extra right padding for arrow */
+    background-color: #fff;
+    outline: none;
+
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    /* small dropdown arrow */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px 16px;
+  }
+
+  .modal-section select:focus {
+    border-color: #1f3fae;
+    box-shadow: 0 0 0 2px rgba(31, 63, 174, 0.2);
+  }
+
     /* Scoped styles for conditional display */
     .${sectionClass} .${depClass} { display: none; }
 
@@ -21,14 +68,20 @@ export default function MedicalSafetyRiskFlags() {
     .${groupClass}[data-key="dizziness_or_fainting_episodes"]:has(#dizziness_or_fainting_episodes_yes:checked) .dep-dizziness { display: block; }
   `;
 
+  const heartYes = heartCondition === "yes";
+  const fallsYes = falls === "yes";
+  const dizzinessYes = dizziness === "yes";
+
   return (
     <section className={`modal-section ${sectionClass}`}>
       <style>{styles}</style>
 
       <h3 style={{ color: "#1f3fae" }}>Medical Safety &amp; Risk Flags</h3>
 
-      {/* Vitals */}
-      <p>Vitals</p>
+      {/* Vitals (REQUIRED) */}
+      <p>
+        Vitals <span style={{ color: "red" }}>*</span>
+      </p>
       <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
         {/* Blood Pressure */}
         <div>
@@ -40,9 +93,10 @@ export default function MedicalSafetyRiskFlags() {
               type="number"
               inputMode="numeric"
               name="bp_sys"
-              placeholder="Systolic"
+              placeholder="  Systolic"
               min={70}
               max={250}
+              required
               style={{ width: 96 }}
             />
             <span>/</span>
@@ -50,9 +104,10 @@ export default function MedicalSafetyRiskFlags() {
               type="number"
               inputMode="numeric"
               name="bp_dia"
-              placeholder="Diastolic"
+              placeholder="  Diastolic"
               min={40}
               max={150}
+              required
               style={{ width: 96 }}
             />
           </div>
@@ -67,9 +122,10 @@ export default function MedicalSafetyRiskFlags() {
             type="number"
             inputMode="numeric"
             name="resting_heart_rate"
-            placeholder="e.g., 72"
+            placeholder="  e.g., 72"
             min={30}
             max={220}
+            required
             style={{ width: 160 }}
           />
         </div>
@@ -81,51 +137,66 @@ export default function MedicalSafetyRiskFlags() {
         data-key="heart_condition"
         style={{ marginTop: 16 }}
       >
-        <p>Known Heart Condition</p>
+        <p>
+          Known Heart Condition <span style={{ color: "red" }}>*</span>
+        </p>
+
         <label>
           <input
             type="radio"
             id="heart_condition_yes"
             name="heart_condition"
             value="yes"
+            required
+            onChange={() => setHeartCondition("yes")}
           />{" "}
           Yes
         </label>
+
         <label style={{ marginLeft: 12 }}>
           <input
             type="radio"
             id="heart_condition_no"
             name="heart_condition"
             value="no"
+            onChange={() => setHeartCondition("no")}
           />{" "}
           No
         </label>
+
         <div className={`${depClass} dep-heart`} style={{ marginTop: 8 }}>
           <input
             type="text"
             name="heart_condition_details"
-            placeholder="Details (e.g., hypertension, meds)"
+            placeholder="  Details (e.g., hypertension, meds)"
             style={{ width: "100%" }}
+            required={heartYes}
+            disabled={!heartYes}
           />
         </div>
       </div>
 
-      {/* Pacemaker / Implants */}
+      {/* Pacemaker / Implants (still optional per your note) */}
       <div
         className={groupClass}
-        data-key="pacemaker_or_implants"
+        data-key="pacemaker_or_implant" // ✅ fixed to match CSS
         style={{ marginTop: 16 }}
       >
-        <p>Pacemaker or Implant</p>
+        <p>
+          Pacemaker or Implant <span style={{ color: "red" }}>*</span>
+        </p>
+
         <label>
           <input
             type="radio"
             id="pacemaker_or_implant_yes"
             name="pacemaker_or_implant"
+            required
             value="yes"
           />{" "}
           Yes
         </label>
+
         <label style={{ marginLeft: 12 }}>
           <input
             type="radio"
@@ -135,12 +206,13 @@ export default function MedicalSafetyRiskFlags() {
           />{" "}
           No
         </label>
+
         {/* Optional details; appears only when Yes */}
         <div className={`${depClass} dep-pacemaker`} style={{ marginTop: 8 }}>
           <input
             type="text"
             name="pacemaker_or_implant_details"
-            placeholder="Device type/notes (optional)"
+            placeholder="  Device type/notes (optional)"
             style={{ width: "100%" }}
           />
         </div>
@@ -152,25 +224,33 @@ export default function MedicalSafetyRiskFlags() {
         data-key="history_of_falls_last_6_months"
         style={{ marginTop: 16 }}
       >
-        <p>Falls in the Last 6 Months</p>
+        <p>
+          Falls in the Last 6 Months <span style={{ color: "red" }}>*</span>
+        </p>
+
         <label>
           <input
             type="radio"
             id="history_of_falls_last_6_months_yes"
             name="history_of_falls_last_6_months"
             value="yes"
+            required
+            onChange={() => setFalls("yes")}
           />{" "}
           Yes
         </label>
+
         <label style={{ marginLeft: 12 }}>
           <input
             type="radio"
             id="history_of_falls_last_6_months_no"
             name="history_of_falls_last_6_months"
             value="no"
+            onChange={() => setFalls("no")}
           />{" "}
           No
         </label>
+
         <div className={`${depClass} dep-falls`} style={{ marginTop: 8 }}>
           <input
             type="number"
@@ -178,8 +258,10 @@ export default function MedicalSafetyRiskFlags() {
             name="number_of_falls"
             min={1}
             max={50}
-            placeholder="Number of falls"
+            placeholder="  Number of falls"
             style={{ width: 200 }}
+            required={fallsYes}
+            disabled={!fallsYes}
           />
         </div>
       </div>
@@ -190,36 +272,46 @@ export default function MedicalSafetyRiskFlags() {
         data-key="dizziness_or_fainting_episodes"
         style={{ marginTop: 16 }}
       >
-        <p>Dizziness or Fainting Episodes</p>
+        <p>
+          Dizziness or Fainting Episodes <span style={{ color: "red" }}>*</span>
+        </p>
+
         <label>
           <input
             type="radio"
             id="dizziness_or_fainting_episodes_yes"
             name="dizziness_or_fainting_episodes"
             value="yes"
+            required
+            onChange={() => setDizziness("yes")}
           />{" "}
           Yes
         </label>
+
         <label style={{ marginLeft: 12 }}>
           <input
             type="radio"
             id="dizziness_or_fainting_episodes_no"
             name="dizziness_or_fainting_episodes"
             value="no"
+            onChange={() => setDizziness("no")}
           />{" "}
           No
         </label>
+
         <div className={`${depClass} dep-dizziness`} style={{ marginTop: 8 }}>
           <input
             type="text"
             name="dizziness_details"
-            placeholder="Details (e.g., on standing, frequency)"
+            placeholder="  Details (e.g., on standing, frequency)"
             style={{ width: "100%" }}
+            required={dizzinessYes}
+            disabled={!dizzinessYes}
           />
         </div>
       </div>
 
-      {/* Pain */}
+      {/* Pain (still optional unless you want otherwise) */}
       <p style={{ marginTop: 16 }}>Are you experiencing any pain right now?</p>
       <div
         style={{
@@ -241,11 +333,12 @@ export default function MedicalSafetyRiskFlags() {
           defaultValue={0}
         />
       </div>
+
       <div style={{ marginTop: 8 }}>
         <input
           type="text"
           name="pain_location"
-          placeholder="Where is the pain located?"
+          placeholder="  Where is the pain located?"
           style={{ width: "100%" }}
         />
       </div>

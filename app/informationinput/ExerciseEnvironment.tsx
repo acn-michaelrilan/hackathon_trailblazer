@@ -70,10 +70,13 @@ export default function ExerciseEnvironment() {
       <div className="envRow2">
         {/* Location */}
         <div className="row" style={{ marginTop: 0 }}>
-          <p>Location</p>
+          <p>
+            Location <span style={{ color: "red" }}>*</span>
+          </p>
           <select
             name="location"
             defaultValue=""
+            required
             style={{ width: "100%", maxWidth: 250 }}
           >
             <option value="">Select</option>
@@ -87,8 +90,8 @@ export default function ExerciseEnvironment() {
         </div>
 
         {/* Equipment available (dropdown) */}
-        <div className="row" style={{ marginTop: 0 }}>
-          <p>Equipment available</p>
+        <div className="row" style={{ marginTop: -7 }}>
+          <p>Equipment available (Optional)</p>
 
           <details
             style={{
@@ -187,11 +190,15 @@ export default function ExerciseEnvironment() {
 
       {/* Support person available */}
       <div className="row">
-        <p>Is a support person available during sessions?</p>
+        <p>
+          Is a support person available during sessions?{" "}
+          <span style={{ color: "red" }}>*</span>
+        </p>
         <div className="inline" style={{ marginTop: 4 }}>
           <label>
             <input
               type="radio"
+              required
               name="support_person_available"
               value="yes"
               checked={hasSupport === "yes"}
@@ -217,8 +224,13 @@ export default function ExerciseEnvironment() {
             <input
               type="text"
               name="support_person_details"
-              placeholder="e.g., spouse available during exercise sessions"
-              style={{ width: "100%" }}
+              placeholder="Describe who they are and how they can assist you..."
+              style={{
+                border: "1px solid #cbd5e1",
+                borderRadius: 6,
+                padding: "8px 10px",
+                width: "100%",
+              }}
             />
           </div>
         )}

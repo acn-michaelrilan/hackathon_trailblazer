@@ -142,6 +142,16 @@ export default async function InformationInput() {
 /* Collapsed state overrides visibility */
 .usr-wrap[data-acc-collapsed="true"] details[data-acc] { display: none !important; }
 
+.field input,
+.field select,
+.field textarea {
+  border: 1px solid #cbd5e1;          /* light gray */
+  border-radius: 6px;
+  // padding: 8px 10px;
+  outline: none;                      /* remove default browser outline */
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
 /* NEW: if UI is set to hidden, hide accordions even if data-acc-open is set */
 .usr-wrap[data-acc-ui="hidden"] details[data-acc] { display: none !important; }
 
@@ -185,7 +195,7 @@ export default async function InformationInput() {
                 <input
                   name="name"
                   type="text"
-                  placeholder="enter name"
+                  placeholder="  Enter name"
                   required
                   style={{ width: "100%" }}
                 />
@@ -197,7 +207,7 @@ export default async function InformationInput() {
                 <input
                   name="age"
                   type="number"
-                  placeholder="enter age"
+                  placeholder="  Enter age"
                   required
                   min={1}
                   max={98}
@@ -233,7 +243,7 @@ export default async function InformationInput() {
                 <input
                   name="height"
                   type="number"
-                  placeholder="Enter height in cm"
+                  placeholder="  Enter height in cm"
                   style={{ width: "100%" }}
                   required
                 />
@@ -247,7 +257,7 @@ export default async function InformationInput() {
                 <input
                   name="weight"
                   type="number"
-                  placeholder="Enter weight in kg"
+                  placeholder="  Enter weight in kg"
                   style={{ width: "100%" }}
                   required
                 />

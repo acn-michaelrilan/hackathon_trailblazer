@@ -20,8 +20,10 @@ export default function ExercisePreferencesTolerance() {
       {/* Preferred session length */}
       <div className="row two-col">
         <div>
-          <p>Preferred session length</p>
-          <select name="preferred_session_length">
+          <p>
+            Preferred session length <span style={{ color: "red" }}>*</span>
+          </p>
+          <select name="preferred_session_length" required>
             <option value="">Select</option>
             <option value="5_10_min">5–10 min</option>
             <option value="10_15_min">10–15 min</option>
@@ -32,8 +34,10 @@ export default function ExercisePreferencesTolerance() {
 
         {/* Intensity */}
         <div>
-          <p>Preferred intensity</p>
-          <select name="preferred_intensity">
+          <p>
+            Preferred intensity <span style={{ color: "red" }}>*</span>
+          </p>
+          <select name="preferred_intensity" required>
             <option value="">Select</option>
             <option value="very_light">Very light</option>
             <option value="light">Light</option>
@@ -46,8 +50,10 @@ export default function ExercisePreferencesTolerance() {
       {/* Rest tolerance + frequency */}
       <div className="row two-col">
         <div>
-          <p>Rest tolerance</p>
-          <select name="rest_tolerance">
+          <p>
+            Rest tolerance <span style={{ color: "red" }}>*</span>
+          </p>
+          <select name="rest_tolerance" required>
             <option value="">Select</option>
             <option value="frequent_breaks_needed">
               Frequent breaks needed
@@ -58,10 +64,13 @@ export default function ExercisePreferencesTolerance() {
         </div>
 
         <div>
-          <p>Rest frequency</p>
+          <p>
+            Rest frequency <span style={{ color: "red" }}>*</span>
+          </p>
           <select
             value={restPreset}
             onChange={(e) => setRestPreset(e.target.value)}
+            required
           >
             <option value="">Select</option>
             <option value="every 30 seconds">Every 30 seconds</option>
@@ -86,7 +95,7 @@ export default function ExercisePreferencesTolerance() {
 
       {/* Time of day */}
       <div className="row">
-        <p>Time of day preference</p>
+        <p>Time of day preference (Optional) </p>
         <select name="time_of_day_preference">
           <option value="">Select</option>
           <option value="morning">Morning</option>
@@ -101,7 +110,13 @@ export default function ExercisePreferencesTolerance() {
         <textarea
           name="fatigue_concerns"
           rows={2}
-          placeholder="describe if any..."
+          placeholder="Describe if any..."
+          style={{
+            border: "1px solid #cbd5e1",
+            borderRadius: 6,
+            padding: "8px 10px",
+            width: "100%",
+          }}
         />
       </div>
     </section>
