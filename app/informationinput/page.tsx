@@ -229,11 +229,11 @@ export default async function InformationInput() {
   `;
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-[#f8fafc] via-[#eef2ff] to-[#f0fdf4] p-6 md:p-12 font-sans text-slate-900">
+    <div className="relative min-h-screen overflow-hidden bg-linear-to-br from-[#f8fafc] via-[#eef2ff] to-[#f0fdf4] p-6 md:p-12 font-sans text-slate-900">
       {/* Animated Blobs */}
       <div className="absolute top-0 -left-10 w-72 h-72 bg-[#7BA63F]/10 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob" />
       <div className="absolute bottom-0 -right-10 w-72 h-72 bg-[#264D73]/10 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000" />
-      <main className="relative z-10" style={{ margin: "0 auto", padding: 32 }}>
+      <main className="relative z-1" style={{ margin: "0 auto", padding: 32 }}>
         <style>{styles}</style>
 
         <UserTypeAccordionController />
