@@ -168,6 +168,45 @@ export default async function InformationInput() {
   .usr-wrap[data-acc-collapsed="true"] details[data-acc] { display: none !important; }
   .usr-wrap[data-acc-ui="hidden"] details[data-acc] { display: none !important; }
 
+  /* -----------------------------
+   Container that actually feels spacious
+   (does NOT change your form layout)
+------------------------------ */
+.form-shell {
+  width: 100%;
+  max-width: 1000px;   /* ✅ wider than before */
+  margin: 0 auto;
+}
+
+.form-card {
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 1);
+  border-radius: 18px;
+
+  /* Softer, more “lifted” separation from background */
+  box-shadow:
+    0 24px 60px rgba(15, 23, 42, 0.12),
+    0 2px 10px rgba(15, 23, 42, 0.06);
+
+  /* ✅ More horizontal breathing room is what fixes “cramped” */
+  padding: 32px 48px;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .form-shell { max-width: 1000px; }
+  .form-card { padding: 24px 28px; }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .form-shell { max-width: 100%; }
+  .form-card {
+    padding: 18px;
+    border-radius: 14px;
+  }
+}
+
   .usr-wrap .acc-summary {
     list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px;
     padding: 16px 20px; background: #f8faff; border-bottom: 1px solid #eef2f7; font-weight: 700; color: #1f3fae;
@@ -187,151 +226,152 @@ export default async function InformationInput() {
       <div className="absolute top-0 -left-10 w-72 h-72 bg-[#7BA63F]/10 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob" />
       <div className="absolute bottom-0 -right-10 w-72 h-72 bg-[#264D73]/10 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000" />
 
-      <main
-        className="relative z-10"
-        style={{ maxWidth: 900, margin: "0 auto", padding: 32 }}
-      >
+      <main className="relative z-10" style={{ margin: "0 auto", padding: 32 }}>
         <style>{styles}</style>
 
         <UserTypeAccordionController />
 
-        <h1 style={{ textAlign: "center", fontSize: 36, color: "#1f3fae" }}>
-          <strong>LOG YOUR DATA</strong>
-        </h1>
-        <p style={{ textAlign: "center", marginBottom: 40 }}>
-          Track and record your information
-        </p>
+        <div className="form-shell">
+          <div className="form-card">
+            <h1 style={{ textAlign: "center", fontSize: 36, color: "#1f3fae" }}>
+              <strong>LOG YOUR DATA</strong>
+            </h1>
+            <p style={{ textAlign: "center", marginBottom: 40 }}>
+              Track and record your information
+            </p>
 
-        <form action={save}>
-          <section className={rootClass}>
-            <h2 style={{ color: "#1f3fae" }}>Personal Information</h2>
+            <form action={save}>
+              <section className={rootClass}>
+                <h2 style={{ color: "#1f3fae" }}>Personal Information</h2>
 
-            <div className="personal-grid">
-              <div className="field">
-                <label>Name</label>
-                <input
-                  name="name"
-                  type="text"
-                  placeholder="  Enter name"
-                  required
-                  style={{ width: "100%" }}
-                />
-              </div>
-
-              <div className="field">
-                <label>Age</label>
-                <input
-                  name="age"
-                  type="number"
-                  placeholder="  Enter age"
-                  required
-                  min={1}
-                  max={98}
-                  style={{ width: "100%" }}
-                />
-              </div>
-
-              <div className="field">
-                <label style={{ whiteSpace: "nowrap" }}>
-                  Sex <span style={{ color: "red" }}>*</span>{" "}
-                </label>
-                <div className="inline-options">
-                  <label className="inline-radio">
-                    <input type="radio" name="sex" value="male" required />
-                    Male
-                  </label>
-                  <label className="inline-radio">
-                    <input type="radio" name="sex" value="female" />
-                    Female
-                  </label>
-                </div>
-              </div>
-
-              <div className="spacer" aria-hidden="true" />
-
-              <div className="field">
-                <label>
-                  Height <span style={{ color: "red" }}>*</span>
-                </label>
-                <input
-                  name="height"
-                  type="number"
-                  placeholder="  Enter height in cm"
-                  style={{ width: "100%" }}
-                  required
-                />
-              </div>
-
-              <div className="field">
-                <label>
-                  Weight <span style={{ color: "red" }}>*</span>
-                </label>
-                <input
-                  name="weight"
-                  type="number"
-                  placeholder="  Enter weight in kg"
-                  style={{ width: "100%" }}
-                  required
-                />
-              </div>
-
-              <div>
-                <label style={{ whiteSpace: "nowrap" }}>
-                  Dominant Side <span style={{ color: "red" }}>*</span>
-                </label>
-
-                <div className="choice-grid" style={{ marginTop: 1 }}>
-                  <div style={{ position: "relative" }}>
+                <div className="personal-grid">
+                  <div className="field">
+                    <label>Name</label>
                     <input
-                      className="vh"
-                      type="radio"
-                      id="dominant_left"
-                      name="dominant_side"
-                      value="left"
+                      name="name"
+                      type="text"
+                      placeholder="  Enter name"
+                      required
+                      style={{ width: "100%" }}
+                    />
+                  </div>
+
+                  <div className="field">
+                    <label>Age</label>
+                    <input
+                      name="age"
+                      type="number"
+                      placeholder="  Enter age"
+                      required
+                      min={1}
+                      max={98}
+                      style={{ width: "100%" }}
+                    />
+                  </div>
+
+                  <div className="field">
+                    <label style={{ whiteSpace: "nowrap" }}>
+                      Sex <span style={{ color: "red" }}>*</span>{" "}
+                    </label>
+                    <div className="inline-options">
+                      <label className="inline-radio">
+                        <input type="radio" name="sex" value="male" required />
+                        Male
+                      </label>
+                      <label className="inline-radio">
+                        <input type="radio" name="sex" value="female" />
+                        Female
+                      </label>
+                    </div>
+                  </div>
+
+                  <div className="spacer" aria-hidden="true" />
+
+                  <div className="field">
+                    <label>
+                      Height <span style={{ color: "red" }}>*</span>
+                    </label>
+                    <input
+                      name="height"
+                      type="number"
+                      placeholder="  Enter in cm"
+                      style={{ width: "100%" }}
                       required
                     />
-                    <label className="pill" htmlFor="dominant_left">
-                      Left
-                    </label>
                   </div>
-                  <div style={{ position: "relative" }}>
-                    <input
-                      className="vh"
-                      type="radio"
-                      id="dominant_right"
-                      name="dominant_side"
-                      value="right"
-                    />
-                    <label className="pill" htmlFor="dominant_right">
-                      Right
+
+                  <div className="field">
+                    <label>
+                      Weight <span style={{ color: "red" }}>*</span>
                     </label>
+                    <input
+                      name="weight"
+                      type="number"
+                      placeholder="  Enter in kg"
+                      style={{ width: "100%" }}
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label style={{ whiteSpace: "nowrap" }}>
+                      Dominant Side <span style={{ color: "red" }}>*</span>
+                    </label>
+
+                    <div className="choice-grid" style={{ marginTop: 1 }}>
+                      <div style={{ position: "relative" }}>
+                        <input
+                          className="vh"
+                          type="radio"
+                          id="dominant_left"
+                          name="dominant_side"
+                          value="left"
+                          required
+                        />
+                        <label className="pill" htmlFor="dominant_left">
+                          Left
+                        </label>
+                      </div>
+                      <div style={{ position: "relative" }}>
+                        <input
+                          className="vh"
+                          type="radio"
+                          id="dominant_right"
+                          name="dominant_side"
+                          value="right"
+                        />
+                        <label className="pill" htmlFor="dominant_right">
+                          Right
+                        </label>
+                      </div>
+                    </div>
                   </div>
                 </div>
+              </section>
+
+              <UserTypeAccordion />
+
+              <hr />
+
+              <div style={{ textAlign: "center", marginTop: 32 }}>
+                <button
+                  type="submit"
+                  style={{
+                    background: "#6cab2f",
+                    color: "white",
+                    padding: "12px 40px",
+                    borderRadius: 8,
+                    border: "none",
+                    fontSize: 16,
+                  }}
+                >
+                  Save
+                </button>
+                <TestAIButton />
               </div>
-            </div>
-          </section>
-
-          <UserTypeAccordion />
-
-          <hr />
-
-          <div style={{ textAlign: "center", marginTop: 32 }}>
-            <button
-              type="submit"
-              style={{
-                background: "#6cab2f",
-                color: "white",
-                padding: "12px 40px",
-                borderRadius: 8,
-                border: "none",
-                fontSize: 16,
-              }}
-            >
-              Save
-            </button>
-            <TestAIButton />
+            </form>
           </div>
-        </form>
+        </div>
       </main>
     </div>
   );
