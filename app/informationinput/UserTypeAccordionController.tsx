@@ -22,6 +22,31 @@ export default function UserTypeAccordionController() {
     );
     const general = section.querySelector<HTMLInputElement>("#general_fitness");
 
+    const isUIHidden = () => section.getAttribute("data-acc-ui") === "hidden";
+
+    const toggleActive = (which: "stroke" | "general") => {
+      const openKey = section.getAttribute("data-acc-open");
+      const details = which === "stroke" ? strokeDetails : generalDetails;
+
+      // If this category isn't the active one, open it
+      if (openKey !== which) {
+        openWhich(which);
+        return;
+      }
+
+      const currentlyHidden = isUIHidden();
+      const currentlyOpen = Boolean(details?.open);
+
+      // If hidden or closed -> open/show
+      if (currentlyHidden || !currentlyOpen) {
+        openWhich(which);
+        return;
+      }
+
+      // Otherwise -> hide/close (but keep the selection)
+      hideUIKeepActive();
+    };
+
     // Labels
     const strokeLabel = section.querySelector<HTMLLabelElement>(
       'label[for="stroke_recovery_neurological"]',
@@ -149,43 +174,41 @@ export default function UserTypeAccordionController() {
     };
 
     const onStrokeLabelClick = (e: MouseEvent) => {
-      if (stroke?.checked) {
+      // Only toggle if stroke is already the active choice
+      if (
+        section.getAttribute("data-acc-open") === "stroke" &&
+        stroke?.checked
+      ) {
         e.preventDefault();
-        hideUIKeepActive();
+        toggleActive("stroke");
       }
     };
 
     const onGeneralLabelClick = (e: MouseEvent) => {
-      if (general?.checked) {
+      if (
+        section.getAttribute("data-acc-open") === "general" &&
+        general?.checked
+      ) {
         e.preventDefault();
-        hideUIKeepActive();
+        toggleActive("general");
       }
     };
 
     const onStrokeInputClick = () => {
-      if (!stroke) return;
-      if (stroke.checked) {
-        hideUIKeepActive();
-      } else {
-        setTimeout(() => {
-          if (stroke.checked) openWhich("stroke");
-        }, 0);
+      // Only toggle if stroke is already the active selection
+      if (section.getAttribute("data-acc-open") === "stroke") {
+        toggleActive("stroke");
       }
     };
 
     const onGeneralInputClick = () => {
-      if (!general) return;
-      if (general.checked) {
-        hideUIKeepActive();
-      } else {
-        setTimeout(() => {
-          if (general.checked) openWhich("general");
-        }, 0);
+      if (section.getAttribute("data-acc-open") === "general") {
+        toggleActive("general");
       }
     };
 
     // -------------------------------
-    // ✅ VALIDATION HELPERS (Stroke)
+    //  VALIDATION HELPERS (Stroke)
     // -------------------------------
 
     const getConditionCheckboxes = (root: Element | null) => {

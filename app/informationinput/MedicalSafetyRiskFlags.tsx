@@ -335,11 +335,15 @@ export default function MedicalSafetyRiskFlags() {
       </div>
 
       <div style={{ marginTop: 8 }}>
-        <input
-          type="text"
+        <textarea
           name="pain_location"
           placeholder="  Where is the pain located?"
-          style={{ width: "100%" }}
+          style={{
+            border: "1px solid #cbd5e1",
+            borderRadius: 6,
+            padding: "8px 10px",
+            width: "100%",
+          }}
         />
       </div>
     </section>
