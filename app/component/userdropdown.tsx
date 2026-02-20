@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { UserCircle, LogOut, AlertCircle } from "lucide-react";
+import { UserCircle, LogOut, AlertCircle, Loader2 } from "lucide-react";
 import { logoutUser } from "@/app/auth/actions";
 import { useRouter } from "next/navigation";
 
@@ -13,11 +13,18 @@ export default function UserDropdown({ userEmail }: Props) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   const confirmLogout = async () => {
-    setShowLogoutModal(false);
-    await logoutUser();
-    router.push("/login");
+    setIsLoggingOut(true);
+    try {
+      await logoutUser();
+      setShowLogoutModal(false);
+      router.push("/login");
+    } catch (error) {
+      console.error("Logout failed:", error);
+      setIsLoggingOut(false);
+    }
   };
 
   // Close dropdown when clicking outside
@@ -42,8 +49,8 @@ export default function UserDropdown({ userEmail }: Props) {
         </button>
 
         {open && (
-          <div className="absolute right-0 mt-2 w-50 bg-white border rounded shadow-lg z-20">
-            <p className="px-4 py-2 text-gray-700 text-sm border-b">
+          <div className="absolute right-0 mt-2 w-50 bg-white border rounded-xl shadow-xl z-20 overflow-hidden">
+            <p className="px-4 py-3 text-gray-500 text-xs border-b bg-gray-50">
               {userEmail}
             </p>
 
@@ -52,9 +59,9 @@ export default function UserDropdown({ userEmail }: Props) {
                 setOpen(false);
                 router.push("/userprofile");
               }}
-              className="w-full flex items-center gap-2 px-4 py-2 text-gray-800 hover:bg-gray-100"
+              className="w-full flex items-center gap-2 px-4 py-3 text-gray-800 hover:bg-gray-50 transition-colors text-sm font-medium"
             >
-              👤 User Profile
+              <span>👤</span> User Profile
             </button>
 
             <button
@@ -62,7 +69,7 @@ export default function UserDropdown({ userEmail }: Props) {
                 setOpen(false);
                 setShowLogoutModal(true);
               }}
-              className="w-full flex items-center gap-2 px-4 py-2 text-gray-800 hover:bg-gray-100"
+              className="w-full flex items-center gap-2 px-4 py-3 text-red-600 hover:bg-red-50 transition-colors text-sm font-medium"
             >
               <LogOut size={18} />
               Logout
@@ -73,11 +80,11 @@ export default function UserDropdown({ userEmail }: Props) {
 
       {/* --- LOGOUT CONFIRMATION MODAL --- */}
       {showLogoutModal && (
-        <div className="fixed inset-0 z-1 flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
           {/* Backdrop */}
           <div
             className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-200"
-            onClick={() => setShowLogoutModal(false)}
+            onClick={() => !isLoggingOut && setShowLogoutModal(false)}
           />
 
           {/* Modal Card */}
@@ -99,14 +106,23 @@ export default function UserDropdown({ userEmail }: Props) {
             <div className="flex flex-col gap-3">
               <button
                 onClick={confirmLogout}
-                className="w-full bg-red-500 text-white py-3 rounded-xl font-bold hover:bg-red-600 transition-all active:scale-95"
+                disabled={isLoggingOut}
+                className="w-full bg-red-500 text-white py-3 rounded-xl font-bold hover:bg-red-600 transition-all active:scale-95 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
               >
-                Yes, Log Me Out
+                {isLoggingOut ? (
+                  <>
+                    <Loader2 size={20} className="animate-spin" />
+                    Logging out...
+                  </>
+                ) : (
+                  "Yes, Log Me Out"
+                )}
               </button>
 
               <button
                 onClick={() => setShowLogoutModal(false)}
-                className="w-full bg-gray-100 text-gray-600 py-3 rounded-xl font-bold hover:bg-gray-200 transition-all"
+                disabled={isLoggingOut}
+                className="w-full bg-gray-100 text-gray-600 py-3 rounded-xl font-bold hover:bg-gray-200 transition-all disabled:opacity-50"
               >
                 Cancel
               </button>
