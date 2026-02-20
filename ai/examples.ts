@@ -16,12 +16,13 @@ ${JSON.stringify(strokeRecoveryInput, null, 2)}
 OUTPUT:
 ${JSON.stringify(strokeRecoveryOutput, null, 2)}
 
----
+
+`;
+`---
 EXAMPLE 2 -   ACTIVE USER FITNESS PLAN:
 
 INPUT:
 ${JSON.stringify(activeUserInput, null, 2)}
 
 OUTPUT:
-${JSON.stringify(activeUserOutput, null, 2)}
-`;
+${JSON.stringify(activeUserOutput, null, 2)}`;

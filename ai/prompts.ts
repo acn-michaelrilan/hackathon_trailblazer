@@ -17,6 +17,7 @@ DOMAIN RULES:
 INTERFACE DEFINITION:
 ${EXERCISE_PLAN_TS_SCHEMA}
 
+${EXERCISE_EXAMPLES}
 `;
 
 export function createExercisePlanPrompt(input: InformationInputData): string {
