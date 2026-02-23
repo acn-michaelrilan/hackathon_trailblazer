@@ -2,7 +2,7 @@ import { exerciseService } from "@/backend/llm/service";
 import { insertInformationInput } from "@/backend/informationinput/service";
 import { createClient } from "@/backend/server";
 import { NextResponse } from "next/server";
-import { INPUT_MOCK_DATA } from "@/lib/mockData";
+import { INPUT_MOCK_DATA, INPUT_MOCK_DATA_2 } from "@/lib/mockData";
 
 export async function POST(request: Request) {
   try {
@@ -60,7 +60,7 @@ export async function POST(request: Request) {
           `🌀 Generating plan (Attempt ${attempts}/${MAX_RETRIES})...`,
         );
 
-        plan = await exerciseService.generatePlan(data);
+        plan = await exerciseService.generatePlan(INPUT_MOCK_DATA_2);
 
         // If successful, break the loop
         if (plan) break;

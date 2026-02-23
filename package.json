@@ -17,7 +17,9 @@
     "openai": "^6.21.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "react-hot-toast": "^2.6.0"
+    "react-hot-toast": "^2.6.0",
+    "zod": "^3.23.8",
+    "zod-to-json-schema": "^3.24.5"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
