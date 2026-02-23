@@ -612,14 +612,6 @@
           }
         ]
       }
-    ],
-    "progress": {
-      "total_sessions": 40,
-      "completed_sessions": 0,
-      "completion_percent": 0,
-      "current_week": 1,
-      "current_day": 1,
-      "next_session_date": "2026-02-03"
-    }
+    ]
   }
 }

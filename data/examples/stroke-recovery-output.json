@@ -1,5 +1,4 @@
 {
-  "profile": { "user_id": "1ba7a4fa-daab-4f1a-b4bf-416c2b0dda64" },
   "exercise_plan": {
     "plan_info": {
       "plan_id": "EP-2026-JM68-001",
@@ -452,14 +451,6 @@
           }
         ]
       }
-    ],
-    "progress": {
-      "total_sessions": 20,
-      "completed_sessions": 0,
-      "completion_percent": 0,
-      "current_week": 1,
-      "current_day": 1,
-      "next_session_date": "2026-02-03"
-    }
+    ]
   }
 }
