@@ -3,6 +3,7 @@ import { insertInformationInput } from "@/backend/informationinput/service";
 import { createClient } from "@/backend/server";
 import { NextResponse } from "next/server";
 import { INPUT_MOCK_DATA, INPUT_MOCK_DATA_2 } from "@/lib/mockData";
+import { json } from "zod/v4/mini";
 
 export async function POST(request: Request) {
   try {
@@ -83,6 +84,31 @@ export async function POST(request: Request) {
 
     // 4. Return the generated plan
     console.log("✅ Plan generated successfully after", attempts, "attempts.");
+
+    if (!plan) {
+      throw new Error("Failed to generate exercise plan.");
+    }
+
+    // get current date for next session scheduling
+    const currentDate = new Date();
+    // format as YYYY-MM-DD
+    const formattedDate = currentDate.toISOString().split("T")[0];
+    // Adding user profile info to the plan response
+    plan.profile = {
+      user_id: userId
+    }
+
+    plan.progress = {
+      total_sesssions: 0,
+      completed_sessions: 0,
+      completion_percent: 0,
+      current_week: 0,
+      current_day: 0,
+      next_session_date: formattedDate
+    }
+
+    const planString = JSON.stringify(plan, null, 2);
+    console.log("Generated Plan:", planString);
     return NextResponse.json(plan, { status: 200 });
   } catch (error) {
     console.error("❌ Critical error:", error);

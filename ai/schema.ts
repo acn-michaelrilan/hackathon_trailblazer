@@ -10,7 +10,7 @@ export const EXERCISE_PLAN_TS_SCHEMA = `
 type ExercisePlanOutput = {
   exercise_plan: {
     plan_info: {
-      plan_id: string; // Format: EP-YYYY-XXXX-NNN
+      plan_id: string; // Format: EP-YYYY-<2 Random Letters followed by 2 random numbers>-<3 random numbers>
       user_name: string;
       created_date?: string; // YYYY-MM-DD
       total_weeks?: number; // 1-52
@@ -34,7 +34,7 @@ type ExercisePlanOutput = {
           name: string;
           description: string; // Purpose and benefits
           steps: string[]; // Sequential numbered instructions
-          video_url: string; // YouTube URL demonstrating the exercise
+          video_url: string; // YouTube URL demonstrating the exercise should be search result for exercise name
           status: string;
           sets: number;
           reps: number;

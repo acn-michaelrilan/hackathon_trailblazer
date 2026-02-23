@@ -27,8 +27,7 @@ export const MOCK_DATA: ExercisePlanData = {
                 sets: 3,
                 reps: 10,
                 rest_sec: 30,
-                description:
-                  "Arm Raises is a gentle mobility and strengthening exercise that targets the muscles of the shoulders and arms.",
+                description: "Arm Raises is a gentle mobility and strengthening exercise that targets the muscles of the shoulders and arms.",
                 steps: [
                   "Start Position: Sit or stand with arms relaxed.",
                   "Lift arms slowly to shoulder height.",
@@ -46,8 +45,7 @@ export const MOCK_DATA: ExercisePlanData = {
                 sets: 3,
                 reps: 10,
                 rest_sec: 20,
-                description:
-                  "Hand Open and Close targets the muscles of the hands, fingers, and forearm for dexterity.",
+                description: "Hand Open and Close targets the muscles of the hands, fingers, and forearm for dexterity.",
                 steps: [
                   "Spread fingers wide.",
                   "Close into a firm fist.",
@@ -64,8 +62,7 @@ export const MOCK_DATA: ExercisePlanData = {
                 sets: 3,
                 reps: 10,
                 rest_sec: 30,
-                description:
-                  "Seated Marching is a low-impact exercise that strengthens the hip flexors and core.",
+                description: "Seated Marching is a low-impact exercise that strengthens the hip flexors and core.",
                 steps: [
                   "Sit upright in a sturdy chair.",
                   "Lift right knee toward chest.",
@@ -101,6 +98,17 @@ export const MOCK_DATA: ExercisePlanData = {
       completed_sessions: 3,
     },
   },
+  progress: {
+    total_sesssions: 0,
+    completed_sessions: 0,
+    completion_percent: 0,
+    current_week: 0,
+    current_day: 0,
+    next_session_date: ""
+  },
+  profile: {
+    user_id: ""
+  }
 };
 
 export const INPUT_MOCK_DATA: InformationInputData = {
