@@ -66,7 +66,16 @@ export default function ExerciseModalContent({
               {activeEx.video_url ? (
                 <div className="text-center p-6">
                   <PlayCircle size={48} className="text-blue-500 mx-auto mb-2" />
-                  <p className="text-sm text-slate-500 font-medium">Video Tutorial Available</p>
+                  <p className="text-sm text-slate-600 font-medium">Open YouTube search</p>
+                  
+                  <a
+                    href={activeEx.video_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex mt-3 px-4 py-2 rounded-xl bg-blue-600 text-white text-sm font-semibold hover:bg-blue-700"
+                    >
+                      View results
+                  </a>
                 </div>
               ) : (
                 <p className="text-slate-400 italic">No video preview</p>
@@ -99,18 +108,6 @@ export default function ExerciseModalContent({
               </div>
             </div>
 
-            {/* YouTube Link - Retained and styled */}
-            {activeEx.video_url && (
-              <a
-                href={activeEx.video_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 w-full text-center bg-white border-2 border-blue-600 text-blue-600 font-bold py-3 rounded-xl hover:bg-blue-50 transition-colors shadow-sm"
-              >
-                <ExternalLink size={18} />
-                Watch Tutorial on YouTube
-              </a>
-            )}
           </div>
 
           {/* Right Side: Detailed Instructions */}
