@@ -13,7 +13,9 @@ export default function UserTypeAccordion() {
       style={{ marginTop: 24 }}
       data-acc-collapsed="true"
     >
-      <h2 style={{ color: "#1f3fae" }}>User Type and Risk Level</h2>
+      <h2 style={{ color: "#1f3fae" }}>
+        User Type and Risk Level <span style={{ color: "red" }}>*</span>
+      </h2>
 
       {/* Pills */}
       <div style={{ marginTop: 8, marginBottom: 6 }} />

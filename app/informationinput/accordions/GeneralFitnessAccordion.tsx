@@ -1,15 +1,124 @@
 // app/informationinput/accordions/GeneralFitnessAccordion.tsx
 "use client";
 
+import { useRef, useState } from "react";
 import MedicalSafetyRiskFlags from "../MedicalSafetyRiskFlags";
 import GeneralCurrentActivityLevel from "../GeneralCurrentActivityLevel";
 import ExercisePreferencesTolerance from "../ExercisePreferencesTolerance";
 import ExerciseEnvironment from "../ExerciseEnvironment";
 import AdditionalInformation from "../AdditionalInformation";
 
+type FieldErrors = Record<string, string>;
+
 export default function GeneralFitnessAccordion() {
+  const detailsRef = useRef<HTMLDetailsElement | null>(null);
+
+  const [riskError, setRiskError] = useState<string>("");
+  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
+
+  // Helper to render consistent inline errors (same style as StrokeAccordion)
+  const FieldError = ({ name }: { name: string }) => {
+    const msg = fieldErrors[name];
+    if (!msg) return null;
+    return (
+      <p style={{ color: "crimson", marginTop: 6, fontWeight: 600 }}>{msg}</p>
+    );
+  };
+
+  // Clear errors as user edits fields
+  const onPanelChange = (e: React.ChangeEvent<HTMLDivElement>) => {
+    const target = e.target as
+      | HTMLInputElement
+      | HTMLSelectElement
+      | HTMLTextAreaElement;
+    if (!target?.name) return;
+
+    if (target.name === "risk_level") setRiskError("");
+
+    setFieldErrors((prev) => {
+      if (!prev[target.name]) return prev;
+      const next = { ...prev };
+      delete next[target.name];
+      return next;
+    });
+  };
+
+  const getFieldValue = (name: string) => {
+    const root = detailsRef.current;
+    if (!root) return "";
+    const el = root.querySelector<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >(`[name="${name}"]`);
+    if (!el) return "";
+    return (el as HTMLInputElement).value ?? "";
+  };
+
+  const validateAndSetErrors = () => {
+    const nextFieldErrors: FieldErrors = {};
+
+    const root = detailsRef.current;
+
+    // 1) Risk level required
+    const riskChecked = root?.querySelector<HTMLInputElement>(
+      'input[type="radio"][name="risk_level"]:checked',
+    );
+    if (!riskChecked) setRiskError("Risk Level is required.");
+    else setRiskError("");
+
+    setFieldErrors(nextFieldErrors);
+
+    const hasErrors = !riskChecked || Object.keys(nextFieldErrors).length > 0;
+
+    if (hasErrors) {
+      // Scroll to first error for better UX
+      const firstName =
+        (!riskChecked && "risk_level") || Object.keys(nextFieldErrors)[0];
+
+      if (firstName === "risk_level") {
+        root?.querySelector(".choice-row")?.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+      } else if (firstName) {
+        root?.querySelector(`[name="${firstName}"]`)?.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+      }
+    }
+
+    return !hasErrors;
+  };
+
   return (
-    <details className="acc" data-acc="general">
+    <details ref={detailsRef} className="acc" data-acc="general">
+      <style>{`
+  .modal-section select {
+    border: 1px solid #cbd5e1;       /* light gray outline */
+    border-radius: 6px;
+    padding: 8px 36px 8px 10px;      /* extra right padding for arrow */
+    background-color: #fff;
+    outline: none;
+
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    /* small dropdown arrow */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px 16px;
+  }
+
+  .modal-section select:focus {
+    border-color: #1f3fae;
+    box-shadow: 0 0 0 2px rgba(31, 63, 174, 0.2);
+  }
+
+
+`}</style>
+
       <summary className="acc-summary">
         <span>Important Information</span>
         <svg
@@ -25,18 +134,25 @@ export default function GeneralFitnessAccordion() {
         </svg>
       </summary>
 
-      <div className="acc-panel">
+      <div className="acc-panel" onChange={onPanelChange}>
         <p>
           Since you selected{" "}
           <strong>General fitness &amp; active lifestyle</strong>, please answer
           the following:
         </p>
 
-        {/* Risk Level (shared name so backend can keep using formData.get("risk_level")) */}
+        {/* Risk Level */}
         <div style={{ marginTop: 12 }}>
           <label style={{ whiteSpace: "nowrap", fontWeight: 600 }}>
-            Risk Level
+            Risk Level <span style={{ color: "red" }}>*</span>
           </label>
+
+          {riskError && (
+            <p style={{ color: "crimson", marginTop: 6, fontWeight: 600 }}>
+              {riskError}
+            </p>
+          )}
+
           <div className="choice-row">
             <div style={{ position: "relative" }}>
               <input
@@ -50,6 +166,7 @@ export default function GeneralFitnessAccordion() {
                 Low
               </label>
             </div>
+
             <div style={{ position: "relative" }}>
               <input
                 className="vh"
@@ -62,6 +179,7 @@ export default function GeneralFitnessAccordion() {
                 Medium
               </label>
             </div>
+
             <div style={{ position: "relative" }}>
               <input
                 className="vh"
@@ -77,7 +195,7 @@ export default function GeneralFitnessAccordion() {
           </div>
         </div>
 
-        {/* Medical Profile (you can tailor options for general users here) */}
+        {/* Medical / Wellness Profile (optional) */}
         <section className="modal-section">
           <h3 style={{ color: "#1f3fae", marginTop: 12, marginBottom: 6 }}>
             Medical / Wellness Profile
@@ -85,18 +203,22 @@ export default function GeneralFitnessAccordion() {
 
           <p>Relevant health background (optional)</p>
 
-          {/* For now, reusing the same fields so your save() works without changes.
-              Later, you can replace these with general-only fields and adjust save() accordingly. */}
           <div style={{ marginTop: 8 }}>
             <label className="muted">
               Do you have any health conditions we should be aware of?
             </label>
           </div>
 
+          {/* ✅ stays optional */}
           <textarea
             name="notes"
             rows={2}
-            style={{ width: "100%", padding: 6 }}
+            style={{
+              border: "1px solid #cbd5e1",
+              borderRadius: 6,
+              padding: "8px 10px",
+              width: "100%",
+            }}
           />
         </section>
 
@@ -104,220 +226,140 @@ export default function GeneralFitnessAccordion() {
 
         <h3 style={{ color: "#1f3fae" }}>Functional Ability</h3>
 
-        {/* Current Mobility Level */}
-        <p style={{ marginTop: 8, marginBottom: 4 }}>Current Mobility Level</p>
         <section className="modal-section">
+          {/* Row 1 */}
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: 8,
+              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+              gap: 12,
+              alignItems: "end",
+              marginTop: 8,
             }}
           >
-            <label
-              style={{
-                display: "grid",
-                gridTemplateColumns: "20px 1fr",
-                columnGap: 10,
-                alignItems: "start",
-              }}
-            >
-              <input
-                type="radio"
+            <div>
+              <p style={{ margin: 0, marginBottom: 6 }}>
+                Current Mobility Level <span style={{ color: "red" }}>*</span>
+              </p>
+              <select
                 name="mobility_level"
-                value="fully_independent"
-              />
-              <span>Fully Independent</span>
-            </label>
+                required
+                style={{ padding: 6, width: "100%" }}
+                defaultValue=""
+              >
+                <option value="">Select</option>
+                <option value="fully_independent">Fully Independent</option>
+                <option value="independent_with_mild_difficulty">
+                  Independent with mild difficulty
+                </option>
+                <option value="requires_assistive_device">
+                  Requires assistive device (e.g., cane, walker)
+                </option>
+                <option value="requires_physical_assistance">
+                  Requires physical assistance from another person
+                </option>
+                <option value="limited_seated_or_bed_bound">
+                  Limited mobility (primarily seated or bed‑bound)
+                </option>
+              </select>
+              <FieldError name="mobility_level" />
+            </div>
 
-            <label
-              style={{
-                display: "grid",
-                gridTemplateColumns: "20px 1fr",
-                columnGap: 10,
-                alignItems: "start",
-              }}
-            >
-              <input
-                type="radio"
-                name="mobility_level"
-                value="independent_with_mild_difficulty"
-              />
-              <span>Independent with mild difficulty</span>
-            </label>
+            <div>
+              <p style={{ margin: 0, marginBottom: 6 }}>
+                Walking Ability <span style={{ color: "red" }}>*</span>
+              </p>
+              <select
+                name="walking_ability"
+                required
+                style={{ padding: 6, width: "100%" }}
+                defaultValue=""
+              >
+                <option value="">Select</option>
+                <option value="independent_without_limitations">
+                  Walks independently without limitations
+                </option>
+                <option value="independent_with_discomfort">
+                  Walks independently but with occasional discomfort
+                </option>
+                <option value="short_distance_walks_only">
+                  Short‑distance walking only
+                </option>
+                <option value="walks_with_assistive_device">
+                  Walks with assistive device
+                </option>
+                <option value="unable_to_walk">Unable to walk</option>
+              </select>
+              <FieldError name="walking_ability" />
+            </div>
 
-            <label
-              style={{
-                display: "grid",
-                gridTemplateColumns: "20px 1fr",
-                columnGap: 10,
-                alignItems: "start",
-              }}
-            >
-              <input
-                type="radio"
-                name="mobility_level"
-                value="requires_assistive_device"
-              />
-              <span>Requires assistive device (e.g., cane, walker)</span>
-            </label>
-
-            <label
-              style={{
-                display: "grid",
-                gridTemplateColumns: "20px 1fr",
-                columnGap: 10,
-                alignItems: "start",
-              }}
-            >
-              <input
-                type="radio"
-                name="mobility_level"
-                value="requires_physical_assistance"
-              />
-              <span>Requires physical assistance from another person</span>
-            </label>
-
-            <label
-              style={{
-                display: "grid",
-                gridTemplateColumns: "20px 1fr",
-                columnGap: 10,
-                alignItems: "start",
-              }}
-            >
-              <input
-                type="radio"
-                name="mobility_level"
-                value="limited_seated_or_bed_bound"
-              />
-              <span>Limited mobility (primarily seated or bed‑bound)</span>
-            </label>
+            <div>
+              <p style={{ margin: 0, marginBottom: 6 }}>
+                Range of Motion <span style={{ color: "red" }}>*</span>
+              </p>
+              <select
+                name="range_of_motion"
+                required
+                style={{ padding: 6, width: "100%" }}
+                defaultValue=""
+              >
+                <option value="">Select</option>
+                <option value="limited">Limited</option>
+                <option value="moderate">Moderate</option>
+                <option value="full_with_caution">Full (with caution)</option>
+              </select>
+              <FieldError name="range_of_motion" />
+            </div>
           </div>
 
-          {/* Walking Ability */}
-          <p style={{ marginTop: 16, marginBottom: 4 }}>Walking Ability</p>
+          {/* Row 2 */}
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: 8,
+              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+              gap: 12,
+              alignItems: "end",
+              marginTop: 16,
             }}
           >
-            <label
-              style={{
-                display: "grid",
-                gridTemplateColumns: "20px 1fr",
-                columnGap: 10,
-                alignItems: "start",
-              }}
-            >
-              <input
-                type="radio"
-                name="walking_ability"
-                value="independent_without_limitations"
-              />
-              <span>Walks independently without limitations</span>
-            </label>
+            <div>
+              <p style={{ margin: 0, marginBottom: 6 }}>
+                Upper Limb Function (Left){" "}
+                <span style={{ color: "red" }}>*</span>
+              </p>
+              <select
+                name="upper_limb_left"
+                required
+                style={{ padding: 6, width: "100%" }}
+                defaultValue=""
+              >
+                <option value="">Select</option>
+                <option value="normal">Normal</option>
+                <option value="limited">Limited</option>
+                <option value="impaired">Impaired</option>
+              </select>
+              <FieldError name="upper_limb_left" />
+            </div>
 
-            <label
-              style={{
-                display: "grid",
-                gridTemplateColumns: "20px 1fr",
-                columnGap: 10,
-                alignItems: "start",
-              }}
-            >
-              <input
-                type="radio"
-                name="walking_ability"
-                value="independent_with_discomfort"
-              />
-              <span>Walks independently but with occasional discomfort</span>
-            </label>
-
-            <label
-              style={{
-                display: "grid",
-                gridTemplateColumns: "20px 1fr",
-                columnGap: 10,
-                alignItems: "start",
-              }}
-            >
-              <input
-                type="radio"
-                name="walking_ability"
-                value="short_distance_walks_only"
-              />
-              <span>Short‑distance walking only</span>
-            </label>
-
-            <label
-              style={{
-                display: "grid",
-                gridTemplateColumns: "20px 1fr",
-                columnGap: 10,
-                alignItems: "start",
-              }}
-            >
-              <input
-                type="radio"
-                name="walking_ability"
-                value="walks_with_assistive_device"
-              />
-              <span>Walks with assistive device</span>
-            </label>
-
-            <label
-              style={{
-                display: "grid",
-                gridTemplateColumns: "20px 1fr",
-                columnGap: 10,
-                alignItems: "start",
-              }}
-            >
-              <input
-                type="radio"
-                name="walking_ability"
-                value="unable_to_walk"
-              />
-              <span>Unable to walk</span>
-            </label>
+            <div>
+              <p style={{ margin: 0, marginBottom: 6 }}>
+                Upper Limb Function (Right){" "}
+                <span style={{ color: "red" }}>*</span>
+              </p>
+              <select
+                name="upper_limb_right"
+                required
+                style={{ padding: 6, width: "100%" }}
+                defaultValue=""
+              >
+                <option value="">Select</option>
+                <option value="normal">Normal</option>
+                <option value="limited">Limited</option>
+                <option value="impaired">Impaired</option>
+              </select>
+              <FieldError name="upper_limb_right" />
+            </div>
           </div>
-
-          <p style={{ marginTop: 16 }}>Range of Motion</p>
-          <label>
-            <input type="radio" name="range_of_motion" value="limited" />{" "}
-            Limited
-          </label>
-          <label style={{ marginLeft: 12 }}>
-            <input type="radio" name="range_of_motion" value="moderate" />{" "}
-            Moderate
-          </label>
-          <label style={{ marginLeft: 12 }}>
-            <input
-              type="radio"
-              name="range_of_motion"
-              value="full_with_caution"
-            />{" "}
-            Full (with caution)
-          </label>
-
-          <p style={{ marginTop: 16 }}>Upper Limb Function (Left)</p>
-          <select name="upper_limb_left" style={{ padding: 6 }}>
-            <option value="">Select</option>
-            <option value="normal">Normal</option>
-            <option value="limited">Limited</option>
-            <option value="impaired">Impaired</option>
-          </select>
-
-          <p style={{ marginTop: 12 }}>Upper Limb Function (Right)</p>
-          <select name="upper_limb_right" style={{ padding: 6 }}>
-            <option value="">Select</option>
-            <option value="normal">Normal</option>
-            <option value="limited">Limited</option>
-            <option value="impaired">Impaired</option>
-          </select>
         </section>
 
         <hr style={{ margin: "16px 0" }} />
@@ -325,13 +367,10 @@ export default function GeneralFitnessAccordion() {
         <MedicalSafetyRiskFlags />
         <hr style={{ margin: "16px 0" }} />
         <GeneralCurrentActivityLevel />
-
         <hr style={{ margin: "16px 0" }} />
         <ExercisePreferencesTolerance />
-
         <hr style={{ margin: "16px 0" }} />
         <ExerciseEnvironment />
-
         <hr style={{ margin: "16px 0" }} />
         <AdditionalInformation />
       </div>
@@ -342,6 +381,14 @@ export default function GeneralFitnessAccordion() {
           className="btn btn-primary"
           data-acc-done
           data-acc="general"
+          onClick={(e) => {
+            const ok = validateAndSetErrors();
+            if (!ok) {
+              // Prevent controller from hiding UI
+              e.preventDefault();
+              e.stopPropagation();
+            }
+          }}
         >
           Done
         </button>

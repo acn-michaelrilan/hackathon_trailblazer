@@ -3,17 +3,6 @@ import UserTypeAccordionController from "./UserTypeAccordionController";
 import UserTypeAccordion from "./UserTypeAccordion";
 import TestAIButton from "./SendPromptToAIButton";
 import { redirect } from "next/navigation";
-import {
-  BasicProfile,
-  UserTypeAndRisk,
-  MedicalProfile,
-  FunctionalAbility,
-  MedicalSafetyAndRiskFlags,
-  CurrentActivityLevel,
-  ExercisePreferencesAndTolerance,
-  ExerciseEnvironment,
-  AdditionalInformation,
-} from "../../types";
 import { createClient } from "@/backend/server";
 import { buildPayload } from "./payloadBuilder";
 
@@ -74,6 +63,20 @@ export default async function InformationInput() {
   .${rootClass} .field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
   .${rootClass} .inline-options { display: flex; gap: 12px; align-items: center; flex-wrap: nowrap; }
   .${rootClass} .inline-radio { display: inline-flex; gap: 6px; align-items: center; white-space: nowrap; }
+
+/* Background Animation Logic */
+  @keyframes float {
+    0% { transform: translate(0, 0) scale(1); }
+    40% { transform: translate(30px, -50px) scale(1.1); }
+    60% { transform: translate(-20px, 20px) scale(0.9); }
+    100% { transform: translate(0, 0) scale(1); }
+  }
+  .animate-blob {
+    animation: float 20s infinite ease-in-out;
+  }
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
 
   .${usrClass} .choice-grid {
     display: grid;
@@ -153,10 +156,65 @@ export default async function InformationInput() {
 /* Collapsed state overrides visibility */
 .usr-wrap[data-acc-collapsed="true"] details[data-acc] { display: none !important; }
 
+.field input,
+.field select,
+.field textarea {
+  border: 1px solid #cbd5e1;          /* light gray */
+  border-radius: 6px;
+  // padding: 8px 10px;
+  outline: none;                      /* remove default browser outline */
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
 /* NEW: if UI is set to hidden, hide accordions even if data-acc-open is set */
 .usr-wrap[data-acc-ui="hidden"] details[data-acc] { display: none !important; }
 
 
+
+/* -----------------------------
+   Container that actually feels spacious
+   (does NOT change your form layout)
+------------------------------ */
+.form-shell {
+  width: 100%;
+  max-width: 900px;   /* ✅ wider than before */
+  margin: 0 auto;
+}
+
+.form-card {
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 1);
+  border-radius: 18px;
+
+  /* Softer, more “lifted” separation from background */
+  box-shadow:
+    0 24px 60px rgba(15, 23, 42, 0.12),
+    0 2px 10px rgba(15, 23, 42, 0.06);
+
+  /* ✅ More horizontal breathing room is what fixes “cramped” */
+  padding: 32px 48px;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .form-shell { max-width: 1000px; }
+  .form-card { padding: 24px 28px; }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .form-shell { max-width: 100%; }
+  .form-card {
+    padding: 18px;
+    border-radius: 14px;
+  }
+}
+
+.usr-wrap details[data-acc] { display: none; }
+  .usr-wrap[data-acc-open="stroke"] details[data-acc="stroke"] { display: block; }
+  .usr-wrap[data-acc-open="general"] details[data-acc="general"] { display: block; }
+  .usr-wrap[data-acc-collapsed="true"] details[data-acc] { display: none !important; }
+  .usr-wrap[data-acc-ui="hidden"] details[data-acc] { display: none !important; }
   .usr-wrap .acc-summary {
     list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px;
     padding: 16px 20px; background: #f8faff; border-bottom: 1px solid #eef2f7; font-weight: 700; color: #1f3fae;
@@ -171,149 +229,166 @@ export default async function InformationInput() {
   `;
 
   return (
-    <div className="min-h-screen bg-white p-6 md:p-12 font-sans text-slate-900">
-      <main style={{ maxWidth: 900, margin: "0 auto", padding: 32 }}>
+    <div className="relative min-h-screen overflow-hidden bg-linear-to-br from-[#f8fafc] via-[#eef2ff] to-[#f0fdf4] p-6 md:p-12 font-sans text-slate-900">
+      {/* Animated Blobs */}
+      <div className="absolute top-0 -left-10 w-72 h-72 bg-[#7BA63F]/10 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob" />
+      <div className="absolute bottom-0 -right-10 w-72 h-72 bg-[#264D73]/10 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000" />
+      <main className="relative z-1" style={{ margin: "0 auto", padding: 32 }}>
         <style>{styles}</style>
 
         <UserTypeAccordionController />
 
-        <h1 style={{ textAlign: "center", fontSize: 36, color: "#1f3fae" }}>
-          <strong>LOG YOUR DATA</strong>
-        </h1>
-        <p style={{ textAlign: "center", marginBottom: 40 }}>
-          Track and record your information
-        </p>
+        <div className="form-shell">
+          <div className="form-card">
+            <h1 style={{ textAlign: "center", fontSize: 36, color: "#1f3fae" }}>
+              <strong>LOG YOUR DATA</strong>
+            </h1>
+            <p style={{ textAlign: "center", marginBottom: 40 }}>
+              Track and record your information
+            </p>
 
-        <form action={save}>
-          {/* ================= Personal Information ================= */}
-          <section className={rootClass}>
-            <h2 style={{ color: "#1f3fae" }}>Personal Information</h2>
+            <form action={save}>
+              {/* ================= Personal Information ================= */}
+              <section className={rootClass}>
+                <h2 style={{ color: "#1f3fae" }}>Personal Information</h2>
 
-            <div className="personal-grid">
-              {/* Name */}
-              <div className="field">
-                <label>Name</label>
-                <input
-                  name="name"
-                  type="text"
-                  placeholder="enter name"
-                  required
-                  style={{ width: "100%" }}
-                />
-              </div>
-
-              {/* Age */}
-              <div className="field">
-                <label>Age</label>
-                <input
-                  name="age"
-                  type="number"
-                  placeholder="enter age"
-                  required
-                  min={1}
-                  max={98}
-                  style={{ width: "100%" }}
-                />
-              </div>
-
-              {/* Sex */}
-              <div className="field">
-                <label style={{ whiteSpace: "nowrap" }}>Sex</label>
-                <div className="inline-options">
-                  <label className="inline-radio">
-                    <input type="radio" name="sex" value="male" required />
-                    Male
-                  </label>
-                  <label className="inline-radio">
-                    <input type="radio" name="sex" value="female" />
-                    Female
-                  </label>
-                </div>
-              </div>
-
-              {/* Spacer (desktop only) */}
-              <div className="spacer" aria-hidden="true" />
-
-              {/* Height */}
-              <div className="field">
-                <label>Height</label>
-                <input
-                  name="height"
-                  type="number"
-                  placeholder="enter height in cm"
-                  style={{ width: "100%" }}
-                />
-              </div>
-
-              {/* Weight */}
-              <div className="field">
-                <label>Weight</label>
-                <input
-                  name="weight"
-                  type="number"
-                  placeholder="enter weight in kg"
-                  style={{ width: "100%" }}
-                />
-              </div>
-
-              {/* Dominant Side */}
-              <div>
-                <label style={{ whiteSpace: "nowrap" }}>Dominant Side</label>
-
-                <div className="choice-grid" style={{ marginTop: 1 }}>
-                  <div style={{ position: "relative" }}>
+                <div className="personal-grid">
+                  {/* Name */}
+                  <div className="field">
+                    <label>Name</label>
                     <input
-                      className="vh"
-                      type="radio"
-                      id="dominant_left"
-                      name="dominant_side"
-                      value="left"
+                      name="name"
+                      type="text"
+                      placeholder="  Enter name"
+                      required
+                      style={{ width: "100%" }}
+                    />
+                  </div>
+
+                  {/* Age */}
+                  <div className="field">
+                    <label>Age</label>
+                    <input
+                      name="age"
+                      type="number"
+                      placeholder="  Enter age"
+                      required
+                      min={1}
+                      max={98}
+                      style={{ width: "100%" }}
+                    />
+                  </div>
+
+                  {/* Sex */}
+                  <div className="field">
+                    <label style={{ whiteSpace: "nowrap" }}>
+                      Sex <span style={{ color: "red" }}>*</span>{" "}
+                    </label>
+                    <div className="inline-options">
+                      <label className="inline-radio">
+                        <input type="radio" name="sex" value="male" required />
+                        Male
+                      </label>
+                      <label className="inline-radio">
+                        <input type="radio" name="sex" value="female" />
+                        Female
+                      </label>
+                    </div>
+                  </div>
+
+                  {/* Spacer (desktop only) */}
+                  <div className="spacer" aria-hidden="true" />
+
+                  {/* Height */}
+                  <div className="field">
+                    <label>
+                      Height <span style={{ color: "red" }}>*</span>
+                    </label>
+                    <input
+                      name="height"
+                      type="number"
+                      placeholder="  Enter in cm"
+                      style={{ width: "100%" }}
                       required
                     />
-                    <label className="pill" htmlFor="dominant_left">
-                      Left
-                    </label>
                   </div>
-                  <div style={{ position: "relative" }}>
-                    <input
-                      className="vh"
-                      type="radio"
-                      id="dominant_right"
-                      name="dominant_side"
-                      value="right"
-                    />
-                    <label className="pill" htmlFor="dominant_right">
-                      Right
+
+                  {/* Weight */}
+                  <div className="field">
+                    <label>
+                      Weight <span style={{ color: "red" }}>*</span>
                     </label>
+                    <input
+                      name="weight"
+                      type="number"
+                      placeholder="  Enter in kg"
+                      style={{ width: "100%" }}
+                      required
+                    />
+                  </div>
+
+                  {/* Dominant Side */}
+                  <div>
+                    <label style={{ whiteSpace: "nowrap" }}>
+                      Dominant Side <span style={{ color: "red" }}>*</span>
+                    </label>
+
+                    <div className="choice-grid" style={{ marginTop: 1 }}>
+                      <div style={{ position: "relative" }}>
+                        <input
+                          className="vh"
+                          type="radio"
+                          id="dominant_left"
+                          name="dominant_side"
+                          value="left"
+                          required
+                        />
+                        <label className="pill" htmlFor="dominant_left">
+                          Left
+                        </label>
+                      </div>
+                      <div style={{ position: "relative" }}>
+                        <input
+                          className="vh"
+                          type="radio"
+                          id="dominant_right"
+                          name="dominant_side"
+                          value="right"
+                        />
+                        <label className="pill" htmlFor="dominant_right">
+                          Right
+                        </label>
+                      </div>
+                    </div>
                   </div>
                 </div>
+              </section>
+
+              {/* ================= User Type & Risk Level + Medical Profile ================= */}
+              <UserTypeAccordion />
+
+              <hr />
+
+              {/* ================= Save ================= */}
+              <div style={{ textAlign: "center", marginTop: 32 }}>
+                <button
+                  type="submit"
+                  style={{
+                    background: "#6cab2f",
+                    color: "white",
+                    padding: "12px 40px",
+                    borderRadius: 8,
+                    border: "none",
+                    fontSize: 16,
+                  }}
+                >
+                  Save
+                </button>
+                <TestAIButton />
               </div>
-            </div>
-          </section>
-
-          {/* ================= User Type & Risk Level + Medical Profile ================= */}
-          <UserTypeAccordion />
-
-          <hr />
-
-          {/* ================= Save ================= */}
-          <div style={{ textAlign: "center", marginTop: 32 }}>
-            <button
-              type="submit"
-              style={{
-                background: "#6cab2f",
-                color: "white",
-                padding: "12px 40px",
-                borderRadius: 8,
-                border: "none",
-                fontSize: 16,
-              }}
-            >
-              Save
-            </button>
-            <TestAIButton />
+            </form>
           </div>
-        </form>
+        </div>
       </main>
     </div>
   );

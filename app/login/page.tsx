@@ -25,15 +25,17 @@ export default function UserProfile() {
     setLoading(true);
 
     const result = await loginUser(email, password);
-
     if (result?.error) {
-      toast.error(result.error); // ❌ show error toast
+      toast.error(result.error); // show error toast
       setLoading(false);
       return;
     }
 
-    toast.success("Logged in successfully!"); // ✅ show success toast
-    router.replace("/informationinput");
+    toast.success("Logged in successfully!"); // show success toast
+    // router.replace("/informationinput");
+    
+    router.replace("/login"); // Trigger middleware to check for existing plan and redirect accordingly
+    router.refresh(); 
   };
 
   return (
