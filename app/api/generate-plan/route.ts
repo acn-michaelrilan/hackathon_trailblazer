@@ -2,28 +2,34 @@ import { exerciseService } from "@/backend/llm/service";
 import { insertInformationInput } from "@/backend/informationinput/service";
 import { createClient } from "@/backend/server";
 import { NextResponse } from "next/server";
-import { backupPlan } from "@/lib/mockData";
-import { ExercisePlanOutput } from "@/ai/schema";
-import { ExercisePlan } from "@/types";
+import { backupPlan } from "@/lib/defaultData";
+import { ExercisePlanOutput, ExercisePlanWithProgress } from "@/ai/schema";
 
-const addProfileAndProgress = (plan: any, userId: string) => {
+const addProfileAndProgress = (
+  plan: ExercisePlanOutput,
+  userId: string,
+): ExercisePlanWithProgress => {
   const currentDate = new Date();
   const formattedDate = currentDate.toISOString().split("T")[0];
-  plan.profile = { user_id: userId };
-  plan.progress = {
-    total_sessions: 0,
-    completed_sessions: 0,
-    completion_percent: 0,
-    current_week: 0,
-    current_day: 0,
-    next_session_date: formattedDate,
+
+  return {
+    profile: { user_id: userId },
+    ...plan,
+    progress: {
+      total_sessions: 0,
+      completed_sessions: 0,
+      completion_percent: 0,
+      current_week: 1,
+      current_day: 1,
+      next_session_date: formattedDate,
+    },
   };
-  return plan;
 };
 
 export async function POST(request: Request) {
   let userId: string | null = null;
-
+  // 1. Authenticate User (Securely get ID from Supabase)
+  const supabase = await createClient();
   try {
     const { data } = await request.json();
     if (!data) {
@@ -33,8 +39,6 @@ export async function POST(request: Request) {
       );
     }
 
-    // 1. Authenticate User (Securely get ID from Supabase)
-    const supabase = await createClient();
     const {
       data: { user },
       error: authError,
@@ -45,8 +49,6 @@ export async function POST(request: Request) {
     }
 
     userId = user.id;
-    console.log("👤 Authenticated user ID:", userId);
-    console.log("📥 Received data for plan generation:", data);
 
     // 2. Insert into DB first
     const insertResult = await insertInformationInput(data, userId);
@@ -96,9 +98,23 @@ export async function POST(request: Request) {
       throw new Error("Failed to generate exercise plan.");
     }
 
-    return NextResponse.json(addProfileAndProgress(plan, userId), {
-      status: 200,
-    });
+    // 5. Upsert generated plan for the user
+    const planWithProgress = addProfileAndProgress(plan, userId);
+
+    const { error: upsertError } = await supabase.rpc(
+      "upsert_user_exercise_data",
+      { payload: planWithProgress },
+    );
+
+    if (upsertError) {
+      console.error("❌ Plan upsert failed:", upsertError);
+      return NextResponse.json(
+        { error: "Failed to save generated plan." },
+        { status: 500 },
+      );
+    }
+
+    return NextResponse.json(planWithProgress, { status: 200 });
   } catch (error) {
     console.error("❌ Critical error:", error);
 
@@ -109,8 +125,21 @@ export async function POST(request: Request) {
       );
     }
 
-    return NextResponse.json(addProfileAndProgress(backupPlan, userId), {
-      status: 200,
-    });
+    const backupPlanWithProgress = addProfileAndProgress(backupPlan, userId);
+
+    const { error: backupUpsertError } = await supabase.rpc(
+      "upsert_user_exercise_data",
+      { payload: backupPlanWithProgress },
+    );
+
+    if (backupUpsertError) {
+      console.error("❌ Backup plan upsert failed:", backupUpsertError);
+      return NextResponse.json(
+        { error: "Failed to save backup plan." },
+        { status: 500 },
+      );
+    }
+
+    return NextResponse.json(backupPlanWithProgress, { status: 200 });
   }
 }

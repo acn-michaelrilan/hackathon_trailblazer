@@ -10,6 +10,10 @@ export async function GET(request: Request) {
       error: userError,
     } = await supabase.auth.getUser();
 
+    if (userError || !user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     const { data: plan, error: planError } = await supabase
       .from("exercise_plans")
       .select("plan_id")
@@ -22,10 +26,11 @@ export async function GET(request: Request) {
         { status: 404 },
       );
     }
+
     const planId = plan.plan_id;
     console.log("found plan id", planId);
 
-    const data = await getExercisePlanData(planId);
+    const data = await getExercisePlanData(planId, user.id);
 
     if (!data) {
       return NextResponse.json({ error: "Plan not found" }, { status: 404 });

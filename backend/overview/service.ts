@@ -9,6 +9,7 @@ import {
 
 export async function getExercisePlanData(
   planId: string,
+  userId: string,
 ): Promise<ExercisePlanData | null> {
   const supabase = await createClient();
   // Fetch plan with nested sessions and exercises
@@ -54,8 +55,19 @@ export async function getExercisePlanData(
     return null;
   }
 
+  const planProgress = {
+    total_sessions: plan.plan_progress?.total_sessions || 0,
+    completed_sessions: plan.plan_progress?.completed_sessions || 0,
+    completion_percent: plan.plan_progress?.completion_percent || 0,
+    current_week: plan.plan_progress?.current_week || 0,
+    current_day: plan.plan_progress?.current_day || 0,
+    next_session_date: plan.plan_progress?.next_session_date || "",
+  };
+
   // Transform to match ExercisePlanData interface
   const result: ExercisePlanData = {
+    profile: { user_id: userId },
+    progress: planProgress,
     exercise_plan: {
       plan_info: {
         plan_id: plan.plan_id,
@@ -119,14 +131,7 @@ export async function getExercisePlanData(
             return session;
           }),
       })),
-      progress: {
-        total_sessions: plan.plan_progress?.total_sessions || 0,
-        completed_sessions: plan.plan_progress?.completed_sessions || 0,
-        completion_percent: plan.plan_progress?.completion_percent || 0,
-        current_week: plan.plan_progress?.current_week || 0,
-        current_day: plan.plan_progress?.current_day || 0,
-        next_session_date: plan.plan_progress?.next_session_date,
-      },
+      progress: planProgress,
     },
   };
   return result;

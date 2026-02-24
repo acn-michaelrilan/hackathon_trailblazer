@@ -7,7 +7,6 @@ import {
   Loader2,
   RefreshCw,
   Trophy,
-  X,
   PartyPopper,
   CheckCircle2,
   ArrowRight,
