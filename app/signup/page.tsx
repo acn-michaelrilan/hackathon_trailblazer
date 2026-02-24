@@ -1,5 +1,3 @@
-
-
 "use client";
 
 import React, { useState } from "react";
@@ -11,13 +9,14 @@ export default function UserProfile() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
-  
+
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>(false);
+  const [showConfirmPassword, setShowConfirmPassword] =
+    useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
 
   const router = useRouter();
-  
+
   const handleButtonClick = async (): Promise<void> => {
     if (!email || !password || !confirmPassword) {
       console.log(" Please fill all fields");
@@ -29,13 +28,13 @@ export default function UserProfile() {
       return;
     }
 
-    setLoading(true); 
+    setLoading(true);
 
     const result = await signUpUser(email, password);
 
     if (result?.error) {
-      console.log( result.error);
-      setLoading(false); 
+      console.log(result.error);
+      setLoading(false);
       return;
     }
 
@@ -147,12 +146,10 @@ export default function UserProfile() {
             ) : (
               "Sign up"
             )}
-        </button>
-        <p className="text-s text-gray-600 cursor-pointer">
-          Already Registered? <a href="/login">Click Here</a>
-        </p>
-                        
-
+          </button>
+          <p className="text-s text-gray-600 cursor-pointer">
+            Already Registered? <a href="/login">Click Here</a>
+          </p>
         </div>
       </div>
     </div>
