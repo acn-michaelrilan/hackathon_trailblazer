@@ -73,10 +73,6 @@ export async function getExercisePlanData(
         sessions: week.plan_sessions
           .sort((a: SessionData, b: SessionData) => a.day - b.day)
           .map((sess: SessionData) => {
-            // console.log(
-            //   `📅 SESSION - Week ${week.week_num}, Day ${sess.day}: "${sess.title}" (${sess.duration_min}min), Status: ${sess.session_status}`,
-            // );
-
             const session = {
               day: sess.day,
               title: sess.title,
@@ -117,15 +113,9 @@ export async function getExercisePlanData(
                     completed_sets: se.completed_sets,
                     notes: se.notes,
                   };
-                  // Log each exercise being processed
-                  // console.log(`  💪 Exercise - Day ${sess.day}:`, exercise);
                   return exercise;
                 }),
             };
-
-            // console.log(
-            //   `  Total exercises for Day ${sess.day}: ${session.exercises.length}`,
-            // );
             return session;
           }),
       })),
@@ -139,8 +129,5 @@ export async function getExercisePlanData(
       },
     },
   };
-
-  // Log final transformed data
-  // console.log("✅ FINAL TRANSFORMED DATA READY:", result);
   return result;
 }

@@ -2,7 +2,9 @@
 
 import { buildPayload } from "./payloadBuilder";
 import { useState } from "react";
+import { redirect } from "next/navigation";
 import LoadingOverlay from "./LoadingOverlay";
+import { INPUT_MOCK_DATA_2 } from "@/lib/mockData";
 
 export default function SendPromptToAIButton() {
   const [isLoading, setIsLoading] = useState(false);
@@ -19,7 +21,7 @@ export default function SendPromptToAIButton() {
 
       // Build payload from form data
       const formData = new FormData(form);
-      const payload = buildPayload(formData);
+      const payload = INPUT_MOCK_DATA_2; // Use mock data for testing
 
       console.log("Sending payload:", payload);
 
@@ -39,8 +41,20 @@ export default function SendPromptToAIButton() {
       console.log("Generated Plan:", plan);
       console.log("Plan ID:", plan.exercise_plan?.plan_info?.plan_id);
 
+      const upsertResponse = await fetch("/api/upsert-exercise-data", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ data: plan }),
+      });
+
+      if (!upsertResponse.ok) {
+        const errorData = await upsertResponse.json();
+        throw new Error(errorData.error || "Failed to upsert exercise data");
+      }
+
       // Do something with the plan data
       alert("Plan generated successfully!");
+      redirect("/overview");
       return plan; // Return the plan if you need it elsewhere
     } catch (err) {
       console.error("Error generating plan:", err);
