@@ -4,11 +4,6 @@ import { createClient } from "@/backend/server";
 export async function POST(request: Request) {
   try {
     const supabase = await createClient();
-    // Verify user is authenticated
-    // const { data: { user } } = await supabase.auth.getUser();
-    // if (!user) {
-    //   return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    // }
 
     const { sessionExerciseId } = await request.json();
 

@@ -371,19 +371,7 @@ export default async function InformationInput() {
 
               {/* ================= Save ================= */}
               <div style={{ textAlign: "center", marginTop: 32 }}>
-                <button
-                  type="submit"
-                  style={{
-                    background: "#6cab2f",
-                    color: "white",
-                    padding: "12px 40px",
-                    borderRadius: 8,
-                    border: "none",
-                    fontSize: 16,
-                  }}
-                >
-                  Save
-                </button>
+                {" "}
                 <TestAIButton />
               </div>
             </form>

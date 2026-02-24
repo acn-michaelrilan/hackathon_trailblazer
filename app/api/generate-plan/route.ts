@@ -2,13 +2,36 @@ import { exerciseService } from "@/backend/llm/service";
 import { insertInformationInput } from "@/backend/informationinput/service";
 import { createClient } from "@/backend/server";
 import { NextResponse } from "next/server";
-import { INPUT_MOCK_DATA, INPUT_MOCK_DATA_2 } from "@/lib/mockData";
-import { json } from "zod/v4/mini";
+import { backupPlan } from "@/lib/defaultData";
+import { ExercisePlanOutput, ExercisePlanWithProgress } from "@/ai/schema";
+
+const addProfileAndProgress = (
+  plan: ExercisePlanOutput,
+  userId: string,
+): ExercisePlanWithProgress => {
+  const currentDate = new Date();
+  const formattedDate = currentDate.toISOString().split("T")[0];
+
+  return {
+    profile: { user_id: userId },
+    ...plan,
+    progress: {
+      total_sessions: 0,
+      completed_sessions: 0,
+      completion_percent: 0,
+      current_week: 1,
+      current_day: 1,
+      next_session_date: formattedDate,
+    },
+  };
+};
 
 export async function POST(request: Request) {
+  let userId: string | null = null;
+  // 1. Authenticate User (Securely get ID from Supabase)
+  const supabase = await createClient();
   try {
     const { data } = await request.json();
-
     if (!data) {
       return NextResponse.json(
         { error: "Missing input data." },
@@ -16,8 +39,6 @@ export async function POST(request: Request) {
       );
     }
 
-    // 1. Authenticate User (Securely get ID from Supabase)
-    const supabase = await createClient();
     const {
       data: { user },
       error: authError,
@@ -27,16 +48,10 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Unauthorized." }, { status: 401 });
     }
 
-    // Use the ID from the secure auth session directly
-    const userId = user.id;
+    userId = user.id;
 
-    console.log("👤 Authenticated user ID:", userId);
-    console.log("📥 Received data for plan generation:", data);
-    console.log("📥 Received Mock data for plan generation:", INPUT_MOCK_DATA);
     // 2. Insert into DB first
-    // This ensures data is saved before we spend tokens/time on AI generation
-    const insertResult = await insertInformationInput(INPUT_MOCK_DATA, userId);
-
+    const insertResult = await insertInformationInput(data, userId);
     if (!insertResult.success) {
       console.error("❌ Database insertion failed:", insertResult.error);
       return NextResponse.json(
@@ -60,24 +75,18 @@ export async function POST(request: Request) {
         console.log(
           `🌀 Generating plan (Attempt ${attempts}/${MAX_RETRIES})...`,
         );
-
-        plan = await exerciseService.generatePlan(INPUT_MOCK_DATA_2);
-
-        // If successful, break the loop
+        plan = await exerciseService.generatePlan(data);
         if (plan) break;
       } catch (err) {
         console.error(
           `⚠️ Attempt ${attempts} failed:`,
           err instanceof Error ? err.message : err,
         );
-
         if (attempts >= MAX_RETRIES) {
           throw new Error(
             "All 3 attempts to generate the exercise plan failed.",
           );
         }
-
-        // Delay 1 second before retrying to handle transient issues
         await new Promise((res) => setTimeout(res, 1000));
       }
     }
@@ -89,35 +98,48 @@ export async function POST(request: Request) {
       throw new Error("Failed to generate exercise plan.");
     }
 
-    // get current date for next session scheduling
-    const currentDate = new Date();
-    // format as YYYY-MM-DD
-    const formattedDate = currentDate.toISOString().split("T")[0];
-    // Adding user profile info to the plan response
-    plan.profile = {
-      user_id: userId
+    // 5. Upsert generated plan for the user
+    const planWithProgress = addProfileAndProgress(plan, userId);
+
+    const { error: upsertError } = await supabase.rpc(
+      "upsert_user_exercise_data",
+      { payload: planWithProgress },
+    );
+
+    if (upsertError) {
+      console.error("❌ Plan upsert failed:", upsertError);
+      return NextResponse.json(
+        { error: "Failed to save generated plan." },
+        { status: 500 },
+      );
     }
 
-    plan.progress = {
-      total_sesssions: 0,
-      completed_sessions: 0,
-      completion_percent: 0,
-      current_week: 0,
-      current_day: 0,
-      next_session_date: formattedDate
-    }
-
-    const planString = JSON.stringify(plan, null, 2);
-    console.log("Generated Plan:", planString);
-    return NextResponse.json(plan, { status: 200 });
+    return NextResponse.json(planWithProgress, { status: 200 });
   } catch (error) {
     console.error("❌ Critical error:", error);
-    return NextResponse.json(
-      {
-        error:
-          error instanceof Error ? error.message : "Failed to process request",
-      },
-      { status: 500 },
+
+    if (!userId) {
+      return NextResponse.json(
+        { error: "Unable to process request. User ID missing." },
+        { status: 401 },
+      );
+    }
+
+    const backupPlanWithProgress = addProfileAndProgress(backupPlan, userId);
+
+    const { error: backupUpsertError } = await supabase.rpc(
+      "upsert_user_exercise_data",
+      { payload: backupPlanWithProgress },
     );
+
+    if (backupUpsertError) {
+      console.error("❌ Backup plan upsert failed:", backupUpsertError);
+      return NextResponse.json(
+        { error: "Failed to save backup plan." },
+        { status: 500 },
+      );
+    }
+
+    return NextResponse.json(backupPlanWithProgress, { status: 200 });
   }
 }
