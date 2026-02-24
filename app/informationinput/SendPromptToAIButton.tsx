@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import LoadingOverlay from "./LoadingOverlay";
 import { INPUT_MOCK_DATA_2 } from "@/lib/mockData";
+import { buildPayload } from "./payloadBuilder";
 
 export default function SendPromptToAIButton() {
   const [isLoading, setIsLoading] = useState(false);
@@ -19,8 +20,8 @@ export default function SendPromptToAIButton() {
         return;
       }
 
-      // Use mock data for testing
-      const payload = INPUT_MOCK_DATA_2;
+      const formData = new FormData(form);
+      const payload = buildPayload(formData);
       console.log("Sending payload:", payload);
 
       // 1. Generate plan (also upserts server-side)

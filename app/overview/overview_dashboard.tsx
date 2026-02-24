@@ -29,9 +29,7 @@ function ExerciseSuccessModal({
   onClose: () => void;
   exerciseName: string;
 }) {
-  const [quote, setQuote] = useState("");
-
-  useEffect(() => {
+  const [quote] = useState(() => {
     const motivationalQuotes = [
       "Strength doesn't come from what you can do. It comes from overcoming the things you once couldn't.",
       "The only bad workout is the one that didn't happen.",
@@ -45,11 +43,10 @@ function ExerciseSuccessModal({
       "You don't have to be extreme, just consistent.",
     ];
 
-    // Pick a random quote from the array
-    const randomQuote =
-      motivationalQuotes[Math.floor(Math.random() * motivationalQuotes.length)];
-    setQuote(randomQuote);
-  }, []);
+    return motivationalQuotes[
+      Math.floor(Math.random() * motivationalQuotes.length)
+    ];
+  });
 
   return (
     <div className="relative flex flex-col items-center text-center p-4 sm:p-8 w-full min-h-[450px] justify-between overflow-hidden rounded-4xl">
@@ -85,8 +82,8 @@ function ExerciseSuccessModal({
             {exerciseName}
           </span>
           .
-          <br className="hidden sm:block mt-1" /> Take a breath, and let's keep
-          this momentum going.
+          <br className="hidden sm:block mt-1" /> Take a breath, and let&apos;s
+          keep this momentum going.
         </p>
       </div>
 

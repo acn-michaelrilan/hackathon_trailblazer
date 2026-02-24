@@ -2,14 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState, useTransition } from "react";
-
-interface Account {
-  id: string;
-  full_name: string;
-  member_since: string;
-  account_status: string;
-  updated_at: string;
-}
+import { Account } from "@/types";
 
 export default function UserProfileForm({
   account,
@@ -70,7 +63,7 @@ export default function UserProfileForm({
 
   const handleUpdate = () => {
     const confirmed = window.confirm(
-      "Are you sure you want to update your full name?"
+      "Are you sure you want to update your full name?",
     );
     if (!confirmed) return;
 
@@ -99,9 +92,7 @@ export default function UserProfileForm({
               onChange={(e) => setFullName(e.target.value)}
               disabled={inputDisabled}
               className={`w-full rounded-md px-4 py-2.5 ${
-                inputDisabled
-                  ? "bg-gray-200 cursor-not-allowed"
-                  : "bg-gray-100"
+                inputDisabled ? "bg-gray-200 cursor-not-allowed" : "bg-gray-100"
               }`}
             />
             {!hasPlan && !checkingPlan && (
@@ -161,7 +152,9 @@ export default function UserProfileForm({
         )}
 
         <button
-          onClick={() => router.push(hasPlan ? "/overview" : "/informationinput")}
+          onClick={() =>
+            router.push(hasPlan ? "/overview" : "/informationinput")
+          }
           className="w-full rounded-xl bg-red-500 py-3 text-white font-semibold mt-3 shadow-md hover:bg-red-600 transition"
         >
           {hasPlan ? "Back to Overview" : "Back to Information Input Page"}

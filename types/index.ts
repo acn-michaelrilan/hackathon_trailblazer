@@ -285,3 +285,11 @@ export interface LoadingOverlayProps {
   isOpen: boolean;
   message?: string;
 }
+
+export interface Account {
+  id: string;
+  full_name: string;
+  member_since: string;
+  account_status: string;
+  updated_at: string;
+}
