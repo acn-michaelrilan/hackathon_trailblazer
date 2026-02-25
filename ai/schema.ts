@@ -10,7 +10,7 @@ export const EXERCISE_PLAN_TS_SCHEMA = `
 type ExercisePlanOutput = {
   exercise_plan: {
     plan_info: {
-      plan_id: string; // Format: EP-YYYY-XXXX-NNN
+      plan_id: string; // Format: EP-YYYY-<2 Random Letters followed by 2 random numbers>-<3 random numbers>
       user_name: string;
       created_date?: string; // YYYY-MM-DD
       total_weeks?: number; // 1-52
@@ -34,7 +34,7 @@ type ExercisePlanOutput = {
           name: string;
           description: string; // Purpose and benefits
           steps: string[]; // Sequential numbered instructions
-          video_url: string; // YouTube URL demonstrating the exercise
+          video_url: string; // YouTube URL demonstrating the exercise should be search result for exercise name
           status: string;
           sets: number;
           reps: number;
@@ -140,3 +140,47 @@ export const EXERCISE_PLAN_JSON_SCHEMA_OBJECT =
     ? EXERCISE_PLAN_JSON_SCHEMA
     : (schemaWithDefs.definitions?.ExercisePlanOutput ??
       EXERCISE_PLAN_JSON_SCHEMA);
+
+// Define the Profile schema
+const ProfileSchema = z.object({
+  user_id: z.string(),
+});
+
+// Define the Progress schema
+const ProgressSchema = z.object({
+  total_sessions: z.number(),
+  completed_sessions: z.number(),
+  completion_percent: z.number(),
+  current_week: z.number(),
+  current_day: z.number(),
+  next_session_date: z.string(), // YYYY-MM-DD format
+});
+
+// Extended Exercise Plan Output with Profile and Progress
+export const EXERCISE_PLAN_WITH_PROGRESS_ZOD_SCHEMA =
+  EXERCISE_PLAN_ZOD_SCHEMA.extend({
+    profile: ProfileSchema,
+    progress: ProgressSchema,
+  });
+
+// Export the type
+export type ExercisePlanWithProgress = z.infer<
+  typeof EXERCISE_PLAN_WITH_PROGRESS_ZOD_SCHEMA
+>;
+
+// Export JSON schema if needed for API responses
+export const EXERCISE_PLAN_WITH_PROGRESS_JSON_SCHEMA = zodToJsonSchema(
+  EXERCISE_PLAN_WITH_PROGRESS_ZOD_SCHEMA,
+  {
+    name: "ExercisePlanWithProgress",
+    $refStrategy: "none",
+  },
+);
+
+const progressSchemaWithDefs =
+  EXERCISE_PLAN_WITH_PROGRESS_JSON_SCHEMA as JsonSchemaWithDefinitions;
+export const EXERCISE_PLAN_WITH_PROGRESS_JSON_SCHEMA_OBJECT =
+  progressSchemaWithDefs.type === "object"
+    ? EXERCISE_PLAN_WITH_PROGRESS_JSON_SCHEMA
+    : (progressSchemaWithDefs.definitions?.ExercisePlanWithProgress ??
+      EXERCISE_PLAN_WITH_PROGRESS_JSON_SCHEMA);

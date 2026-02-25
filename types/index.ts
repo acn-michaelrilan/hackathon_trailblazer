@@ -129,6 +129,15 @@ export interface WeeklySchedule {
 }
 
 export interface ExercisePlanData {
+  progress: {
+    total_sessions: number;
+    completed_sessions: number;
+    completion_percent: number;
+    current_week: number;
+    current_day: number;
+    next_session_date: string;
+  };
+  profile: { user_id: string };
   exercise_plan: {
     plan_info: PlanMetadata & {
       safety_notes?: string[];
@@ -275,4 +284,12 @@ export type InformationInputData = UserTypeAndRisk &
 export interface LoadingOverlayProps {
   isOpen: boolean;
   message?: string;
+}
+
+export interface Account {
+  id: string;
+  full_name: string;
+  member_since: string;
+  account_status: string;
+  updated_at: string;
 }

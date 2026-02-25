@@ -1,15 +1,18 @@
 "use client";
-
-import { buildPayload } from "./payloadBuilder";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import LoadingOverlay from "./LoadingOverlay";
+import { INPUT_MOCK_DATA_2 } from "@/lib/mockData";
+import { buildPayload } from "./payloadBuilder";
 
 export default function SendPromptToAIButton() {
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const sendPromptToAI = async () => {
     try {
       setIsLoading(true);
+
       // Get the form element
       const form = document.querySelector("form");
       if (!form) {
@@ -17,12 +20,11 @@ export default function SendPromptToAIButton() {
         return;
       }
 
-      // Build payload from form data
       const formData = new FormData(form);
       const payload = buildPayload(formData);
-
       console.log("Sending payload:", payload);
 
+      // 1. Generate plan (also upserts server-side)
       const response = await fetch("/api/generate-plan", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -34,17 +36,13 @@ export default function SendPromptToAIButton() {
         throw new Error(errorData.error || "Failed to generate plan");
       }
 
-      // Handle successful response
       const plan = await response.json();
       console.log("Generated Plan:", plan);
-      console.log("Plan ID:", plan.exercise_plan?.plan_info?.plan_id);
 
-      // Do something with the plan data
-      alert("Plan generated successfully!");
-      return plan; // Return the plan if you need it elsewhere
+      // 2. Navigate to overview on success
+      router.push("/overview");
     } catch (err) {
       console.error("Error generating plan:", err);
-      alert("Failed to generate plan. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -68,7 +66,7 @@ export default function SendPromptToAIButton() {
           cursor: isLoading ? "not-allowed" : "pointer",
         }}
       >
-        {isLoading ? "Generating..." : "Test AI"}
+        {isLoading ? "Generating..." : "Generate Plan"}
       </button>
     </>
   );
