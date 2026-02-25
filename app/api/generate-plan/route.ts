@@ -67,7 +67,7 @@ export async function POST(request: Request) {
     // 3. Call generatePlan with Retry Logic (3 attempts)
     let plan = null;
     let attempts = 0;
-    const MAX_RETRIES = 3;
+    const MAX_RETRIES = 1;
 
     while (attempts < MAX_RETRIES) {
       try {
