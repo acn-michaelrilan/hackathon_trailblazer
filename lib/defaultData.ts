@@ -4,7 +4,7 @@ export const backupPlan: ExercisePlanOutput = {
   exercise_plan: {
     plan_info: {
       plan_id: "EP-2026-JM68-001",
-      user_name: "John M.",
+      user_name: "Julie M.",
       created_date: "2026-02-02",
       total_weeks: 4,
       sessions_per_week: 5,

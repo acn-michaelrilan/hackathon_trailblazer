@@ -92,9 +92,8 @@ export default function Homepage() {
     <div className="w-full flex-1 flex flex-col items-center justify-center px-4 py-10 bg-white">
       {/* Headline */}
       <h1 className="font-poppins font-semibold mb-3 text-3xl sm:text-4xl md:text-6xl text-center leading-tight transition-transform duration-500 ease-out hover:-translate-y-1">
-        <span className="text-[#7BA63F]">AI-GUIDED ADAPTIVE</span>
-        <br />
-        <span className="text-[#264D73]">EXERCISE PLANNER</span>
+        <span className="text-[#7BA63F]">REHAB</span>
+        <span className="text-[#264D73]">BUDDY</span>
       </h1>
 
       {/* Subheading */}

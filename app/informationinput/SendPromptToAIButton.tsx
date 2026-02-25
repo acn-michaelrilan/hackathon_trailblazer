@@ -43,7 +43,6 @@ export default function SendPromptToAIButton() {
       router.push("/overview");
     } catch (err) {
       console.error("Error generating plan:", err);
-      alert("Failed to generate plan. Please try again.");
     } finally {
       setIsLoading(false);
     }

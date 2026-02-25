@@ -214,9 +214,9 @@ export const INPUT_MOCK_DATA_2: InformationInputData = {
     risk_level: "moderate",
   },
   basic_profile: {
-    name: "James T.",
+    name: "Julie",
     age: 58,
-    sex: "male",
+    sex: "female",
     height_cm: 180,
     weight_kg: 92,
     dominant_side: "right",
